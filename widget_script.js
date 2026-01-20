@@ -16,13 +16,25 @@ const GITHUB_USER = "gauravagarwal003";
 const GITHUB_REPO = "Pokemon_Sealed_Tracker";
 const GITHUB_BRANCH = "main";
 const GITHUB_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/summary.json`;
+const GITHUB_REPO_URL = `https://github.com/${GITHUB_USER}/${GITHUB_REPO}`;
 
 const API_URL = MODE === "LOCAL" ? LOCAL_URL : GITHUB_URL;
 
 let widget = await createWidget();
+
+// Handle interaction: Open the dashboard/repo when tapped
+if (MODE === "LOCAL") {
+    // Open the local Flask dashboard
+    widget.url = `http://${LOCAL_IP}:5001/`;
+} else {
+    // Open the GitHub repository
+    widget.url = GITHUB_REPO_URL;
+}
+
 if (config.runsInWidget) {
   Script.setWidget(widget);
 } else {
+
   widget.presentMedium();
 }
 Script.complete();
