@@ -130,8 +130,8 @@ function drawChart(history, width, height, lineColor) {
   ctx.size = new Size(width, height)
   ctx.opaque = false
   
-  // Extract values
-  let values = history.map(h => h["Total Value"])
+  // Extract values and ensure they are numbers
+  let values = history.map(h => parseFloat(h["Total Value"]))
   let min = Math.min(...values)
   let max = Math.max(...values)
   let delta = max - min

@@ -149,6 +149,38 @@ def run_analysis(resume_date=None):
     results_df = pd.DataFrame(daily_records)
     results_df.to_csv("daily_tracker.csv", index=False)
     
+    # --- Generate summary.json for Widget / GitHub ---
+    print("Generating summary.json...")
+    summary_data = {
+        "total_value": 0,
+        "total_cost": 0,
+        "profit": 0,
+        "items_owned": 0,
+        "date": datetime.now().strftime('%Y-%m-%d'),
+        "history": []
+    }
+    
+    if not results_df.empty:
+        last_row = results_df.iloc[-1]
+        summary_data["total_value"] = float(last_row['Total Value'])
+        summary_data["total_cost"] = float(last_row['Cost Basis'])
+        summary_data["profit"] = summary_data["total_value"] - summary_data["total_cost"]
+        summary_data["items_owned"] = int(last_row['Items Owned'])
+        try:
+             summary_data["date"] = str(last_row['Date'].date())
+        except:
+             summary_data["date"] = str(last_row['Date'])
+        
+        # Extract last 14 days for graph
+        history_df = results_df.tail(14).copy()
+        # Convert Timestamps to strings
+        history_df['Date'] = history_df['Date'].apply(lambda x: x.strftime('%Y-%m-%d') if isinstance(x, pd.Timestamp) else str(x))
+        summary_data["history"] = history_df[['Date', 'Total Value']].to_dict('records')
+
+    with open("summary.json", "w") as f:
+        json.dump(summary_data, f, indent=2)
+    # -------------------------------------------------
+
     # 4. Generate Graph
     if not results_df.empty:
         fig = go.Figure()
