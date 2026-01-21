@@ -9,22 +9,27 @@
             </div>
             <div class="card-body">
                 <form method="post">
+
+                    <!-- Dates -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="date_purchased" class="form-label">Date Purchased (MM/DD/YYYY)</label>
-                            <input type="text" class="form-control" id="date_purchased" name="date_purchased" value="{{ transaction.get('Date Purchased', '') }}" required>
+                            <input type="text" class="form-control" id="date_purchased" name="date_purchased"
+                                   value="{{ transaction.get('Date Purchased', '') }}" required>
                         </div>
                         <div class="col-md-6">
                             <label for="date_received" class="form-label">Date Received (MM/DD/YYYY)</label>
-                            <input type="text" class="form-control" id="date_received" name="date_received" value="{{ transaction.get('Date Recieved', '') }}" >
+                            <input type="text" class="form-control" id="date_received" name="date_received"
+                                   value="{{ transaction.get('Date Received', '') }}">
                         </div>
                     </div>
 
+                    <!-- Type / Price / Qty -->
                     <div class="row mb-3">
                         <div class="col-md-4">
                             <label for="transaction_type" class="form-label">Type</label>
                             <select class="form-select" id="transaction_type" name="transaction_type">
-                                <option value="BUY" {% if transaction.get('Transaction Type') == 'BUY' %}selected{% endif %}>BUY</option>
+                                <option value="BUY"  {% if transaction.get('Transaction Type') == 'BUY' %}selected{% endif %}>BUY</option>
                                 <option value="SELL" {% if transaction.get('Transaction Type') == 'SELL' %}selected{% endif %}>SELL</option>
                                 <option value="OPEN" {% if transaction.get('Transaction Type') == 'OPEN' %}selected{% endif %}>OPEN</option>
                                 <option value="PULL" {% if transaction.get('Transaction Type') == 'PULL' %}selected{% endif %}>PULL</option>
@@ -32,53 +37,178 @@
                         </div>
                         <div class="col-md-4">
                             <label for="price_per_unit" class="form-label">Price Per Unit</label>
-                            <input type="text" class="form-control" id="price_per_unit" name="price_per_unit" value="{{ transaction.get('Price Per Unit', '') }}">
+                            <input type="text" class="form-control" id="price_per_unit" name="price_per_unit"
+                                   value="{{ transaction.get('Price Per Unit', '') }}">
                         </div>
                         <div class="col-md-4">
                             <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" value="{{ transaction.get('Quantity', 1) }}" required>
+                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                   value="{{ transaction.get('Quantity', 1) }}" required>
                         </div>
                     </div>
 
+                    <!-- Item -->
                     <div class="mb-3">
-                        <label for="item" class="form-label">Item Name</label>
-                        <input type="text" class="form-control" id="item" name="item" value="{{ transaction.get('Item', '') }}" required>
+                        <label for="item" class="form-label">Item Name (Search or Enter New)</label>
+                        <input type="text"
+                               class="form-control"
+                               id="item"
+                               name="item"
+                               list="mapping_list"
+                               value="{{ transaction.get('Item', '') }}"
+                               autocomplete="off"
+                               required
+                               oninput="checkMapping()">
+
+                        <datalist id="mapping_list">
+                            {% for m in mappings or [] %}
+                                <option value="{{ m.name }}">{{ m.group_id }} | {{ m.product_id }}</option>
+                            {% endfor %}
+                        </datalist>
                     </div>
 
+                    <!-- IDs -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="group_id" class="form-label">Group ID</label>
-                            <input type="text" class="form-control" id="group_id" name="group_id" value="{{ transaction.get('group_id', '') }}">
+                            <input type="text" class="form-control" id="group_id" name="group_id"
+                                   value="{{ transaction.get('group_id', '') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="product_id" class="form-label">Product ID</label>
-                            <input type="text" class="form-control" id="product_id" name="product_id" value="{{ transaction.get('product_id', '') }}">
+                            <input type="text" class="form-control" id="product_id" name="product_id"
+                                   value="{{ transaction.get('product_id', '') }}">
                         </div>
                     </div>
 
+                    <!-- New Mapping -->
+                    <div id="new_mapping_section" class="card mb-3 bg-light border-warning" style="display:none;">
+                        <div class="card-header py-1 text-warning fw-bold">
+                            <small>New Product Mapping</small>
+                        </div>
+                        <div class="card-body py-2">
+                            <p class="mb-2 small text-muted">
+                                This product is not in mappings.json. Generate details below.
+                            </p>
+
+                            <div class="row mb-2">
+                                <div class="col-md-4">
+                                    <label class="form-label small">Category ID</label>
+                                    <input type="number" class="form-control form-control-sm"
+                                           name="new_category_id" value="3">
+                                </div>
+                                <div class="col-md-8 d-flex align-items-end">
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-primary w-100"
+                                            onclick="generateUrls()">
+                                        Generate URLs from IDs
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small">Image URL</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" id="new_image_url" name="new_image_url">
+                                    <a href="#" target="_blank" id="test_img_btn"
+                                       class="btn btn-outline-secondary">Check</a>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label small">Product URL</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" id="new_product_url" name="new_product_url">
+                                    <a href="#" target="_blank" id="test_url_btn"
+                                       class="btn btn-outline-secondary">Check</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Method / Place -->
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="method" class="form-label">Method</label>
-                            <input type="text" class="form-control" id="method" name="method" value="{{ transaction.get('Method', '') }}">
+                            <input type="text" class="form-control" id="method" name="method"
+                                   value="{{ transaction.get('Method', '') }}">
                         </div>
                         <div class="col-md-6">
                             <label for="place" class="form-label">Place</label>
-                            <input type="text" class="form-control" id="place" name="place" value="{{ transaction.get('Place', '') }}">
+                            <input type="text" class="form-control" id="place" name="place"
+                                   value="{{ transaction.get('Place', '') }}">
                         </div>
                     </div>
 
+                    <!-- Notes -->
                     <div class="mb-3">
                         <label for="notes" class="form-label">Notes</label>
-                        <textarea class="form-control" id="notes" name="notes" rows="3">{{ transaction.get('Notes', '') }}</textarea>
+                        <textarea class="form-control" id="notes" name="notes" rows="3">
+{{ transaction.get('Notes', '') }}</textarea>
                     </div>
 
+                    <!-- Buttons -->
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-success">Save Transaction</button>
                         <a href="{{ url_for('transactions') }}" class="btn btn-secondary">Cancel</a>
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- JSON DATA (editor-safe) -->
+<script type="application/json" id="mappings-data">
+{{ mappings | tojson }}
+</script>
+
+<!-- JS -->
+<script>
+    const mappings = JSON.parse(
+        document.getElementById('mappings-data').textContent || '[]'
+    );
+
+    function checkMapping() {
+        const input = document.getElementById('item').value;
+        const match = mappings.find(m => m.name === input);
+        const section = document.getElementById('new_mapping_section');
+
+        if (match) {
+            document.getElementById('group_id').value = match.group_id;
+            document.getElementById('product_id').value = match.product_id;
+            section.style.display = 'none';
+        } else if (input.length > 3) {
+            section.style.display = 'block';
+        } else {
+            section.style.display = 'none';
+        }
+    }
+
+    function generateUrls() {
+        const pid = document.getElementById('product_id').value.trim();
+        const name = document.getElementById('item').value.trim();
+
+        if (!pid) {
+            alert('Please enter Product ID first');
+            return;
+        }
+
+        const imgUrl = `https://tcgplayer-cdn.tcgplayer.com/product/${pid}_200w.jpg`;
+        document.getElementById('new_image_url').value = imgUrl;
+        document.getElementById('test_img_btn').href = imgUrl;
+
+        const slug = name.toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/--+/g, '-');
+
+        const prodUrl = `https://www.tcgplayer.com/product/${pid}/${slug}`;
+        document.getElementById('new_product_url').value = prodUrl;
+        document.getElementById('test_url_btn').href = prodUrl;
+    }
+
+    checkMapping();
+</script>
 {% endblock %}

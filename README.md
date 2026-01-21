@@ -31,13 +31,13 @@ You can edit `transactions.csv` directly or use the Web App.
 **Standard Daily Update (Fast):**
 RESUMES from the last date in `daily_tracker.csv`.
 ```bash
-python daily_run.py --incremental
+python update_portfolio.py --incremental
 ```
 
 **Full Rebuild (Slow):**
 Wipes history and recalculates everything. Use if data looks corrupted.
 ```bash
-python daily_run.py
+python update_portfolio.py
 ```
 
 ### 3. Web Interface
@@ -56,7 +56,7 @@ The project is configured to run automatically via GitHub Actions (`.github/work
 The potentially huge `historical_prices/` folder is **cached** in GitHub Actions and ignored by Git. This keeps your repository size small while retaining all necessary data for calculations.
 
 ## 📂 Project Structure
-- `daily_run.py`: Mains orchestration script.
+- `update_portfolio.py`: Main orchestration script (updates prices & calculates value).
 - `transactions.csv`: Your portfolio ledger.
 - `daily_tracker.csv`: Generated daily history of your portfolio value.
 - `current_holdings.csv`: Snapshot of current inventory.

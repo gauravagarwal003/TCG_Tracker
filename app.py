@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import pandas as pd
 import os
+import json
 from datetime import datetime
 from analyze_portfolio import run_analysis
 from functions import MAPPINGS_FILE, TRANSACTIONS_FILE
@@ -59,7 +60,13 @@ def add_transaction():
     if request.method == 'POST':
         save_transaction(request.form)
         return redirect(url_for('transactions'))
-    return render_template('transaction_form.html', transaction={}, title="Add Transaction")
+    
+    mappings = []
+    if os.path.exists(MAPPINGS_FILE):
+        with open(MAPPINGS_FILE, 'r') as f:
+            mappings = json.load(f)
+            
+    return render_template('transaction_form.html', transaction={}, title="Add Transaction", mappings=mappings)
 
 @app.route('/transaction/edit/<int:tx_id>', methods=['GET', 'POST'])
 def edit_transaction(tx_id):
@@ -77,8 +84,13 @@ def edit_transaction(tx_id):
         save_transaction(request.form, tx_id)
         return redirect(url_for('transactions'))
     
+    mappings = []
+    if os.path.exists(MAPPINGS_FILE):
+        with open(MAPPINGS_FILE, 'r') as f:
+            mappings = json.load(f)
+
     transaction = df.loc[tx_id].to_dict()
-    return render_template('transaction_form.html', transaction=transaction, title="Edit Transaction")
+    return render_template('transaction_form.html', transaction=transaction, title="Edit Transaction", mappings=mappings)
 
 @app.route('/transaction/delete/<int:tx_id>', methods=['POST'])
 def delete_transaction(tx_id):
@@ -112,6 +124,39 @@ def save_transaction(form_data, tx_id=None):
         'Place': form_data.get('place'),
         'Notes': form_data.get('notes')
     }
+
+    # --- Save New Mapping if provided ---
+    new_cat_id = form_data.get('new_category_id')
+    new_img = form_data.get('new_image_url')
+    new_url = form_data.get('new_product_url')
+    
+    if new_img and new_url and data['group_id'] and data['product_id']:
+        try:
+            mappings = []
+            if os.path.exists(MAPPINGS_FILE):
+                with open(MAPPINGS_FILE, 'r') as f:
+                    mappings = json.load(f)
+            
+            # Check if exists
+            pid = str(data['product_id']).strip()
+            gid = str(data['group_id']).strip()
+            exists = any(str(m.get('product_id')) == pid and str(m.get('group_id')) == gid for m in mappings)
+            
+            if not exists:
+                new_entry = {
+                    "product_id": pid,
+                    "name": data['Item'],
+                    "group_id": gid,
+                    "imageUrl": new_img,
+                    "categoryId": int(new_cat_id) if new_cat_id else 3,
+                    "url": new_url
+                }
+                mappings.append(new_entry)
+                with open(MAPPINGS_FILE, 'w') as f:
+                    json.dump(mappings, f, indent=2)
+                print(f"Added mapping for {data['Item']}")
+        except Exception as e:
+            print(f"Error saving mapping: {e}")
 
     # Format currency/numbers
     # Basic cleanup, maybe move to a util
