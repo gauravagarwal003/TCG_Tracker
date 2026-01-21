@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import os
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from functions import get_price_for_date
@@ -12,8 +13,10 @@ def parse_currency(value):
         return float(clean) if clean else 0.0
     return float(value)
 
-def run_analysis():
+def run_analysis(resume_date=None):
     print("--- Starting Portfolio Analysis ---")
+    if resume_date:
+        print(f"Resuming analysis from {resume_date}...")
     
     with open("data.json") as f:
         config = json.load(f)
@@ -55,6 +58,25 @@ def run_analysis():
         end_date = datetime.now() # Don't graph the future
 
     daily_records = []
+    
+    # NEW: Handle resume logic
+    if resume_date:
+         resume_dt = pd.to_datetime(resume_date)
+    else:
+         resume_dt = current_date
+         
+    if resume_dt > current_date and os.path.exists("daily_tracker.csv"):
+        try:
+            print("Loading existing daily_tracker.csv for incremental update...")
+            existing_df = pd.read_csv("daily_tracker.csv")
+            if not existing_df.empty:
+                existing_df['Date'] = pd.to_datetime(existing_df['Date'])
+                # Keep historical data strictly BEFORE the resume date
+                existing_df = existing_df[existing_df['Date'] < resume_dt]
+                daily_records = existing_df.to_dict('records')
+        except Exception as e:
+            print(f"Warning: Could not load existing tracker data: {e}")
+            daily_records = []
     
     # State: { (group_id, product_id): quantity }
     inventory = {} 
@@ -102,6 +124,11 @@ def run_analysis():
                 # Value: Decreases naturally in step B because inventory count drops
 
         # --- B. Calculate Portfolio Value (End of Day logic) ---
+        if current_date < resume_dt:
+            # Rebuilding inventory state only. Skip expensive calculations.
+            current_date += timedelta(days=1)
+            continue
+
         daily_portfolio_value = 0.0
         
         for (g_id, p_id), quantity in inventory.items():

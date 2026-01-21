@@ -12,6 +12,95 @@ with open("data.json") as f:
 MAPPINGS_FILE = data.get("mappings_file")
 TRANSACTIONS_FILE = data.get("transactions_file")
 
+def get_product_active_ranges():
+    """
+    Parses transactions and returns a dictionary mapping (group_id, product_id) to
+    a list of date ranges [(start_date, end_date), ...] when the product was owned.
+    """
+    if not os.path.exists(TRANSACTIONS_FILE):
+        return {}
+
+    transactions = []
+    with open(TRANSACTIONS_FILE, 'r') as f:
+        reader = csv.DictReader(f)
+        transactions = list(reader)
+
+    # Sort by date received
+    def parse_date(d):
+        try:
+             return datetime.strptime(d, '%m/%d/%Y').date()
+        except:
+             return datetime.min.date()
+    
+    transactions.sort(key=lambda x: parse_date(x.get('Date Recieved', '')))
+
+    active_ranges = {} # (gid, pid) -> [(start, end), ...]
+    product_states = {} # (gid, pid) -> { 'qty': 0, 'range_start': None }
+
+    for tx in transactions:
+        try:
+            # Clean IDs
+            gid = str(int(float(tx['group_id'])))
+            pid = str(int(float(tx['product_id'])))
+            key = (gid, pid)
+            
+            date_str = tx['Date Recieved']
+            tx_date = datetime.strptime(date_str, '%m/%d/%Y').date()
+            
+            tx_type = str(tx['Transaction Type']).strip().upper()
+            qty = float(tx['Quantity'])
+
+            if key not in product_states:
+                product_states[key] = {'qty': 0.0, 'range_start': None}
+                active_ranges[key] = []
+
+            state = product_states[key]
+            current_qty = state['qty']
+
+            if tx_type in ['BUY', 'PULL']:
+                new_qty = current_qty + qty
+                if current_qty <= 0 and new_qty > 0:
+                     state['range_start'] = tx_date
+                state['qty'] = new_qty
+
+            elif tx_type in ['SELL', 'OPEN', 'TRADE']:
+                new_qty = current_qty - qty
+                if current_qty > 0 and new_qty <= 0:
+                    if state['range_start']:
+                        # Determine end date (inclusive or exclusive? usually exclusive for check)
+                        # "Still owned in any of those dates". 
+                        # If I sell on Day X, I owned it on Day X (start of day). 
+                        # So range should cover Day X.
+                        active_ranges[key].append( (state['range_start'], tx_date) )
+                        state['range_start'] = None
+                state['qty'] = new_qty
+
+        except (ValueError, KeyError, TypeError):
+            continue
+
+    # Close open ranges
+    for key, state in product_states.items():
+        if state['qty'] > 0 and state['range_start']:
+            active_ranges[key].append( (state['range_start'], None) )
+
+    return active_ranges
+
+def is_product_active(gid, pid, date_obj, active_ranges):
+    """
+    Checks if a product was owned on a specific date.
+    date_obj should be datetime.date
+    """
+    key = (str(gid), str(pid))
+    ranges = active_ranges.get(key, [])
+    
+    for start, end in ranges:
+        if start <= date_obj:
+            if end is None: 
+                return True
+            if date_obj <= end:
+                return True
+    return False
+
 # collect_historical_data("2025-08-11", "2025-08-13", 24269, 628395)
 # [{'date': '2025-08-11', 'marketPrice': 14.2}, {'date': '2025-08-12', 'marketPrice': None}, {'date': '2025-08-13', 'marketPrice': 14.42}]
 def collect_historical_data(start_date_str, end_date_str, group_id, product_id):
@@ -256,6 +345,9 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
     if end_date > now: 
         end_date = now
     
+    # NEW: Get active ranges to determine what to fetch
+    active_ranges = get_product_active_ranges()
+
     current_date = start_date
     
     # Pre-organize products by group_id for faster lookup {group_id: [product_id, ...]}
@@ -272,23 +364,39 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
     while current_date <= end_date:
         date_str = current_date.strftime('%Y-%m-%d')
         
-        # Check if we already have data for ALL requested products
-        missing_any = False
+        # 1. Identify which products are ACTIVE on this date
+        active_products_today = []
         for p in product_list:
-            # Construct expected path: historical_prices/{group_id}/{product_id}/{date_str}.json
-            # Note: output_folder is passed in, default 'historical_prices'
-            p_path = os.path.join(output_folder, str(p['group_id']), str(p['product_id']), f"{date_str}.json")
-            if not os.path.exists(p_path):
-                missing_any = True
+            g_id = str(p['group_id']).strip()
+            p_id = str(p['product_id']).strip()
+            
+            if is_product_active(g_id, p_id, current_date.date(), active_ranges):
+                active_products_today.append(p)
+
+        if not active_products_today:
+             # No products active on this day, skip
+             # print(f"Skipping {date_str} - No active products.")
+             current_date += timedelta(days=1)
+             continue
+
+        # 2. Check if we already have data for these ACTIVE products
+        missing_data = False
+        for p in active_products_today:
+            g_id = str(p['group_id'])
+            p_id = str(p['product_id'])
+            check_path = Path(output_folder) / g_id / p_id / f"{date_str}.json"
+            if not check_path.exists():
+                missing_data = True
                 break
         
-        if not missing_any:
-            print(f"Skipping {date_str} - All data present.")
+        if not missing_data:
+            print(f"Skipping {date_str} - All required data present.")
             current_date += timedelta(days=1)
             continue
-
+        
         archive_url = f"https://tcgcsv.com/archive/tcgplayer/prices-{date_str}.ppmd.7z"
         archive_filename = f"prices-{date_str}.ppmd.7z"
+
         extracted_folder = f"temp_extract_{date_str}" 
 
         try:
@@ -338,7 +446,16 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
                 print(f" [Debug: No '3' folder. Found: {[p.name for p in existing]}]", end='')
 
             if category_path.exists():
-                for group_id, target_product_ids in products_by_group.items():
+                # NEW: Filter to only active products
+                active_by_group = {}
+                for p in active_products_today:
+                     g_id = str(p['group_id']).strip()
+                     p_id = str(p['product_id']).strip()
+                     if g_id not in active_by_group:
+                         active_by_group[g_id] = []
+                     active_by_group[g_id].append(p_id)
+                
+                for group_id, target_product_ids in active_by_group.items():
                     # The file inside is usually named 'prices' (no extension) which contains JSON
                     group_file = category_path / group_id / "prices"
                     

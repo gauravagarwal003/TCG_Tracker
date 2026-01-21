@@ -1,5 +1,6 @@
 import sys
 import datetime
+import argparse
 import update_prices
 import analyze_portfolio
 import json
@@ -21,10 +22,38 @@ def update_config_date():
         pass # If fails, we trust the user's config
 
 def main():
+    parser = argparse.ArgumentParser(description="Run daily updates for Pokemon Tracker")
+    parser.add_argument("--incremental", action="store_true", help="Resume from last tracked date")
+    parser.add_argument("--rebuild-from", help="Rebuild starting from specific date (YYYY-MM-DD)")
+    args = parser.parse_args()
+
     print("========================================")
     print(f"  POKEMON TRACKER - DAILY UPDATE")
     print(f"  Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("========================================")
+
+    # Determine Resume Date
+    resume_date = None
+    if args.rebuild_from:
+         resume_date = args.rebuild_from
+         print(f"  MODE: Rebuild from {resume_date}")
+    elif args.incremental:
+         if os.path.exists("daily_tracker.csv"):
+             try:
+                 df = pd.read_csv("daily_tracker.csv")
+                 if not df.empty:
+                     df['Date'] = pd.to_datetime(df['Date'])
+                     last_date = df['Date'].max()
+                     resume_date = (last_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+                     print(f"  MODE: Incremental update from {resume_date}")
+                 else:
+                     print("  MODE: Full Rebuild (CSV empty)")
+             except Exception as e:
+                 print(f"  Warning: Could not read tracker CSV ({e}). Full rebuild.")
+         else:
+             print("  MODE: Full Rebuild (No CSV)")
+    else:
+         print("  MODE: Full Rebuild (Default)")
 
     # Step 0: Auto-extend the config date so we don't get stuck in the past
     update_config_date()
@@ -41,7 +70,7 @@ def main():
     # Step 2: Recalculate Portfolio Value & Basis
     print("\n>>> STEP 2: Analyzing Portfolio Performance...")
     try:
-        analyze_portfolio.run_analysis()
+        analyze_portfolio.run_analysis(resume_date=resume_date)
     except Exception as e:
         print(f"CRITICAL ERROR in Analysis: {e}")
         sys.exit(1)
