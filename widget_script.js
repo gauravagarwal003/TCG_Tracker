@@ -23,6 +23,7 @@ const API_URL = MODE === "LOCAL" ? LOCAL_URL : GITHUB_URL;
 let widget = await createWidget();
 
 // Handle interaction: Open the dashboard/repo when tapped
+/*
 if (MODE === "LOCAL") {
     // Open the local Flask dashboard
     widget.url = `http://${LOCAL_IP}:5001/`;
@@ -30,6 +31,7 @@ if (MODE === "LOCAL") {
     // Open the GitHub repository
     widget.url = GITHUB_REPO_URL;
 }
+*/
 
 if (config.runsInWidget) {
   Script.setWidget(widget);
