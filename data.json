@@ -1,6 +1,6 @@
 {
     "start_date": "2024-11-19",
-    "latest_date": "2026-01-22",
+    "latest_date": "2026-01-23",
     "transactions_file": "transactions.csv",
     "mappings_file": "mappings.json",
     "version": "1.0"
