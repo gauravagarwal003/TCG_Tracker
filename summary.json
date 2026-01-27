@@ -1,14 +1,10 @@
 {
-  "total_value": 7034.1,
+  "total_value": 7065.75,
   "total_cost": 3413.86,
-  "profit": 3620.2400000000002,
+  "profit": 3651.89,
   "items_owned": 106,
-  "date": "2026-01-25",
+  "date": "2026-01-26",
   "history": [
-    {
-      "Date": "2026-01-12",
-      "Total Value": 6543.89
-    },
     {
       "Date": "2026-01-13",
       "Total Value": 6579.73
@@ -60,6 +56,10 @@
     {
       "Date": "2026-01-25",
       "Total Value": 7034.1
+    },
+    {
+      "Date": "2026-01-26",
+      "Total Value": 7065.75
     }
   ]
 }
