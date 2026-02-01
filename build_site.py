@@ -10,6 +10,10 @@ OUTPUT_DIR = os.path.join(BASE_DIR, 'docs')
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
+# Create .nojekyll file to disable Jekyll processing on GitHub Pages
+with open(os.path.join(OUTPUT_DIR, '.nojekyll'), 'w') as f:
+    pass
+
 # Setup Jinja2 Environment
 env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
@@ -29,15 +33,7 @@ def format_int(value):
     except:
         return value
 
-env.filters['format'] = format_currency # Mocking format filter usually in Flask
-# Custom filter wrapper to handle the python format string usage in template
-# The template uses: "${{ "%.2f"|format(total_value) }}" which is standard Jinja
-# But let's support what the template expects. 
-# Actually, the template uses:  ${{ "%.2f"|format(value) }}. 
-# Jinja2's builtin format filter works like python's format(). 
-# "%.2f"|format(val) -> "3.14" 
-# So we don't need a custom filter if we rely on standard behavior, 
-# but let's double check if "format" is available by default. It is.
+# env.filters['format'] = format_currency # Remove this override to use default Jinja format
 
 # --- 1. Load Data ---
 

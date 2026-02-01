@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Investment Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding-top: 60px; }
+        .iframe-container { width: 100%; height: 600px; border: none; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">PokeTracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="transactions.html">Transactions</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        
+                         <span class="navbar-text text-light small">Updated daily via GitHub Actions</span>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        
+            
+        
+
+        
+<div class="row mb-3">
+    <div class="col-md-6">
+        <h2>Transactions</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        
+        <a href="https://github.com/GRA0007/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
+        
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Date Purchased</th>
+                        <th>Type</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price/Unit</th>
+                        <!-- <th>IDs</th> -->
+                        <th>Notes</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>11/12/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Elite Trainer Box</td>
+                        <td>3.0</td>
+                        <td>$28.58</td>
+                        <!-- <td><small>23651:565630</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">$50 each originally. Due to a pricing error on these in a physical Target in Lodi, CA. Saw a post on reddit about them and called Target customer support to get the price matched. </small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/17/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldea Evolved Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$27.38</td>
+                        <!-- <td><small>23120:493974</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">I saw the deal on GameStop but there was no shipping and no stores near me were available for pickup. Price matched with Scheels. Originally charged $8 for shipping but it was later refunded.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/28/2024</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Surging Sparks Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23651:565630</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Pikachu ex #247, Latias ex #220, Hydreigon ex #119, Slaking ex #147, and Bruxish #200.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/19/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Mini Tin [Electabuzz & Magnemites]  </td>
+                        <td>1.0</td>
+                        <td>$11.01</td>
+                        <!-- <td><small>23237:522701</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">In store pickup.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/25/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Brilliant Stars Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$14.65</td>
+                        <!-- <td><small>2948:256138</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/25/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Lost Origin Elite Trainer Box</td>
+                        <td>2.0</td>
+                        <td>$20.94</td>
+                        <!-- <td><small>3118:277335</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/24/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Crown Zenith Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$20.52</td>
+                        <!-- <td><small>17688:527562</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Price Matched 30% off</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/25/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Lost Origin Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$14.65</td>
+                        <!-- <td><small>3118:277335</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/11/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Twilight Masquerade Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.92</td>
+                        <!-- <td><small>23473:543843</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/11/2024</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Twilight Masquerade Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23473:543843</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/12/2024</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>151 Mini Tin [Electabuzz & Magnemites]  </td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23237:522701</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/14/2024</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Lost Origin Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>3118:277335</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled a Giratina V #186 and Galarian Perrserker V #129.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/16/2024</td>
+                        <td>
+                            <span class="badge bg-success">
+                                SELL
+                            </span>
+                        </td>
+                        <td>Surging Sparks Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$55.00</td>
+                        <!-- <td><small>23651:565630</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/17/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151: Zapdos ex Collection</td>
+                        <td>2.0</td>
+                        <td>$23.03</td>
+                        <!-- <td><small>23237:502007</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Decided to stop by before going to get a haircut, they were restocking and I got 2 boxes.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/24/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldean Fates Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.03</td>
+                        <!-- <td><small>23353:528771</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Was on vacation in San Diego and we were buying groceries.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/1/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>151: Zapdos ex Collection</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23237:502007</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Arbok ex 024/165.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/10/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldea Evolved Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.84</td>
+                        <!-- <td><small>23120:493976</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Was at Elisabet's previous roommates place (Nessa) in Whittier due to LA fires. We went to Downtown Disney and stopped here on the way back.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/10/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Paldea Evolved Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23120:493976</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/7/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldea Evolved Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$27.21</td>
+                        <!-- <td><small>23120:496914</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/13/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Paldea Evolved Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23120:496914</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Meowscarada ex #15.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/16/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Crown Zenith Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>17688:527562</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Radiant Charizard #20, Rotom V #45, Poochyena #GG33, Duskull #GG28.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/19/2024</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$20.70</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Only got one when max was three since I had been spending too much. Later I called Target Customer Service to see if I could apply a 25% one toy or book coupon to my purchase, even though it says it cannot for trading cards, since I saw it on reddit. For some reason, it did work and I was refunded $25 (maybe they did $25 instead of 25%????).</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/2/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Glaceon]</td>
+                        <td>1.0</td>
+                        <td>$15.70</td>
+                        <!-- <td><small>23821:593451</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/2/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Sylveon]</td>
+                        <td>1.0</td>
+                        <td>$15.70</td>
+                        <!-- <td><small>23821:593450</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151: Zapdos ex Collection</td>
+                        <td>1.0</td>
+                        <td>$23.03</td>
+                        <!-- <td><small>23237:502007</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/19/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Glaceon]</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23821:593451</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/19/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Sylveon]</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23821:593450</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Raifort #199.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/19/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>151: Zapdos ex Collection</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23237:502007</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/20/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Blooming Waters Premium Collection</td>
+                        <td>2.0</td>
+                        <td>$49.60</td>
+                        <!-- <td><small>2374:609597</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Silver Tempest Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$1.55</td>
+                        <!-- <td><small>3170:283388</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$19.86</td>
+                        <!-- <td><small>23537:557345</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/16/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Crown Zenith Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$18.71</td>
+                        <!-- <td><small>17688:527562</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/24/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Shrouded Fable Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>1.0</td>
+                        <td>$65.69</td>
+                        <!-- <td><small>23529:552998</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/30/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Crown Zenith Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>17688:527562</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Poochyena #GG33, Duskull #GG28, Hisuian Samurott V #GG51, and Zeraora VMAX #54.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/23/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$30.65</td>
+                        <!-- <td><small>23237:502000</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/27/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Booster Bundle</td>
+                        <td>3.0</td>
+                        <td>$30.65</td>
+                        <!-- <td><small>23237:502000</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/2/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>151 Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23237:502000</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Mew ex #151, Ninetales ex #38.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/3/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Silver Tempest Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>3170:283388</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/6/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23537:557345</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Lucario ex #82, Ledian #144, and Medicham ex #161.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/15/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$26.32</td>
+                        <!-- <td><small>23537:557345</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/6/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Surprise Box</td>
+                        <td>1.0</td>
+                        <td>$22.65</td>
+                        <!-- <td><small>23821:593466</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got 10% off through Customer Service.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/18/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$23.91</td>
+                        <!-- <td><small>23237:502000</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $5 Target Circle Reward.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/27/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23537:557345</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Grand Tree #136, Lapras ex #032, and Orthworm ex #110.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/21/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Astral Radiance Build & Battle Box</td>
+                        <td>1.0</td>
+                        <td>$21.88</td>
+                        <!-- <td><small>3040:265529</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Recieved 2024 Pokémon Illustration Contest Promo Cards with order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/21/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Temporal Forces Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.92</td>
+                        <!-- <td><small>23381:532841</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Recieved 2024 Pokémon Illustration Contest Promo Cards with order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/28/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Temporal Forces Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23381:532841</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/23/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Twilight Masquerade Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$2.66</td>
+                        <!-- <td><small>23473:543843</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/3/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Twilight Masquerade Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23473:543843</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/3/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Blooming Waters Premium Collection</td>
+                        <td>2.0</td>
+                        <td>$55.12</td>
+                        <!-- <td><small>2374:609597</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/7/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Astral Radiance Build & Battle Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>3040:265529</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Machamp V #072 and a Hisuian Decidueye #173</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/10/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.32</td>
+                        <!-- <td><small>23821:600518</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got 5% off through Customer Service.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/3/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$18.71</td>
+                        <!-- <td><small>23651:565629</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got $10 off from Customer Support for $10 off $60 deal (multiple orders).</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/4/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Infernape V Box</td>
+                        <td>1.0</td>
+                        <td>$20.94</td>
+                        <!-- <td><small>2374:277568</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/12/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Journey Together Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>1.0</td>
+                        <td>$65.69</td>
+                        <!-- <td><small>24073:610929</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/21/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.32</td>
+                        <!-- <td><small>23237:502000</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>3/28/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Infernape V Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>2374:277568</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/2/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>151 Poster Collection</td>
+                        <td>1.0</td>
+                        <td>$5.48</td>
+                        <!-- <td><small>23237:502001</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 Target Circle Reward previously gotten from Customer Service by asking to apply $10 off $70 on multiple smaller orders</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/7/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldean Fates Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$24.13</td>
+                        <!-- <td><small>23353:528771</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got $6 after asking Customer Service for Target Circle card 5% off</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/10/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Hidden Potential Tin [Rotom V]</td>
+                        <td>1.0</td>
+                        <td>$27.42</td>
+                        <!-- <td><small>2374:281981</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/22/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Journey Together Sleeved Booster Pack</td>
+                        <td>2.0</td>
+                        <td>$5.52</td>
+                        <!-- <td><small>24073:610934</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>2/27/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Accessory Pouch Special Collection</td>
+                        <td>1.0</td>
+                        <td>$24.08</td>
+                        <!-- <td><small>23821:606881</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got $10 off though Customer Service for some reason I don't remember.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/22/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Journey Together Sleeved Booster Pack</td>
+                        <td>2.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>24073:610934</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Hop's Zacian ex 111/159.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/1/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Surprise Box</td>
+                        <td>2.0</td>
+                        <td>$25.23</td>
+                        <!-- <td><small>23821:593466</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/8/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Surprise Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23821:593466</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Amarys 132/131 and Sylveon Promo.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/3/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>4.0</td>
+                        <td>$60.35</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;"> Got the price matched to MSRP from an original price of $139 after talking to Customer Service.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/8/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$29.57</td>
+                        <!-- <td><small>23821:600518</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/8/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$60.35</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got a $10 gift card from Customer Service (not included in price)</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/15/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Surprise Box</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23821:593466</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Houndour Master Ball and Espeon Promo</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/16/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$60.35</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/28/2025</td>
+                        <td>
+                            <span class="badge bg-success">
+                                SELL
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>5.0</td>
+                        <td>$95.20</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Found on Facebook Marketplace. Met in front of UCLA Police Station.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/31/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Hidden Potential Tin [Rotom V]</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>2374:281981</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Not sure of the exact date. Opened with Mason. Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/1/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Blooming Waters Premium Collection</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>2374:609597</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Not sure of the exact date. This was the one that came unsealed. Pulled Poliwhirl #176 and Pikachu #173</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/30/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Blooming Waters Premium Collection</td>
+                        <td>1.0</td>
+                        <td>$69.13</td>
+                        <!-- <td><small>2374:609597</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got $7 off from Customer Service. Box came unsealed and I tried to do a credit card chargeback, but they rejected my claim.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/3/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$45.10</td>
+                        <!-- <td><small>23821:600518</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought as part of Costco 2-pack bundle with ETB and BB</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/3/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Elite Trainer Box</td>
+                        <td>2.0</td>
+                        <td>$22.14</td>
+                        <!-- <td><small>23821:593355</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought as part of Costco 2-pack bundle with ETB and BB</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/4/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$28.80</td>
+                        <!-- <td><small>24269:625670</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 off promo code but had to pay shipping.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>4/30/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals 3 Pack Blister [Zebstrika] </td>
+                        <td>1.0</td>
+                        <td>$23.31</td>
+                        <!-- <td><small>24269:625684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">I had to pay shipping, but I got a $10 off $15 code</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/30/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Premium Checklane Blister [Rabsca]</td>
+                        <td>1.0</td>
+                        <td>$6.61</td>
+                        <!-- <td><small>24269:628396</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/30/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Premium Checklane Blister [Gastrodon]</td>
+                        <td>1.0</td>
+                        <td>$6.61</td>
+                        <!-- <td><small>24269:628395</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/25/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Booster Bundle</td>
+                        <td>3.0</td>
+                        <td>$29.25</td>
+                        <!-- <td><small>24269:625670</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 off promo code.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/5/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.77</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought by Elisabet on Cape Cod</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/5/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Booster Pack</td>
+                        <td>2.0</td>
+                        <td>$4.77</td>
+                        <!-- <td><small>24269:624683</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought by Elisabet on Cape Cod</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/15/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Destined Rivals Booster Pack</td>
+                        <td>2.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>24269:624683</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Opened with Kristina and Elisabet. Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/15/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Opened with Kristina and Elisabet. Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/7/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Black Bolt Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>1.0</td>
+                        <td>$65.84</td>
+                        <!-- <td><small>24325:630687</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>5/7/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>White Flare Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>1.0</td>
+                        <td>$65.84</td>
+                        <!-- <td><small>24326:630688</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/17/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>White Flare Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.71</td>
+                        <!-- <td><small>24326:630696</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/17/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Black Bolt Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.71</td>
+                        <!-- <td><small>24325:630431</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>6/6/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>White Flare Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$32.92</td>
+                        <!-- <td><small>24326:630696</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>9/9/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Pack</td>
+                        <td>2.0</td>
+                        <td>$4.77</td>
+                        <!-- <td><small>23537:557331</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought by Elisabet on Cape Cod</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/27/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$29.63</td>
+                        <!-- <td><small>23821:600518</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 off promo code.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>9/26/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Evolution Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$18.65</td>
+                        <!-- <td><small>24380:644362</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;"> I had a $10 Best Buy certificate. Saw Rishi and Chris in line and got in with them for the opening.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>8/20/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Evolution Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$32.93</td>
+                        <!-- <td><small>24380:644362</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">The original purchase was 2 for $65.86, but one came with the shrink wrap ripped so I contacted Walmart support and they said to file a credit card chargeback, which worked.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>10/10/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Destined Rivals 3 Pack Blister [Zebstrika] </td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>24269:625684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Opened with Logan and his roommate when I visited Elisabet for her birthday. Pulled a Team Rocket's Meowth #203.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>10/13/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23537:557331</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Not sure of the exact date. Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>10/29/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Elite Trainer Box</td>
+                        <td>1.0</td>
+                        <td>$55.11</td>
+                        <!-- <td><small>23651:565630</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>10/29/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Evolution Elite Trainer Box [Mega Gardevoir]</td>
+                        <td>1.0</td>
+                        <td>$55.11</td>
+                        <!-- <td><small>24380:644279</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Came with the shrink wrap slightly torn off, and they refused to refund. While making this transactions list, I decided to open it.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/5/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>2 Pack Blister [Tornadus, Thundurus & Landorus] </td>
+                        <td>2.0</td>
+                        <td>$11.01</td>
+                        <!-- <td><small>2374:634329</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Greninja EX & Kingdra EX Special Collection Box</td>
+                        <td>2.0</td>
+                        <td>$22.05</td>
+                        <!-- <td><small>2374:656950</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Snorlax ex & Blissey ex Special Collection</td>
+                        <td>3.0</td>
+                        <td>$25.05</td>
+                        <!-- <td><small>2374:662770</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>9/15/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>2.0</td>
+                        <td>$66.14</td>
+                        <!-- <td><small>24448:654135</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/18/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/13/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Charizard X ex Ultra Premium Collection</td>
+                        <td>1.0</td>
+                        <td>$103.84</td>
+                        <!-- <td><small>2374:654213</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order.  </small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/21/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled nothing.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/19/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)</td>
+                        <td>1.0</td>
+                        <td>$66.14</td>
+                        <!-- <td><small>23537:557340</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/29/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Mega Evolution Elite Trainer Box [Mega Gardevoir]</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>24380:644279</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">This was the one that had a rip in it's shrink wrap. Pulled Clawitzer #141, Mega Mawile ex #162, Mega Mawile ex #94, and Mega Absol ex #86</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/30/2025</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Stellar Crown Booster Pack</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>23537:557331</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Sparkling Crystal #142.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>11/30/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection</td>
+                        <td>2.0</td>
+                        <td>$68.92</td>
+                        <!-- <td><small>23353:665113</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Got $10 off with promo code.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/1/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Paradox Rift Booster Pack</td>
+                        <td>6.0</td>
+                        <td>$5.88</td>
+                        <!-- <td><small>23286:512822</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Paid $5.55 to delay package through FedEx since I had pokemon delivered to the house the day before and since I was in LA, parents got it and were mad. Delaying allowed me to recieve the package myself.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/16/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>1.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/17/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$2.20</td>
+                        <!-- <td><small>24269:624684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 certificate.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/2/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Booster Bundle</td>
+                        <td>2.0</td>
+                        <td>$33.08</td>
+                        <!-- <td><small>24269:625670</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/2/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Charizard X ex Ultra Premium Collection</td>
+                        <td>1.0</td>
+                        <td>$132.26</td>
+                        <!-- <td><small>2374:654213</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/17/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$33.03</td>
+                        <!-- <td><small>23821:600518</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Bought through 3rd party which was charging market price, but I had $25 promo so it was close to retail.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>12/7/2025</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Mega Charizard X ex Ultra Premium Collection</td>
+                        <td>1.0</td>
+                        <td>$132.29</td>
+                        <!-- <td><small>2374:654213</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>01/02/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Pack</td>
+                        <td>3.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>23651:565604</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/5/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$4.11</td>
+                        <!-- <td><small>24448:654145</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 certificate on total order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/5/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames 3 Pack Blister [Sneasel]</td>
+                        <td>1.0</td>
+                        <td>$12.79</td>
+                        <!-- <td><small>24448:654154</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 certificate on total order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/5/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$24.65</td>
+                        <!-- <td><small>24448:654160</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $10 certificate on total order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/5/2026</td>
+                        <td>
+                            <span class="badge bg-info">
+                                OPEN
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames 3 Pack Blister [Sneasel]</td>
+                        <td>1.0</td>
+                        <td>nan</td>
+                        <!-- <td><small>24448:654154</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Pulled Zacian #100.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/9/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames Booster Box</td>
+                        <td>1.0</td>
+                        <td>$178.21</td>
+                        <!-- <td><small>24448:654137</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/9/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>24269:624684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/12/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Surging Sparks Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.70</td>
+                        <!-- <td><small>23651:565629</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/15/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>24269:624684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/15/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Black Bolt Booster Bundle</td>
+                        <td>1.0</td>
+                        <td>$29.70</td>
+                        <!-- <td><small>24325:630431</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/19/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Destined Rivals Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>24269:624684</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/23/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Phantasmal Flames Sleeved Booster Pack</td>
+                        <td>4.0</td>
+                        <td>$4.95</td>
+                        <!-- <td><small>24448:654145</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">nan</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/21/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Glaceon]</td>
+                        <td>1.0</td>
+                        <td>$11.55</td>
+                        <!-- <td><small>23821:593451</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $25 promo on total order.</small></td>
+                        
+                    </tr>
+                    
+                    <tr>
+                        <td>1/21/2026</td>
+                        <td>
+                            <span class="badge bg-secondary">
+                                BUY
+                            </span>
+                        </td>
+                        <td>Prismatic Evolutions Tech Sticker Collection [Sylveon]</td>
+                        <td>1.0</td>
+                        <td>$11.55</td>
+                        <!-- <td><small>23821:593450</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">Used $25 promo on total order.</small></td>
+                        
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
