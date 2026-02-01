@@ -46,7 +46,9 @@ def require_login():
         
     auth = request.authorization
     if not auth or not check_auth(auth.username, auth.password):
-sure paths are correct
+        return authenticate()
+
+# Make sure paths are correct
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HOLDINGS_FILE = os.path.join(BASE_DIR, 'current_holdings.csv')
 # TRANSACTIONS_FILE and MAPPINGS_FILE are imported but let's ensure full paths if needed
