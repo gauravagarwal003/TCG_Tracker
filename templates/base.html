@@ -28,7 +28,11 @@
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        {% if not is_static %}
                          <a class="btn btn-outline-light btn-sm" href="{{ url_for('refresh_data') }}">Force Refresh Analysis</a>
+                        {% else %}
+                         <span class="navbar-text text-light small">Updated daily via GitHub Actions</span>
+                        {% endif %}
                     </li>
                 </ul>
             </div>

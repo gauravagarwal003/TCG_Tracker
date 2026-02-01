@@ -6,7 +6,11 @@
         <h2>Transactions</h2>
     </div>
     <div class="col-md-6 text-end">
+        {% if not is_static %}
         <a href="{{ url_for('add_transaction') }}" class="btn btn-primary">Add Transaction</a>
+        {% else %}
+        <a href="https://github.com/GRA0007/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
+        {% endif %}
     </div>
 </div>
 
@@ -23,35 +27,39 @@
                         <th>Price/Unit</th>
                         <!-- <th>IDs</th> -->
                         <th>Notes</th>
+                        {% if not is_static %}
                         <th>Actions</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
-                    {% for tx in transactions %}
+                    {% for transactions in transactions %}
                     <tr>
-                        <td>{{ tx['Date Purchased'] }}</td>
+                        <td>{{ transactions['Date Purchased'] }}</td>
                         <td>
-                            <span class="badge {% if tx['Transaction Type'] == 'BUY' %}bg-secondary{% elif tx['Transaction Type'] == 'SELL' %}bg-success{% else %}bg-info{% endif %}">
-                                {{ tx['Transaction Type'] }}
+                            <span class="badge {% if transactions['Transaction Type'] == 'BUY' %}bg-secondary{% elif transactions['Transaction Type'] == 'SELL' %}bg-success{% else %}bg-info{% endif %}">
+                                {{ transactions['Transaction Type'] }}
                             </span>
                         </td>
-                        <td>{{ tx['Item'] }}</td>
-                        <td>{{ tx['Quantity'] }}</td>
-                        <td>{{ tx['Price Per Unit'] }}</td>
-                        <!-- <td><small>{{ tx['group_id'] }}:{{ tx['product_id'] }}</small></td> -->
-                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">{{ tx['Notes'] }}</small></td>
+                        <td>{{ transactions['Item'] }}</td>
+                        <td>{{ transactions['Quantity'] }}</td>
+                        <td>{{ transactions['Price Per Unit'] }}</td>
+                        <!-- <td><small>{{ transactions['group_id'] }}:{{ transactions['product_id'] }}</small></td> -->
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">{{ transactions['Notes'] }}</small></td>
+                        {% if not is_static %}
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ url_for('edit_transaction', tx_id=tx['id']) }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <form action="{{ url_for('delete_transaction', tx_id=tx['id']) }}" method="post" onsubmit="return confirm('Are you sure?');" style="display: inline;">
+                                <a href="{{ url_for('edit_transaction', tx_id=transactions['id']) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <form action="{{ url_for('delete_transaction', tx_id=transactions['id']) }}" method="post" onsubmit="return confirm('Are you sure?');" style="display: inline;">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Del</button>
                                 </form>
                             </div>
                         </td>
+                        {% endif %}
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="8" class="text-center">No transactions found.</td>
+                        <td colspan="{% if not is_static %}8{% else %}7{% endif %}" class="text-center">No transactions found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

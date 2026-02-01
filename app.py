@@ -4,7 +4,7 @@ import os
 import json
 from datetime import datetime
 from analyze_portfolio import run_analysis
-from functions import MAPPINGS_FILE, TRANSACTIONS_FILE
+from functions import MAPPINGS_FILE, TRANSACTIONS_FILE, batch_update_historical_prices
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Needed for flash messages
@@ -97,10 +97,13 @@ def delete_transaction(tx_id):
     if os.path.exists(TRANSACTIONS_FILE):
         df = pd.read_csv(TRANSACTIONS_FILE)
         if tx_id in df.index:
+            # Capture date before deleting to optimize re-analysis
+            affected_date = df.at[tx_id, 'Date Recieved']
+            
             df = df.drop(tx_id)
             df.to_csv(TRANSACTIONS_FILE, index=False)
             flash("Transaction deleted.", "success")
-            run_analysis_safe()
+            run_analysis_safe(resume_date=affected_date)
     return redirect(url_for('transactions'))
 
 @app.route('/refresh')
@@ -183,8 +186,34 @@ def save_transaction(form_data, tx_id=None):
         columns = ['Date Purchased','Date Recieved','Transaction Type','Price Per Unit','Quantity','Item','group_id','product_id','Method','Place','Notes']
         df = pd.DataFrame(columns=columns)
 
+    # Logic to determine impact date for partial update
+    impact_date = data['Date Recieved']
+    
+    # Check if this is a NEW product (not tracked before)
+    # We need to ensure types match for comparison (float vs str)
+    # data['product_id'] comes from form as string usually
+    is_new_product = False
+    try:
+        if not df.empty:
+            pid_float = float(data['product_id'])
+            gid_float = float(data['group_id'])
+            # Check if this pair exists already
+            exists = ((df['product_id'] == pid_float) & (df['group_id'] == gid_float)).any()
+            if not exists:
+                is_new_product = True
+        else:
+            is_new_product = True
+    except:
+        pass # Ignore type errors, treat as not new to be safe
+
     if tx_id is not None:
         # Update existing
+        # Check if date changed, we need the earlier of the two
+        if tx_id in df.index:
+            old_date = df.at[tx_id, 'Date Recieved']
+            if old_date < impact_date:
+                impact_date = old_date
+        
         for key, value in data.items():
             df.at[tx_id, key] = value
     else:
@@ -192,11 +221,27 @@ def save_transaction(form_data, tx_id=None):
         df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
 
     df.to_csv(TRANSACTIONS_FILE, index=False)
-    run_analysis_safe()
+    
+    # If new product, try to fetch TODAY's price so it's not zero value
+    if is_new_product:
+        try:
+            today_str = datetime.now().strftime('%Y-%m-%d')
+            # Only fetch for this one product
+            p_list = [{
+                'group_id': data['group_id'], 
+                'product_id': data['product_id'],
+                'name': data['Item']
+            }]
+            print(f"Fetching initial price for new product: {data['Item']}")
+            batch_update_historical_prices(today_str, today_str, p_list)
+        except Exception as e:
+            print(f"Error fetching initial price: {e}")
 
-def run_analysis_safe():
+    run_analysis_safe(resume_date=impact_date)
+
+def run_analysis_safe(resume_date=None):
     try:
-        run_analysis()
+        run_analysis(resume_date=resume_date)
     except Exception as e:
         print(f"Error running analysis: {e}")
         flash(f"Error updating analysis: {e}", "error")
