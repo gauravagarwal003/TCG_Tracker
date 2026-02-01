@@ -1,15 +1,52 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, Response
 import pandas as pd
 import os
 import json
 from datetime import datetime
+from functools import wraps
 from analyze_portfolio import run_analysis
 from functions import MAPPINGS_FILE, TRANSACTIONS_FILE, batch_update_historical_prices
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# --- Configuration ---
+# Change these or use Environment Variables for security
+auth_username = os.environ.get('AUTH_USERNAME')
+auth_password = os.environ.get('AUTH_PASSWORD')
+
+if not auth_username or not auth_password:
+    raise ValueError("No AUTH_USERNAME or AUTH_PASSWORD set for Flask application")
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Needed for flash messages
 
-# Ensure paths are correct
+# --- Authentication Helpers ---
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid."""
+    return username == auth_username and password == auth_password
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+# Protect all views by default
+@app.before_request
+def require_login():
+    # Exempt 'static' endpoint so styles/images load on the login prompt if browser implementation varies,
+    # though usually browser sends auth header for subresources too. 
+    # To be safe and block everything:
+    if request.endpoint == 'static': 
+        return
+        
+    auth = request.authorization
+    if not auth or not check_auth(auth.username, auth.password):
+sure paths are correct
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 HOLDINGS_FILE = os.path.join(BASE_DIR, 'current_holdings.csv')
 # TRANSACTIONS_FILE and MAPPINGS_FILE are imported but let's ensure full paths if needed
