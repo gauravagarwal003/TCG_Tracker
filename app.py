@@ -129,11 +129,16 @@ def save_transaction(form_data, tx_id=None):
     }
 
     # --- Save New Mapping if provided ---
+    new_pid = form_data.get('new_product_id')
+    new_gid = form_data.get('new_group_id')
     new_cat_id = form_data.get('new_category_id')
-    new_img = form_data.get('new_image_url')
-    new_url = form_data.get('new_product_url')
     
-    if new_img and new_url and data['group_id'] and data['product_id']:
+    # If new IDs provided, and we have an Item name
+    if new_pid and new_gid and data['Item']:
+        # Override data with IDs from the manual section if they were not set correctly via hidden inputs (though JS handles it, it's safer)
+        data['product_id'] = new_pid
+        data['group_id'] = new_gid
+        
         try:
             mappings = []
             if os.path.exists(MAPPINGS_FILE):
@@ -141,23 +146,30 @@ def save_transaction(form_data, tx_id=None):
                     mappings = json.load(f)
             
             # Check if exists
-            pid = str(data['product_id']).strip()
-            gid = str(data['group_id']).strip()
+            pid = str(new_pid).strip()
+            gid = str(new_gid).strip()
             exists = any(str(m.get('product_id')) == pid and str(m.get('group_id')) == gid for m in mappings)
             
             if not exists:
+                # Generate URLs
+                # Image: https://tcgplayer-cdn.tcgplayer.com/product/{product_id}_200w.jpg
+                # URL: https://www.tcgplayer.com/product/{product_id}/
+                
+                generated_img_url = f"https://tcgplayer-cdn.tcgplayer.com/product/{pid}_200w.jpg"
+                generated_product_url = f"https://www.tcgplayer.com/product/{pid}/"
+                
                 new_entry = {
                     "product_id": pid,
                     "name": data['Item'],
                     "group_id": gid,
-                    "imageUrl": new_img,
+                    "imageUrl": generated_img_url,
                     "categoryId": int(new_cat_id) if new_cat_id else 3,
-                    "url": new_url
+                    "url": generated_product_url
                 }
                 mappings.append(new_entry)
                 with open(MAPPINGS_FILE, 'w') as f:
                     json.dump(mappings, f, indent=2)
-                print(f"Added mapping for {data['Item']}")
+                print(f"Added new mapping for {data['Item']}")
         except Exception as e:
             print(f"Error saving mapping: {e}")
 
