@@ -2,10 +2,9 @@
 // Handles authentication and API calls to edit transactions.csv
 
 const GITHUB_CONFIG = {
-    owner: 'gauravagarwal003', // CHANGE THIS
-    repo: 'Pokemon_Tracker',        // CHANGE THIS if different
-    branch: 'main',                 // CHANGE THIS if using different branch
-    clientId: 'YOUR_GITHUB_OAUTH_CLIENT_ID' // Set this after creating OAuth App
+    owner: 'gauravagarwal003',
+    repo: 'Pokemon_Tracker',
+    branch: 'main'
 };
 
 class GitHubAPI {
@@ -19,30 +18,27 @@ class GitHubAPI {
         return !!this.token;
     }
 
-    // Start OAuth flow
+    // Prompt for Personal Access Token
     authenticate() {
-        const redirectUri = window.location.origin + window.location.pathname;
-        const scope = 'repo';
-        const authUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CONFIG.clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}`;
-        window.location.href = authUrl;
-    }
+        const instructions = `
+To edit transactions, you need a GitHub Personal Access Token:
 
-    // Handle OAuth callback
-    handleCallback() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token" → "Generate new token (classic)"
+3. Give it a name (e.g., "Pokemon Tracker")
+4. Select scope: ✓ repo
+5. Click "Generate token" at the bottom
+6. Copy the token and paste it below
+
+The token will be stored in your browser session only.
+        `.trim();
         
-        if (code) {
-            // In production, you'd exchange this code for a token via a serverless function
-            // For now, we'll use a simpler approach with GitHub's device flow or manual token
-            alert('OAuth code received. For security, please use a Personal Access Token instead.\n\nGo to: GitHub Settings > Developer Settings > Personal Access Tokens > Generate new token\n\nGrant "repo" scope and paste it when prompted.');
-            const token = prompt('Paste your GitHub Personal Access Token:');
-            if (token) {
-                this.setToken(token);
-                // Clean URL
-                window.history.replaceState({}, document.title, window.location.pathname);
-                window.location.reload();
-            }
+        alert(instructions);
+        const token = prompt('Paste your GitHub Personal Access Token:');
+        
+        if (token && token.trim()) {
+            this.setToken(token.trim());
+            window.location.reload();
         }
     }
 
@@ -211,8 +207,3 @@ class GitHubAPI {
 
 // Initialize API
 const githubAPI = new GitHubAPI();
-
-// Handle OAuth callback on page load
-if (window.location.search.includes('code=')) {
-    githubAPI.handleCallback();
-}

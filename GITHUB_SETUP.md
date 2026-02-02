@@ -2,30 +2,27 @@
 
 ## Setup Instructions
 
-### 1. Configure GitHub Repository Info
+### 1. Create a GitHub Personal Access Token (REQUIRED)
 
-Edit `docs/github-api.js` and update these values:
+**You MUST do this before using the site:**
 
-```javascript
-const GITHUB_CONFIG = {
-    owner: 'YOUR_GITHUB_USERNAME',     // Change to your GitHub username
-    repo: 'Pokemon_Tracker',           // Change if your repo name is different
-    branch: 'main',                    // Change if using 'master' or another branch
-    clientId: ''                       // Leave empty (not used with Personal Access Token)
-};
-```
+1. Go to: https://github.com/settings/tokens
+2. Click "Personal access tokens" → "Tokens (classic)"
+3. Click "Generate new token" → "Generate new token (classic)"
+4. Fill in:
+   - **Note**: "Pokemon Tracker" (or any name)
+   - **Expiration**: "No expiration" (or choose a duration)
+   - **Select scopes**: ✅ **repo** (check this box - it's required!)
+5. Scroll down and click "Generate token"
+6. **COPY THE TOKEN IMMEDIATELY** (you'll never see it again!)
+7. Keep it somewhere safe (you'll need to paste it when using the site)
 
-### 2. Create a GitHub Personal Access Token
+### 2. Configure GitHub Repository (Already Done)
 
-1. Go to GitHub Settings: https://github.com/settings/tokens
-2. Click "Developer settings" (bottom left)
-3. Click "Personal access tokens" → "Tokens (classic)"
-4. Click "Generate new token" → "Generate new token (classic)"
-5. Give it a name like "Pokemon Tracker"
-6. Select scopes:
-   - ✅ **repo** (Full control of private repositories)
-7. Click "Generate token"
-8. **IMPORTANT**: Copy the token immediately (you won't see it again!)
+The repository info is already set in `docs/github-api.js`:
+- Owner: `gauravagarwal003`
+- Repo: `Pokemon_Tracker`
+- Branch: `main`
 
 ### 3. Enable GitHub Pages
 
