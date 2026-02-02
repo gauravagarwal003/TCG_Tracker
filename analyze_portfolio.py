@@ -28,6 +28,7 @@ def run_analysis(resume_date=None):
 
     # Load mappings for names
     name_map = {}
+    image_map = {}
     try:
         with open(MAPPINGS_FILE, 'r') as mf:
             m_data = json.load(mf)
@@ -36,6 +37,7 @@ def run_analysis(resume_date=None):
                 gid = str(item.get('group_id', ''))
                 pid = str(item.get('product_id', ''))
                 name_map[(gid, pid)] = item.get('name', 'Unknown')
+                image_map[(gid, pid)] = item.get('imageUrl', '')
     except Exception as e:
         print(f"Warning: Could not load mappings {MAPPINGS_FILE}: {e}")
 
@@ -225,7 +227,10 @@ def run_analysis(resume_date=None):
             xaxis_title='Date',
             yaxis_title='Value ($)',
             hovermode="x unified",
-            template="plotly_dark",
+            template="plotly_white",
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=20, r=20, t=40, b=20),
             legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
         )
         
@@ -248,7 +253,7 @@ def run_analysis(resume_date=None):
             y=results_df['Performance Ratio'],
             mode='lines',
             name='Value / Net Investment',
-            line=dict(color='#33b5e5', width=3)
+            line=dict(color='#4f46e5', width=3)
         ))
 
         # Add a reference line at 1.0 (Break Even)
@@ -258,7 +263,7 @@ def run_analysis(resume_date=None):
             y0=1,
             x1=results_df['Date'].max(),
             y1=1,
-            line=dict(color="white", width=2, dash="dot"),
+            line=dict(color="#64748b", width=2, dash="dot"),
         )
 
         fig_ratio.update_layout(
@@ -266,7 +271,10 @@ def run_analysis(resume_date=None):
             xaxis_title='Date',
             yaxis_title='Ratio (>1 = Profit)',
             hovermode="x unified",
-            template="plotly_dark",
+            template="plotly_white",
+            plot_bgcolor='rgba(0,0,0,0)',
+            paper_bgcolor='rgba(0,0,0,0)',
+            margin=dict(l=20, r=20, t=40, b=20),
             legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
         )
         

@@ -1,4 +1,6 @@
 import os
+import shutil
+import json
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader
 
@@ -9,6 +11,15 @@ OUTPUT_DIR = os.path.join(BASE_DIR, 'docs')
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# Copy static directory to docs/static
+static_src = os.path.join(BASE_DIR, 'static')
+static_dst = os.path.join(OUTPUT_DIR, 'static')
+if os.path.exists(static_src):
+    if os.path.exists(static_dst):
+        shutil.rmtree(static_dst)
+    shutil.copytree(static_src, static_dst)
+    print("Static files copied.")
 
 # Create .nojekyll file to disable Jekyll processing on GitHub Pages
 with open(os.path.join(OUTPUT_DIR, '.nojekyll'), 'w') as f:
@@ -21,6 +32,15 @@ env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 env.globals['get_flashed_messages'] = lambda with_categories=False: []
 
 # --- Helpers ---
+def url_for_mock(endpoint, **values):
+    """Mocks Flask's url_for for static site generation"""
+    if endpoint == 'static':
+        filename = values.get('filename', '')
+        return f"static/{filename}"
+    if endpoint == 'index':
+        return "index.html"
+    return f"{endpoint}.html"
+
 def format_currency(value):
     try:
         return "${:,.2f}".format(float(value)) 
@@ -37,6 +57,20 @@ def format_int(value):
 
 # --- 1. Load Data ---
 
+# Load Mappings for Images
+image_map = {}
+mappings_file = os.path.join(BASE_DIR, 'mappings.json')
+if os.path.exists(mappings_file):
+    try:
+        with open(mappings_file, 'r') as f:
+            mappings = json.load(f)
+            for item in mappings:
+                gid = str(item.get('group_id', ''))
+                pid = str(item.get('product_id', ''))
+                image_map[(gid, pid)] = item.get('imageUrl', '')
+    except Exception as e:
+        print(f"Error reading mappings: {e}")
+
 # Load Holdings
 holdings = []
 total_value = 0.0
@@ -46,6 +80,20 @@ if os.path.exists(holdings_file):
         df = pd.read_csv(holdings_file)
         if not df.empty:
             holdings = df.to_dict('records')
+            
+            # Inject Image URL from mappings
+            for item in holdings:
+                try:
+                    # Robustly convert to string ID keys to match the map
+                    gid = str(int(float(item.get('group_id', 0)))) if pd.notnull(item.get('group_id')) else ''
+                    pid = str(int(float(item.get('product_id', 0)))) if pd.notnull(item.get('product_id')) else ''
+                except (ValueError, TypeError):
+                     # Fallback if mixed types or strict strings
+                    gid = str(item.get('group_id', ''))
+                    pid = str(item.get('product_id', ''))
+
+                item['Image URL'] = image_map.get((gid, pid), "")
+
             if 'Total Value' in df.columns:
                 total_value = df['Total Value'].sum()
     except Exception as e:
@@ -85,9 +133,7 @@ output_html = template.render(
     total_value=total_value,
     graph_html=graph_html,
     performance_html=performance_html,
-    is_static=True,
-    # Pass mock url_for
-    url_for=lambda x, **k: f"{x}.html" if x != 'index' else 'index.html'
+    url_for=url_for_mock
 )
 with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w') as f:
     f.write(output_html)
@@ -100,8 +146,10 @@ template = env.get_template('transactions.html')
 output_html = template.render(
     transactions=transactions,
     is_static=True,
-    url_for=lambda x, **k: f"{x}.html" if x != 'index' and x != 'transactions' else f"{x}.html"
+    url_for=url_for_mock
 )
+with open(os.path.join(OUTPUT_DIR, 'transactions.html'), 'w') as f:
+    f.write(output_html)
 
 # Post-processing to remove Add/Edit buttons or make them point to GitHub?
 # For now, let's keep it simple. The user can see the list.

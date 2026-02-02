@@ -9,51 +9,77 @@
         {% if not is_static %}
         <a href="{{ url_for('add_transaction') }}" class="btn btn-primary">Add Transaction</a>
         {% else %}
-        <a href="https://github.com/GRA0007/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
+        <a href="https://github.com/gauravagarwal003/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
         {% endif %}
     </div>
 </div>
 
 <div class="card">
     <div class="card-body">
+        
+        <!-- Filter Interface -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-9">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" id="globalSearch" class="form-control border-start-0 ps-0" placeholder="Search transactions (item, store, type, etc)...">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <select id="typeFilter" class="form-select">
+                    <option value="">All Types</option>
+                    <option value="BUY">BUY</option>
+                    <option value="SELL">SELL</option>
+                    <option value="OPEN">OPEN</option>
+                    <option value="PULL">PULL</option>
+                </select>
+            </div>
+        </div>
+
         <div class="table-responsive">
-            <table class="table table-sm table-hover">
+            <table class="table table-sm table-hover align-middle">
                 <thead>
                     <tr>
-                        <th>Date Purchased</th>
-                        <th>Type</th>
-                        <th>Item</th>
+                        <th style="width: 100px;">Type</th>
+                        <th>Product Name</th>
+                        <th>Date</th>
                         <th>Qty</th>
-                        <th>Price/Unit</th>
-                        <!-- <th>IDs</th> -->
+                        <th>Price</th>
+                        <th>Store</th>
+                        <th>Method</th>
                         <th>Notes</th>
+                        <!-- <th>IDs</th> -->
                         {% if not is_static %}
-                        <th>Actions</th>
+                        <th style="width: 100px;">Actions</th>
                         {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for transactions in transactions %}
                     <tr>
-                        <td>{{ transactions['Date Purchased'] }}</td>
-                        <td>
-                            <span class="badge {% if transactions['Transaction Type'] == 'BUY' %}bg-secondary{% elif transactions['Transaction Type'] == 'SELL' %}bg-success{% else %}bg-info{% endif %}">
+                         <td>
+                            <span class="badge {% if transactions['Transaction Type'] == 'BUY' %}bg-primary{% elif transactions['Transaction Type'] == 'SELL' %}bg-success{% else %}bg-secondary{% endif %}">
                                 {{ transactions['Transaction Type'] }}
                             </span>
                         </td>
-                        <td>{{ transactions['Item'] }}</td>
-                        <td>{{ transactions['Quantity'] }}</td>
-                        <td>{{ transactions['Price Per Unit'] }}</td>
+                        <td class="fw-medium">{{ transactions['Item'] }}</td>
+                        <td>{{ transactions['Date Purchased'] }}</td>
+                        <td>{{ transactions['Quantity']|float|int }}</td>
+                        <td>{{ transactions['Price Per Unit'] if transactions['Price Per Unit']|string != 'nan' else '' }}</td>
+                        <td>{{ transactions['Place'] if transactions['Place']|string != 'nan' else '' }}</td>
+                        <td>{{ transactions['Method'] if transactions['Method']|string != 'nan' else '' }}</td>
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}">{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}</small></td>
                         <!-- <td><small>{{ transactions['group_id'] }}:{{ transactions['product_id'] }}</small></td> -->
-                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;">{{ transactions['Notes'] }}</small></td>
                         {% if not is_static %}
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ url_for('edit_transaction', tx_id=transactions['id']) }}" class="btn btn-sm btn-outline-primary" title="Edit">
+                                <a href="{{ url_for('edit_transaction', tx_id=transactions['id']) }}" class="btn btn-sm btn-link text-primary p-0 me-2" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <form action="{{ url_for('delete_transaction', tx_id=transactions['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?');" style="display: inline;">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                    <button type="submit" class="btn btn-sm btn-link text-danger p-0" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
@@ -63,7 +89,7 @@
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="{% if not is_static %}8{% else %}7{% endif %}" class="text-center">No transactions found.</td>
+                        <td colspan="{% if not is_static %}9{% else %}8{% endif %}" class="text-center py-4 text-muted">No transactions found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

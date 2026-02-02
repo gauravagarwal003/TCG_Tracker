@@ -71,3 +71,8 @@ Icon?
 
 # Project specific
 historical_prices/
+
+# Generated Artifacts
+portfolio_graph.html
+performance_graph.html
+current_holdings.csv
