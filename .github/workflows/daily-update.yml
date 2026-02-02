@@ -2,7 +2,7 @@ name: Daily Price Update
 
 on:
   schedule:
-    # Runs at 6 AM UTC every day (adjust timezone as needed)
+    # Runs at 6 AM UTC every day (10 PM PST / 11 PM PDT)
     - cron: '0 6 * * *'
   workflow_dispatch: # Allows manual trigger
 
@@ -12,32 +12,43 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0  # Get full history for incremental updates
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
     
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+        sudo apt-get install -y p7zip-full
     
-    - name: Update config date to today
+    - name: Update config date to yesterday (data usually lags 1 day)
       run: |
         python -c "
         import json
-        from datetime import date
+        from datetime import date, timedelta
         with open('data.json', 'r') as f:
             config = json.load(f)
-        config['latest_date'] = date.today().strftime('%Y-%m-%d')
+        # Use yesterday since TCGPlayer data has 1-day lag
+        config['latest_date'] = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
         with open('data.json', 'w') as f:
             json.dump(config, f, indent=4)
+        print(f\"Config updated to: {config['latest_date']}\")
         "
     
-    - name: Run incremental price update
+    - name: Run incremental price update (only fetches missing data)
       run: python daily_run.py --incremental
       continue-on-error: true
     

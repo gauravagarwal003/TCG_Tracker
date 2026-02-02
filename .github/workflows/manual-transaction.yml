@@ -1,0 +1,108 @@
+name: Manual Transaction Entry
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action (add/delete)'
+        required: true
+        type: choice
+        options:
+          - add
+          - delete
+      date:
+        description: 'Date (MM/DD/YYYY)'
+        required: true
+      quantity:
+        description: 'Quantity'
+        required: true
+      price:
+        description: 'Price'
+        required: true
+      product_name:
+        description: 'Product Name'
+        required: true
+      group_id:
+        description: 'Group ID'
+        required: false
+      product_id:
+        description: 'Product ID'
+        required: false
+      category_id:
+        description: 'Category ID'
+        required: false
+      method:
+        description: 'Method'
+        required: true
+      store:
+        description: 'Store'
+        required: true
+
+jobs:
+  update-transaction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      
+      - name: Install dependencies
+        run: |
+          pip install pandas
+      
+      - name: Update transactions
+        run: |
+          python << 'EOF'
+          import pandas as pd
+          import os
+          from datetime import datetime
+
+          action = "${{ github.event.inputs.action }}"
+          
+          if action == "add":
+              # Read existing transactions
+              df = pd.read_csv('transactions.csv')
+              
+              # Create new transaction
+              new_row = {
+                  'Date': "${{ github.event.inputs.date }}",
+                  'Quantity': int("${{ github.event.inputs.quantity }}"),
+                  'Price': float("${{ github.event.inputs.price }}"),
+                  'Product Name': "${{ github.event.inputs.product_name }}",
+                  'Group ID': "${{ github.event.inputs.group_id }}" if "${{ github.event.inputs.group_id }}" else "",
+                  'Product ID': "${{ github.event.inputs.product_id }}" if "${{ github.event.inputs.product_id }}" else "",
+                  'Category ID': "${{ github.event.inputs.category_id }}" if "${{ github.event.inputs.category_id }}" else "",
+                  'Method': "${{ github.event.inputs.method }}",
+                  'Store': "${{ github.event.inputs.store }}"
+              }
+              
+              # Append new row
+              df = pd.concat([df, pd.DataFrame([new_row])], ignore_index=True)
+              
+          elif action == "delete":
+              # Read existing transactions
+              df = pd.read_csv('transactions.csv')
+              
+              # Find and remove matching transaction
+              mask = (
+                  (df['Date'] == "${{ github.event.inputs.date }}") &
+                  (df['Quantity'] == int("${{ github.event.inputs.quantity }}")) &
+                  (df['Price'] == float("${{ github.event.inputs.price }}")) &
+                  (df['Product Name'] == "${{ github.event.inputs.product_name }}")
+              )
+              df = df[~mask]
+          
+          # Save updated CSV
+          df.to_csv('transactions.csv', index=False)
+          EOF
+      
+      - name: Commit changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add transactions.csv
+          git commit -m "Transaction ${{ github.event.inputs.action }}: ${{ github.event.inputs.product_name }}"
+          git push

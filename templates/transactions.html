@@ -9,9 +9,8 @@
         <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
         {% if not is_static %}
         <a href="{{ url_for('add_transaction') }}" class="btn btn-primary">Add Transaction</a>
-        {% else %}
-        <a href="https://github.com/GRA0007/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
         {% endif %}
+        <!-- Button container for JS to populate when on static site -->
     </div>
 </div>
 
@@ -35,6 +34,7 @@
                     <option value="SELL">SELL</option>
                     <option value="OPEN">OPEN</option>
                     <option value="PULL">PULL</option>
+                    <option value="TRADE">TRADE</option>
                 </select>
             </div>
         </div>
@@ -51,35 +51,34 @@
                         <th class="d-none toggle-details">Store</th>
                         <th class="d-none toggle-details">Method</th>
                         <th>Notes</th>
-                        <!-- <th>IDs</th> -->
                         {% if not is_static %}
                         <th style="width: 100px;">Actions</th>
                         {% endif %}
+                        <!-- Actions column will be added by JS for static site -->
                     </tr>
                 </thead>
                 <tbody>
-                    {% for transactions in transactions %}
-                    <tr>
+                    {% for tx in transactions %}
+                    <tr data-index="{{ loop.index0 }}">
                          <td>
-                            <span class="badge {% if transactions['Transaction Type'] == 'BUY' %}bg-primary{% elif transactions['Transaction Type'] == 'SELL' %}bg-success{% else %}bg-secondary{% endif %}">
-                                {{ transactions['Transaction Type'] }}
+                            <span class="badge {% if tx['Transaction Type'] == 'BUY' %}bg-primary{% elif tx['Transaction Type'] == 'SELL' %}bg-success{% elif tx['Transaction Type'] == 'OPEN' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
+                                {{ tx['Transaction Type'] }}
                             </span>
                         </td>
-                        <td class="fw-medium">{{ transactions['Item'] }}</td>
-                        <td>{{ transactions['Date Purchased'] }}</td>
-                        <td>{{ transactions['Quantity']|float|int }}</td>
-                        <td>{{ transactions['Price Per Unit'] if transactions['Price Per Unit']|string != 'nan' else '' }}</td>
-                        <td class="d-none toggle-details">{{ transactions['Place'] if transactions['Place']|string != 'nan' else '' }}</td>
-                        <td class="d-none toggle-details">{{ transactions['Method'] if transactions['Method']|string != 'nan' else '' }}</td>
-                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}">{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}</small></td>
-                        <!-- <td><small>{{ transactions['group_id'] }}:{{ transactions['product_id'] }}</small></td> -->
+                        <td class="fw-medium">{{ tx['Item'] }}</td>
+                        <td>{{ tx['Date Purchased'] }}</td>
+                        <td>{{ tx['Quantity']|float|int }}</td>
+                        <td>{{ tx['Price Per Unit'] if tx['Price Per Unit']|string != 'nan' else '' }}</td>
+                        <td class="d-none toggle-details">{{ tx['Place'] if tx['Place']|string != 'nan' else '' }}</td>
+                        <td class="d-none toggle-details">{{ tx['Method'] if tx['Method']|string != 'nan' else '' }}</td>
+                        <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="{{ tx['Notes'] if tx['Notes']|string != 'nan' else '' }}">{{ tx['Notes'] if tx['Notes']|string != 'nan' else '' }}</small></td>
                         {% if not is_static %}
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ url_for('edit_transaction', tx_id=transactions['id']) }}" class="btn btn-sm btn-link text-primary p-0 me-2" title="Edit">
+                                <a href="{{ url_for('edit_transaction', tx_id=tx['id']) }}" class="btn btn-sm btn-link text-primary p-0 me-2" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ url_for('delete_transaction', tx_id=transactions['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?');" style="display: inline;">
+                                <form action="{{ url_for('delete_transaction', tx_id=tx['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?');" style="display: inline;">
                                     <button type="submit" class="btn btn-sm btn-link text-danger p-0" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
@@ -90,7 +89,7 @@
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="{% if not is_static %}9{% else %}8{% endif %}" class="text-center py-4 text-muted">No transactions found.</td>
+                        <td colspan="9" class="text-center py-4 text-muted">No transactions found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

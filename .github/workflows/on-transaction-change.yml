@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'transactions.csv'
+      - 'mappings.json'
+    branches:
+      - main
   workflow_dispatch: # Allows manual trigger
 
 jobs:
@@ -12,32 +15,77 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+    
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
     
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
+        sudo apt-get install -y p7zip-full
     
-    - name: Update config date to today
+    - name: Smart update - only fetch data for changed/new transactions
       run: |
-        python -c "
+        python << 'EOF'
         import json
-        from datetime import date
+        import pandas as pd
+        from datetime import date, timedelta, datetime
+        import os
+
+        print("=== Smart Transaction Change Update ===")
+        
+        # Load config
         with open('data.json', 'r') as f:
             config = json.load(f)
-        config['latest_date'] = date.today().strftime('%Y-%m-%d')
+        
+        # Update latest_date to yesterday (data lags 1 day)
+        yesterday = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
+        config['latest_date'] = yesterday
+        
         with open('data.json', 'w') as f:
             json.dump(config, f, indent=4)
-        "
+        
+        print(f"Config latest_date set to: {yesterday}")
+        
+        # Load transactions to find date ranges
+        df = pd.read_csv('transactions.csv')
+        
+        # Find earliest date we need data for
+        # Convert dates and find the minimum
+        dates = []
+        for col in ['Date Purchased', 'Date Recieved']:
+            if col in df.columns:
+                for d in df[col].dropna():
+                    try:
+                        parsed = datetime.strptime(str(d), '%m/%d/%Y')
+                        dates.append(parsed.date())
+                    except:
+                        pass
+        
+        if dates:
+            earliest = min(dates)
+            config['start_date'] = earliest.strftime('%Y-%m-%d')
+            with open('data.json', 'w') as f:
+                json.dump(config, f, indent=4)
+            print(f"Earliest transaction date: {earliest}")
+        
+        print("Running incremental update (will skip existing data)...")
+        EOF
     
-    - name: Run incremental update (only new/missing data)
+    - name: Run incremental update (only fetches missing data for active products)
       run: python daily_run.py --incremental
       continue-on-error: true
     

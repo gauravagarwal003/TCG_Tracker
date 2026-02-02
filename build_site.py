@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import shutil
 from jinja2 import Environment, FileSystemLoader
 
 # Configuration
@@ -19,6 +20,17 @@ env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
 # Mock get_flashed_messages (return empty list)
 env.globals['get_flashed_messages'] = lambda with_categories=False: []
+
+# Copy JS files directly to docs folder
+print("Copying JS files to docs/...")
+js_files = ['auth.js', 'github-api.js', 'transaction-manager.js']
+for js_file in js_files:
+    src = os.path.join(OUTPUT_DIR, js_file)
+    if os.path.exists(src):
+        print(f"  - {js_file} already exists")
+    else:
+        # Check if there's a source to copy from (shouldn't happen, files should already be in docs)
+        print(f"  - {js_file} needs to be created in docs/")
 
 # --- Helpers ---
 def format_currency(value):
@@ -113,6 +125,9 @@ output_html = template.render(
     is_static=True,
     url_for=mock_url_for
 )
+
+# auth.js is already included via base.html template when is_static=True
+
 with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w') as f:
     f.write(output_html)
 
@@ -127,17 +142,13 @@ output_html = template.render(
     url_for=mock_url_for
 )
 
-# Post-processing to remove Add/Edit buttons or make them point to GitHub?
-# For now, let's keep it simple. The user can see the list.
-# We might want to inject a banner saying "Static View".
-
-# Inject GitHub API scripts before closing body tag
-github_scripts = '''
+# Add GitHub API scripts after the auth.js that's already in the template
+# We look for the auth.js script tag and add after it
+github_scripts = '''<script src="auth.js"></script>
     <script src="github-api.js"></script>
-    <script src="transaction-manager.js"></script>
-</body>'''
+    <script src="transaction-manager.js"></script>'''
 
-output_html = output_html.replace('</body>', github_scripts)
+output_html = output_html.replace('<script src="auth.js"></script>', github_scripts)
 
 with open(os.path.join(OUTPUT_DIR, 'transactions.html'), 'w') as f:
     f.write(output_html)

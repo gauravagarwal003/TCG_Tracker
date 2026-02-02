@@ -53,8 +53,7 @@
     <div class="col-md-6 text-end">
         <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
         
-        <a href="https://github.com/GRA0007/Pokemon_Tracker/edit/main/transactions.csv" class="btn btn-outline-primary" target="_blank">Edit CSV on GitHub</a>
-        
+        <!-- Button container for JS to populate when on static site -->
     </div>
 </div>
 
@@ -78,6 +77,7 @@
                     <option value="SELL">SELL</option>
                     <option value="OPEN">OPEN</option>
                     <option value="PULL">PULL</option>
+                    <option value="TRADE">TRADE</option>
                 </select>
             </div>
         </div>
@@ -94,13 +94,13 @@
                         <th class="d-none toggle-details">Store</th>
                         <th class="d-none toggle-details">Method</th>
                         <th>Notes</th>
-                        <!-- <th>IDs</th> -->
                         
+                        <!-- Actions column will be added by JS for static site -->
                     </tr>
                 </thead>
                 <tbody>
                     
-                    <tr>
+                    <tr data-index="0">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -113,11 +113,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="$50 each originally. Due to a pricing error on these in a physical Target in Lodi, CA. Saw a post on reddit about them and called Target customer support to get the price matched. ">$50 each originally. Due to a pricing error on these in a physical Target in Lodi, CA. Saw a post on reddit about them and called Target customer support to get the price matched. </small></td>
-                        <!-- <td><small>23651:565630</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="1">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -130,13 +129,12 @@
                         <td class="d-none toggle-details">Scheel's</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="I saw the deal on GameStop but there was no shipping and no stores near me were available for pickup. Price matched with Scheels. Originally charged $8 for shipping but it was later refunded.">I saw the deal on GameStop but there was no shipping and no stores near me were available for pickup. Price matched with Scheels. Originally charged $8 for shipping but it was later refunded.</small></td>
-                        <!-- <td><small>23120:493974</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="2">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -147,11 +145,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Pikachu ex #247, Latias ex #220, Hydreigon ex #119, Slaking ex #147, and Bruxish #200.">Pulled Pikachu ex #247, Latias ex #220, Hydreigon ex #119, Slaking ex #147, and Bruxish #200.</small></td>
-                        <!-- <td><small>23651:565630</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="3">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -164,11 +161,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="In store pickup.">In store pickup.</small></td>
-                        <!-- <td><small>23237:522701</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="4">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -181,11 +177,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.</small></td>
-                        <!-- <td><small>2948:256138</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="5">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -198,11 +193,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25</small></td>
-                        <!-- <td><small>3118:277335</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="6">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -215,11 +209,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Price Matched 30% off">Price Matched 30% off</small></td>
-                        <!-- <td><small>17688:527562</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="7">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -232,11 +225,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.">Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.</small></td>
-                        <!-- <td><small>3118:277335</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="8">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -249,13 +241,12 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23473:543843</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="9">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -266,13 +257,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing">Pulled nothing</small></td>
-                        <!-- <td><small>23473:543843</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="10">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -283,13 +273,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23237:522701</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="11">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -300,11 +289,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled a Giratina V #186 and Galarian Perrserker V #129.">Pulled a Giratina V #186 and Galarian Perrserker V #129.</small></td>
-                        <!-- <td><small>3118:277335</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="12">
                          <td>
                             <span class="badge bg-success">
                                 SELL
@@ -317,11 +305,10 @@
                         <td class="d-none toggle-details">King Kong Comics</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565630</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="13">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -334,11 +321,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Decided to stop by before going to get a haircut, they were restocking and I got 2 boxes.">Decided to stop by before going to get a haircut, they were restocking and I got 2 boxes.</small></td>
-                        <!-- <td><small>23237:502007</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="14">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -351,13 +337,12 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Was on vacation in San Diego and we were buying groceries.">Was on vacation in San Diego and we were buying groceries.</small></td>
-                        <!-- <td><small>23353:528771</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="15">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -368,11 +353,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Arbok ex 024/165.">Pulled Arbok ex 024/165.</small></td>
-                        <!-- <td><small>23237:502007</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="16">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -385,13 +369,12 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Was at Elisabet's previous roommates place (Nessa) in Whittier due to LA fires. We went to Downtown Disney and stopped here on the way back.">Was at Elisabet's previous roommates place (Nessa) in Whittier due to LA fires. We went to Downtown Disney and stopped here on the way back.</small></td>
-                        <!-- <td><small>23120:493976</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="17">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -402,11 +385,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>23120:493976</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="18">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -419,13 +401,12 @@
                         <td class="d-none toggle-details">TikTok Shop</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23120:496914</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="19">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -436,13 +417,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Meowscarada ex #15.">Pulled Meowscarada ex #15.</small></td>
-                        <!-- <td><small>23120:496914</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="20">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -453,11 +433,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Radiant Charizard #20, Rotom V #45, Poochyena #GG33, Duskull #GG28.">Pulled Radiant Charizard #20, Rotom V #45, Poochyena #GG33, Duskull #GG28.</small></td>
-                        <!-- <td><small>17688:527562</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="21">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -470,11 +449,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Only got one when max was three since I had been spending too much. Later I called Target Customer Service to see if I could apply a 25% one toy or book coupon to my purchase, even though it says it cannot for trading cards, since I saw it on reddit. For some reason, it did work and I was refunded $25 (maybe they did $25 instead of 25%????).">Only got one when max was three since I had been spending too much. Later I called Target Customer Service to see if I could apply a 25% one toy or book coupon to my purchase, even though it says it cannot for trading cards, since I saw it on reddit. For some reason, it did work and I was refunded $25 (maybe they did $25 instead of 25%????).</small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="22">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -487,11 +465,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:593451</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="23">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -504,11 +481,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:593450</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="24">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -521,13 +497,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23237:502007</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="25">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -538,13 +513,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:593451</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="26">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -555,13 +529,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Raifort #199.">Pulled Raifort #199.</small></td>
-                        <!-- <td><small>23821:593450</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="27">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -572,11 +545,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>23237:502007</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="28">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -589,11 +561,10 @@
                         <td class="d-none toggle-details">Costco</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:609597</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="29">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -606,11 +577,10 @@
                         <td class="d-none toggle-details">TikTok Shop</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>3170:283388</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="30">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -623,11 +593,10 @@
                         <td class="d-none toggle-details">TikTok Shop</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23537:557345</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="31">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -640,11 +609,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>17688:527562</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="32">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -657,13 +625,12 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23529:552998</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="33">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -674,11 +641,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Poochyena #GG33, Duskull #GG28, Hisuian Samurott V #GG51, and Zeraora VMAX #54.">Pulled Poochyena #GG33, Duskull #GG28, Hisuian Samurott V #GG51, and Zeraora VMAX #54.</small></td>
-                        <!-- <td><small>17688:527562</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="34">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -691,11 +657,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23237:502000</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="35">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -708,13 +673,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23237:502000</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="36">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -725,13 +689,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Mew ex #151, Ninetales ex #38.">Pulled Mew ex #151, Ninetales ex #38.</small></td>
-                        <!-- <td><small>23237:502000</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="37">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -742,13 +705,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>3170:283388</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="38">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -759,11 +721,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Lucario ex #82, Ledian #144, and Medicham ex #161.">Pulled Lucario ex #82, Ledian #144, and Medicham ex #161.</small></td>
-                        <!-- <td><small>23537:557345</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="39">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -776,11 +737,10 @@
                         <td class="d-none toggle-details">TikTok Shop</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23537:557345</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="40">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -793,11 +753,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got 10% off through Customer Service.">Got 10% off through Customer Service.</small></td>
-                        <!-- <td><small>23821:593466</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="41">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -810,13 +769,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $5 Target Circle Reward.">Used $5 Target Circle Reward.</small></td>
-                        <!-- <td><small>23237:502000</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="42">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -827,11 +785,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Grand Tree #136, Lapras ex #032, and Orthworm ex #110.">Pulled Grand Tree #136, Lapras ex #032, and Orthworm ex #110.</small></td>
-                        <!-- <td><small>23537:557345</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="43">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -844,11 +801,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Recieved 2024 Pokémon Illustration Contest Promo Cards with order.">Recieved 2024 Pokémon Illustration Contest Promo Cards with order.</small></td>
-                        <!-- <td><small>3040:265529</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="44">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -861,13 +817,12 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Recieved 2024 Pokémon Illustration Contest Promo Cards with order.">Recieved 2024 Pokémon Illustration Contest Promo Cards with order.</small></td>
-                        <!-- <td><small>23381:532841</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="45">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -878,11 +833,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>23381:532841</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="46">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -895,13 +849,12 @@
                         <td class="d-none toggle-details">TikTok Shop</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23473:543843</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="47">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -912,11 +865,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>23473:543843</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="48">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -929,13 +881,12 @@
                         <td class="d-none toggle-details">Costco</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:609597</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="49">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -946,11 +897,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Machamp V #072 and a Hisuian Decidueye #173">Pulled Machamp V #072 and a Hisuian Decidueye #173</small></td>
-                        <!-- <td><small>3040:265529</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="50">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -963,11 +913,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got 5% off through Customer Service.">Got 5% off through Customer Service.</small></td>
-                        <!-- <td><small>23821:600518</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="51">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -980,11 +929,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got $10 off from Customer Support for $10 off $60 deal (multiple orders).">Got $10 off from Customer Support for $10 off $60 deal (multiple orders).</small></td>
-                        <!-- <td><small>23651:565629</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="52">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -997,11 +945,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:277568</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="53">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1014,11 +961,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24073:610929</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="54">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1031,13 +977,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23237:502000</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="55">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1048,11 +993,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>2374:277568</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="56">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1065,11 +1009,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 Target Circle Reward previously gotten from Customer Service by asking to apply $10 off $70 on multiple smaller orders">Used $10 Target Circle Reward previously gotten from Customer Service by asking to apply $10 off $70 on multiple smaller orders</small></td>
-                        <!-- <td><small>23237:502001</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="57">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1082,11 +1025,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got $6 after asking Customer Service for Target Circle card 5% off">Got $6 after asking Customer Service for Target Circle card 5% off</small></td>
-                        <!-- <td><small>23353:528771</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="58">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1099,11 +1041,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:281981</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="59">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1116,11 +1057,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24073:610934</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="60">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1133,13 +1073,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got $10 off though Customer Service for some reason I don't remember.">Got $10 off though Customer Service for some reason I don't remember.</small></td>
-                        <!-- <td><small>23821:606881</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="61">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1150,11 +1089,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Hop's Zacian ex 111/159.">Pulled Hop's Zacian ex 111/159.</small></td>
-                        <!-- <td><small>24073:610934</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="62">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1167,13 +1105,12 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:593466</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="63">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1184,11 +1121,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Amarys 132/131 and Sylveon Promo.">Pulled Amarys 132/131 and Sylveon Promo.</small></td>
-                        <!-- <td><small>23821:593466</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="64">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1201,11 +1137,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=" Got the price matched to MSRP from an original price of $139 after talking to Customer Service."> Got the price matched to MSRP from an original price of $139 after talking to Customer Service.</small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="65">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1218,11 +1153,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:600518</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="66">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1235,13 +1169,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got a $10 gift card from Customer Service (not included in price)">Got a $10 gift card from Customer Service (not included in price)</small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="67">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1252,11 +1185,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Houndour Master Ball and Espeon Promo">Pulled Houndour Master Ball and Espeon Promo</small></td>
-                        <!-- <td><small>23821:593466</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="68">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1269,11 +1201,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="69">
                          <td>
                             <span class="badge bg-success">
                                 SELL
@@ -1286,13 +1217,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Found on Facebook Marketplace. Met in front of UCLA Police Station.">Found on Facebook Marketplace. Met in front of UCLA Police Station.</small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="70">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1303,13 +1233,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Not sure of the exact date. Opened with Mason. Pulled nothing.">Not sure of the exact date. Opened with Mason. Pulled nothing.</small></td>
-                        <!-- <td><small>2374:281981</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="71">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1320,11 +1249,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Not sure of the exact date. This was the one that came unsealed. Pulled Poliwhirl #176 and Pikachu #173">Not sure of the exact date. This was the one that came unsealed. Pulled Poliwhirl #176 and Pikachu #173</small></td>
-                        <!-- <td><small>2374:609597</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="72">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1337,11 +1265,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got $7 off from Customer Service. Box came unsealed and I tried to do a credit card chargeback, but they rejected my claim.">Got $7 off from Customer Service. Box came unsealed and I tried to do a credit card chargeback, but they rejected my claim.</small></td>
-                        <!-- <td><small>2374:609597</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="73">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1354,11 +1281,10 @@
                         <td class="d-none toggle-details">Costco</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought as part of Costco 2-pack bundle with ETB and BB">Bought as part of Costco 2-pack bundle with ETB and BB</small></td>
-                        <!-- <td><small>23821:600518</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="74">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1371,11 +1297,10 @@
                         <td class="d-none toggle-details">Costco</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought as part of Costco 2-pack bundle with ETB and BB">Bought as part of Costco 2-pack bundle with ETB and BB</small></td>
-                        <!-- <td><small>23821:593355</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="75">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1388,11 +1313,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 off promo code but had to pay shipping.">Used $10 off promo code but had to pay shipping.</small></td>
-                        <!-- <td><small>24269:625670</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="76">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1405,11 +1329,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="I had to pay shipping, but I got a $10 off $15 code">I had to pay shipping, but I got a $10 off $15 code</small></td>
-                        <!-- <td><small>24269:625684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="77">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1422,11 +1345,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:628396</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="78">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1439,11 +1361,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:628395</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="79">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1456,11 +1377,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 off promo code.">Used $10 off promo code.</small></td>
-                        <!-- <td><small>24269:625670</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="80">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1473,11 +1393,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought by Elisabet on Cape Cod">Bought by Elisabet on Cape Cod</small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="81">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1490,13 +1409,12 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought by Elisabet on Cape Cod">Bought by Elisabet on Cape Cod</small></td>
-                        <!-- <td><small>24269:624683</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="82">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1507,13 +1425,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Opened with Kristina and Elisabet. Pulled nothing.">Opened with Kristina and Elisabet. Pulled nothing.</small></td>
-                        <!-- <td><small>24269:624683</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="83">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1524,11 +1441,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Opened with Kristina and Elisabet. Pulled nothing.">Opened with Kristina and Elisabet. Pulled nothing.</small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="84">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1541,11 +1457,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24325:630687</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="85">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1558,11 +1473,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24326:630688</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="86">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1575,11 +1489,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24326:630696</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="87">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1592,11 +1505,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24325:630431</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="88">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1609,11 +1521,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24326:630696</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="89">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1626,11 +1537,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought by Elisabet on Cape Cod">Bought by Elisabet on Cape Cod</small></td>
-                        <!-- <td><small>23537:557331</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="90">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1643,11 +1553,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 off promo code.">Used $10 off promo code.</small></td>
-                        <!-- <td><small>23821:600518</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="91">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1660,11 +1569,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=" I had a $10 Best Buy certificate. Saw Rishi and Chris in line and got in with them for the opening."> I had a $10 Best Buy certificate. Saw Rishi and Chris in line and got in with them for the opening.</small></td>
-                        <!-- <td><small>24380:644362</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="92">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1677,13 +1585,12 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="The original purchase was 2 for $65.86, but one came with the shrink wrap ripped so I contacted Walmart support and they said to file a credit card chargeback, which worked.">The original purchase was 2 for $65.86, but one came with the shrink wrap ripped so I contacted Walmart support and they said to file a credit card chargeback, which worked.</small></td>
-                        <!-- <td><small>24380:644362</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="93">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1694,13 +1601,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Opened with Logan and his roommate when I visited Elisabet for her birthday. Pulled a Team Rocket's Meowth #203.">Opened with Logan and his roommate when I visited Elisabet for her birthday. Pulled a Team Rocket's Meowth #203.</small></td>
-                        <!-- <td><small>24269:625684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="94">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1711,11 +1617,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Not sure of the exact date. Pulled nothing.">Not sure of the exact date. Pulled nothing.</small></td>
-                        <!-- <td><small>23537:557331</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="95">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1728,11 +1633,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565630</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="96">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1745,11 +1649,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Came with the shrink wrap slightly torn off, and they refused to refund. While making this transactions list, I decided to open it.">Came with the shrink wrap slightly torn off, and they refused to refund. While making this transactions list, I decided to open it.</small></td>
-                        <!-- <td><small>24380:644279</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="97">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1762,11 +1665,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:634329</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="98">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1779,11 +1681,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).">Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).</small></td>
-                        <!-- <td><small>2374:656950</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="99">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1796,11 +1697,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).">Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).</small></td>
-                        <!-- <td><small>2374:662770</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="100">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1813,11 +1713,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24448:654135</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="101">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1830,11 +1729,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="102">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1847,13 +1745,12 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order.  ">Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order.  </small></td>
-                        <!-- <td><small>2374:654213</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="103">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1864,11 +1761,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled nothing.">Pulled nothing.</small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="104">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1881,13 +1777,12 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23537:557340</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="105">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1898,13 +1793,12 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="This was the one that had a rip in it's shrink wrap. Pulled Clawitzer #141, Mega Mawile ex #162, Mega Mawile ex #94, and Mega Absol ex #86">This was the one that had a rip in it's shrink wrap. Pulled Clawitzer #141, Mega Mawile ex #162, Mega Mawile ex #94, and Mega Absol ex #86</small></td>
-                        <!-- <td><small>24380:644279</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="106">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -1915,11 +1809,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Sparkling Crystal #142.">Pulled Sparkling Crystal #142.</small></td>
-                        <!-- <td><small>23537:557331</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="107">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1932,11 +1825,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Got $10 off with promo code.">Got $10 off with promo code.</small></td>
-                        <!-- <td><small>23353:665113</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="108">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1949,11 +1841,10 @@
                         <td class="d-none toggle-details">Pokemon Center</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Paid $5.55 to delay package through FedEx since I had pokemon delivered to the house the day before and since I was in LA, parents got it and were mad. Delaying allowed me to recieve the package myself.">Paid $5.55 to delay package through FedEx since I had pokemon delivered to the house the day before and since I was in LA, parents got it and were mad. Delaying allowed me to recieve the package myself.</small></td>
-                        <!-- <td><small>23286:512822</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="109">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1966,11 +1857,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="110">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -1983,11 +1873,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 certificate.">Used $10 certificate.</small></td>
-                        <!-- <td><small>24269:624684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="111">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2000,11 +1889,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:625670</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="112">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2017,11 +1905,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:654213</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="113">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2034,11 +1921,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Bought through 3rd party which was charging market price, but I had $25 promo so it was close to retail.">Bought through 3rd party which was charging market price, but I had $25 promo so it was close to retail.</small></td>
-                        <!-- <td><small>23821:600518</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="114">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2051,11 +1937,10 @@
                         <td class="d-none toggle-details">Target</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>2374:654213</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="115">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2068,11 +1953,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565604</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="116">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2085,11 +1969,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 certificate on total order.">Used $10 certificate on total order.</small></td>
-                        <!-- <td><small>24448:654145</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="117">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2102,11 +1985,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 certificate on total order.">Used $10 certificate on total order.</small></td>
-                        <!-- <td><small>24448:654154</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="118">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2119,13 +2001,12 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $10 certificate on total order.">Used $10 certificate on total order.</small></td>
-                        <!-- <td><small>24448:654160</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="119">
                          <td>
-                            <span class="badge bg-secondary">
+                            <span class="badge bg-warning text-dark">
                                 OPEN
                             </span>
                         </td>
@@ -2136,11 +2017,10 @@
                         <td class="d-none toggle-details"></td>
                         <td class="d-none toggle-details"></td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Pulled Zacian #100.">Pulled Zacian #100.</small></td>
-                        <!-- <td><small>24448:654154</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="120">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2153,11 +2033,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24448:654137</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="121">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2170,11 +2049,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:624684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="122">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2187,11 +2065,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>23651:565629</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="123">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2204,11 +2081,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:624684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="124">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2221,11 +2097,10 @@
                         <td class="d-none toggle-details">Pokemon Center Vending Machine</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24325:630431</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="125">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2238,11 +2113,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24269:624684</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="126">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2255,11 +2129,10 @@
                         <td class="d-none toggle-details">Best Buy</td>
                         <td class="d-none toggle-details">In-person</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title=""></small></td>
-                        <!-- <td><small>24448:654145</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="127">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2272,11 +2145,10 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $25 promo on total order.">Used $25 promo on total order.</small></td>
-                        <!-- <td><small>23821:593451</small></td> -->
                         
                     </tr>
                     
-                    <tr>
+                    <tr data-index="128">
                          <td>
                             <span class="badge bg-primary">
                                 BUY
@@ -2289,7 +2161,6 @@
                         <td class="d-none toggle-details">Walmart</td>
                         <td class="d-none toggle-details">Online</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="Used $25 promo on total order.">Used $25 promo on total order.</small></td>
-                        <!-- <td><small>23821:593450</small></td> -->
                         
                     </tr>
                     
@@ -2305,9 +2176,8 @@
     <script src="static/js/table-init.js"></script>
     
     <script src="auth.js"></script>
-    
-
     <script src="github-api.js"></script>
     <script src="transaction-manager.js"></script>
+    
 </body>
 </html>

@@ -1,129 +1,214 @@
 // GitHub API Integration for Pokemon Tracker
-// Handles authentication and API calls to edit transactions.csv
-
-const GITHUB_CONFIG = {
-    owner: 'gauravagarwal003',
-    repo: 'Pokemon_Tracker',
-    branch: 'main'
-};
+// Handles all GitHub API operations for transactions and mappings
 
 class GitHubAPI {
     constructor() {
-        this.token = sessionStorage.getItem('github_token');
+        this.config = {
+            owner: 'gauravagarwal003',
+            repo: 'Pokemon_Tracker',
+            branch: 'main'
+        };
         this.apiBase = 'https://api.github.com';
+        this.cache = {
+            transactions: null,
+            mappings: null,
+            transactionsSha: null,
+            mappingsSha: null
+        };
     }
 
-    // Check if user is authenticated
+    // Get token from PokeAuth
+    get token() {
+        return window.PokeAuth?.getToken() || sessionStorage.getItem('github_token');
+    }
+
+    // Check if authenticated with GitHub
     isAuthenticated() {
         return !!this.token;
     }
 
-    // Prompt for Personal Access Token
+    // Prompt for GitHub PAT with detailed instructions
     async authenticate() {
-        const instructions = `
-To edit transactions, you need a GitHub Personal Access Token:
+        const modal = document.createElement('div');
+        modal.className = 'modal fade';
+        modal.id = 'githubAuthModal';
+        modal.innerHTML = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title"><i class="fab fa-github me-2"></i>GitHub Authentication</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            To edit transactions, you need a GitHub Personal Access Token (PAT).
+                        </div>
+                        
+                        <h6>Steps to create a token:</h6>
+                        <ol class="mb-4">
+                            <li>Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Token Settings</a></li>
+                            <li>Click <strong>"Generate new token"</strong> → <strong>"Generate new token (classic)"</strong></li>
+                            <li>Name it: <code>Pokemon Tracker</code></li>
+                            <li>Select expiration (recommend: 90 days or No expiration)</li>
+                            <li>Check the <strong>repo</strong> scope (full access to repositories)</li>
+                            <li>Click <strong>"Generate token"</strong></li>
+                            <li>Copy the token (starts with <code>ghp_</code>)</li>
+                        </ol>
+                        
+                        <div class="form-group">
+                            <label for="tokenInput" class="form-label fw-bold">Paste your token:</label>
+                            <input type="password" class="form-control" id="tokenInput" 
+                                   placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                            <div class="form-text">Token is stored in your browser session only (cleared when you close browser).</div>
+                        </div>
+                        
+                        <div id="tokenError" class="alert alert-danger mt-3" style="display: none;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success" id="validateTokenBtn">
+                            <i class="fas fa-check me-2"></i>Validate & Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
 
-1. Go to: https://github.com/settings/tokens
-2. Click "Generate new token" → "Generate new token (classic)"
-3. Give it a name (e.g., "Pokemon Tracker")
-4. Select scope: ✓ repo
-5. Click "Generate token" at the bottom
-6. Copy the token (starts with ghp_) and paste it below
+        document.body.appendChild(modal);
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
 
-The token will be stored in your browser session only.
-        `.trim();
-        
-        alert(instructions);
-        const token = prompt('Paste your GitHub Personal Access Token:');
-        
-        if (token && token.trim()) {
-            // Verify token works before storing
-            try {
-                const cleanToken = token.trim();
-                const testUrl = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}`;
-                const response = await fetch(testUrl, {
-                    headers: {
-                        'Authorization': `Bearer ${cleanToken}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
+        return new Promise((resolve) => {
+            const validateBtn = document.getElementById('validateTokenBtn');
+            const tokenInput = document.getElementById('tokenInput');
+            const errorDiv = document.getElementById('tokenError');
+
+            validateBtn.addEventListener('click', async () => {
+                const token = tokenInput.value.trim();
                 
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({}));
-                    alert(`Token validation failed (${response.status}):\n${errorData.message || response.statusText}\n\nCheck:\n1. Token copied correctly (starts with ghp_)\n2. Token has "repo" scope\n3. Token not expired\n4. Repo is gauravagarwal003/Pokemon_Tracker`);
+                if (!token) {
+                    errorDiv.textContent = 'Please enter a token';
+                    errorDiv.style.display = 'block';
                     return;
                 }
-                
-                this.setToken(cleanToken);
-                window.location.reload();
-            } catch (error) {
-                alert('Token validation error: ' + error.message);
-            }
-        }
-    }
 
-    // Set token manually
-    setToken(token) {
-        this.token = token;
-        sessionStorage.setItem('github_token', token);
+                validateBtn.disabled = true;
+                validateBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Validating...';
+
+                try {
+                    // Test the token
+                    const response = await fetch(`${this.apiBase}/repos/${this.config.owner}/${this.config.repo}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Invalid token: ${response.status}`);
+                    }
+
+                    // Check we have write access
+                    const repoData = await response.json();
+                    if (!repoData.permissions?.push) {
+                        throw new Error('Token does not have write access to this repo');
+                    }
+
+                    // Save token
+                    if (window.PokeAuth) {
+                        window.PokeAuth.setToken(token);
+                    } else {
+                        sessionStorage.setItem('github_token', token);
+                    }
+
+                    bsModal.hide();
+                    modal.remove();
+                    resolve(true);
+
+                } catch (error) {
+                    errorDiv.textContent = `Error: ${error.message}. Make sure the token has 'repo' scope.`;
+                    errorDiv.style.display = 'block';
+                    validateBtn.disabled = false;
+                    validateBtn.innerHTML = '<i class="fas fa-check me-2"></i>Validate & Save';
+                }
+            });
+
+            modal.addEventListener('hidden.bs.modal', () => {
+                modal.remove();
+                resolve(false);
+            });
+        });
     }
 
     // Logout
     logout() {
-        this.token = null;
-        sessionStorage.removeItem('github_token');
-        window.location.reload();
+        if (window.PokeAuth) {
+            window.PokeAuth.logout();
+        } else {
+            sessionStorage.removeItem('github_token');
+            window.location.reload();
+        }
     }
 
-    // Get file content
-    async getFile(path) {
-        const url = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}?ref=${GITHUB_CONFIG.branch}`;
+    // Make authenticated API request
+    async request(url, options = {}) {
+        if (!this.token) {
+            throw new Error('Not authenticated');
+        }
+
         const response = await fetch(url, {
+            ...options,
             headers: {
                 'Authorization': `Bearer ${this.token}`,
-                'Accept': 'application/vnd.github.v3+json'
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+                ...options.headers
             }
         });
+
+        if (!response.ok) {
+            const error = await response.json().catch(() => ({}));
+            throw new Error(error.message || `API Error: ${response.status}`);
+        }
+
+        return response.json();
+    }
+
+    // Get file content from repo
+    async getFile(path) {
+        const url = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/contents/${path}?ref=${this.config.branch}`;
+        const data = await this.request(url);
         
-        if (!response.ok) throw new Error(`Failed to get file: ${response.statusText}`);
-        
-        const data = await response.json();
         return {
-            content: atob(data.content),
+            content: atob(data.content.replace(/\n/g, '')),
             sha: data.sha
         };
     }
 
-    // Update file
+    // Update file in repo
     async updateFile(path, content, message, sha) {
-        const url = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
-        const response = await fetch(url, {
+        const url = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/contents/${path}`;
+        
+        return this.request(url, {
             method: 'PUT',
-            headers: {
-                'Authorization': `Bearer ${this.token}`,
-                'Accept': 'application/vnd.github.v3+json',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify({
                 message: message,
-                content: btoa(content),
+                content: btoa(unescape(encodeURIComponent(content))),
                 sha: sha,
-                branch: GITHUB_CONFIG.branch
+                branch: this.config.branch
             })
         });
-        
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(`Failed to update file: ${error.message}`);
-        }
-        
-        return await response.json();
     }
+
+    // ===== CSV HELPERS =====
 
     // Parse CSV to array of objects
     parseCSV(csv) {
         const lines = csv.trim().split('\n');
-        const headers = lines[0].split(',');
+        if (lines.length < 1) return [];
+        
+        const headers = this.parseCSVLine(lines[0]);
         
         return lines.slice(1).map((line, index) => {
             const values = this.parseCSVLine(line);
@@ -135,7 +220,7 @@ The token will be stored in your browser session only.
         });
     }
 
-    // Parse a single CSV line (handles quoted values)
+    // Parse single CSV line handling quoted values
     parseCSVLine(line) {
         const result = [];
         let current = '';
@@ -145,7 +230,12 @@ The token will be stored in your browser session only.
             const char = line[i];
             
             if (char === '"') {
-                inQuotes = !inQuotes;
+                if (inQuotes && line[i + 1] === '"') {
+                    current += '"';
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
             } else if (char === ',' && !inQuotes) {
                 result.push(current);
                 current = '';
@@ -178,52 +268,158 @@ The token will be stored in your browser session only.
         return rows.join('\n');
     }
 
-    // Get transactions
-    async getTransactions() {
+    // ===== TRANSACTIONS =====
+
+    // Get all transactions
+    async getTransactions(forceRefresh = false) {
+        if (!forceRefresh && this.cache.transactions) {
+            return { 
+                transactions: this.cache.transactions, 
+                sha: this.cache.transactionsSha 
+            };
+        }
+
         const file = await this.getFile('transactions.csv');
         const transactions = this.parseCSV(file.content);
+        
+        this.cache.transactions = transactions;
+        this.cache.transactionsSha = file.sha;
+        
         return { transactions, sha: file.sha };
     }
 
-    // Add transaction
+    // Add new transaction
     async addTransaction(transaction) {
-        const { transactions, sha } = await this.getTransactions();
+        const { transactions, sha } = await this.getTransactions(true);
         transactions.push(transaction);
         
-        const headers = Object.keys(transactions[0]).filter(k => k !== '_index');
+        const headers = [
+            'Date Purchased', 'Date Recieved', 'Transaction Type', 'Price Per Unit',
+            'Quantity', 'Item', 'group_id', 'product_id', 'Method', 'Place', 'Notes'
+        ];
         const csv = this.toCSV(transactions, headers);
         
-        await this.updateFile('transactions.csv', csv, 'Add transaction', sha);
+        await this.updateFile('transactions.csv', csv, `Add transaction: ${transaction.Item}`, sha);
+        this.cache.transactions = null; // Invalidate cache
     }
 
-    // Update transaction
+    // Update existing transaction
     async updateTransaction(index, transaction) {
-        const { transactions, sha } = await this.getTransactions();
+        const { transactions, sha } = await this.getTransactions(true);
+        
+        if (index < 0 || index >= transactions.length) {
+            throw new Error('Transaction not found');
+        }
+        
         transactions[index] = { ...transactions[index], ...transaction };
         
-        const headers = Object.keys(transactions[0]).filter(k => k !== '_index');
+        const headers = [
+            'Date Purchased', 'Date Recieved', 'Transaction Type', 'Price Per Unit',
+            'Quantity', 'Item', 'group_id', 'product_id', 'Method', 'Place', 'Notes'
+        ];
         const csv = this.toCSV(transactions, headers);
         
-        await this.updateFile('transactions.csv', csv, 'Update transaction', sha);
+        await this.updateFile('transactions.csv', csv, `Update transaction: ${transaction.Item}`, sha);
+        this.cache.transactions = null;
     }
 
     // Delete transaction
     async deleteTransaction(index) {
-        const { transactions, sha } = await this.getTransactions();
-        transactions.splice(index, 1);
+        const { transactions, sha } = await this.getTransactions(true);
         
-        const headers = ['Date Purchased','Date Recieved','Transaction Type','Price Per Unit','Quantity','Item','group_id','product_id','Method','Place','Notes'];
+        if (index < 0 || index >= transactions.length) {
+            throw new Error('Transaction not found');
+        }
+        
+        const deleted = transactions.splice(index, 1)[0];
+        
+        const headers = [
+            'Date Purchased', 'Date Recieved', 'Transaction Type', 'Price Per Unit',
+            'Quantity', 'Item', 'group_id', 'product_id', 'Method', 'Place', 'Notes'
+        ];
         const csv = this.toCSV(transactions, headers);
         
-        await this.updateFile('transactions.csv', csv, 'Delete transaction', sha);
+        await this.updateFile('transactions.csv', csv, `Delete transaction: ${deleted.Item}`, sha);
+        this.cache.transactions = null;
     }
 
-    // Get mappings
-    async getMappings() {
+    // ===== MAPPINGS =====
+
+    // Get all mappings
+    async getMappings(forceRefresh = false) {
+        if (!forceRefresh && this.cache.mappings) {
+            return { 
+                mappings: this.cache.mappings, 
+                sha: this.cache.mappingsSha 
+            };
+        }
+
         const file = await this.getFile('mappings.json');
-        return JSON.parse(file.content);
+        const mappings = JSON.parse(file.content);
+        
+        this.cache.mappings = mappings;
+        this.cache.mappingsSha = file.sha;
+        
+        return { mappings, sha: file.sha };
+    }
+
+    // Search products in mappings
+    async searchProducts(query) {
+        const { mappings } = await this.getMappings();
+        
+        if (!query || query.length < 2) return [];
+        
+        const lowerQuery = query.toLowerCase();
+        return mappings
+            .filter(m => m.name.toLowerCase().includes(lowerQuery))
+            .slice(0, 15); // Limit results
+    }
+
+    // Add new product to mappings
+    async addProduct(name, productId, groupId, categoryId) {
+        const { mappings, sha } = await this.getMappings(true);
+        
+        // Check if already exists
+        const exists = mappings.find(
+            m => m.product_id === String(productId) && m.group_id === String(groupId)
+        );
+        
+        if (exists) {
+            return exists; // Return existing product
+        }
+        
+        // Generate URLs
+        const imageUrl = `https://tcgplayer-cdn.tcgplayer.com/product/${productId}_200w.jpg`;
+        const url = `https://www.tcgplayer.com/product/${productId}`;
+        
+        const newProduct = {
+            product_id: String(productId),
+            name: name,
+            group_id: String(groupId),
+            imageUrl: imageUrl,
+            categoryId: parseInt(categoryId) || 3,
+            url: url
+        };
+        
+        mappings.push(newProduct);
+        
+        const json = JSON.stringify(mappings, null, 2);
+        await this.updateFile('mappings.json', json, `Add product: ${name}`, sha);
+        
+        this.cache.mappings = null; // Invalidate cache
+        
+        return newProduct;
+    }
+
+    // Get product by IDs
+    async getProduct(productId, groupId) {
+        const { mappings } = await this.getMappings();
+        
+        return mappings.find(
+            m => m.product_id === String(productId) && m.group_id === String(groupId)
+        );
     }
 }
 
-// Initialize API
+// Initialize global API instance
 const githubAPI = new GitHubAPI();
