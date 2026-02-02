@@ -83,6 +83,41 @@ def save_transactions(df):
     df_to_save.to_csv(TRANSACTIONS_FILE, index=False)
 
 
+def update_config_date():
+    """Update data.json to today's date"""
+    import json
+    from datetime import date
+    
+    config_file = os.path.join(BASE_DIR, 'data.json')
+    with open(config_file, 'r') as f:
+        config = json.load(f)
+    
+    today = date.today().strftime('%Y-%m-%d')
+    config['latest_date'] = today
+    
+    with open(config_file, 'w') as f:
+        json.dump(config, f, indent=4)
+
+
+def quick_refresh():
+    """Quick refresh - only fetch today's prices and recalculate"""
+    import subprocess
+    
+    # Update config to today
+    update_config_date()
+    
+    # Run incremental update
+    result = subprocess.run(
+        ['python', 'daily_run.py', '--incremental'],
+        cwd=BASE_DIR,
+        capture_output=True,
+        text=True,
+        timeout=120
+    )
+    
+    return result.returncode == 0
+
+
 @app.route('/')
 def index():
     """Dashboard page"""
@@ -167,7 +202,13 @@ def add_transaction():
             # Save
             save_transactions(df)
             
-            flash('Transaction added successfully!', 'success')
+            # Trigger smart refresh
+            try:
+                quick_refresh()
+                flash('Transaction added and data updated successfully!', 'success')
+            except Exception as e:
+                flash(f'Transaction added, but data refresh failed: {e}', 'warning')
+            
             return redirect(url_for('transactions'))
             
         except Exception as e:
@@ -218,7 +259,13 @@ def edit_transaction(tx_id):
             # Save
             save_transactions(df)
             
-            flash('Transaction updated successfully!', 'success')
+            # Trigger smart refresh
+            try:
+                quick_refresh()
+                flash('Transaction updated and data recalculated successfully!', 'success')
+            except Exception as e:
+                flash(f'Transaction updated, but data refresh failed: {e}', 'warning')
+            
             return redirect(url_for('transactions'))
             
         except Exception as e:
@@ -251,7 +298,12 @@ def delete_transaction(tx_id):
         # Save
         save_transactions(df)
         
-        flash('Transaction deleted successfully!', 'success')
+        # Trigger smart refresh
+        try:
+            quick_refresh()
+            flash('Transaction deleted and data recalculated successfully!', 'success')
+        except Exception as e:
+            flash(f'Transaction deleted, but data refresh failed: {e}', 'warning')
     except Exception as e:
         flash(f'Error deleting transaction: {e}', 'error')
     
@@ -282,20 +334,10 @@ def search_products():
 def refresh_data():
     """Refresh portfolio data by running daily_run.py"""
     try:
-        import subprocess
-        result = subprocess.run(
-            ['python', 'daily_run.py', '--incremental'],
-            cwd=BASE_DIR,
-            capture_output=True,
-            text=True,
-            timeout=300  # 5 minute timeout
-        )
-        
-        if result.returncode == 0:
+        if quick_refresh():
             flash('Data refreshed successfully!', 'success')
         else:
-            flash(f'Error refreshing data: {result.stderr}', 'error')
-            
+            flash('Error refreshing data', 'error')
     except subprocess.TimeoutExpired:
         flash('Refresh timed out. Please try again.', 'error')
     except Exception as e:
