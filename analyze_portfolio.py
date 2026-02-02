@@ -301,7 +301,8 @@ def run_analysis(resume_date=None):
                 'product_id': p_id,
                 'Quantity': qty,
                 'Latest Price': price,
-                'Total Value': price * qty
+                'Total Value': price * qty,
+                'Image URL': image_map.get((g_id, p_id), "")
             })
     
     if holdings_list:
