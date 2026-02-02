@@ -28,7 +28,7 @@ To edit transactions, you need a GitHub Personal Access Token:
 3. Give it a name (e.g., "Pokemon Tracker")
 4. Select scope: ✓ repo
 5. Click "Generate token" at the bottom
-6. Copy the token and paste it below
+6. Copy the token (starts with ghp_) and paste it below
 
 The token will be stored in your browser session only.
         `.trim();
@@ -39,20 +39,22 @@ The token will be stored in your browser session only.
         if (token && token.trim()) {
             // Verify token works before storing
             try {
+                const cleanToken = token.trim();
                 const testUrl = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}`;
                 const response = await fetch(testUrl, {
                     headers: {
-                        'Authorization': `token ${token.trim()}`,
+                        'Authorization': `Bearer ${cleanToken}`,
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 });
                 
                 if (!response.ok) {
-                    alert('Token validation failed. Please check:\n1. Token is copied correctly\n2. Token has "repo" scope\n3. Token is not expired');
+                    const errorData = await response.json().catch(() => ({}));
+                    alert(`Token validation failed (${response.status}):\n${errorData.message || response.statusText}\n\nCheck:\n1. Token copied correctly (starts with ghp_)\n2. Token has "repo" scope\n3. Token not expired\n4. Repo is gauravagarwal003/Pokemon_Tracker`);
                     return;
                 }
                 
-                this.setToken(token.trim());
+                this.setToken(cleanToken);
                 window.location.reload();
             } catch (error) {
                 alert('Token validation error: ' + error.message);
@@ -78,7 +80,7 @@ The token will be stored in your browser session only.
         const url = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}?ref=${GITHUB_CONFIG.branch}`;
         const response = await fetch(url, {
             headers: {
-                'Authorization': `token ${this.token}`,
+                'Authorization': `Bearer ${this.token}`,
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
@@ -98,7 +100,7 @@ The token will be stored in your browser session only.
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
-                'Authorization': `token ${this.token}`,
+                'Authorization': `Bearer ${this.token}`,
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json'
             },
