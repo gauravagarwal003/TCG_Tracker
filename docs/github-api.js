@@ -19,7 +19,7 @@ class GitHubAPI {
     }
 
     // Prompt for Personal Access Token
-    authenticate() {
+    async authenticate() {
         const instructions = `
 To edit transactions, you need a GitHub Personal Access Token:
 
@@ -37,8 +37,26 @@ The token will be stored in your browser session only.
         const token = prompt('Paste your GitHub Personal Access Token:');
         
         if (token && token.trim()) {
-            this.setToken(token.trim());
-            window.location.reload();
+            // Verify token works before storing
+            try {
+                const testUrl = `${this.apiBase}/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}`;
+                const response = await fetch(testUrl, {
+                    headers: {
+                        'Authorization': `token ${token.trim()}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    alert('Token validation failed. Please check:\n1. Token is copied correctly\n2. Token has "repo" scope\n3. Token is not expired');
+                    return;
+                }
+                
+                this.setToken(token.trim());
+                window.location.reload();
+            } catch (error) {
+                alert('Token validation error: ' + error.message);
+            }
         }
     }
 
