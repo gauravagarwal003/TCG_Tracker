@@ -53,7 +53,38 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typeFilter) {
         typeFilter.addEventListener('change', () => filterData(table));
     }
+
+    // --- 4. Apply Default Sorting ---
+    // For holdings table (has Total Value column), sort by Total Value descending
+    // For transactions table (has Date column), sort by Date descending
+    applyDefaultSort(table);
 });
+
+function applyDefaultSort(table) {
+    const headers = Array.from(table.querySelectorAll('th'));
+    
+    // Check if this is the holdings table
+    const totalValueIndex = headers.findIndex(h => h.textContent.includes('Total Value'));
+    if (totalValueIndex !== -1) {
+        // Holdings table - sort by Total Value descending
+        const header = headers[totalValueIndex];
+        header.setAttribute('data-order', '');
+        sortTable(table, totalValueIndex);
+        sortTable(table, totalValueIndex); // Click twice to get descending
+        return;
+    }
+    
+    // Check if this is the transactions table
+    const dateIndex = headers.findIndex(h => h.textContent.includes('Date'));
+    if (dateIndex !== -1) {
+        // Transactions table - sort by Date descending (newest first)
+        const header = headers[dateIndex];
+        header.setAttribute('data-order', '');
+        sortTable(table, dateIndex);
+        sortTable(table, dateIndex); // Click twice to get descending
+        return;
+    }
+}
 
 function sortTable(table, colIndex) {
     const tbody = table.querySelector('tbody');

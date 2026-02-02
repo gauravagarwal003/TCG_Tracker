@@ -6,6 +6,7 @@
         <h2>Transactions</h2>
     </div>
     <div class="col-md-6 text-end">
+        <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
         {% if not is_static %}
         <a href="{{ url_for('add_transaction') }}" class="btn btn-primary">Add Transaction</a>
         {% else %}
@@ -47,8 +48,8 @@
                         <th>Date</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Store</th>
-                        <th>Method</th>
+                        <th class="d-none toggle-details">Store</th>
+                        <th class="d-none toggle-details">Method</th>
                         <th>Notes</th>
                         <!-- <th>IDs</th> -->
                         {% if not is_static %}
@@ -68,8 +69,8 @@
                         <td>{{ transactions['Date Purchased'] }}</td>
                         <td>{{ transactions['Quantity']|float|int }}</td>
                         <td>{{ transactions['Price Per Unit'] if transactions['Price Per Unit']|string != 'nan' else '' }}</td>
-                        <td>{{ transactions['Place'] if transactions['Place']|string != 'nan' else '' }}</td>
-                        <td>{{ transactions['Method'] if transactions['Method']|string != 'nan' else '' }}</td>
+                        <td class="d-none toggle-details">{{ transactions['Place'] if transactions['Place']|string != 'nan' else '' }}</td>
+                        <td class="d-none toggle-details">{{ transactions['Method'] if transactions['Method']|string != 'nan' else '' }}</td>
                         <td><small class="text-muted text-truncate" style="max-width: 150px; display: inline-block;" title="{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}">{{ transactions['Notes'] if transactions['Notes']|string != 'nan' else '' }}</small></td>
                         <!-- <td><small>{{ transactions['group_id'] }}:{{ transactions['product_id'] }}</small></td> -->
                         {% if not is_static %}
