@@ -77,6 +77,31 @@ if os.path.exists(perf_path):
 
 # --- 2. Render Pages ---
 
+# --- 2.5 Copy Static Files ---
+import shutil
+
+static_src = os.path.join(BASE_DIR, 'static')
+static_dst = os.path.join(OUTPUT_DIR, 'static')
+
+if os.path.exists(static_src):
+    print("Copying static files...")
+    # Remove existing static folder and copy fresh
+    if os.path.exists(static_dst):
+        shutil.rmtree(static_dst)
+    shutil.copytree(static_src, static_dst)
+
+# Mock url_for function for static and page links
+def mock_url_for(endpoint, **kwargs):
+    if endpoint == 'static':
+        filename = kwargs.get('filename', '')
+        return f"static/{filename}"
+    elif endpoint == 'index':
+        return 'index.html'
+    elif endpoint == 'transactions':
+        return 'transactions.html'
+    else:
+        return f"{endpoint}.html"
+
 # -- Index --
 print("Building index.html...")
 template = env.get_template('index.html')
@@ -86,8 +111,7 @@ output_html = template.render(
     graph_html=graph_html,
     performance_html=performance_html,
     is_static=True,
-    # Pass mock url_for
-    url_for=lambda x, **k: f"{x}.html" if x != 'index' else 'index.html'
+    url_for=mock_url_for
 )
 with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w') as f:
     f.write(output_html)
@@ -100,7 +124,7 @@ template = env.get_template('transactions.html')
 output_html = template.render(
     transactions=transactions,
     is_static=True,
-    url_for=lambda x, **k: f"{x}.html" if x != 'index' and x != 'transactions' else f"{x}.html"
+    url_for=mock_url_for
 )
 
 # Post-processing to remove Add/Edit buttons or make them point to GitHub?
