@@ -130,6 +130,15 @@ output_html = template.render(
 # Post-processing to remove Add/Edit buttons or make them point to GitHub?
 # For now, let's keep it simple. The user can see the list.
 # We might want to inject a banner saying "Static View".
+
+# Inject GitHub API scripts before closing body tag
+github_scripts = '''
+    <script src="github-api.js"></script>
+    <script src="transaction-manager.js"></script>
+</body>'''
+
+output_html = output_html.replace('</body>', github_scripts)
+
 with open(os.path.join(OUTPUT_DIR, 'transactions.html'), 'w') as f:
     f.write(output_html)
 

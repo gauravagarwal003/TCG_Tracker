@@ -1,0 +1,49 @@
+name: Daily Price Update
+
+on:
+  schedule:
+    # Runs at 6 AM UTC every day (adjust timezone as needed)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Get full history for incremental updates
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Update config date to today
+      run: |
+        python -c "
+        import json
+        from datetime import date
+        with open('data.json', 'r') as f:
+            config = json.load(f)
+        config['latest_date'] = date.today().strftime('%Y-%m-%d')
+        with open('data.json', 'w') as f:
+            json.dump(config, f, indent=4)
+        "
+    
+    - name: Run incremental price update
+      run: python daily_run.py --incremental
+      continue-on-error: true
+    
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -A
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Daily price update $(date +'%Y-%m-%d')" && git push)

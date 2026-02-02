@@ -3,7 +3,7 @@ import json
 import os
 from functions import batch_update_historical_prices
 
-def main():
+def main(start_from_date=None):
     print("--- Starting Price Update (Batch Mode) ---")
     
     # 1. Load Configuration
@@ -15,7 +15,7 @@ def main():
         config = json.load(f)
         
     transactions_file = config.get("transactions_file", "transactions.csv")
-    start_date = config.get("start_date")
+    start_date = start_from_date or config.get("start_date")
     # Default to today if latest_date is far in future or not set
     latest_date = config.get("latest_date") 
     

@@ -63,7 +63,7 @@ def main():
     # Step 1: Fetch latest prices from the web
     print("\n>>> STEP 1: Updating Historical Prices...")
     try:
-        update_prices.main()
+        update_prices.main(start_from_date=resume_date)
     except Exception as e:
         print(f"CRITICAL ERROR in Price Update: {e}")
         # We continue even if price update fails, to at least see current basis
