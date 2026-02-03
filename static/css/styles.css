@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     background-color: var(--surface);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
 }
@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 .card-header {
     background-color: var(--surface);
     border-bottom: 1px solid #f1f5f9;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.25rem;
 }
 
 .card-header h5 {
@@ -147,15 +147,15 @@ h1, h2, h3, h4, h5, h6 {
 .table-section {
     background-color: var(--surface);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
     box-shadow: var(--shadow-md);
 }
 
 .table-section .table-header {
-    padding-bottom: 1rem;
+    padding-bottom: 0.75rem;
     border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .table-section .table-header h5 {
@@ -172,19 +172,20 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #f8fafc;
     color: var(--text-secondary);
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 0.5rem;
     border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
 }
 
 .table td {
-    padding: 1rem 1.5rem;
+    padding: 0.5rem;
     vertical-align: middle;
     color: var(--text-primary);
     border-bottom: 1px solid #f1f5f9;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
 }
 
 .table-hover tbody tr:hover {
