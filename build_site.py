@@ -99,12 +99,18 @@ for tx in transactions:
 graph_html = ""
 graph_path = os.path.join(BASE_DIR, 'portfolio_graph.html')
 if os.path.exists(graph_path):
+    # Move graph to docs and update path
+    shutil.move(graph_path, os.path.join(OUTPUT_DIR, 'portfolio_graph.html'))
+    graph_path = os.path.join(OUTPUT_DIR, 'portfolio_graph.html')
     with open(graph_path, 'r') as f:
         graph_html = f.read()
 
 performance_html = ""
 perf_path = os.path.join(BASE_DIR, 'performance_graph.html')
 if os.path.exists(perf_path):
+    # Move graph to docs and update path
+    shutil.move(perf_path, os.path.join(OUTPUT_DIR, 'performance_graph.html'))
+    perf_path = os.path.join(OUTPUT_DIR, 'performance_graph.html')
     with open(perf_path, 'r') as f:
         performance_html = f.read()
 
