@@ -35,40 +35,42 @@
         return hash === PASSWORD_HASH;
     }
 
-    // Show password prompt
-    function showPasswordPrompt() {
-        return new Promise((resolve) => {
-            // Create modal overlay
-            const overlay = document.createElement('div');
-            overlay.id = 'authOverlay';
-            overlay.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-                z-index: 99999;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-family: 'Inter', -apple-system, sans-serif;
-            `;
+    // Create blocking overlay immediately
+    function createBlockingOverlay() {
+        const overlay = document.createElement('div');
+        overlay.id = 'authBlockingOverlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        return overlay;
+    }
 
+    // Show password prompt
+    function showPasswordPrompt(overlay) {
+        return new Promise((resolve) => {
             overlay.innerHTML = `
-                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 400px; width: 90%;">
+                <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 400px; width: 90%; font-family: 'Inter', -apple-system, sans-serif;">
                     <div style="text-align: center; margin-bottom: 24px;">
-                        <i class="fas fa-lock" style="font-size: 48px; color: #6366f1; margin-bottom: 16px;"></i>
+                        <div style="font-size: 48px; margin-bottom: 16px;">🔒</div>
                         <h2 style="margin: 0; color: #1e293b; font-size: 24px;">PokeTracker</h2>
                         <p style="color: #64748b; margin-top: 8px;">Enter password to continue</p>
                     </div>
                     <form id="authForm">
-                        <input type="password" id="authPassword" class="form-control" placeholder="Password" 
-                               style="padding: 12px 16px; font-size: 16px; border-radius: 8px; margin-bottom: 16px;" 
-                               autocomplete="current-password" autofocus>
-                        <button type="submit" class="btn btn-primary w-100" 
-                                style="padding: 12px; font-size: 16px; border-radius: 8px; background: #6366f1; border: none;">
-                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        <input type="password" id="authPassword" placeholder="Password" 
+                               style="width: 100%; padding: 12px 16px; font-size: 16px; border-radius: 8px; margin-bottom: 16px; border: 1px solid #e2e8f0; box-sizing: border-box;" 
+                               autocomplete="current-password">
+                        <button type="submit" 
+                                style="width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; background: #6366f1; border: none; color: white; cursor: pointer; font-weight: 500;">
+                            Login
                         </button>
                         <div id="authError" style="color: #ef4444; margin-top: 12px; text-align: center; display: none;">
                             Incorrect password
@@ -77,8 +79,11 @@
                 </div>
             `;
 
-            document.body.appendChild(overlay);
-            document.body.style.overflow = 'hidden';
+            // Wait for DOM to update then focus
+            setTimeout(() => {
+                const passwordInput = document.getElementById('authPassword');
+                if (passwordInput) passwordInput.focus();
+            }, 100);
 
             const form = document.getElementById('authForm');
             const passwordInput = document.getElementById('authPassword');
@@ -90,8 +95,6 @@
                 
                 if (await verifyPassword(password)) {
                     sessionStorage.setItem(AUTH_KEY, PASSWORD_HASH);
-                    overlay.remove();
-                    document.body.style.overflow = '';
                     resolve(true);
                 } else {
                     errorDiv.style.display = 'block';
@@ -104,22 +107,29 @@
 
     // Main auth flow
     async function authenticate() {
-        // Hide body until authenticated
-        document.body.style.visibility = 'hidden';
-
-        if (!isPasswordAuthenticated()) {
-            await showPasswordPrompt();
+        // If already authenticated, do nothing
+        if (isPasswordAuthenticated()) {
+            return;
         }
 
-        // Show the page
-        document.body.style.visibility = 'visible';
+        // Create and show blocking overlay
+        const overlay = createBlockingOverlay();
+        document.body.appendChild(overlay);
+
+        try {
+            await showPasswordPrompt(overlay);
+            overlay.remove();
+        } catch (error) {
+            console.error('Auth error:', error);
+            overlay.remove();
+        }
     }
 
-    // Run auth on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', authenticate);
-    } else {
+    // Run auth immediately when script loads
+    if (document.body) {
         authenticate();
+    } else {
+        document.addEventListener('DOMContentLoaded', authenticate);
     }
 
     // Export functions for use by other scripts
