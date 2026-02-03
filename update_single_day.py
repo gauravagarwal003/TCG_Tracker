@@ -282,17 +282,17 @@ def rebuild_graphs():
     fig.add_trace(go.Scatter(
         x=tracker_df['Date'],
         y=tracker_df[value_col],
-        mode='lines+markers',
+        mode='lines',
         name='Portfolio Value',
-        line=dict(color='#4f46e5', width=2),
-        marker=dict(size=4)
+        line=dict(color='#00C851', width=3),
+        stackgroup='one'
     ))
     fig.add_trace(go.Scatter(
         x=tracker_df['Date'],
         y=tracker_df['Cost Basis'],
         mode='lines',
-        name='Cost Basis',
-        line=dict(color='#94a3b8', width=2, dash='dash')
+        name='Net Investment (Cost Basis)',
+        line=dict(color='#ff4444', width=2, dash='dash')
     ))
     fig.update_layout(
         title='Portfolio Value Over Time',
@@ -310,14 +310,11 @@ def rebuild_graphs():
     fig2.add_trace(go.Scatter(
         x=tracker_df['Date'],
         y=gain_loss_pct,
-        mode='lines+markers',
+        mode='lines',
         name='Gain/Loss %',
-        line=dict(color='#10b981', width=2),
-        marker=dict(size=4),
-        fill='tozeroy',
-        fillcolor='rgba(16, 185, 129, 0.1)'
+        line=dict(color='#4f46e5', width=3)
     ))
-    fig2.add_hline(y=0, line_dash="dash", line_color="gray")
+    fig2.add_hline(y=0, line_dash="dot", line_color="#64748b")
     fig2.update_layout(
         title='Portfolio Performance (%)',
         xaxis_title='Date',
