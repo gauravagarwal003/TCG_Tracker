@@ -147,7 +147,7 @@ function addActionButtonsToTable() {
     if (headerRow && !headerRow.querySelector('.actions-header')) {
         const th = document.createElement('th');
         th.className = 'actions-header';
-        th.style.width = '90px';
+        th.style.width = '110px';
         th.textContent = 'Actions';
         headerRow.appendChild(th);
     }

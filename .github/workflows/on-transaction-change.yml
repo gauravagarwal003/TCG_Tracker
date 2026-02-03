@@ -9,6 +9,10 @@ on:
       - main
   workflow_dispatch: # Allows manual trigger
 
+# Required for committing + pushing back to the repo
+permissions:
+  contents: write
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -17,6 +21,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        persist-credentials: true
         fetch-depth: 0
     
     - name: Set up Python

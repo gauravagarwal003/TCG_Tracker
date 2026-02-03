@@ -38,11 +38,18 @@ on:
         description: 'Store'
         required: true
 
+# Required for committing + pushing back to the repo
+permissions:
+  contents: write
+
 jobs:
   update-transaction:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
       
       - name: Set up Python
         uses: actions/setup-python@v5

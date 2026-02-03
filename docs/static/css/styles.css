@@ -39,6 +39,12 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem 0;
 }
 
+/* Let the navbar breathe horizontally on wide screens */
+.navbar .container,
+.navbar .container-fluid {
+    max-width: 100%;
+}
+
 .navbar-brand {
     font-weight: 700;
     color: var(--primary) !important;
@@ -115,6 +121,16 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.2s;
 }
 
+/* Our base .btn padding is intentionally generous; keep btn-sm compact */
+.btn.btn-sm {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.875rem;
+}
+
+.btn.btn-sm.btn-link {
+    padding: 0;
+}
+
 .btn-primary {
     background-color: var(--primary);
     border-color: var(--primary);
@@ -186,6 +202,15 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-primary);
     border-bottom: 1px solid #f1f5f9;
     font-size: 0.9rem;
+}
+
+/* Transactions Actions: keep Edit/Delete on one line */
+.action-buttons {
+    white-space: nowrap;
+}
+
+.action-buttons .btn {
+    padding: 0.25rem 0.45rem;
 }
 
 .table-hover tbody tr:hover {
