@@ -14,15 +14,21 @@ async function initTransactionManager() {
     const isTransactionsPage = window.location.pathname.includes('transactions');
     if (!isTransactionsPage) return;
 
-    // Wait for page to be visible (auth may have hidden it)
-    await waitForAuth();
-    
-    // Setup UI
+    // Setup UI first
     setupNavButtons();
     
-    // Check GitHub auth
-    if (!githubAPI.isAuthenticated()) {
-        showGitHubAuthPrompt();
+    // Add action buttons IMMEDIATELY (before auth check)
+    // This ensures they're visible on page load
+    addActionButtonsToTable();
+    
+    // Then wait for auth
+    await waitForAuth();
+    
+    // Load data if needed
+    if (window.initialTransactions) {
+        cachedTransactions = window.initialTransactions;
+        const addBtn = document.getElementById('addTxBtn');
+        if (addBtn) addBtn.disabled = false;
     } else {
         await loadAndRenderTransactions();
     }
@@ -43,25 +49,23 @@ function waitForAuth() {
 
 function setupNavButtons() {
     // Find or create button container
-    let buttonContainer = document.querySelector('.col-md-6.text-end');
+    // Updated to match new flexbox header structure
+    let buttonContainer = document.querySelector('.table-header > div:last-child');
+    
+    // Fallback for older structure if needed
     if (!buttonContainer) {
-        const header = document.querySelector('.row.mb-3');
-        if (header) {
-            buttonContainer = document.createElement('div');
-            buttonContainer.className = 'col-md-6 text-end';
-            header.appendChild(buttonContainer);
-        }
+        buttonContainer = document.querySelector('.col-md-6.text-end');
     }
 
     if (buttonContainer) {
-        buttonContainer.innerHTML = `
-            <button class="btn btn-success me-2" onclick="showAddTransactionModal()" id="addTxBtn" disabled>
-                <i class="fas fa-plus me-1"></i>Add Transaction
-            </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="handleLogout()" id="logoutBtn">
-                <i class="fas fa-sign-out-alt me-1"></i>Logout
+        // Create a span or div to hold our buttons if we're appending to existing container
+        const btnGroup = document.createElement('span');
+        btnGroup.innerHTML = `
+            <button class="btn btn-sm btn-success" onclick="showAddTransactionModal()" id="addTxBtn" disabled>
+                <i class="fas fa-plus me-1"></i>Add
             </button>
         `;
+        buttonContainer.appendChild(btnGroup);
     }
 }
 
@@ -129,9 +133,14 @@ async function loadAndRenderTransactions() {
         hideLoadingOverlay();
         console.error('Failed to load transactions:', error);
         
-        // If auth error, show auth prompt
-        if (error.message.includes('Not authenticated')) {
+        // If auth error (401/403/404 on private), show auth prompt
+        if (error.status === 401 || error.status === 403 || error.status === 404 || error.message.includes('Not authenticated')) {
             showGitHubAuthPrompt();
+            
+            // Even if failed to load from GitHub, we can add buttons that trigger auth
+            // But we can't edit without data. So maybe just leaving them hidden is better if load failed.
+            // However, user wants to see them.
+            // Let's rely on showGitHubAuthPrompt to give them a way to connect.
         } else {
             showToast('Error loading transactions: ' + error.message, 'error');
         }
@@ -147,7 +156,7 @@ function addActionButtonsToTable() {
     if (headerRow && !headerRow.querySelector('.actions-header')) {
         const th = document.createElement('th');
         th.className = 'actions-header';
-        th.style.width = '110px';
+        th.style.width = '100px';
         th.textContent = 'Actions';
         headerRow.appendChild(th);
     }
@@ -161,12 +170,14 @@ function addActionButtonsToTable() {
         const td = document.createElement('td');
         td.className = 'action-buttons';
         td.innerHTML = `
-            <button class="btn btn-sm btn-outline-primary me-1" onclick="showEditTransactionModal(${index})" title="Edit">
-                <i class="fas fa-edit"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="confirmDeleteTransaction(${index})" title="Delete">
-                <i class="fas fa-trash"></i>
-            </button>
+            <div class="btn-group" role="group">
+                <button class="btn btn-sm btn-outline-primary" onclick="showEditTransactionModal(${index})" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger ms-1" onclick="confirmDeleteTransaction(${index})" title="Delete">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
         `;
         row.appendChild(td);
     });
@@ -175,13 +186,37 @@ function addActionButtonsToTable() {
 // ===== MODALS =====
 
 function showAddTransactionModal() {
+    if (!githubAPI.isAuthenticated()) {
+        githubAPI.authenticate().then(success => {
+            if (success) loadAndRenderTransactions();
+        });
+        return;
+    }
+
     currentEditIndex = null;
     showTransactionModal(null);
 }
 
 function showEditTransactionModal(index) {
+    if (!githubAPI.isAuthenticated()) {
+        githubAPI.authenticate().then(success => {
+            if (success) {
+                loadAndRenderTransactions().then(() => {
+                    // Re-trigger edit after load if indices match? 
+                    // Too risky to auto-open since indices might shift.
+                    // Just let user click again.
+                });
+            }
+        });
+        return;
+    }
+
     currentEditIndex = index;
     const transaction = cachedTransactions[index];
+    if (!transaction) {
+        showToast('Transaction data not found. Please refresh.', 'error');
+        return;
+    }
     showTransactionModal(transaction);
 }
 
@@ -623,6 +658,13 @@ async function saveTransaction() {
 }
 
 function confirmDeleteTransaction(index) {
+    if (!githubAPI.isAuthenticated()) {
+        githubAPI.authenticate().then(success => {
+            if (success) loadAndRenderTransactions();
+        });
+        return;
+    }
+
     const transaction = cachedTransactions[index];
     
     if (!confirm(`Delete this transaction?\n\n${transaction?.Item || 'Unknown'}\n${transaction?.['Transaction Type']} - ${transaction?.Quantity} unit(s)`)) {

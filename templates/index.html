@@ -40,9 +40,9 @@
                                 <th>Product Name</th>
                                 <th class="d-none toggle-id">Group ID</th>
                                 <th class="d-none toggle-id">Product ID</th>
-                                <th>Quantity</th>
-                                <th>Latest Price</th>
-                                <th>Total Value</th>
+                                <th class="text-end">Quantity</th>
+                                <th class="text-end">Latest Price</th>
+                                <th class="text-end">Total Value</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,17 +50,17 @@
                             <tr>
                                 <td>
                                     {% if item['Image URL'] and item['Image URL']|string != 'nan' %}
-                                    <img src="{{ item['Image URL'] }}" alt="" style="width: 30px; height: auto; border-radius: 4px;">
+                                    <img src="{{ item['Image URL'] }}" alt="" class="product-thumb">
                                     {% else %}
-                                    <div style="width: 30px; height: 30px; background-color: #f1f5f9; border-radius: 4px;"></div>
+                                    <div class="product-thumb-placeholder"></div>
                                     {% endif %}
                                 </td>
                                 <td>{{ item['Product Name'] }}</td>
                                 <td class="d-none toggle-id">{{ item['group_id'] if item['group_id']|string != 'nan' else '-' }}</td>
                                 <td class="d-none toggle-id">{{ item['product_id'] if item['product_id']|string != 'nan' else '-' }}</td>
-                                <td>{{ item['Quantity']|int }}</td>
-                                <td>${{ "%.2f"|format(item['Latest Price']) if item['Latest Price']|string != 'nan' else '0.00' }}</td>
-                                <td>${{ "%.2f"|format(item['Total Value']) if item['Total Value']|string != 'nan' else '0.00' }}</td>
+                                <td class="text-end">{{ item['Quantity']|int }}</td>
+                                <td class="text-end">${{ "%.2f"|format(item['Latest Price']) if item['Latest Price']|string != 'nan' else '0.00' }}</td>
+                                <td class="text-end fw-bold">${{ "%.2f"|format(item['Total Value']) if item['Total Value']|string != 'nan' else '0.00' }}</td>
                             </tr>
                             {% else %}
                             <tr>

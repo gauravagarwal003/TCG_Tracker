@@ -136,7 +136,8 @@ output_html = template.render(
     graph_html=graph_html,
     performance_html=performance_html,
     is_static=True,
-    url_for=mock_url_for
+    url_for=mock_url_for,
+    active_page='index'
 )
 
 # auth.js is already included via base.html template when is_static=True
@@ -152,7 +153,8 @@ template = env.get_template('transactions.html')
 output_html = template.render(
     transactions=transactions,
     is_static=True,
-    url_for=mock_url_for
+    url_for=mock_url_for,
+    active_page='transactions'
 )
 
 # Add GitHub API scripts after the auth.js that's already in the template

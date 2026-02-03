@@ -77,6 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // For holdings table (has Total Value column), sort by Total Value descending
     // For transactions table (has Date column), sort by Date descending
     applyDefaultSort(table);
+    
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 });
 
 function applyDefaultSort(table) {

@@ -150,6 +150,7 @@ def index():
                          total_value=total_value,
                          graph_html=graph_html,
                          performance_html=performance_html,
+                         active_page='index')
                          is_static=False)
 
 
@@ -168,7 +169,8 @@ def transactions():
     
     return render_template('transactions.html',
                          transactions=transactions_list,
-                         is_static=False)
+                         is_static=False,
+                         active_page='transactions')
 
 
 @app.route('/transactions/add', methods=['GET', 'POST'])

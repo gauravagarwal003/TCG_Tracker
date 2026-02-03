@@ -63,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover, .nav-link.active {
     color: var(--primary) !important;
-    background-color: rgba(79, 70, 229, 0.05);
 }
 
 .btn-refresh {
@@ -163,25 +162,23 @@ h1, h2, h3, h4, h5, h6 {
 .table-section {
     background-color: var(--surface);
     border-radius: var(--border-radius);
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
     box-shadow: var(--shadow-md);
+    border: 1px solid rgba(226, 232, 240, 0.6);
 }
 
 .table-section .table-header {
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid #f1f5f9;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .table-section .table-header h5 {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
-}
-
-.table-section .table-content {
-    /* Allow table to use full width */
+    color: var(--text-primary);
 }
 
 .table th {
@@ -191,13 +188,13 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 0.5rem 0.4rem;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 1rem;
+    border-bottom: 2px solid #e2e8f0;
     white-space: nowrap;
 }
 
 .table td {
-    padding: 0.35rem 0.4rem;
+    padding: 1rem 1rem;
     vertical-align: middle;
     color: var(--text-primary);
     border-bottom: 1px solid #f1f5f9;
@@ -213,8 +210,23 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.25rem 0.45rem;
 }
 
-.table-hover tbody tr:hover {
-    background-color: #f8fafc;
+/* Product Thumbnails */
+.product-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    padding: 2px;
+}
+
+.product-thumb-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
 }
 
 /* Badges */
