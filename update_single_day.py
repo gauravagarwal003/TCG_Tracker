@@ -130,13 +130,16 @@ def update_tracker_for_date(target_date: str) -> bool:
             if price:
                 total_market_value += data['qty'] * price
     
+    # Count items owned
+    items_owned = sum(1 for data in holdings.values() if data['qty'] > 0)
+    
     # Create/update daily_tracker.csv
     tracker_file = "daily_tracker.csv"
     if os.path.exists(tracker_file):
         tracker_df = pd.read_csv(tracker_file)
         tracker_df['Date'] = pd.to_datetime(tracker_df['Date']).dt.strftime('%Y-%m-%d')
     else:
-        tracker_df = pd.DataFrame(columns=['Date', 'Portfolio Value', 'Cost Basis', 'Gain/Loss', 'Gain/Loss %'])
+        tracker_df = pd.DataFrame(columns=['Date', 'Total Value', 'Cost Basis', 'Items Owned', 'Portfolio Value', 'Gain/Loss', 'Gain/Loss %'])
     
     # Calculate gain/loss
     gain_loss = total_market_value - total_cost_basis
@@ -144,8 +147,10 @@ def update_tracker_for_date(target_date: str) -> bool:
     
     new_row = {
         'Date': target_date,
-        'Portfolio Value': round(total_market_value, 2),
+        'Total Value': round(total_market_value, 2),
         'Cost Basis': round(total_cost_basis, 2),
+        'Items Owned': items_owned,
+        'Portfolio Value': round(total_market_value, 2),
         'Gain/Loss': round(gain_loss, 2),
         'Gain/Loss %': round(gain_loss_pct, 2)
     }
@@ -265,11 +270,18 @@ def rebuild_graphs():
     tracker_df['Date'] = pd.to_datetime(tracker_df['Date'])
     tracker_df = tracker_df.sort_values('Date')
     
+    # Use 'Total Value' column (has all historical data), fall back to 'Portfolio Value'
+    value_col = 'Total Value' if 'Total Value' in tracker_df.columns else 'Portfolio Value'
+    
+    # Calculate Gain/Loss % from Total Value and Cost Basis if not present
+    if 'Gain/Loss %' not in tracker_df.columns or tracker_df['Gain/Loss %'].isna().all():
+        tracker_df['Gain/Loss %'] = ((tracker_df[value_col] - tracker_df['Cost Basis']) / tracker_df['Cost Basis'] * 100).round(2)
+    
     # Portfolio value graph
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=tracker_df['Date'],
-        y=tracker_df['Portfolio Value'],
+        y=tracker_df[value_col],
         mode='lines+markers',
         name='Portfolio Value',
         line=dict(color='#4f46e5', width=2),
@@ -291,11 +303,13 @@ def rebuild_graphs():
     )
     fig.write_html("portfolio_graph.html", include_plotlyjs=True, full_html=True)
     
-    # Performance graph
+    # Performance graph - calculate from value and cost basis
+    gain_loss_pct = ((tracker_df[value_col] - tracker_df['Cost Basis']) / tracker_df['Cost Basis'] * 100)
+    
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(
         x=tracker_df['Date'],
-        y=tracker_df['Gain/Loss %'],
+        y=gain_loss_pct,
         mode='lines+markers',
         name='Gain/Loss %',
         line=dict(color='#10b981', width=2),
