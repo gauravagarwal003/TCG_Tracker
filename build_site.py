@@ -18,6 +18,14 @@ with open(os.path.join(OUTPUT_DIR, '.nojekyll'), 'w') as f:
 # Setup Jinja2 Environment
 env = Environment(loader=FileSystemLoader(TEMPLATES_DIR))
 
+# Copy static files
+STATIC_SOURCE_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_DEST_DIR = os.path.join(OUTPUT_DIR, 'static')
+if os.path.exists(STATIC_DEST_DIR):
+    shutil.rmtree(STATIC_DEST_DIR)
+shutil.copytree(STATIC_SOURCE_DIR, STATIC_DEST_DIR)
+print("Copied static files to docs/static")
+
 # Mock get_flashed_messages (return empty list)
 env.globals['get_flashed_messages'] = lambda with_categories=False: []
 
