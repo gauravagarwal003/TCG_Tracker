@@ -74,6 +74,19 @@ if os.path.exists(transactions_file):
     except Exception as e:
         print(f"Error reading transactions: {e}")
 
+# Load mappings and add image URLs to transactions
+import json
+mappings_file = os.path.join(BASE_DIR, 'mappings.json')
+mappings_dict = {}
+if os.path.exists(mappings_file):
+    with open(mappings_file, 'r') as f:
+        mappings = json.load(f)
+        mappings_dict = {m['product_id']: m.get('imageUrl', '') for m in mappings}
+
+for tx in transactions:
+    product_id = str(tx.get('product_id', ''))
+    tx['Image URL'] = mappings_dict.get(product_id, '')
+
 # Load Graphs
 graph_html = ""
 graph_path = os.path.join(BASE_DIR, 'portfolio_graph.html')

@@ -43,6 +43,7 @@
             <table class="table table-sm table-hover align-middle">
                 <thead>
                     <tr>
+                        <th style="width: 50px;" class="no-sort"></th>
                         <th style="width: 100px;">Type</th>
                         <th>Product Name</th>
                         <th>Date</th>
@@ -60,6 +61,13 @@
                 <tbody>
                     {% for tx in transactions %}
                     <tr data-index="{{ loop.index0 }}">
+                        <td>
+                            {% if tx['Image URL'] and tx['Image URL']|string != 'nan' %}
+                            <img src="{{ tx['Image URL'] }}" alt="" style="width: 30px; height: auto; border-radius: 4px;">
+                            {% else %}
+                            <div style="width: 30px; height: 30px; background-color: #f1f5f9; border-radius: 4px;"></div>
+                            {% endif %}
+                        </td>
                          <td>
                             <span class="badge {% if tx['Transaction Type'] == 'BUY' %}bg-primary{% elif tx['Transaction Type'] == 'SELL' %}bg-success{% elif tx['Transaction Type'] == 'OPEN' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
                                 {{ tx['Transaction Type'] }}
@@ -89,7 +97,7 @@
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="9" class="text-center py-4 text-muted">No transactions found.</td>
+                        <td colspan="10" class="text-center py-4 text-muted">No transactions found.</td>
                     </tr>
                     {% endfor %}
                 </tbody>

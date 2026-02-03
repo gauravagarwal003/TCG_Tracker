@@ -159,6 +159,13 @@ def transactions():
     df = load_transactions()
     transactions_list = df.to_dict('records') if not df.empty else []
     
+    # Add image URLs from mappings
+    mappings = load_mappings()
+    mappings_dict = {m['product_id']: m.get('imageUrl', '') for m in mappings}
+    for tx in transactions_list:
+        product_id = str(tx.get('product_id', ''))
+        tx['Image URL'] = mappings_dict.get(product_id, '')
+    
     return render_template('transactions.html',
                          transactions=transactions_list,
                          is_static=False)
