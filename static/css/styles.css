@@ -143,6 +143,31 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0;
 }
 
+/* Full-width table sections (no card wrapper) */
+.table-section {
+    background-color: var(--surface);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.table-section .table-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 1rem;
+}
+
+.table-section .table-header h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.table-section .table-content {
+    /* Allow table to use full width */
+}
+
 .table th {
     background-color: #f8fafc;
     color: var(--text-secondary);
