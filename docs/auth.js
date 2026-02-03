@@ -35,8 +35,12 @@
         return hash === PASSWORD_HASH;
     }
 
-    // Create blocking overlay immediately
+    // Create blocking overlay immediately and HIDE body content
     function createBlockingOverlay() {
+        // Hide all body content by making it invisible
+        document.body.style.visibility = 'hidden';
+        document.body.style.overflow = 'hidden';
+        
         const overlay = document.createElement('div');
         overlay.id = 'authBlockingOverlay';
         overlay.style.cssText = `
@@ -50,8 +54,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            visibility: visible;
         `;
         return overlay;
+    }
+    
+    // Show body content after successful auth
+    function showContent() {
+        document.body.style.visibility = 'visible';
+        document.body.style.overflow = '';
     }
 
     // Show password prompt
@@ -107,24 +118,29 @@
 
     // Main auth flow
     async function authenticate() {
-        // If already authenticated, do nothing
+        // If already authenticated, show content and return
         if (isPasswordAuthenticated()) {
+            showContent();
             return;
         }
 
-        // Create and show blocking overlay
+        // Create and show blocking overlay (also hides body content)
         const overlay = createBlockingOverlay();
         document.body.appendChild(overlay);
 
         try {
             await showPasswordPrompt(overlay);
             overlay.remove();
+            showContent();
         } catch (error) {
             console.error('Auth error:', error);
-            overlay.remove();
+            // Don't show content on error - keep it hidden
         }
     }
 
+    // Hide content immediately before anything renders
+    document.body.style.visibility = 'hidden';
+    
     // Run auth immediately when script loads
     if (document.body) {
         authenticate();
