@@ -299,7 +299,8 @@ def rebuild_graphs():
         xaxis_title='Date',
         yaxis_title='Value ($)',
         template='plotly_white',
-        hovermode='x unified'
+        hovermode='x unified',
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
     )
     fig.write_html("portfolio_graph.html", include_plotlyjs=True, full_html=True)
     
@@ -320,11 +321,30 @@ def rebuild_graphs():
         xaxis_title='Date',
         yaxis_title='Gain/Loss (%)',
         template='plotly_white',
-        hovermode='x unified'
+        hovermode='x unified',
+        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01)
     )
     fig2.write_html("performance_graph.html", include_plotlyjs=True, full_html=True)
     
     print("  Graphs rebuilt")
+
+
+def update_data_json(target_date: str):
+    """Update data.json with the latest_date."""
+    print("Updating data.json...")
+    
+    with open("data.json", "r") as f:
+        config = json.load(f)
+    
+    # Only update if this date is newer than current latest_date
+    current_latest = config.get("latest_date", "")
+    if target_date > current_latest:
+        config["latest_date"] = target_date
+        with open("data.json", "w") as f:
+            json.dump(config, f, indent=4)
+        print(f"  Updated latest_date to {target_date}")
+    else:
+        print(f"  latest_date unchanged ({current_latest})")
 
 
 def rebuild_site():
@@ -395,10 +415,13 @@ def update_for_date(target_date: str):
     # Step 3: Update current holdings
     update_current_holdings()
     
-    # Step 4: Rebuild graphs
+    # Step 4: Update data.json with latest date
+    update_data_json(target_date)
+    
+    # Step 5: Rebuild graphs
     rebuild_graphs()
     
-    # Step 5: Rebuild static site
+    # Step 6: Rebuild static site
     rebuild_site()
     
     print("\n" + "=" * 50)
