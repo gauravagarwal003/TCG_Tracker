@@ -54,6 +54,9 @@ jobs:
           python update_single_day.py
         fi
     
+    - name: Build site
+      run: python build_site.py
+    
     - name: Commit and push if changes
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"

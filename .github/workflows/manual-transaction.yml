@@ -106,10 +106,16 @@ jobs:
           df.to_csv('transactions.csv', index=False)
           EOF
       
+      - name: Install full dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Build site
+        run: python build_site.py
+      
       - name: Commit changes
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add transactions.csv
+          git add -A
           git commit -m "Transaction ${{ github.event.inputs.action }}: ${{ github.event.inputs.product_name }}"
           git push
