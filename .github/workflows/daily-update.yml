@@ -50,8 +50,8 @@ jobs:
           echo "Updating for specified date: ${{ github.event.inputs.date }}"
           python update_single_day.py "${{ github.event.inputs.date }}"
         else
-          echo "Updating for yesterday (default)"
-          python update_single_day.py
+          echo "Updating for today"
+          python update_single_day.py --today
         fi
     
     - name: Build site
