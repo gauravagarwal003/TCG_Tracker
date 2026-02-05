@@ -78,60 +78,90 @@ jobs:
                 json.dump(config, f, indent=4)
             print(f"Earliest transaction date (Date Recieved): {earliest}")
 
-        def normalize_df(input_df: pd.DataFrame) -> pd.DataFrame:
-            if input_df.empty:
-                return input_df
-            norm = input_df.fillna('')
-            return norm.astype(str)
-
         def normalize_id(value):
+          try:
+            return str(int(float(value)))
+          except (ValueError, TypeError):
+            return str(value).strip()
+
+        def normalize_date(value):
+          raw = str(value).strip()
+          if not raw:
+            return None
+          for fmt in ("%m/%d/%Y", "%Y-%m-%d"):
             try:
-                return str(int(float(value)))
-            except (ValueError, TypeError):
-                return str(value).strip()
+              return datetime.strptime(raw, fmt).date()
+            except Exception:
+              continue
+          return None
+
+        def normalize_price(value):
+          raw = str(value).strip().replace("$", "").replace(",", "")
+          if raw == "" or raw.lower() == "nan":
+            return None
+          try:
+            return round(float(raw), 4)
+          except Exception:
+            return None
+
+        def normalize_qty(value):
+          raw = str(value).strip()
+          if raw == "" or raw.lower() == "nan":
+            return None
+          try:
+            return round(float(raw), 4)
+          except Exception:
+            return None
+
+        def build_impact_key(row, columns):
+          col_map = {c: i for i, c in enumerate(columns)}
+          if 'Date Recieved' not in col_map:
+            return None
+          date_val = normalize_date(row[col_map['Date Recieved']])
+          if date_val is None:
+            return None
+          t_type = str(row[col_map.get('Transaction Type')]).strip().upper() if 'Transaction Type' in col_map else ''
+          gid = normalize_id(row[col_map.get('group_id')]) if 'group_id' in col_map else ''
+          pid = normalize_id(row[col_map.get('product_id')]) if 'product_id' in col_map else ''
+          qty = normalize_qty(row[col_map.get('Quantity')]) if 'Quantity' in col_map else None
+          price = normalize_price(row[col_map.get('Price Per Unit')]) if 'Price Per Unit' in col_map else None
+          return (date_val, t_type, gid, pid, qty, price)
 
         # Read previous transactions.csv from git
         try:
-            prev_csv = subprocess.check_output(
-                ["git", "show", "HEAD^:transactions.csv"],
-                text=True
-            )
-            prev_df = pd.read_csv(io.StringIO(prev_csv))
+          prev_csv = subprocess.check_output(
+            ["git", "show", "HEAD^:transactions.csv"],
+            text=True
+          )
+          prev_df = pd.read_csv(io.StringIO(prev_csv))
         except Exception:
-            prev_df = pd.DataFrame(columns=df.columns)
+          prev_df = pd.DataFrame(columns=df.columns)
 
-        cur_norm = normalize_df(df)
-        prev_norm = normalize_df(prev_df)
+        cur_cols = list(df.columns)
+        prev_cols = list(prev_df.columns)
 
-        if not cur_norm.empty and not prev_norm.empty:
-            prev_norm = prev_norm.reindex(columns=cur_norm.columns, fill_value='')
+        cur_keys = [build_impact_key(row, cur_cols) for row in df.fillna('').astype(str).values.tolist()]
+        prev_keys = [build_impact_key(row, prev_cols) for row in prev_df.fillna('').astype(str).values.tolist()]
 
-        cur_rows = [tuple(row) for row in cur_norm.values.tolist()]
-        prev_rows = [tuple(row) for row in prev_norm.values.tolist()]
+        cur_keys = [k for k in cur_keys if k is not None]
+        prev_keys = [k for k in prev_keys if k is not None]
 
-        added = list((Counter(cur_rows) - Counter(prev_rows)).elements())
-        removed = list((Counter(prev_rows) - Counter(cur_rows)).elements())
-        changed_rows = added + removed
+        added_keys = list((Counter(cur_keys) - Counter(prev_keys)).elements())
+        removed_keys = list((Counter(prev_keys) - Counter(cur_keys)).elements())
 
-        date_idx = cur_norm.columns.get_loc('Date Recieved') if 'Date Recieved' in cur_norm.columns else None
-        gid_idx = cur_norm.columns.get_loc('group_id') if 'group_id' in cur_norm.columns else None
-        pid_idx = cur_norm.columns.get_loc('product_id') if 'product_id' in cur_norm.columns else None
+        changed_keys = added_keys if added_keys else removed_keys
+        if added_keys and removed_keys:
+          changed_keys = added_keys + removed_keys
 
-        changed_dates = []
+        changed_dates = [k[0] for k in changed_keys if k and k[0] is not None]
         changed_products = set()
-        for row in changed_rows:
-            if date_idx is not None:
-                raw_date = str(row[date_idx]).strip()
-                if raw_date:
-                    try:
-                        changed_dates.append(datetime.strptime(raw_date, '%m/%d/%Y').date())
-                    except Exception:
-                        pass
-            if gid_idx is not None and pid_idx is not None:
-                gid = normalize_id(row[gid_idx])
-                pid = normalize_id(row[pid_idx])
-                if gid and pid and gid.lower() != 'nan' and pid.lower() != 'nan':
-                    changed_products.add((gid, pid))
+        for k in changed_keys:
+          if not k:
+            continue
+          gid = str(k[2]).strip()
+          pid = str(k[3]).strip()
+          if gid and pid and gid.lower() != 'nan' and pid.lower() != 'nan':
+            changed_products.add((gid, pid))
 
         if changed_dates:
             earliest_changed = min(changed_dates)
