@@ -3,7 +3,7 @@ import json
 import os
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
-from functions import get_price_for_date
+from functions import get_price_for_date, get_product_info_from_ids
 
 def parse_currency(value):
     if pd.isna(value) or value == '':
@@ -143,7 +143,13 @@ def run_analysis(resume_date=None):
         
         for (g_id, p_id), quantity in inventory.items():
             if quantity > 0:
-                price = get_price_for_date(g_id, p_id, date_str)
+                # Get categoryId from mappings
+                product_info = get_product_info_from_ids(g_id, p_id)
+                category_id = 3  # Default to Pokemon
+                if product_info and product_info.get('categoryId'):
+                    category_id = product_info.get('categoryId')
+                
+                price = get_price_for_date(g_id, p_id, date_str, category_id)
                 daily_portfolio_value += (price * quantity)
 
         items_owned = sum(inventory.values())
@@ -294,7 +300,13 @@ def run_analysis(resume_date=None):
     
     for (g_id, p_id), qty in inventory.items():
         if qty > 0:
-            price = get_price_for_date(g_id, p_id, last_date_str)
+            # Get categoryId from mappings
+            product_info = get_product_info_from_ids(g_id, p_id)
+            category_id = 3  # Default to Pokemon
+            if product_info and product_info.get('categoryId'):
+                category_id = product_info.get('categoryId')
+            
+            price = get_price_for_date(g_id, p_id, last_date_str, category_id)
             holdings_list.append({
                 'Product Name': name_map.get((g_id, p_id), "Unknown"),
                 'group_id': g_id,

@@ -1,0 +1,65 @@
+{
+  "total_value": 7215.83,
+  "total_cost": 3436.96,
+  "profit": 3778.87,
+  "items_owned": 108,
+  "date": "2026-01-31",
+  "history": [
+    {
+      "Date": "2026-01-18",
+      "Total Value": 6773.79
+    },
+    {
+      "Date": "2026-01-19",
+      "Total Value": 6833.4
+    },
+    {
+      "Date": "2026-01-20",
+      "Total Value": 6868.12
+    },
+    {
+      "Date": "2026-01-21",
+      "Total Value": 6888.87
+    },
+    {
+      "Date": "2026-01-22",
+      "Total Value": 6927.84
+    },
+    {
+      "Date": "2026-01-23",
+      "Total Value": 6972.03
+    },
+    {
+      "Date": "2026-01-24",
+      "Total Value": 7011.31
+    },
+    {
+      "Date": "2026-01-25",
+      "Total Value": 7034.1
+    },
+    {
+      "Date": "2026-01-26",
+      "Total Value": 7065.75
+    },
+    {
+      "Date": "2026-01-27",
+      "Total Value": 7071.49
+    },
+    {
+      "Date": "2026-01-28",
+      "Total Value": 7153.5
+    },
+    {
+      "Date": "2026-01-29",
+      "Total Value": 7081.38
+    },
+    {
+      "Date": "2026-01-30",
+      "Total Value": 7199.12
+    },
+    {
+      "Date": "2026-01-31",
+      "Total Value": 7215.83
+    }
+  ]
+}

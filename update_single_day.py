@@ -23,7 +23,7 @@ import pandas as pd
 from pathlib import Path
 
 # Import local modules
-from functions import batch_update_historical_prices, get_price_for_date
+from functions import batch_update_historical_prices, get_price_for_date, get_product_info_from_ids
 
 
 def fetch_prices_for_date(target_date: str, product_list: list) -> bool:
@@ -126,7 +126,13 @@ def update_tracker_for_date(target_date: str) -> bool:
     total_market_value = 0.0
     for (g_id, p_id), data in holdings.items():
         if data['qty'] > 0:
-            price = get_price_for_date(g_id, p_id, target_date)
+            # Get categoryId from mappings
+            product_info = get_product_info_from_ids(g_id, p_id)
+            category_id = 3  # Default to Pokemon
+            if product_info and product_info.get('categoryId'):
+                category_id = product_info.get('categoryId')
+            
+            price = get_price_for_date(g_id, p_id, target_date, category_id)
             if price:
                 total_market_value += data['qty'] * price
     
@@ -240,7 +246,13 @@ def update_current_holdings():
     holdings_list = []
     for (g_id, p_id), qty in holdings.items():
         if qty > 0:
-            price = get_price_for_date(g_id, p_id, latest_date) or 0
+            # Get categoryId from mappings
+            product_info = get_product_info_from_ids(g_id, p_id)
+            category_id = 3  # Default to Pokemon
+            if product_info and product_info.get('categoryId'):
+                category_id = product_info.get('categoryId')
+            
+            price = get_price_for_date(g_id, p_id, latest_date, category_id) or 0
             holdings_list.append({
                 'Product Name': name_map.get((g_id, p_id), 'Unknown'),
                 'group_id': g_id,
@@ -365,7 +377,7 @@ def rebuild_site():
 
 
 def get_product_list() -> list:
-    """Get list of products from transactions."""
+    """Get list of products from transactions with categoryId."""
     with open("data.json") as f:
         config = json.load(f)
     
@@ -377,10 +389,18 @@ def get_product_list() -> list:
         try:
             g_id = int(float(row['group_id']))
             p_id = int(float(row['product_id']))
+            
+            # Get categoryId from mappings
+            product_info = get_product_info_from_ids(g_id, p_id)
+            category_id = 3  # Default to Pokemon
+            if product_info and product_info.get('categoryId'):
+                category_id = product_info.get('categoryId')
+            
             product_list.append({
                 'group_id': g_id,
                 'product_id': p_id,
-                'name': row['Item']
+                'name': row['Item'],
+                'categoryId': category_id
             })
         except ValueError:
             continue

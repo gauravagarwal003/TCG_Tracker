@@ -101,15 +101,16 @@ def is_product_active(gid, pid, date_obj, active_ranges):
                 return True
     return False
 
-# collect_historical_data("2025-08-11", "2025-08-13", 24269, 628395)
+# collect_historical_data("2025-08-11", "2025-08-13", 24269, 628395, category_id=3)
 # [{'date': '2025-08-11', 'marketPrice': 14.2}, {'date': '2025-08-12', 'marketPrice': None}, {'date': '2025-08-13', 'marketPrice': 14.42}]
-def collect_historical_data(start_date_str, end_date_str, group_id, product_id):
+def collect_historical_data(start_date_str, end_date_str, group_id, product_id, category_id=3):
     """
     Return a list of dicts with only date and marketPrice for the specified
     group_id and product_id over the date range:
       - date (YYYY-MM-DD)
       - marketPrice (float or None)
     Missing or error days will have marketPrice set to None.
+    category_id: TCGPlayer category (1=MTG, 2=YuGiOh, 3=Pokemon, etc.)
     """
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -142,7 +143,7 @@ def collect_historical_data(start_date_str, end_date_str, group_id, product_id):
                 current_date += timedelta(days=1)
                 continue
 
-            prices_file = Path(extracted_folder) / "3" / str(group_id) / "prices"
+            prices_file = Path(extracted_folder) / str(category_id) / str(group_id) / "prices"
             if not prices_file.exists():
                 results.append({'date': date_str, 'marketPrice': None})
                 cleanup_files(archive_filename, extracted_folder)
@@ -240,11 +241,12 @@ def get_product_info_from_name(product_name):
 
     return None    
 
-def update_historical_price_files(start_date_str, end_date_str, group_id, product_id, output_folder='historical_prices'):
+def update_historical_price_files(start_date_str, end_date_str, group_id, product_id, category_id=3, output_folder='historical_prices'):
     """
     Update historical price files for the specified group_id and product_id
     over the date range. Saves individual date files in output_folder.
     Any missing dates are filled with a best-guess price using nearby known values.
+    category_id: TCGPlayer category (1=MTG, 2=YuGiOh, 3=Pokemon, etc.)
     """
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -252,7 +254,7 @@ def update_historical_price_files(start_date_str, end_date_str, group_id, produc
     if start_date > end_date:
         raise ValueError("start_date must be on or before end_date")
 
-    records = collect_historical_data(start_date_str, end_date_str, group_id, product_id)
+    records = collect_historical_data(start_date_str, end_date_str, group_id, product_id, category_id)
 
     def best_guess_price(idx):
         price = records[idx].get('marketPrice')
@@ -281,7 +283,7 @@ def update_historical_price_files(start_date_str, end_date_str, group_id, produc
             return next_price
         return None
 
-    base_path = Path(output_folder) / str(group_id) / str(product_id)
+    base_path = Path(output_folder) / str(category_id) / str(group_id) / str(product_id)
     base_path.mkdir(parents=True, exist_ok=True)
 
     saved_files = []
@@ -311,12 +313,13 @@ def update_historical_price_files(start_date_str, end_date_str, group_id, produc
 
     return saved_files
 
-def get_price_for_date(group_id, product_id, date_str, historical_folder='historical_prices'):
+def get_price_for_date(group_id, product_id, date_str, category_id=3, historical_folder='historical_prices'):
     """
     Retrieve the market price for a specific product on a specific date from local files.
     Returns 0.0 if not found.
+    category_id: TCGPlayer category (1=MTG, 2=YuGiOh, 3=Pokemon, etc.)
     """
-    file_path = Path(historical_folder) / str(group_id) / str(product_id) / f"{date_str}.json"
+    file_path = Path(historical_folder) / str(category_id) / str(group_id) / str(product_id) / f"{date_str}.json"
     
     if not file_path.exists():
         return 0.0
@@ -337,7 +340,7 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
     Downloads daily price dumps ONCE per day, extracts prices for ALL products in product_list,
     and saves them to the file system.
     
-    product_list: List of dicts with 'group_id' and 'product_id' keys.
+    product_list: List of dicts with 'group_id', 'product_id', and 'categoryId' keys.
     """
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -350,14 +353,18 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
 
     current_date = start_date
     
-    # Pre-organize products by group_id for faster lookup {group_id: [product_id, ...]}
-    products_by_group = {}
+    # Pre-organize products by categoryId and group_id for faster lookup
+    # Structure: {category_id: {group_id: [product_id, ...]}}
+    products_by_category = {}
     for p in product_list:
+        c_id = str(p.get('categoryId', 3)).strip()
         g_id = str(p['group_id']).strip()
         p_id = str(p['product_id']).strip()
-        if g_id not in products_by_group:
-            products_by_group[g_id] = []
-        products_by_group[g_id].append(p_id)
+        if c_id not in products_by_category:
+            products_by_category[c_id] = {}
+        if g_id not in products_by_category[c_id]:
+            products_by_category[c_id][g_id] = []
+        products_by_category[c_id][g_id].append(p_id)
 
     print(f"Batch processing from {start_date_str} to {end_date.strftime('%Y-%m-%d')}...")
 
@@ -382,9 +389,10 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
         # 2. Check if we already have data for these ACTIVE products
         missing_data = False
         for p in active_products_today:
+            c_id = str(p.get('categoryId', 3))
             g_id = str(p['group_id'])
             p_id = str(p['product_id'])
-            check_path = Path(output_folder) / g_id / p_id / f"{date_str}.json"
+            check_path = Path(output_folder) / c_id / g_id / p_id / f"{date_str}.json"
             if not check_path.exists():
                 missing_data = True
                 break
@@ -414,7 +422,7 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
                     f.write(chunk)
 
             # Extract
-            # We assume Pokemon is Category 3
+            # Extract all categories - will process each category separately
             result = subprocess.run(['7z', 'x', archive_filename, f'-o{extracted_folder}', '-y'],
                                     capture_output=True, text=True)
             
@@ -426,76 +434,76 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
             
             found_count = 0
             
-            # Process Groups
-            # The structure is sometimes `extracted_folder/3/...` and sometimes `extracted_folder/date_str/3/...`
-            # or even `extracted_folder/prices-date/3` depending on how 7z behaves with the archive internal structure.
+            # Process Groups by CategoryId
+            # The structure is `extracted_folder/{categoryId}/{groupId}/prices`
+            # Sometimes nested as `extracted_folder/date_str/{categoryId}/...`
             
             base_path = Path(extracted_folder)
             
-            # Hunting for the '3' folder (Pokemon)
-            category_path = base_path / "3" 
-            if not category_path.exists():
-                # Check if there is a nested folder with the date name (common with some archives)
-                nested = base_path / date_str / "3"
-                if nested.exists():
-                    category_path = nested
+            # Group active products by categoryId
+            active_by_category = {}
+            for p in active_products_today:
+                c_id = str(p.get('categoryId', 3)).strip()
+                g_id = str(p['group_id']).strip()
+                p_id = str(p['product_id']).strip()
+                if c_id not in active_by_category:
+                    active_by_category[c_id] = {}
+                if g_id not in active_by_category[c_id]:
+                    active_by_category[c_id][g_id] = []
+                active_by_category[c_id][g_id].append(p_id)
             
-            if not category_path.exists():
-                # DEBUG: Check what IS there
-                existing = list(base_path.iterdir()) if base_path.exists() else "Folder Missing"
-                print(f" [Debug: No '3' folder. Found: {[p.name for p in existing]}]", end='')
-
-            if category_path.exists():
-                # NEW: Filter to only active products
-                active_by_group = {}
-                for p in active_products_today:
-                     g_id = str(p['group_id']).strip()
-                     p_id = str(p['product_id']).strip()
-                     if g_id not in active_by_group:
-                         active_by_group[g_id] = []
-                     active_by_group[g_id].append(p_id)
+            # Process each category
+            for category_id, groups_dict in active_by_category.items():
+                # Try to find the category folder
+                category_path = base_path / category_id
+                if not category_path.exists():
+                    # Check if there is a nested folder with the date name
+                    nested = base_path / date_str / category_id
+                    if nested.exists():
+                        category_path = nested
                 
-                for group_id, target_product_ids in active_by_group.items():
+                if not category_path.exists():
+                    # Skip this category if folder not found
+                    continue
+                
+                for group_id, target_product_ids in groups_dict.items():
                     # The file inside is usually named 'prices' (no extension) which contains JSON
                     group_file = category_path / group_id / "prices"
                     
                     if not group_file.exists():
-                        # DEBUG: detailed fail for the first group to help diagnose
-                        # print(f"[Missing Group {group_id}]", end='')
                         continue
 
-                    if group_file.exists():
-                        try:
-                            with open(group_file, 'r') as gf:
-                                data = json.load(gf)
-                            
-                            if isinstance(data, dict) and 'results' in data:
-                                # Create map for O(1) lookup
-                                day_prices = {}
-                                for res in data['results']:
-                                    pid = str(res.get('productId'))
-                                    day_prices[pid] = res.get('marketPrice')
+                    try:
+                        with open(group_file, 'r') as gf:
+                            data = json.load(gf)
+                        
+                        if isinstance(data, dict) and 'results' in data:
+                            # Create map for O(1) lookup
+                            day_prices = {}
+                            for res in data['results']:
+                                pid = str(res.get('productId'))
+                                day_prices[pid] = res.get('marketPrice')
 
-                                # Save requested products
-                                for pid in target_product_ids:
-                                    if pid in day_prices:
-                                        val = day_prices[pid]
-                                        if val is not None:
-                                            # Write file
-                                            out_dir = Path(output_folder) / group_id / pid
-                                            out_dir.mkdir(parents=True, exist_ok=True)
-                                            
-                                            out_file = out_dir / f"{date_str}.json"
-                                            with open(out_file, 'w') as of:
-                                                json.dump({
-                                                    'date': date_str,
-                                                    'group_id': group_id,
-                                                    'product_id': pid,
-                                                    'marketPrice': float(val)
-                                                }, of)
-                                            found_count += 1
-                        except Exception:
-                            pass
+                            # Save requested products
+                            for pid in target_product_ids:
+                                if pid in day_prices:
+                                    val = day_prices[pid]
+                                    if val is not None:
+                                        # Write file with categoryId in path
+                                        out_dir = Path(output_folder) / category_id / group_id / pid
+                                        out_dir.mkdir(parents=True, exist_ok=True)
+                                        
+                                        out_file = out_dir / f"{date_str}.json"
+                                        with open(out_file, 'w') as of:
+                                            json.dump({
+                                                'date': date_str,
+                                                'group_id': group_id,
+                                                'product_id': pid,
+                                                'marketPrice': float(val)
+                                            }, of)
+                                        found_count += 1
+                    except Exception:
+                        pass
             
             print(f" [OK - Saved {found_count} prices]")
             cleanup_files(archive_filename, extracted_folder)

@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 import os
-from functions import batch_update_historical_prices
+from functions import batch_update_historical_prices, get_product_info_from_ids
 
 def main(start_from_date=None):
     print("--- Starting Price Update (Batch Mode) ---")
@@ -37,10 +37,18 @@ def main(start_from_date=None):
         try:
             g_id = int(float(row['group_id']))
             p_id = int(float(row['product_id']))
+            
+            # Get categoryId from mappings
+            product_info = get_product_info_from_ids(g_id, p_id)
+            category_id = 3  # Default to Pokemon
+            if product_info and product_info.get('categoryId'):
+                category_id = product_info.get('categoryId')
+            
             product_list.append({
                 'group_id': g_id,
                 'product_id': p_id,
-                'name': row['Item']
+                'name': row['Item'],
+                'categoryId': category_id
             })
         except ValueError:
             continue
