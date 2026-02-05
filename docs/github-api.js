@@ -198,11 +198,16 @@ class GitHubAPI {
         }
         const url = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/contents/${path}`;
         
+        // Properly encode UTF-8 content to base64
+        const utf8Bytes = new TextEncoder().encode(content);
+        const binaryString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
+        const base64Content = btoa(binaryString);
+        
         return this.request(url, {
             method: 'PUT',
             body: JSON.stringify({
                 message: message,
-                content: btoa(unescape(encodeURIComponent(content))),
+                content: base64Content,
                 sha: sha,
                 branch: this.config.branch
             })

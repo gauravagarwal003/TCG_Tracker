@@ -27,6 +27,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run daily updates for Pokemon Tracker")
     parser.add_argument("--incremental", action="store_true", help="Resume from last tracked date")
     parser.add_argument("--rebuild-from", help="Rebuild starting from specific date (YYYY-MM-DD)")
+    parser.add_argument("--no-extend-latest", action="store_true", help="Do not auto-extend latest_date to yesterday")
     args = parser.parse_args()
 
     print("========================================")
@@ -58,7 +59,8 @@ def main():
          print("  MODE: Full Rebuild (Default)")
 
     # Step 0: Auto-extend the config date so we don't get stuck in the past
-    update_config_date()
+    if not args.no_extend_latest:
+        update_config_date()
 
     # Step 1: Fetch latest prices from the web
     print("\n>>> STEP 1: Updating Historical Prices...")
