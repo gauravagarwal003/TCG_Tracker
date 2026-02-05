@@ -118,4 +118,5 @@ jobs:
           git config user.email "actions@github.com"
           git add -A
           git commit -m "Transaction ${{ github.event.inputs.action }}: ${{ github.event.inputs.product_name }}"
+          git pull --rebase origin main
           git push

@@ -43,91 +43,135 @@ jobs:
         pip install -r requirements.txt
         sudo apt-get install -y p7zip-full
     
-    - name: Smart update - only fetch data for changed/new transactions
+    - name: Detect changed transactions (precise)
       run: |
         python << 'EOF'
         import json
         import pandas as pd
-        from datetime import date, timedelta, datetime
+        from datetime import datetime
         import os
+        import subprocess
+        import io
+        from collections import Counter
 
         print("=== Smart Transaction Change Update ===")
-        
+
         # Load config
         with open('data.json', 'r') as f:
             config = json.load(f)
-        
-        with open('data.json', 'w') as f:
-          json.dump(config, f, indent=4)
-        
-        # Load transactions to find date ranges
+
+        # Load transactions to find earliest Date Recieved
         df = pd.read_csv('transactions.csv')
-        
-        # Find earliest date we need data for
-        # Only use Date Recieved (not Date Purchased) for calculations
         dates = []
         if 'Date Recieved' in df.columns:
             for d in df['Date Recieved'].dropna():
                 try:
                     parsed = datetime.strptime(str(d), '%m/%d/%Y')
                     dates.append(parsed.date())
-                except:
+                except Exception:
                     pass
-        
+
         if dates:
             earliest = min(dates)
             config['start_date'] = earliest.strftime('%Y-%m-%d')
             with open('data.json', 'w') as f:
                 json.dump(config, f, indent=4)
             print(f"Earliest transaction date (Date Recieved): {earliest}")
-        
-        # Detect earliest changed transaction date to minimize rebuild impact
-        import subprocess
-        import csv
-        import io
+
+        def normalize_df(input_df: pd.DataFrame) -> pd.DataFrame:
+            if input_df.empty:
+                return input_df
+            norm = input_df.fillna('')
+            return norm.astype(str)
+
+        def normalize_id(value):
+            try:
+                return str(int(float(value)))
+            except (ValueError, TypeError):
+                return str(value).strip()
+
+        # Read previous transactions.csv from git
+        try:
+            prev_csv = subprocess.check_output(
+                ["git", "show", "HEAD^:transactions.csv"],
+                text=True
+            )
+            prev_df = pd.read_csv(io.StringIO(prev_csv))
+        except Exception:
+            prev_df = pd.DataFrame(columns=df.columns)
+
+        cur_norm = normalize_df(df)
+        prev_norm = normalize_df(prev_df)
+
+        if not cur_norm.empty and not prev_norm.empty:
+            prev_norm = prev_norm.reindex(columns=cur_norm.columns, fill_value='')
+
+        cur_rows = [tuple(row) for row in cur_norm.values.tolist()]
+        prev_rows = [tuple(row) for row in prev_norm.values.tolist()]
+
+        added = list((Counter(cur_rows) - Counter(prev_rows)).elements())
+        removed = list((Counter(prev_rows) - Counter(cur_rows)).elements())
+        changed_rows = added + removed
+
+        date_idx = cur_norm.columns.get_loc('Date Recieved') if 'Date Recieved' in cur_norm.columns else None
+        gid_idx = cur_norm.columns.get_loc('group_id') if 'group_id' in cur_norm.columns else None
+        pid_idx = cur_norm.columns.get_loc('product_id') if 'product_id' in cur_norm.columns else None
 
         changed_dates = []
-        try:
-          diff = subprocess.check_output(
-            ["git", "diff", "--unified=0", "HEAD^", "HEAD", "--", "transactions.csv"],
-            text=True
-          )
-          for line in diff.splitlines():
-            if not line.startswith(("+", "-")):
-              continue
-            if line.startswith(("+++", "---")):
-              continue
-            raw = line[1:]
-            if raw.startswith("Date Purchased"):
-              continue
-            try:
-              row = next(csv.reader([raw]))
-              if len(row) >= 2 and row[1].strip():
-                parsed = datetime.strptime(row[1].strip(), '%m/%d/%Y').date()
-                changed_dates.append(parsed)
-            except Exception:
-              continue
-        except Exception:
-          pass
+        changed_products = set()
+        for row in changed_rows:
+            if date_idx is not None:
+                raw_date = str(row[date_idx]).strip()
+                if raw_date:
+                    try:
+                        changed_dates.append(datetime.strptime(raw_date, '%m/%d/%Y').date())
+                    except Exception:
+                        pass
+            if gid_idx is not None and pid_idx is not None:
+                gid = normalize_id(row[gid_idx])
+                pid = normalize_id(row[pid_idx])
+                if gid and pid and gid.lower() != 'nan' and pid.lower() != 'nan':
+                    changed_products.add((gid, pid))
 
         if changed_dates:
-          earliest_changed = min(changed_dates)
-          print(f"Earliest changed transaction date: {earliest_changed}")
-          with open(os.environ["GITHUB_ENV"], "a") as env:
-            env.write(f"RESUME_DATE={earliest_changed.strftime('%Y-%m-%d')}\n")
+            earliest_changed = min(changed_dates)
+            print(f"Earliest changed transaction date: {earliest_changed}")
+            with open(os.environ["GITHUB_ENV"], "a") as env:
+                env.write(f"RESUME_DATE={earliest_changed.strftime('%Y-%m-%d')}\n")
         else:
-          print("No changed transaction dates detected.")
+            print("No changed transaction dates detected.")
 
-        print("Running incremental update (will skip existing data)...")
+        if changed_products:
+            with open(os.environ["GITHUB_ENV"], "a") as env:
+                env.write(f"CHANGED_PRODUCTS={json.dumps(sorted(changed_products))}\n")
+            print(f"Changed products: {len(changed_products)}")
+        else:
+            print("No changed products detected.")
         EOF
-    
-    - name: Run incremental update (only fetches missing data for active products)
+
+    - name: Update prices and tracker (only changed products)
       run: |
-        if [ -n "${RESUME_DATE}" ]; then
-          python daily_run.py --rebuild-from "${RESUME_DATE}" --no-extend-latest
-        else
-          python daily_run.py --incremental --no-extend-latest
-        fi
+        python << 'EOF'
+        import os
+        import json
+        import update_prices
+        import analyze_portfolio
+
+        resume_date = os.environ.get("RESUME_DATE")
+        products = json.loads(os.environ.get("CHANGED_PRODUCTS", "[]"))
+
+        if products:
+            print(f"Updating prices for {len(products)} changed products...")
+            update_prices.main(start_from_date=resume_date, product_filter=products)
+        elif resume_date:
+            print("No changed products detected; running incremental price update from resume date.")
+            update_prices.main(start_from_date=resume_date)
+        else:
+            print("No resume date set; running incremental update.")
+            update_prices.main()
+
+        analyze_portfolio.run_analysis(resume_date=resume_date)
+        EOF
       continue-on-error: true
     
     - name: Build site
@@ -138,4 +182,8 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update after transaction change" && git push)
+        if ! git diff --quiet || ! git diff --staged --quiet; then
+          git commit -m "Auto-update after transaction change"
+          git pull --rebase origin main
+          git push
+        fi
