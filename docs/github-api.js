@@ -15,6 +15,8 @@ class GitHubAPI {
             transactionsSha: null,
             mappingsSha: null
         };
+        // Detect if running locally
+        this.isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
     }
 
     // Get token from PokeAuth
@@ -188,6 +190,12 @@ class GitHubAPI {
 
     // Update file in repo
     async updateFile(path, content, message, sha) {
+        // Don't commit if running locally
+        if (this.isLocal) {
+            console.log('[LOCAL MODE] Skipping commit:', message);
+            alert(`Running in local mode - changes will not be committed to GitHub.\n\nTo save changes permanently, commit and push manually:\ngit add ${path}\ngit commit -m "${message}"\ngit push`);
+            return { sha: sha }; // Return fake success
+        }
         const url = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/contents/${path}`;
         
         return this.request(url, {

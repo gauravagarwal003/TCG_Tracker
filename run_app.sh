@@ -21,6 +21,10 @@ else
     source .venv/bin/activate
 fi
 
+# Build the static site so Flask has latest data
+echo "Building static site..."
+python build_site.py
+
 echo ""
 echo "✅ Starting Flask server..."
 echo "   🌐 Open your browser to: http://127.0.0.1:5000"
