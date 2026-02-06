@@ -229,7 +229,7 @@ def _apply_delta(tracker_df, tx, removing=False):
 
 # ── Apply all deltas ─────────────────────────────────────────────────────────
 
-def apply_incremental_update(added_txs, removed_txs):
+def apply_incremental_update(added_txs, removed_txs, changed_products=None):
     """Read the existing tracker, apply deltas, save everything."""
     print("--- Incremental Portfolio Update ---")
 
@@ -277,15 +277,20 @@ def apply_incremental_update(added_txs, removed_txs):
     validate_no_missing_dates(tracker)
 
     # ── Rebuild holdings & graphs ───────────────────────────────────────────
-    _rebuild_holdings(config)
+    _rebuild_holdings(config, changed_products or [])
     _rebuild_graphs(tracker)
     print("--- Done ---")
 
 
 # ── Holdings snapshot ────────────────────────────────────────────────────────
 
-def _rebuild_holdings(config):
-    """Replay all transactions to compute current inventory, then write CSV."""
+def _rebuild_holdings(config, changed_products):
+    """
+    Incrementally update current_holdings.csv — only re-compute rows for
+    products that actually changed.  Every other row is left untouched,
+    which avoids the need to look up prices for products whose price
+    files may not exist on the CI runner (historical_prices/ is gitignored).
+    """
     mappings_file = config.get("mappings_file", "mappings.json")
     name_map, image_map = {}, {}
     try:
@@ -300,16 +305,24 @@ def _rebuild_holdings(config):
     tx_file = config.get("transactions_file", "transactions.csv")
     latest  = config.get("latest_date", datetime.now().strftime("%Y-%m-%d"))
 
+    # Normalize the changed set for fast lookup
+    changed_set = set()
+    for g, p in changed_products:
+        changed_set.add((_normalize_id(g), _normalize_id(p)))
+
+    # ── Replay transactions only for changed products to get new qty ─────
     try:
         df = pd.read_csv(tx_file)
     except Exception as e:
         print(f"  Error reading {tx_file}: {e}")
         return
 
-    inv = {}
+    inv = {}  # only for changed products
     for _, r in df.iterrows():
         try:
             key = (_normalize_id(r["group_id"]), _normalize_id(r["product_id"]))
+            if key not in changed_set:
+                continue
             t = str(r["Transaction Type"]).strip().upper()
             q = float(r["Quantity"]) if pd.notna(r.get("Quantity")) else 1.0
             if t in ("BUY", "PULL"):
@@ -319,23 +332,53 @@ def _rebuild_holdings(config):
         except (ValueError, TypeError):
             continue
 
-    rows = []
-    for (gid, pid), qty in inv.items():
+    # ── Load existing holdings (untouched rows are kept as-is) ──────────
+    cols = ["Product Name", "group_id", "product_id", "Quantity",
+            "Latest Price", "Total Value", "Image URL"]
+    if os.path.exists("current_holdings.csv"):
+        try:
+            holdings = pd.read_csv("current_holdings.csv")
+        except Exception:
+            holdings = pd.DataFrame(columns=cols)
+    else:
+        holdings = pd.DataFrame(columns=cols)
+
+    # Index existing rows by (group_id, product_id) for fast patching
+    holdings["_key"] = holdings.apply(
+        lambda r: (_normalize_id(r["group_id"]), _normalize_id(r["product_id"])), axis=1
+    )
+
+    # ── Patch changed rows ──────────────────────────────────────────────
+    for (gid, pid) in changed_set:
+        qty = inv.get((gid, pid), 0)
+        mask = holdings["_key"] == (gid, pid)
+
         if qty > 0:
             cat   = _category_for(gid, pid)
             price = _get_latest_price(gid, pid, latest, cat)
-            rows.append({
+            row_data = {
                 "Product Name": name_map.get((gid, pid), "Unknown"),
                 "group_id": gid, "product_id": pid,
                 "Quantity": qty, "Latest Price": price,
                 "Total Value": price * qty,
                 "Image URL": image_map.get((gid, pid), ""),
-            })
+            }
+            if mask.any():
+                # Update existing row
+                for col, val in row_data.items():
+                    holdings.loc[mask, col] = val
+            else:
+                # New product — append
+                new_row = pd.DataFrame([row_data], columns=cols)
+                new_row["_key"] = [(gid, pid)]
+                holdings = pd.concat([holdings, new_row], ignore_index=True)
+        else:
+            # Product fully sold / removed — drop from holdings
+            holdings = holdings[~mask]
 
-    cols = ["Product Name", "group_id", "product_id", "Quantity",
-            "Latest Price", "Total Value", "Image URL"]
-    pd.DataFrame(rows, columns=cols).to_csv("current_holdings.csv", index=False)
-    print(f"  current_holdings.csv: {len(rows)} products")
+    holdings.drop(columns=["_key"], inplace=True)
+    holdings.to_csv("current_holdings.csv", index=False)
+    print(f"  current_holdings.csv: {len(holdings)} products (patched {len(changed_set)})")
 
 
 # ── Graphs ───────────────────────────────────────────────────────────────────
@@ -448,7 +491,7 @@ def main():
         return
 
     # 3. Apply incremental deltas
-    apply_incremental_update(added, removed)
+    apply_incremental_update(added, removed, changed_products)
     _cleanup()
 
 
