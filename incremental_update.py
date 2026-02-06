@@ -130,6 +130,33 @@ def validate_inventory(transactions_file, changed_products):
     return True, ""
 
 
+# ── Date gap validation ──────────────────────────────────────────────────────
+
+def validate_no_missing_dates(tracker_df):
+    """
+    Check that the tracker has no date gaps.  If any are found, print them
+    and HALT the process so the user can investigate.
+    Returns the list of missing dates (empty = all good).
+    """
+    if tracker_df.empty:
+        return []
+    dates = pd.to_datetime(tracker_df["Date"])
+    expected = set(pd.date_range(dates.min(), dates.max(), freq="D"))
+    actual = set(dates)
+    missing = sorted(expected - actual)
+    if missing:
+        print(f"\n🚨🚨🚨 MISSING DATES DETECTED ({len(missing)}): 🚨🚨🚨")
+        for d in missing:
+            print(f"   - {d.date()}")
+        print("\nProcess STOPPED. Fix the missing price data before continuing.")
+        print("daily_tracker.csv has been saved but contains gaps.")
+        import sys
+        sys.exit(1)
+    else:
+        print(f"✅ Date continuity verified: {len(actual)} days, no gaps.")
+    return missing
+
+
 # ── Core: apply one delta ────────────────────────────────────────────────────
 
 def _apply_delta(tracker_df, tx, removing=False):
@@ -186,6 +213,13 @@ def _apply_delta(tracker_df, tx, removing=False):
     for idx in tracker_df[mask].index:
         day = tracker_df.at[idx, "Date"].strftime("%Y-%m-%d")
         price = get_price_for_date(gid, pid, day, cat)
+        if price <= 0:
+            # Fallback: search nearby dates for a known price.
+            # This handles cases where a specific day's price file is
+            # missing (e.g. holidays, data-source gaps).
+            price = _get_latest_price(gid, pid, day, cat, max_lookback=7)
+        if price <= 0:
+            print(f"    WARNING: No price found for ({gid},{pid}) on {day} — value delta will be $0")
         tracker_df.at[idx, "Total Value"]  += val_sign * price * quantity
         tracker_df.at[idx, "Cost Basis"]   += basis_delta
         tracker_df.at[idx, "Items Owned"]  += items_delta
@@ -238,6 +272,9 @@ def apply_incremental_update(added_txs, removed_txs):
 
     tracker.to_csv("daily_tracker.csv", index=False)
     print("daily_tracker.csv saved.")
+
+    # ── Validate no date gaps ───────────────────────────────────────────────
+    validate_no_missing_dates(tracker)
 
     # ── Rebuild holdings & graphs ───────────────────────────────────────────
     _rebuild_holdings(config)
@@ -390,10 +427,16 @@ def main():
         return
 
     # 1. Fetch prices for changed products only
+    #    Pass removed transactions so prices are fetched for dates that
+    #    WERE active before the removal (needed to reverse the value delta).
     import update_prices
     if changed_products:
         print(f"Fetching prices for {len(changed_products)} products...")
-        update_prices.main(start_from_date=resume_date, product_filter=changed_products)
+        update_prices.main(
+            start_from_date=resume_date,
+            product_filter=changed_products,
+            extra_active_transactions=removed,
+        )
 
     # 2. Validate inventory constraints
     ok, err = validate_inventory("transactions.csv", changed_products)

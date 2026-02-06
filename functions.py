@@ -335,12 +335,15 @@ def get_price_for_date(group_id, product_id, date_str, category_id=3, historical
     except (ValueError, TypeError):
         return 0.0
 
-def batch_update_historical_prices(start_date_str, end_date_str, product_list, output_folder='historical_prices'):
+def batch_update_historical_prices(start_date_str, end_date_str, product_list, output_folder='historical_prices', extra_active_transactions=None):
     """
     Downloads daily price dumps ONCE per day, extracts prices for ALL products in product_list,
     and saves them to the file system.
     
     product_list: List of dicts with 'group_id', 'product_id', and 'categoryId' keys.
+    extra_active_transactions: Optional list of transaction dicts (e.g. removed rows)
+        whose ownership dates should also be treated as "active" so that prices
+        are downloaded even though the product is no longer in the current transactions.
     """
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
@@ -350,6 +353,32 @@ def batch_update_historical_prices(start_date_str, end_date_str, product_list, o
     
     # NEW: Get active ranges to determine what to fetch
     active_ranges = get_product_active_ranges()
+
+    # Merge in extra active ranges from removed/edited transactions
+    # so that we still fetch prices for dates the product WAS owned.
+    if extra_active_transactions:
+        for tx in extra_active_transactions:
+            try:
+                gid = str(int(float(tx.get('group_id', 0))))
+                pid = str(int(float(tx.get('product_id', 0))))
+                key = (gid, pid)
+                date_str_raw = str(tx.get('Date Recieved', '')).strip()
+                tx_date = None
+                for fmt in ('%m/%d/%Y', '%Y-%m-%d'):
+                    try:
+                        tx_date = datetime.strptime(date_str_raw, fmt).date()
+                        break
+                    except ValueError:
+                        continue
+                if tx_date is None:
+                    continue
+                if key not in active_ranges:
+                    active_ranges[key] = []
+                # Add a single-day range for the removed transaction's date
+                # (extends to end_date to cover all days the delta needs)
+                active_ranges[key].append((tx_date, end_date.date()))
+            except (ValueError, TypeError, KeyError):
+                continue
 
     current_date = start_date
     

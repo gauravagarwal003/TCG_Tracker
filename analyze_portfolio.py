@@ -166,7 +166,7 @@ def run_analysis(resume_date=None):
 
         # Safety Check: If value is 0 but we own items, it's likely a data error.
         if items_owned > 0 and daily_portfolio_value == 0:
-             print(f"Skipping {date_str}: Price data likely missing (Value is $0).")
+             print(f"⚠️  WARNING {date_str}: Price data missing (Value is $0 but {items_owned} items owned). Skipping date.")
              current_date += timedelta(days=1)
              continue
 
@@ -182,7 +182,24 @@ def run_analysis(resume_date=None):
     # 3. Save Data
     results_df = pd.DataFrame(daily_records)
     results_df.to_csv("daily_tracker.csv", index=False)
-    
+
+    # 3b. Validate no missing dates
+    if not results_df.empty:
+        results_df['Date'] = pd.to_datetime(results_df['Date'])
+        expected = set(pd.date_range(results_df['Date'].min(), results_df['Date'].max(), freq='D'))
+        actual = set(results_df['Date'])
+        missing = sorted(expected - actual)
+        if missing:
+            print(f"\n🚨🚨🚨 MISSING DATES DETECTED ({len(missing)}): 🚨🚨🚨")
+            for d in missing:
+                print(f"   - {d.date()}")
+            print("\nProcess STOPPED. Fix the missing price data before continuing.")
+            print("daily_tracker.csv has been saved but contains gaps.")
+            import sys
+            sys.exit(1)
+        else:
+            print(f"✅ Date continuity verified: {len(actual)} days, no gaps.")
+
     # 4. Generate Graph
     if not results_df.empty:
         fig = go.Figure()

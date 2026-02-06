@@ -10,7 +10,17 @@ def _normalize_id(value):
     except (ValueError, TypeError):
         return str(value).strip()
 
-def main(start_from_date=None, product_filter=None):
+def main(start_from_date=None, product_filter=None, extra_active_transactions=None):
+    """
+    Fetch historical prices for tracked products.
+
+    extra_active_transactions: list of transaction dicts (e.g. removed rows)
+        whose date ranges should also be considered "active" when deciding
+        which dates to download prices for.  This is critical for deletions:
+        the product may no longer appear active in the current transactions,
+        but we still need prices for the dates it WAS active to correctly
+        reverse the value delta.
+    """
     print("--- Starting Price Update (Batch Mode) ---")
     
     # 1. Load Configuration
@@ -76,7 +86,10 @@ def main(start_from_date=None, product_filter=None):
     # 3. Fetch Data in Batch
     if product_list:
         try:
-            batch_update_historical_prices(start_date, latest_date, product_list)
+            batch_update_historical_prices(
+                start_date, latest_date, product_list,
+                extra_active_transactions=extra_active_transactions,
+            )
         except KeyboardInterrupt:
             print("\nStopped by user.")
         except Exception as e:

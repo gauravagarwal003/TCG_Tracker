@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Investment Tracker</title>
     <style>
-        /* Hide content until authenticated - prevents content flash */
+        /* Hide content until authenticated - prevents content flash (static/GitHub Pages only) */
+        {% if is_static %}
         body { visibility: hidden; }
+        {% endif %}
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

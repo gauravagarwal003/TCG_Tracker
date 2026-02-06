@@ -150,7 +150,7 @@ def index():
                          total_value=total_value,
                          graph_html=graph_html,
                          performance_html=performance_html,
-                         active_page='index')
+                         active_page='index',
                          is_static=False)
 
 

@@ -168,6 +168,22 @@ def update_tracker_for_date(target_date: str) -> bool:
     # Sort by date and save
     tracker_df['Date'] = pd.to_datetime(tracker_df['Date'])
     tracker_df = tracker_df.sort_values('Date')
+
+    # Validate no date gaps
+    expected = set(pd.date_range(tracker_df['Date'].min(), tracker_df['Date'].max(), freq='D'))
+    actual = set(tracker_df['Date'])
+    missing = sorted(expected - actual)
+    if missing:
+        print(f"\n🚨🚨🚨 MISSING DATES DETECTED ({len(missing)}): 🚨🚨🚨")
+        for d in missing:
+            print(f"   - {d.date()}")
+        print("\nProcess STOPPED. Fix the missing price data before continuing.")
+        print("daily_tracker.csv has been saved but contains gaps.")
+        import sys
+        sys.exit(1)
+    else:
+        print(f"✅ Date continuity verified: {len(actual)} days, no gaps.")
+
     tracker_df['Date'] = tracker_df['Date'].dt.strftime('%Y-%m-%d')
     tracker_df.to_csv(tracker_file, index=False)
     
