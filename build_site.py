@@ -76,7 +76,7 @@ transactions = []
 transactions_file = os.path.join(BASE_DIR, 'transactions.csv')
 if os.path.exists(transactions_file):
     try:
-        df = pd.read_csv(transactions_file)
+        df = pd.read_csv(transactions_file, encoding='utf-8')
         df['id'] = df.index
         transactions = df.to_dict('records')
     except Exception as e:
@@ -99,13 +99,13 @@ for tx in transactions:
 graph_html = ""
 graph_path = os.path.join(BASE_DIR, 'portfolio_graph.html')
 if os.path.exists(graph_path):
-    with open(graph_path, 'r') as f:
+    with open(graph_path, 'r', encoding='utf-8') as f:
         graph_html = f.read()
 
 performance_html = ""
 perf_path = os.path.join(BASE_DIR, 'performance_graph.html')
 if os.path.exists(perf_path):
-    with open(perf_path, 'r') as f:
+    with open(perf_path, 'r', encoding='utf-8') as f:
         performance_html = f.read()
 
 # --- 2. Render Pages ---
@@ -150,7 +150,7 @@ output_html = template.render(
 
 # auth.js is already included via base.html template when is_static=True
 
-with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w') as f:
+with open(os.path.join(OUTPUT_DIR, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(output_html)
 
 # -- Transactions --
@@ -173,7 +173,7 @@ github_scripts = '''<script src="auth.js"></script>
 
 output_html = output_html.replace('<script src="auth.js"></script>', github_scripts)
 
-with open(os.path.join(OUTPUT_DIR, 'transactions.html'), 'w') as f:
+with open(os.path.join(OUTPUT_DIR, 'transactions.html'), 'w', encoding='utf-8') as f:
     f.write(output_html)
 
 print("Build complete. Output in docs/")

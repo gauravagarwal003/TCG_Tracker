@@ -163,18 +163,24 @@ function addActionButtonsToTable() {
 
     // Add action buttons to each row
     const rows = table.querySelectorAll('tbody tr');
-    rows.forEach((row, index) => {
+    rows.forEach((row) => {
         // Skip if already has actions
         if (row.querySelector('.action-buttons')) return;
+        
+        // Use data-index from the <tr> (set by Jinja template) so buttons
+        // always reference the correct cachedTransactions position regardless
+        // of any sorting/filtering applied to the DOM rows.
+        const txIndex = row.getAttribute('data-index');
+        if (txIndex === null) return;
         
         const td = document.createElement('td');
         td.className = 'action-buttons';
         td.innerHTML = `
             <div class="btn-group" role="group">
-                <button class="btn btn-sm btn-outline-primary" onclick="showEditTransactionModal(${index})" title="Edit">
+                <button class="btn btn-sm btn-outline-primary" onclick="showEditTransactionModal(${txIndex})" title="Edit">
                     <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn btn-sm btn-outline-danger ms-1" onclick="confirmDeleteTransaction(${index})" title="Delete">
+                <button class="btn btn-sm btn-outline-danger ms-1" onclick="confirmDeleteTransaction(${txIndex})" title="Delete">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </div>

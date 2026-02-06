@@ -5,6 +5,16 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 from functions import get_price_for_date, get_product_info_from_ids
 
+def _get_latest_price(gid, pid, date_str, category_id=3, max_lookback=7):
+    """Search backwards up to max_lookback days to find the most recent price."""
+    d = datetime.strptime(date_str, "%Y-%m-%d")
+    for i in range(max_lookback + 1):
+        check = (d - timedelta(days=i)).strftime("%Y-%m-%d")
+        price = get_price_for_date(gid, pid, check, category_id)
+        if price > 0:
+            return price
+    return 0.0
+
 def parse_currency(value):
     if pd.isna(value) or value == '':
         return 0.0
@@ -274,7 +284,7 @@ def run_analysis(resume_date=None):
             if product_info and product_info.get('categoryId'):
                 category_id = product_info.get('categoryId')
             
-            price = get_price_for_date(g_id, p_id, last_date_str, category_id)
+            price = _get_latest_price(g_id, p_id, last_date_str, category_id)
             holdings_list.append({
                 'Product Name': name_map.get((g_id, p_id), "Unknown"),
                 'group_id': g_id,

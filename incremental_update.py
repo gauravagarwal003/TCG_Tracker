@@ -69,6 +69,23 @@ def _category_for(gid, pid):
     return 3  # default: Pokemon
 
 
+def _get_latest_price(gid, pid, date_str, category_id=3, max_lookback=7):
+    """
+    Try to get the price for date_str.  If no file exists, search backwards
+    up to max_lookback days to find the most recent available price.
+    Used for the holdings snapshot where we want the "latest known" price,
+    not a hard 0.0 just because today's dump hasn't arrived yet.
+    """
+    from datetime import timedelta
+    d = datetime.strptime(date_str, "%Y-%m-%d")
+    for i in range(max_lookback + 1):
+        check = (d - timedelta(days=i)).strftime("%Y-%m-%d")
+        price = get_price_for_date(gid, pid, check, category_id)
+        if price > 0:
+            return price
+    return 0.0
+
+
 # ── Validation ───────────────────────────────────────────────────────────────
 
 def validate_inventory(transactions_file, changed_products):
@@ -269,7 +286,7 @@ def _rebuild_holdings(config):
     for (gid, pid), qty in inv.items():
         if qty > 0:
             cat   = _category_for(gid, pid)
-            price = get_price_for_date(gid, pid, latest, cat)
+            price = _get_latest_price(gid, pid, latest, cat)
             rows.append({
                 "Product Name": name_map.get((gid, pid), "Unknown"),
                 "group_id": gid, "product_id": pid,
