@@ -3,167 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Transaction - Pokemon Card Tracker</title>
+    <title>Add/Edit Transaction - Pokemon Card Tracker</title>
+    <style>body { visibility: hidden; }</style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-cards"></i> Pokemon Card Tracker
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="index.html">Portfolio</a>
-                <a class="nav-link" href="transactions.html">Transactions</a>
-                <a class="nav-link active" href="add-transaction.html">Add Transaction</a>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-3 px-lg-4">
+            <span class="navbar-brand"><i class="fas fa-chart-line me-2"></i>PokeTracker</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="transactions.html">Transactions</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <div class="card">
-            <div class="card-header">
-                <h4><i class="fas fa-plus-circle"></i> Add Transaction</h4>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-info mb-4">
-                    <i class="fas fa-info-circle"></i> 
-                    <strong>How it works:</strong> Fill out the form below and click Submit. 
-                    You'll be taken to GitHub where you can review and confirm the transaction.
-                </div>
-
-                <form id="transactionForm">
-                    <div class="row mb-3">
+    <div class="container-fluid px-2 px-md-3 px-lg-4 mt-3">
+        <div class="table-section">
+            <div class="table-header mb-3"><h5 class="mb-0" id="formTitle">Add Transaction</h5></div>
+            <div class="table-content">
+                <form id="txForm">
+                    <!-- Type -->
+                    <div class="row mb-4">
                         <div class="col-md-4">
-                            <label class="form-label">Date <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control" id="date" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Quantity <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" id="quantity" required min="1">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Price <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control" id="price" required step="0.01" min="0">
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Product Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="product_name" required 
-                               list="productList" placeholder="Start typing to search...">
-                        <datalist id="productList"></datalist>
-                    </div>
-
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="newProduct">
-                            <label class="form-check-label" for="newProduct">
-                                This is a new product (not in database)
-                            </label>
-                        </div>
-                    </div>
-
-                    <div id="newProductFields" style="display: none;">
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label">Group ID</label>
-                                <input type="text" class="form-control" id="group_id">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Product ID</label>
-                                <input type="text" class="form-control" id="product_id">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Category ID</label>
-                                <input type="text" class="form-control" id="category_id">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Method <span class="text-danger">*</span></label>
-                            <select class="form-select" id="method" required>
-                                <option value="">Select method...</option>
-                                <option value="Purchased">Purchased</option>
-                                <option value="Pulled">Pulled</option>
-                                <option value="Sold">Sold</option>
+                            <label class="form-label fw-semibold">Transaction Type *</label>
+                            <select class="form-select" id="txType" required>
+                                <option value="">Select Type</option>
+                                <option value="BUY">BUY</option>
+                                <option value="SELL">SELL</option>
+                                <option value="OPEN">OPEN</option>
+                                <option value="TRADE">TRADE</option>
                             </select>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Store <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="store" required>
+                    </div>
+                    <hr class="my-4">
+
+                    <!-- Standard fields (BUY/SELL/OPEN) -->
+                    <div id="stdFields">
+                        <h6 class="text-primary mb-3">Product</h6>
+                        <div class="row mb-3">
+                            <div class="col-md-12 position-relative">
+                                <label class="form-label">Search for Product</label>
+                                <input type="text" class="form-control" id="prodSearch" placeholder="Start typing..." autocomplete="off">
+                                <div id="searchResults" class="list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:300px; overflow-y:auto; width:calc(100% - 24px);"></div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selPid"><input type="hidden" id="selGid"><input type="hidden" id="selCid" value="3"><input type="hidden" id="selName">
+
+                        <div id="newProductFields" class="mb-3" style="display:none;">
+                            <div class="alert alert-info py-2"><i class="fas fa-info-circle"></i> Product not found. Enter IDs:</div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-md-4"><input type="text" class="form-control form-control-sm" id="newPid" placeholder="Product ID"></div>
+                                <div class="col-md-4"><input type="text" class="form-control form-control-sm" id="newGid" placeholder="Group ID"></div>
+                                <div class="col-md-2"><input type="text" class="form-control form-control-sm" id="newCid" placeholder="Cat ID" value="3"></div>
+                                <div class="col-md-2"><button type="button" class="btn btn-sm btn-primary w-100" id="confirmNewProd">Confirm</button></div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Quantity *</label>
+                                <input type="number" class="form-control" id="qty" min="1" step="1" value="1" required>
+                            </div>
+                            <div class="col-md-4" id="amtGroup">
+                                <label class="form-label">Total Amount ($)</label>
+                                <input type="number" class="form-control" id="amt" step="0.01" min="0">
+                            </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-check"></i> Submit Transaction
-                    </button>
-                    <a href="transactions.html" class="btn btn-secondary">
-                        <i class="fas fa-times"></i> Cancel
-                    </a>
+                    <!-- Trade fields -->
+                    <div id="tradeFields" style="display:none;">
+                        <h6 class="text-danger mb-3"><i class="fas fa-arrow-right"></i> Items Traded Away</h6>
+                        <div id="itemsOutBox"></div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary mb-4" id="addItemOut"><i class="fas fa-plus"></i> Add Item Out</button>
+
+                        <h6 class="text-success mb-3"><i class="fas fa-arrow-left"></i> Items Received</h6>
+                        <div id="itemsInBox"></div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary mb-3" id="addItemIn"><i class="fas fa-plus"></i> Add Item In</button>
+                    </div>
+
+                    <hr class="my-4">
+                    <h6 class="text-primary mb-3">Dates &amp; Details</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Date Received *</label>
+                            <input type="date" class="form-control" id="dateRcv" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Date Purchased</label>
+                            <input type="date" class="form-control" id="datePur">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Store / Place</label>
+                            <input type="text" class="form-control" id="place" placeholder="e.g., Target">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Method</label>
+                            <select class="form-select" id="method">
+                                <option value="">&mdash;</option>
+                                <option value="Online">Online</option>
+                                <option value="In-person">In-person</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-control" id="notes" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success" id="submitBtn"><i class="fas fa-save me-1"></i>Add Transaction</button>
+                        <a href="transactions.html" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="github-api.js"></script>
     <script>
-        // Load product names for autocomplete
-        fetch('mappings.json')
-            .then(r => r.json())
-            .then(data => {
-                const datalist = document.getElementById('productList');
-                Object.keys(data).forEach(name => {
-                    const option = document.createElement('option');
-                    option.value = name;
-                    datalist.appendChild(option);
+    (async function() {
+        function waitAuth() { return new Promise(r => { const c = () => document.body.style.visibility !== 'hidden' ? r() : setTimeout(c, 100); c(); }); }
+        await waitAuth();
+
+        let mappings = [];
+        try { mappings = await fetch('data/mappings.json').then(r => r.ok ? r.json() : []); } catch(e) {}
+
+        const params = new URLSearchParams(window.location.search);
+        const editId = params.get('edit');
+        let editTx = null;
+
+        if (editId) {
+            document.getElementById('formTitle').textContent = 'Edit Transaction';
+            document.getElementById('submitBtn').innerHTML = '<i class="fas fa-save me-1"></i>Update Transaction';
+            try {
+                const txns = await fetch('data/transactions.json').then(r => r.ok ? r.json() : []);
+                editTx = txns.find(t => t.id === editId);
+            } catch(e) {}
+        }
+
+        const typeSelect = document.getElementById('txType');
+        const stdFields = document.getElementById('stdFields');
+        const tradeFields = document.getElementById('tradeFields');
+        const amtGroup = document.getElementById('amtGroup');
+
+        typeSelect.addEventListener('change', toggleType);
+        function toggleType() {
+            const t = typeSelect.value;
+            stdFields.style.display = t === 'TRADE' ? 'none' : '';
+            tradeFields.style.display = t === 'TRADE' ? '' : 'none';
+            amtGroup.style.display = t === 'OPEN' ? 'none' : '';
+        }
+
+        // Product search
+        const prodSearch = document.getElementById('prodSearch');
+        const searchResults = document.getElementById('searchResults');
+        let searchTimeout;
+        prodSearch.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const q = this.value.trim();
+            if (q.length < 2) { searchResults.style.display = 'none'; return; }
+            searchTimeout = setTimeout(() => {
+                const results = mappings.filter(m => m.name.toLowerCase().includes(q.toLowerCase())).slice(0, 20);
+                if (results.length === 0) {
+                    searchResults.innerHTML = '<div class="list-group-item text-muted"><em>Not found.</em></div>' +
+                        '<div class="list-group-item list-group-item-action" id="showNewProd" style="cursor:pointer"><i class="fas fa-plus-circle text-success"></i> Add as new</div>';
+                    searchResults.style.display = 'block';
+                    document.getElementById('showNewProd').onclick = () => { document.getElementById('selName').value = prodSearch.value; searchResults.style.display = 'none'; document.getElementById('newProductFields').style.display = ''; };
+                } else {
+                    searchResults.innerHTML = results.map(p => '<div class="list-group-item list-group-item-action" style="cursor:pointer" data-p=\'' + JSON.stringify(p).replace(/'/g, "&#39;") + '\'><strong>' + p.name + '</strong><br><small class="text-muted">PID: ' + p.product_id + ' | GID: ' + p.group_id + '</small></div>').join('');
+                    searchResults.style.display = 'block';
+                    searchResults.querySelectorAll('.list-group-item-action').forEach(el => {
+                        el.onclick = () => {
+                            const p = JSON.parse(el.dataset.p);
+                            prodSearch.value = p.name;
+                            document.getElementById('selPid').value = p.product_id;
+                            document.getElementById('selGid').value = p.group_id;
+                            document.getElementById('selCid').value = p.categoryId || 3;
+                            document.getElementById('selName').value = p.name;
+                            searchResults.style.display = 'none';
+                            document.getElementById('newProductFields').style.display = 'none';
+                        };
+                    });
+                }
+            }, 200);
+        });
+        document.addEventListener('click', e => { if (!prodSearch.contains(e.target) && !searchResults.contains(e.target)) searchResults.style.display = 'none'; });
+
+        document.getElementById('confirmNewProd').onclick = () => {
+            const pid = document.getElementById('newPid').value.trim();
+            const gid = document.getElementById('newGid').value.trim();
+            if (!pid || !gid) { alert('Product ID and Group ID required'); return; }
+            document.getElementById('selPid').value = pid;
+            document.getElementById('selGid').value = gid;
+            document.getElementById('selCid').value = document.getElementById('newCid').value || '3';
+            document.getElementById('selName').value = prodSearch.value;
+            document.getElementById('newProductFields').style.display = 'none';
+        };
+
+        // Trade item helpers
+        function tradeRowHTML(direction) {
+            return '<div class="trade-row row g-2 mb-2 align-items-end">' +
+                '<div class="col-md-5 position-relative"><input type="text" class="form-control form-control-sm t-search" placeholder="Search..." data-dir="' + direction + '">' +
+                '<div class="t-results list-group mt-1" style="display:none;position:absolute;z-index:1050;max-height:200px;overflow-y:auto;width:100%;"></div></div>' +
+                '<div class="col-md-2"><input type="number" class="form-control form-control-sm t-qty" min="1" value="1"></div>' +
+                '<div class="col-md-3"><input type="hidden" class="t-pid"><input type="hidden" class="t-gid"><input type="hidden" class="t-cid" value="3"><input type="hidden" class="t-name"><small class="text-muted t-label"></small></div>' +
+                '<div class="col-md-2"><button type="button" class="btn btn-sm btn-outline-danger t-remove w-100"><i class="fas fa-times"></i></button></div></div>';
+        }
+        document.getElementById('addItemOut').onclick = () => document.getElementById('itemsOutBox').insertAdjacentHTML('beforeend', tradeRowHTML('out'));
+        document.getElementById('addItemIn').onclick  = () => document.getElementById('itemsInBox').insertAdjacentHTML('beforeend', tradeRowHTML('in'));
+        document.addEventListener('click', e => { if (e.target.closest('.t-remove')) e.target.closest('.trade-row').remove(); });
+
+        // Trade search
+        let tSearchTimeout;
+        document.addEventListener('input', e => {
+            if (!e.target.classList.contains('t-search')) return;
+            clearTimeout(tSearchTimeout);
+            const input = e.target;
+            const rd = input.closest('.col-md-5').querySelector('.t-results');
+            const q = input.value.trim();
+            if (q.length < 2) { rd.style.display = 'none'; return; }
+            tSearchTimeout = setTimeout(() => {
+                const res = mappings.filter(m => m.name.toLowerCase().includes(q.toLowerCase())).slice(0, 15);
+                if (!res.length) { rd.innerHTML = '<div class="list-group-item text-muted small"><em>Not found</em></div>'; }
+                else {
+                    rd.innerHTML = res.map(p => '<div class="list-group-item list-group-item-action py-1" style="cursor:pointer" data-p=\'' + JSON.stringify(p).replace(/'/g,"&#39;") + '\'><strong>' + p.name + '</strong> <small>(' + p.product_id + ')</small></div>').join('');
+                    rd.querySelectorAll('.list-group-item-action').forEach(el => {
+                        el.onclick = () => {
+                            const p = JSON.parse(el.dataset.p);
+                            const row = input.closest('.trade-row');
+                            input.value = p.name;
+                            row.querySelector('.t-pid').value = p.product_id;
+                            row.querySelector('.t-gid').value = p.group_id;
+                            row.querySelector('.t-cid').value = p.categoryId || 3;
+                            row.querySelector('.t-name').value = p.name;
+                            row.querySelector('.t-label').textContent = p.product_id;
+                            rd.style.display = 'none';
+                        };
+                    });
+                }
+                rd.style.display = 'block';
+            }, 200);
+        });
+        document.addEventListener('click', e => { document.querySelectorAll('.t-results').forEach(d => { if (!d.contains(e.target) && !d.previousElementSibling?.contains(e.target)) d.style.display = 'none'; }); });
+
+        // Populate form if editing
+        if (editTx) {
+            typeSelect.value = editTx.type; toggleType();
+            document.getElementById('dateRcv').value = editTx.date_received || '';
+            document.getElementById('datePur').value = editTx.date_purchased || '';
+            document.getElementById('place').value = editTx.place || '';
+            document.getElementById('method').value = editTx.method || '';
+            document.getElementById('notes').value = editTx.notes || '';
+            if (editTx.type === 'TRADE') {
+                (editTx.items_out||[]).forEach(it => {
+                    document.getElementById('itemsOutBox').insertAdjacentHTML('beforeend', tradeRowHTML('out'));
+                    const row = document.getElementById('itemsOutBox').lastElementChild;
+                    row.querySelector('.t-search').value = it.name;
+                    row.querySelector('.t-pid').value = it.product_id;
+                    row.querySelector('.t-gid').value = it.group_id;
+                    row.querySelector('.t-cid').value = it.categoryId || 3;
+                    row.querySelector('.t-name').value = it.name;
+                    row.querySelector('.t-qty').value = it.quantity;
+                    row.querySelector('.t-label').textContent = it.product_id;
                 });
-            });
+                (editTx.items_in||[]).forEach(it => {
+                    document.getElementById('itemsInBox').insertAdjacentHTML('beforeend', tradeRowHTML('in'));
+                    const row = document.getElementById('itemsInBox').lastElementChild;
+                    row.querySelector('.t-search').value = it.name;
+                    row.querySelector('.t-pid').value = it.product_id;
+                    row.querySelector('.t-gid').value = it.group_id;
+                    row.querySelector('.t-cid').value = it.categoryId || 3;
+                    row.querySelector('.t-name').value = it.name;
+                    row.querySelector('.t-qty').value = it.quantity;
+                    row.querySelector('.t-label').textContent = it.product_id;
+                });
+            } else {
+                const item = (editTx.items||[])[0];
+                if (item) {
+                    prodSearch.value = item.name;
+                    document.getElementById('selPid').value = item.product_id;
+                    document.getElementById('selGid').value = item.group_id;
+                    document.getElementById('selCid').value = item.categoryId || 3;
+                    document.getElementById('selName').value = item.name;
+                    document.getElementById('qty').value = item.quantity;
+                }
+                if (editTx.amount) document.getElementById('amt').value = editTx.amount;
+            }
+        }
 
-        // Toggle new product fields
-        document.getElementById('newProduct').addEventListener('change', function() {
-            document.getElementById('newProductFields').style.display = 
-                this.checked ? 'block' : 'none';
-        });
-
-        // Set default date to today
-        document.getElementById('date').valueAsDate = new Date();
-
-        // Form submission
-        document.getElementById('transactionForm').addEventListener('submit', function(e) {
+        // Submit
+        document.getElementById('txForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Convert date to MM/DD/YYYY
-            const dateObj = new Date(document.getElementById('date').value);
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const day = String(dateObj.getDate() + 1).padStart(2, '0'); // +1 to fix timezone
-            const year = dateObj.getFullYear();
-            const formattedDate = `${month}/${day}/${year}`;
-            
-            // Build GitHub Actions workflow URL with pre-filled data
-            const baseUrl = 'https://github.com/gauravagarwal003/Pokemon_Tracker/actions/workflows/manual-transaction.yml';
-            const params = new URLSearchParams({
-                'action': 'add',
-                'date': formattedDate,
-                'quantity': document.getElementById('quantity').value,
-                'price': document.getElementById('price').value,
-                'product_name': document.getElementById('product_name').value,
-                'group_id': document.getElementById('group_id').value,
-                'product_id': document.getElementById('product_id').value,
-                'category_id': document.getElementById('category_id').value,
-                'method': document.getElementById('method').value,
-                'store': document.getElementById('store').value
-            });
-            
-            // Open GitHub Actions page
-            window.open(baseUrl, '_blank');
-            
-            // Show instructions
-            alert('You\'ll be taken to GitHub Actions.\n\n1. Click "Run workflow"\n2. Fill in the pre-populated fields\n3. Click "Run workflow" button at bottom\n4. Wait ~1 minute for site to update');
+            const type = typeSelect.value;
+            if (!type) { alert('Select a transaction type'); return; }
+
+            if (!githubAPI.isAuthenticated()) {
+                const ok = await githubAPI.authenticate();
+                if (!ok) return;
+            }
+
+            const txn = {
+                type: type,
+                date_received: document.getElementById('dateRcv').value,
+                date_purchased: document.getElementById('datePur').value,
+                place: document.getElementById('place').value,
+                method: document.getElementById('method').value,
+                notes: document.getElementById('notes').value
+            };
+
+            if (type === 'TRADE') {
+                txn.items_out = collectTradeItems('itemsOutBox');
+                txn.items_in  = collectTradeItems('itemsInBox');
+                if (!txn.items_out.length || !txn.items_in.length) { alert('TRADE needs items out and in.'); return; }
+            } else {
+                const pid = document.getElementById('selPid').value;
+                const gid = document.getElementById('selGid').value;
+                const name = document.getElementById('selName').value;
+                if (!pid || !gid || !name) { alert('Select a product first.'); return; }
+                txn.items = [{ product_id: parseInt(pid), group_id: parseInt(gid), categoryId: parseInt(document.getElementById('selCid').value)||3, name: name, quantity: parseInt(document.getElementById('qty').value)||1 }];
+                txn.amount = parseFloat(document.getElementById('amt').value) || 0;
+            }
+
+            try {
+                const file = await githubAPI.getFile('transactions.json');
+                const txns = JSON.parse(file.content);
+
+                if (editId) {
+                    const idx = txns.findIndex(t => t.id === editId);
+                    if (idx === -1) { alert('Transaction not found.'); return; }
+                    txn.id = editId;
+                    txns[idx] = txn;
+                } else {
+                    const maxId = txns.reduce((mx, t) => { const n = parseInt((t.id||'').replace(/\D/g,'')); return n > mx ? n : mx; }, 0);
+                    txn.id = 't' + String(maxId + 1).padStart(4, '0');
+                    txns.push(txn);
+                }
+
+                const msg = editId ? 'Edit transaction ' + editId : 'Add transaction ' + txn.id;
+                await githubAPI.updateFile('transactions.json', JSON.stringify(txns, null, 2), msg, file.sha);
+                alert((editId ? 'Updated' : 'Added') + ' successfully! Site will refresh after next Actions run.');
+                window.location.href = 'transactions.html';
+            } catch (err) {
+                alert('Error: ' + err.message);
+            }
         });
+
+        function collectTradeItems(boxId) {
+            const items = [];
+            document.getElementById(boxId).querySelectorAll('.trade-row').forEach(row => {
+                const pid = row.querySelector('.t-pid').value;
+                const gid = row.querySelector('.t-gid').value;
+                const name = row.querySelector('.t-name').value;
+                if (pid && gid && name) {
+                    items.push({ product_id: parseInt(pid), group_id: parseInt(gid), categoryId: parseInt(row.querySelector('.t-cid').value)||3, name: name, quantity: parseInt(row.querySelector('.t-qty').value)||1 });
+                }
+            });
+            return items;
+        }
+    })();
     </script>
 </body>
 </html>

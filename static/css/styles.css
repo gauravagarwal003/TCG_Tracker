@@ -32,9 +32,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    background-color: var(--surface) !important;
+    color: var(--text-primary);
+    border-bottom: 1px solid #333;
     box-shadow: var(--shadow-sm);
     padding: 1rem 0;
 }
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-brand {
     font-weight: 700;
-    color: var(--primary) !important;
+    color: var(--text-primary) !important;
     font-size: 1.25rem;
     letter-spacing: -0.025em;
 }
@@ -84,10 +84,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cards */
 .card {
-    border: none;
-    border-radius: var(--border-radius);
+    background-color: var(--surface) !important;
+    color: var(--text-primary);
+    border: 1px solid #333;
     box-shadow: var(--shadow-md);
-    background-color: var(--surface);
     margin-bottom: 1rem;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
@@ -98,7 +98,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-header {
-    background-color: var(--surface);
+    background-color: var(--surface) !important;
+    color: var(--text-primary);
     border-bottom: 1px solid #f1f5f9;
     padding: 1rem 1.25rem;
 }
@@ -346,3 +347,221 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #e0f2fe;
     color: #075985;
 }
+
+/* Dark Theme Styles */
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #1f1f1f;
+    border-bottom: 1px solid #333;
+}
+
+.card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+.btn {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+.btn:hover {
+    background-color: #444;
+    color: #ffffff;
+}
+
+a {
+    color: #bb86fc;
+}
+
+a:hover {
+    color: #3700b3;
+}
+
+.table {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+.table th {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.table td {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Remove hardcoded white backgrounds */
+body, .bg-white, .bg-light {
+    background-color: var(--background) !important;
+    color: var(--text-primary);
+}
+
+/* Strong dark-mode overrides (high specificity) */
+html[data-bs-theme="dark"] body,
+html[data-bs-theme="dark"] .container,
+html[data-bs-theme="dark"] .container-fluid {
+    background-color: #0b0f14 !important;
+    color: #e6eef8 !important;
+}
+
+html[data-bs-theme="dark"] .navbar,
+html[data-bs-theme="dark"] .navbar-brand,
+html[data-bs-theme="dark"] .navbar-nav,
+html[data-bs-theme="dark"] .navbar-collapse {
+    background-color: #0f1114 !important;
+    color: #e6eef8 !important;
+    border-color: #111 !important;
+}
+
+html[data-bs-theme="dark"] .card,
+html[data-bs-theme="dark"] .card-header,
+html[data-bs-theme="dark"] .card-body,
+html[data-bs-theme="dark"] .table-section,
+html[data-bs-theme="dark"] .table-responsive,
+html[data-bs-theme="dark"] .bg-white,
+html[data-bs-theme="dark"] .bg-light,
+html[data-bs-theme="dark"] .bg-secondary,
+html[data-bs-theme="dark"] .product-thumb,
+html[data-bs-theme="dark"] .product-thumb-placeholder,
+html[data-bs-theme="dark"] .alert,
+html[data-bs-theme="dark"] .badge {
+    background-color: #0f1114 !important;
+    color: #e6eef8 !important;
+    border-color: #1a1a1a !important;
+}
+
+html[data-bs-theme="dark"] .table th {
+    background-color: #111216 !important;
+    color: #cfd8e3 !important;
+    border-color: #222 !important;
+}
+
+html[data-bs-theme="dark"] .table td {
+    background-color: transparent !important;
+    color: #e6eef8 !important;
+    border-color: #1a1a1a !important;
+}
+
+html[data-bs-theme="dark"] .form-control,
+html[data-bs-theme="dark"] .form-select {
+    background-color: #0f1114 !important;
+    color: #e6eef8 !important;
+    border-color: #222 !important;
+}
+
+html[data-bs-theme="dark"] .btn,
+html[data-bs-theme="dark"] .btn-outline-primary,
+html[data-bs-theme="dark"] .btn-outline-danger,
+html[data-bs-theme="dark"] .btn-outline-secondary {
+    background-color: transparent !important;
+    color: #e6eef8 !important;
+    border-color: #2a2a2a !important;
+}
+
+html[data-bs-theme="dark"] a,
+html[data-bs-theme="dark"] .nav-link {
+    color: #8ab4ff !important;
+}
+
+html[data-bs-theme="dark"] .text-muted { color: #9aa6b2 !important; }
+
+/* ensure table-section border and background are consistent */
+html[data-bs-theme="dark"] .table-section { border-color: #222 !important; }
+
+/* Dark-mode variable overrides */
+html[data-bs-theme="dark"] {
+    --text-primary: #e6eef8 !important;
+    --text-secondary: #9aa6b2 !important;
+    --surface: #0f1114 !important;
+    --background: #0b0f14 !important;
+}
+
+/* Tooltip and popover (Bootstrap) */
+.tooltip .tooltip-inner,
+.tooltip-inner,
+.popover .popover-body,
+.popover-body {
+    background-color: #0f1114 !important;
+    color: #e6eef8 !important;
+    border: 1px solid #222 !important;
+}
+
+/* Plotly hover label overrides (SVG/text) */
+.plotly .hovertext,
+.plotly .hoverlabel,
+.plotly .hoverlayer text,
+.plotly .hoverlayer tspan {
+    fill: #e6eef8 !important;
+}
+.plotly .hovertext path,
+.plotly .hovertext rect,
+.plotly .hoverlabel rect {
+    fill: #0f1114 !important;
+    stroke: #222 !important;
+}
+.plotly .cursor-point { stroke: #8ab4ff !important; }
+
+/* Thumbnails and placeholders */
+html[data-bs-theme="dark"] .product-thumb,
+html[data-bs-theme="dark"] .product-thumb-placeholder {
+    background-color: #111 !important;
+    border-color: #222 !important;
+}
+
+/* Ensure utility backgrounds switch in dark mode */
+html[data-bs-theme="dark"] .bg-white,
+html[data-bs-theme="dark"] .bg-light {
+    background-color: var(--surface) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Strong Plotly hover label overrides to ensure contrast */
+.js-plotly-plot .hovertext,
+.js-plotly-plot .hoverlabel,
+.js-plotly-plot .hoverlayer .hovertext,
+.js-plotly-plot .hoverlayer .hoverlabel,
+.plotly .hovertext,
+.plotly .hoverlabel {
+    fill: #e6eef8 !important;
+    color: #e6eef8 !important;
+    stroke: #222 !important;
+}
+
+.js-plotly-plot .hovertext rect,
+.js-plotly-plot .hoverlabel rect,
+.plotly .hovertext rect,
+.plotly .hoverlabel rect,
+.js-plotly-plot .hovertext path,
+.plotly .hovertext path {
+    fill: #0f1114 !important;
+    stroke: #222 !important;
+}
+
+.js-plotly-plot .hoverlayer text,
+.js-plotly-plot .hoverlayer tspan,
+.js-plotly-plot .hoverlabel > text tspan,
+.js-plotly-plot .hoverlabel > tspan {
+    fill: #e6eef8 !important;
+}
+
+/* If Plotly uses HTML hover containers */
+.plotly .hoverlayer .infolayer,
+.plotly .hoverlayer .hoverinfo,
+.plotly .hoverlabel {
+    background-color: #0f1114 !important;
+    color: #e6eef8 !important;
+    border: 1px solid #222 !important;
+}
+
+/* Cursor point color */
+.js-plotly-plot .cursor-point { stroke: #8ab4ff !important; }

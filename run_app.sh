@@ -21,13 +21,9 @@ else
     source .venv/bin/activate
 fi
 
-# Build the static site so Flask has latest data
-echo "Building static site..."
-python build_site.py
-
 echo ""
 echo "✅ Starting Flask server..."
-echo "   🌐 Open your browser to: http://127.0.0.1:5000"
+echo "   🌐 Open your browser to: http://127.0.0.1:5001"
 echo "   📝 You can now add/edit transactions through the web interface"
 echo "   ⛔ Press Ctrl+C to stop"
 echo ""

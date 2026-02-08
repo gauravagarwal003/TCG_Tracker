@@ -1,35 +1,48 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
+{% endblock %}
+
 {% block content %}
+<!-- Summary Cards -->
 <div class="row mb-4">
-    <div class="col-md-12">
-        {% if graph_html %}
-            <iframe class="iframe-container" srcdoc="{{ graph_html|e }}"></iframe>
-        {% else %}
-            <div class="alert alert-secondary">No graph data available.</div>
-        {% endif %}
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h6 class="text-muted mb-1">Total Value</h6>
+                <h3 class="text-success mb-0">${{ "%.2f"|format(total_value) }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center">
+                <h6 class="text-muted mb-1">Cost Basis</h6>
+                <h3 class="mb-0">${{ "%.2f"|format(total_cost_basis) }}</h3>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Portfolio Chart -->
 <div class="row mb-4">
     <div class="col-md-12">
-        {% if performance_html %}
-            <iframe class="iframe-container" srcdoc="{{ performance_html|e }}"></iframe>
-        {% else %}
-            <div class="alert alert-secondary">No performance graph available.</div>
-        {% endif %}
+        <div class="card">
+            <div class="card-body">
+                <div id="portfolioChart" style="height: 400px;"></div>
+            </div>
+        </div>
     </div>
 </div>
 
+<!-- Current Holdings Table -->
 <div class="row">
     <div class="col-12">
         <div class="table-section">
             <div class="table-header d-flex justify-content-between align-items-center mb-3">
-                <div class="d-flex align-items-center">
-                    <h5 class="mb-0 me-3">Current Holdings</h5>
-                    <button class="btn btn-sm btn-outline-secondary" id="toggleIdsBtn">Show IDs</button>
-                </div>
-                <span class="badge bg-success fs-6">Total Value: ${{ "%.2f"|format(total_value) }}</span>
+                <h5 class="mb-0">Current Holdings</h5>
+                <span class="badge bg-success fs-6">{{ holdings|length }} items</span>
             </div>
             <div class="table-content">
                 <div class="table-responsive">
@@ -38,9 +51,7 @@
                             <tr>
                                 <th style="width: 50px;" class="no-sort"></th>
                                 <th>Product Name</th>
-                                <th class="d-none toggle-id">Group ID</th>
-                                <th class="d-none toggle-id">Product ID</th>
-                                <th class="text-end">Quantity</th>
+                                <th class="text-end">Qty</th>
                                 <th class="text-end">Latest Price</th>
                                 <th class="text-end">Total Value</th>
                             </tr>
@@ -49,22 +60,26 @@
                             {% for item in holdings %}
                             <tr>
                                 <td>
-                                    {% if item['Image URL'] and item['Image URL']|string != 'nan' %}
-                                    <img src="{{ item['Image URL'] }}" alt="" class="product-thumb">
+                                    {% if item.imageUrl %}
+                                    <img src="{{ item.imageUrl }}" alt="" class="product-thumb">
                                     {% else %}
                                     <div class="product-thumb-placeholder"></div>
                                     {% endif %}
                                 </td>
-                                <td>{{ item['Product Name'] }}</td>
-                                <td class="d-none toggle-id">{{ item['group_id'] if item['group_id']|string != 'nan' else '-' }}</td>
-                                <td class="d-none toggle-id">{{ item['product_id'] if item['product_id']|string != 'nan' else '-' }}</td>
-                                <td class="text-end">{{ item['Quantity']|int }}</td>
-                                <td class="text-end">${{ "%.2f"|format(item['Latest Price']) if item['Latest Price']|string != 'nan' else '0.00' }}</td>
-                                <td class="text-end fw-bold">${{ "%.2f"|format(item['Total Value']) if item['Total Value']|string != 'nan' else '0.00' }}</td>
+                                <td class="fw-medium">
+                                    {% if item.url %}
+                                    <a href="{{ item.url }}" target="_blank" class="text-decoration-none">{{ item.name }}</a>
+                                    {% else %}
+                                    {{ item.name }}
+                                    {% endif %}
+                                </td>
+                                <td class="text-end">{{ item.quantity|int }}</td>
+                                <td class="text-end">${{ "%.2f"|format(item.latest_price) }}</td>
+                                <td class="text-end fw-bold">${{ "%.2f"|format(item.total_value) }}</td>
                             </tr>
                             {% else %}
                             <tr>
-                                <td colspan="7" class="text-center">No holdings found.</td>
+                                <td colspan="5" class="text-center py-4 text-muted">No holdings.</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -74,4 +89,54 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Build portfolio chart from summary data
+const summary = {{ summary|tojson }};
+const dates = Object.keys(summary).sort();
+const values = dates.map(d => summary[d].total_value);
+const costBasis = dates.map(d => summary[d].cost_basis);
+
+Plotly.newPlot('portfolioChart', [
+    {
+        x: dates,
+        y: values,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Total Value',
+        line: { color: '#10b981', width: 2 },
+        fill: 'tozeroy',
+        fillcolor: 'rgba(16, 185, 129, 0.12)'
+    },
+    {
+        x: dates,
+        y: costBasis,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Cost Basis',
+        line: { color: '#ef4444', width: 2, dash: 'dot' }
+    }
+], {
+    margin: { t: 30, r: 20, b: 40, l: 60 },
+    xaxis: { title: '', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+    yaxis: { title: '', tickprefix: '$', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+    legend: { x: 0.02, y: 0.98, font: { color: '#e2e8f0' } },
+    hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#0f1114',
+            bordercolor: '#222222',
+            font: {
+                color: '#e6eef8',
+                size: 12
+            }
+        },
+
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    font: { color: '#e2e8f0' }
+}, { responsive: true });
+</script>
+<script src="{{ url_for('static', filename='js/table-init.js') }}"></script>
 {% endblock %}

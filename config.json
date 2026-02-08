@@ -1,0 +1,11 @@
+{
+    "start_date": "2024-11-19",
+    "timezone": "US/Pacific",
+    "category_id_default": 3,
+    "price_source": "tcgcsv",
+    "github": {
+        "owner": "gauravagarwal003",
+        "repo": "Pokemon_Tracker",
+        "branch": "main"
+    }
+}

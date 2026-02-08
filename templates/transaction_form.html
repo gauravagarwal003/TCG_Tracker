@@ -1,303 +1,480 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row mb-3">
-    <div class="col-md-12">
-        <h2>{{ 'Edit Transaction' if is_edit else 'Add Transaction' }}</h2>
+<div class="table-section">
+    <div class="table-header mb-3">
+        <h5 class="mb-0">{{ 'Edit Transaction' if is_edit else 'Add Transaction' }}</h5>
     </div>
-</div>
 
-<div class="card">
-    <div class="card-body">
-        <form method="POST">
+    <div class="table-content">
+        <form method="POST" id="txnForm">
+            <!-- ── Transaction Type ── -->
             <div class="row mb-4">
-                <div class="col-md-12">
-                    <h5 class="text-primary mb-3">Product Information</h5>
+                <div class="col-md-4">
+                    <label for="transaction_type" class="form-label fw-semibold">Transaction Type *</label>
+                    <select class="form-select" id="transaction_type" name="transaction_type" required>
+                        <option value="">Select Type</option>
+                        <option value="BUY"   {{ 'selected' if transaction and transaction.type == 'BUY' }}>BUY</option>
+                        <option value="SELL"  {{ 'selected' if transaction and transaction.type == 'SELL' }}>SELL</option>
+                        <option value="OPEN"  {{ 'selected' if transaction and transaction.type == 'OPEN' }}>OPEN</option>
+                        <option value="TRADE" {{ 'selected' if transaction and transaction.type == 'TRADE' }}>TRADE</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Product Search/Selection -->
-            <div class="row mb-3">
-                <div class="col-md-12">
-                    <label for="product_search" class="form-label">Search for Product</label>
-                    <input type="text" 
-                           class="form-control" 
-                           id="product_search" 
-                           placeholder="Start typing product name..."
-                           autocomplete="off"
-                           value="{{ transaction['Item'] if transaction else '' }}">
-                    <div id="search_results" class="list-group mt-1" style="display: none; position: absolute; z-index: 1000; max-height: 300px; overflow-y: auto; width: calc(100% - 30px);"></div>
-                </div>
-            </div>
+            <hr class="my-4">
 
-            <!-- Hidden fields that will be populated -->
-            <input type="hidden" id="selected_product_id" name="product_id" value="{{ transaction['product_id'] if transaction else '' }}">
-            <input type="hidden" id="selected_group_id" name="group_id" value="{{ transaction['group_id'] if transaction else '' }}">
-            <input type="hidden" id="selected_category_id" name="category_id" value="{{ transaction.get('categoryId', 3) if transaction else 3 }}">
-            <input type="hidden" id="product_name" name="product_name" value="{{ transaction['Item'] if transaction else '' }}">
+            <!-- ══════════════════════════════════════════════
+                 NON-TRADE FIELDS  (BUY / SELL / OPEN)
+                 ══════════════════════════════════════════════ -->
+            <div id="standardFields" style="display: {{ 'block' if (not transaction) or (transaction and transaction.type != 'TRADE') else 'none' }};">
+                <h6 class="text-primary mb-3">Product</h6>
 
-            <!-- New Product Fields (shown only if product not found) -->
-            <div id="new_product_fields" style="display: none;">
-                <div class="alert alert-info">
-                    <i class="fas fa-info-circle"></i> This product is not in the database. Please provide the following information:
-                </div>
-                
+                {% set tx_items = transaction.get('items', []) if transaction else [] %}
+                {% set first_item = tx_items[0] if tx_items|length > 0 else none %}
+
+                <!-- Product Search -->
                 <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="new_product_id" class="form-label">Product ID *</label>
-                        <input type="text" class="form-control" id="new_product_id" placeholder="e.g., 256138">
-                        <small class="text-muted">From TCGPlayer product page URL</small>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="new_group_id" class="form-label">Group ID *</label>
-                        <input type="text" class="form-control" id="new_group_id" placeholder="e.g., 2948">
-                        <small class="text-muted">From TCGPlayer product page URL</small>
+                    <div class="col-md-12 position-relative">
+                        <label for="product_search" class="form-label">Search for Product</label>
+                        <input type="text"
+                               class="form-control"
+                               id="product_search"
+                               placeholder="Start typing product name..."
+                               autocomplete="off"
+                               value="{{ first_item.name if first_item else '' }}">
+                        <div id="search_results" class="list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:300px; overflow-y:auto; width:calc(100% - 24px);"></div>
                     </div>
                 </div>
 
+                <!-- Hidden IDs -->
+                <input type="hidden" id="sel_product_id"  name="product_id"  value="{{ first_item.product_id  if first_item else '' }}">
+                <input type="hidden" id="sel_group_id"    name="group_id"    value="{{ first_item.group_id    if first_item else '' }}">
+                <input type="hidden" id="sel_category_id" name="category_id" value="{{ first_item.categoryId  if first_item else 3 }}">
+                <input type="hidden" id="sel_name"        name="product_name" value="{{ first_item.name       if first_item else '' }}">
+
+                <!-- New Product mini-form -->
+                <div id="new_product_fields" class="mb-3" style="display:none;">
+                    <div class="alert alert-info py-2">
+                        <i class="fas fa-info-circle"></i> Product not found. Enter IDs manually:
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" id="new_product_id" placeholder="Product ID">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control form-control-sm" id="new_group_id" placeholder="Group ID">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control form-control-sm" id="new_category_id" placeholder="Cat ID" value="3">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-sm btn-primary w-100" id="confirmNewProduct">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantity & Amount -->
                 <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label for="new_category_id" class="form-label">Category ID *</label>
-                        <input type="text" class="form-control" id="new_category_id" placeholder="e.g., 3" value="3">
-                        <small class="text-muted">From TCGPlayer product page URL (Pokemon = 3)</small>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary" id="confirm_new_product">
-                            <i class="fas fa-check"></i> Confirm Product Details
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Transaction Details (shown after product is selected) -->
-            <div id="transaction_fields" style="display: {{ 'block' if transaction else 'none' }};">
-                <hr class="my-4">
-                <div class="row mb-4">
-                    <div class="col-md-12">
-                        <h5 class="text-primary mb-3">Transaction Details</h5>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="transaction_type" class="form-label">Transaction Type *</label>
-                        <select class="form-select" id="transaction_type" name="transaction_type" required>
-                            <option value="">Select Type</option>
-                            <option value="BUY" {{ 'selected' if transaction and transaction['Transaction Type'] == 'BUY' else '' }}>BUY</option>
-                            <option value="SELL" {{ 'selected' if transaction and transaction['Transaction Type'] == 'SELL' else '' }}>SELL</option>
-                            <option value="OPEN" {{ 'selected' if transaction and transaction['Transaction Type'] == 'OPEN' else '' }}>OPEN</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="quantity" class="form-label">Quantity *</label>
-                        <input type="number" 
-                               class="form-control" 
-                               id="quantity" 
-                               name="quantity" 
-                               step="0.01" 
-                               required
-                               value="{{ transaction['Quantity'] if transaction else '' }}">
+                        <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" required
+                               value="{{ first_item.quantity|int if first_item else 1 }}">
+                    </div>
+                    <div class="col-md-4" id="amountGroup">
+                        <label for="amount" class="form-label">Total Amount ($)</label>
+                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0"
+                               value="{{ '%.2f'|format(transaction.amount) if transaction and transaction.amount else '' }}">
                     </div>
                 </div>
+            </div>
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="date_purchased" class="form-label">Date Purchased *</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="date_purchased" 
-                               name="date_purchased" 
-                               placeholder="MM/DD/YYYY"
-                               required
-                               value="{{ transaction['Date Purchased'] if transaction else '' }}">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="date_received" class="form-label">Date Received *</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="date_received" 
-                               name="date_received" 
-                               placeholder="MM/DD/YYYY"
-                               required
-                               value="{{ transaction['Date Recieved'] if transaction else '' }}">
-                    </div>
+            <!-- ══════════════════════════════════════════════
+                 TRADE FIELDS
+                 ══════════════════════════════════════════════ -->
+            <div id="tradeFields" style="display: {{ 'block' if transaction and transaction.type == 'TRADE' else 'none' }};">
+                <!-- Items Out -->
+                <h6 class="text-danger mb-3"><i class="fas fa-arrow-right"></i> Items Traded Away</h6>
+                <div id="itemsOutContainer">
+                    {% if transaction and transaction.type == 'TRADE' %}
+                        {% for item in transaction.get('items_out', []) %}
+                        <div class="trade-item-row row g-2 mb-2 align-items-end">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." value="{{ item.name }}" data-direction="out">
+                                <div class="trade-search-results list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto;"></div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="{{ item.quantity|int }}">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" class="trade-product-id" value="{{ item.product_id }}">
+                                <input type="hidden" class="trade-group-id" value="{{ item.group_id }}">
+                                <input type="hidden" class="trade-category-id" value="{{ item.categoryId }}">
+                                <input type="hidden" class="trade-name" value="{{ item.name }}">
+                                <small class="text-muted">{{ item.product_id }}</small>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-sm btn-outline-danger remove-trade-item w-100">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary mb-4" id="addItemOut">
+                    <i class="fas fa-plus"></i> Add Item Out
+                </button>
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="price_per_unit" class="form-label">Price Per Unit</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="price_per_unit" 
-                               name="price_per_unit" 
-                               placeholder="$0.00"
-                               value="{{ transaction['Price Per Unit'] if transaction and transaction['Price Per Unit']|string != 'nan' else '' }}">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="place" class="form-label">Store/Place</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="place" 
-                               name="place" 
-                               placeholder="e.g., Target, Pokemon Center"
-                               value="{{ transaction['Place'] if transaction and transaction['Place']|string != 'nan' else '' }}">
-                    </div>
+                <!-- Items In -->
+                <h6 class="text-success mb-3"><i class="fas fa-arrow-left"></i> Items Received</h6>
+                <div id="itemsInContainer">
+                    {% if transaction and transaction.type == 'TRADE' %}
+                        {% for item in transaction.get('items_in', []) %}
+                        <div class="trade-item-row row g-2 mb-2 align-items-end">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." value="{{ item.name }}" data-direction="in">
+                                <div class="trade-search-results list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto;"></div>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="{{ item.quantity|int }}">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="hidden" class="trade-product-id" value="{{ item.product_id }}">
+                                <input type="hidden" class="trade-group-id" value="{{ item.group_id }}">
+                                <input type="hidden" class="trade-category-id" value="{{ item.categoryId }}">
+                                <input type="hidden" class="trade-name" value="{{ item.name }}">
+                                <small class="text-muted">{{ item.product_id }}</small>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-sm btn-outline-danger remove-trade-item w-100">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary mb-3" id="addItemIn">
+                    <i class="fas fa-plus"></i> Add Item In
+                </button>
 
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="method" class="form-label">Purchase Method</label>
-                        <select class="form-select" id="method" name="method">
-                            <option value="">Select Method</option>
-                            <option value="Online" {{ 'selected' if transaction and transaction['Method'] == 'Online' else '' }}>Online</option>
-                            <option value="In-person" {{ 'selected' if transaction and transaction['Method'] == 'In-person' else '' }}>In-person</option>
-                        </select>
-                    </div>
-                </div>
+                <!-- hidden JSON fields submitted with the form -->
+                <input type="hidden" id="items_out_json" name="items_out" value="">
+                <input type="hidden" id="items_in_json"  name="items_in"  value="">
+            </div>
 
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <label for="notes" class="form-label">Notes</label>
-                        <textarea class="form-control" 
-                                  id="notes" 
-                                  name="notes" 
-                                  rows="3" 
-                                  placeholder="Additional details about this transaction...">{{ transaction['Notes'] if transaction and transaction['Notes']|string != 'nan' else '' }}</textarea>
-                    </div>
-                </div>
+            <!-- ══════════════════════════════════════════════
+                 COMMON FIELDS (all types)
+                 ══════════════════════════════════════════════ -->
+            <hr class="my-4">
+            <h6 class="text-primary mb-3">Dates & Details</h6>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-success">
-                            <i class="fas fa-save"></i> {{ 'Update Transaction' if is_edit else 'Add Transaction' }}
-                        </button>
-                        <a href="{{ url_for('transactions') }}" class="btn btn-secondary ms-2">
-                            <i class="fas fa-times"></i> Cancel
-                        </a>
-                    </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="date_received" class="form-label">Date Received *</label>
+                    <input type="date" class="form-control" id="date_received" name="date_received" required
+                           value="{{ transaction.date_received if transaction else '' }}">
                 </div>
+                <div class="col-md-4">
+                    <label for="date_purchased" class="form-label">Date Purchased</label>
+                    <input type="date" class="form-control" id="date_purchased" name="date_purchased"
+                           value="{{ transaction.date_purchased if transaction else '' }}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="place" class="form-label">Store / Place</label>
+                    <input type="text" class="form-control" id="place" name="place" placeholder="e.g., Target"
+                           value="{{ transaction.place if transaction and transaction.place else '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="method" class="form-label">Method</label>
+                    <select class="form-select" id="method" name="method">
+                        <option value="">—</option>
+                        <option value="Online"    {{ 'selected' if transaction and transaction.method == 'Online' }}>Online</option>
+                        <option value="In-person" {{ 'selected' if transaction and transaction.method == 'In-person' }}>In-person</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <label for="notes" class="form-label">Notes</label>
+                    <textarea class="form-control" id="notes" name="notes" rows="2" placeholder="Optional details...">{{ transaction.notes if transaction and transaction.notes else '' }}</textarea>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-save me-1"></i>{{ 'Update' if is_edit else 'Add' }} Transaction
+                </button>
+                <a href="{{ url_for('transactions_page') }}" class="btn btn-outline-secondary">Cancel</a>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
 
+{% block scripts %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('product_search');
-    const searchResults = document.getElementById('search_results');
-    const newProductFields = document.getElementById('new_product_fields');
-    const transactionFields = document.getElementById('transaction_fields');
-    
-    const productIdInput = document.getElementById('selected_product_id');
-    const groupIdInput = document.getElementById('selected_group_id');
-    const categoryIdInput = document.getElementById('selected_category_id');
-    const productNameInput = document.getElementById('product_name');
-    
-    let searchTimeout;
-    let existingProduct = {{ 'true' if transaction else 'false' }};
-    
-    // If editing existing transaction, show transaction fields
-    if (existingProduct) {
-        transactionFields.style.display = 'block';
+
+    /* ── references ── */
+    const typeSelect   = document.getElementById('transaction_type');
+    const stdFields    = document.getElementById('standardFields');
+    const tradeFields  = document.getElementById('tradeFields');
+    const amountGroup  = document.getElementById('amountGroup');
+    const searchInput  = document.getElementById('product_search');
+    const searchResults= document.getElementById('search_results');
+    const newProdDiv   = document.getElementById('new_product_fields');
+
+    /* ── Type toggle ── */
+    typeSelect.addEventListener('change', toggleType);
+    function toggleType() {
+        const t = typeSelect.value;
+        if (t === 'TRADE') {
+            stdFields.style.display  = 'none';
+            tradeFields.style.display = 'block';
+        } else {
+            stdFields.style.display  = 'block';
+            tradeFields.style.display = 'none';
+        }
+        // Hide amount for OPEN
+        if (t === 'OPEN') {
+            amountGroup.style.display = 'none';
+        } else {
+            amountGroup.style.display = '';
+        }
     }
-    
-    // Product search
+    toggleType(); // init
+
+    /* ── Product Search (standard) ── */
+    let searchTimeout;
     searchInput.addEventListener('input', function() {
         clearTimeout(searchTimeout);
-        const query = this.value.trim();
-        
-        if (query.length < 2) {
-            searchResults.style.display = 'none';
-            return;
-        }
-        
+        const q = this.value.trim();
+        if (q.length < 2) { searchResults.style.display = 'none'; return; }
         searchTimeout = setTimeout(() => {
-            fetch(`/api/search_products?q=${encodeURIComponent(query)}`)
-                .then(response => response.json())
+            fetch(`/api/search_products?q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
                 .then(products => {
                     if (products.length === 0) {
-                        searchResults.innerHTML = '<div class="list-group-item text-muted"><em>No products found. Click below to add as new product.</em></div><div class="list-group-item list-group-item-action" id="add_new_product" style="cursor: pointer;"><i class="fas fa-plus-circle text-success"></i> Add as New Product</div>';
+                        searchResults.innerHTML = `
+                            <div class="list-group-item text-muted"><em>No products found.</em></div>
+                            <div class="list-group-item list-group-item-action" id="showNewProduct" style="cursor:pointer">
+                                <i class="fas fa-plus-circle text-success"></i> Add as new product
+                            </div>`;
                         searchResults.style.display = 'block';
-                        
-                        document.getElementById('add_new_product').addEventListener('click', function() {
-                            productNameInput.value = searchInput.value;
+                        document.getElementById('showNewProduct').addEventListener('click', () => {
+                            document.getElementById('sel_name').value = searchInput.value;
                             searchResults.style.display = 'none';
-                            newProductFields.style.display = 'block';
-                            transactionFields.style.display = 'none';
+                            newProdDiv.style.display = 'block';
                         });
                     } else {
-                        searchResults.innerHTML = products.map(p => 
-                            `<div class="list-group-item list-group-item-action" style="cursor: pointer;" data-product='${JSON.stringify(p)}'>
+                        searchResults.innerHTML = products.map(p => `
+                            <div class="list-group-item list-group-item-action" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
                                 <strong>${p.name}</strong><br>
-                                <small class="text-muted">Product ID: ${p.product_id} | Group ID: ${p.group_id}</small>
-                            </div>`
-                        ).join('');
+                                <small class="text-muted">PID: ${p.product_id} | GID: ${p.group_id}</small>
+                            </div>`).join('');
                         searchResults.style.display = 'block';
-                        
-                        // Add click handlers
-                        searchResults.querySelectorAll('.list-group-item-action').forEach(item => {
-                            item.addEventListener('click', function() {
-                                const product = JSON.parse(this.getAttribute('data-product'));
-                                selectProduct(product);
-                            });
+                        searchResults.querySelectorAll('.list-group-item-action').forEach(el => {
+                            el.addEventListener('click', () => selectProduct(JSON.parse(el.dataset.p)));
                         });
                     }
-                })
-                .catch(error => {
-                    console.error('Error searching products:', error);
                 });
         }, 300);
     });
-    
-    // Click outside to close search results
-    document.addEventListener('click', function(e) {
-        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+
+    document.addEventListener('click', e => {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target))
             searchResults.style.display = 'none';
-        }
     });
-    
-    // Select product from search results
-    function selectProduct(product) {
-        searchInput.value = product.name;
-        productNameInput.value = product.name;
-        productIdInput.value = product.product_id;
-        groupIdInput.value = product.group_id;
-        categoryIdInput.value = product.categoryId || 3;
-        
+
+    function selectProduct(p) {
+        searchInput.value = p.name;
+        document.getElementById('sel_product_id').value  = p.product_id;
+        document.getElementById('sel_group_id').value    = p.group_id;
+        document.getElementById('sel_category_id').value = p.categoryId || 3;
+        document.getElementById('sel_name').value        = p.name;
         searchResults.style.display = 'none';
-        newProductFields.style.display = 'none';
-        transactionFields.style.display = 'block';
+        newProdDiv.style.display = 'none';
     }
-    
-    // Confirm new product
-    document.getElementById('confirm_new_product').addEventListener('click', function() {
-        const newProductId = document.getElementById('new_product_id').value.trim();
-        const newGroupId = document.getElementById('new_group_id').value.trim();
-        const newCategoryId = document.getElementById('new_category_id').value;
-        
-        if (!newProductId || !newGroupId) {
-            alert('Please provide both Product ID and Group ID');
-            return;
-        }
-        
-        // Set the values
-        productIdInput.value = newProductId;
-        groupIdInput.value = newGroupId;
-        categoryIdInput.value = newCategoryId;
-        
-        // Show transaction fields
-        newProductFields.style.display = 'none';
-        transactionFields.style.display = 'block';
+
+    /* ── Confirm New Product ── */
+    document.getElementById('confirmNewProduct').addEventListener('click', function() {
+        const pid = document.getElementById('new_product_id').value.trim();
+        const gid = document.getElementById('new_group_id').value.trim();
+        const cid = document.getElementById('new_category_id').value.trim() || '3';
+        if (!pid || !gid) { alert('Product ID and Group ID are required'); return; }
+        document.getElementById('sel_product_id').value  = pid;
+        document.getElementById('sel_group_id').value    = gid;
+        document.getElementById('sel_category_id').value = cid;
+        document.getElementById('sel_name').value        = searchInput.value;
+        newProdDiv.style.display = 'none';
     });
+
+    /* ── Trade item row helpers ── */
+    function tradeItemRowHTML(direction) {
+        return `
+        <div class="trade-item-row row g-2 mb-2 align-items-end">
+            <div class="col-md-5 position-relative">
+                <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
+                <div class="trade-search-results list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto; width:100%;"></div>
+            </div>
+            <div class="col-md-2">
+                <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="1">
+            </div>
+            <div class="col-md-3">
+                <input type="hidden" class="trade-product-id" value="">
+                <input type="hidden" class="trade-group-id" value="">
+                <input type="hidden" class="trade-category-id" value="3">
+                <input type="hidden" class="trade-name" value="">
+                <small class="text-muted trade-id-label"></small>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-sm btn-outline-danger remove-trade-item w-100">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>`;
+    }
+
+    document.getElementById('addItemOut').addEventListener('click', () => {
+        document.getElementById('itemsOutContainer').insertAdjacentHTML('beforeend', tradeItemRowHTML('out'));
+    });
+    document.getElementById('addItemIn').addEventListener('click', () => {
+        document.getElementById('itemsInContainer').insertAdjacentHTML('beforeend', tradeItemRowHTML('in'));
+    });
+
+    /* Remove row */
+    document.addEventListener('click', e => {
+        if (e.target.closest('.remove-trade-item')) {
+            e.target.closest('.trade-item-row').remove();
+        }
+    });
+
+    /* Trade product search */
+    let tradeSearchTimeout;
+    document.addEventListener('input', e => {
+        if (!e.target.classList.contains('trade-search')) return;
+        clearTimeout(tradeSearchTimeout);
+        const input = e.target;
+        const resultsDiv = input.closest('.col-md-5').querySelector('.trade-search-results');
+        const q = input.value.trim();
+        if (q.length < 2) { resultsDiv.style.display = 'none'; return; }
+        tradeSearchTimeout = setTimeout(() => {
+            fetch(`/api/search_products?q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(products => {
+                    if (products.length === 0) {
+                        resultsDiv.innerHTML = '<div class="list-group-item text-muted small"><em>Not found</em></div>';
+                    } else {
+                        resultsDiv.innerHTML = products.map(p => `
+                            <div class="list-group-item list-group-item-action py-1" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                                <strong>${p.name}</strong> <small class="text-muted">(${p.product_id})</small>
+                            </div>`).join('');
+                        resultsDiv.querySelectorAll('.list-group-item-action').forEach(el => {
+                            el.addEventListener('click', () => {
+                                const p = JSON.parse(el.dataset.p);
+                                const row = input.closest('.trade-item-row');
+                                input.value = p.name;
+                                row.querySelector('.trade-product-id').value  = p.product_id;
+                                row.querySelector('.trade-group-id').value    = p.group_id;
+                                row.querySelector('.trade-category-id').value = p.categoryId || 3;
+                                row.querySelector('.trade-name').value        = p.name;
+                                row.querySelector('.trade-id-label').textContent = p.product_id;
+                                resultsDiv.style.display = 'none';
+                            });
+                        });
+                    }
+                    resultsDiv.style.display = 'block';
+                });
+        }, 300);
+    });
+
+    /* Close trade results on click outside */
+    document.addEventListener('click', e => {
+        document.querySelectorAll('.trade-search-results').forEach(d => {
+            if (!d.contains(e.target) && !d.previousElementSibling?.contains(e.target))
+                d.style.display = 'none';
+        });
+    });
+
+    /* ── Form Submission ── */
+    document.getElementById('txnForm').addEventListener('submit', function(e) {
+        const type = typeSelect.value;
+        if (!type) { e.preventDefault(); alert('Select a transaction type'); return; }
+
+        if (type === 'TRADE') {
+            // Build items_out / items_in JSON
+            const itemsOut = collectTradeItems('itemsOutContainer');
+            const itemsIn  = collectTradeItems('itemsInContainer');
+            if (itemsOut.length === 0 || itemsIn.length === 0) {
+                e.preventDefault();
+                alert('TRADE requires at least one item out and one item in.');
+                return;
+            }
+            document.getElementById('items_out_json').value = JSON.stringify(itemsOut);
+            document.getElementById('items_in_json').value  = JSON.stringify(itemsIn);
+        } else {
+            // Build single items JSON for hidden field
+            const pid  = document.getElementById('sel_product_id').value;
+            const gid  = document.getElementById('sel_group_id').value;
+            const cid  = document.getElementById('sel_category_id').value;
+            const name = document.getElementById('sel_name').value;
+            const qty  = parseInt(document.getElementById('quantity').value) || 1;
+            if (!pid || !gid || !name) {
+                e.preventDefault();
+                alert('Please search and select a product first.');
+                return;
+            }
+            // inject hidden items field
+            let itemsField = document.getElementById('items_json_hidden');
+            if (!itemsField) {
+                itemsField = document.createElement('input');
+                itemsField.type = 'hidden';
+                itemsField.id   = 'items_json_hidden';
+                itemsField.name = 'items';
+                this.appendChild(itemsField);
+            }
+            itemsField.value = JSON.stringify([{
+                product_id: parseInt(pid),
+                group_id: parseInt(gid),
+                categoryId: parseInt(cid),
+                name: name,
+                quantity: qty
+            }]);
+        }
+    });
+
+    function collectTradeItems(containerId) {
+        const items = [];
+        document.getElementById(containerId).querySelectorAll('.trade-item-row').forEach(row => {
+            const pid  = row.querySelector('.trade-product-id').value;
+            const gid  = row.querySelector('.trade-group-id').value;
+            const cid  = row.querySelector('.trade-category-id').value;
+            const name = row.querySelector('.trade-name').value;
+            const qty  = parseInt(row.querySelector('.trade-qty').value) || 1;
+            if (pid && gid && name) {
+                items.push({
+                    product_id: parseInt(pid),
+                    group_id: parseInt(gid),
+                    categoryId: parseInt(cid),
+                    name: name,
+                    quantity: qty
+                });
+            }
+        });
+        return items;
+    }
 });
 </script>
 
 <style>
-.list-group-item-action:hover {
-    background-color: #f8f9fa;
-}
+.trade-search-results .list-group-item-action:hover { background-color: #f8f9fa; }
+#search_results .list-group-item-action:hover { background-color: #f8f9fa; }
 </style>
 {% endblock %}

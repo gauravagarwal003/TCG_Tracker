@@ -6,22 +6,21 @@
         <h5 class="mb-0">Transactions</h5>
         <div>
             <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
-            {% if not is_static %}
-            <a href="{{ url_for('add_transaction') }}" class="btn btn-primary">Add Transaction</a>
-            {% endif %}
-            <!-- Button container for JS to populate when on static site -->
+            <a href="{{ url_for('add_transaction_page') }}" class="btn btn-sm btn-success">
+                <i class="fas fa-plus me-1"></i>Add
+            </a>
         </div>
     </div>
     
     <div class="table-content">
-        <!-- Filter Interface -->
+        <!-- Filter -->
         <div class="row g-3 mb-4">
             <div class="col-md-9">
                 <div class="input-group">
                     <span class="input-group-text bg-white border-end-0">
                         <i class="fas fa-search text-muted"></i>
                     </span>
-                    <input type="text" id="globalSearch" class="form-control border-start-0 ps-0" placeholder="Search transactions (item, store, type, etc)...">
+                    <input type="text" id="globalSearch" class="form-control border-start-0 ps-0" placeholder="Search transactions...">
                 </div>
             </div>
             <div class="col-md-3">
@@ -30,7 +29,6 @@
                     <option value="BUY">BUY</option>
                     <option value="SELL">SELL</option>
                     <option value="OPEN">OPEN</option>
-                    <option value="PULL">PULL</option>
                     <option value="TRADE">TRADE</option>
                 </select>
             </div>
@@ -42,67 +40,81 @@
                     <tr>
                         <th style="width: 50px;" class="no-sort"></th>
                         <th style="width: 100px;" class="text-center">Type</th>
-                        <th>Product Name</th>
-                        <th>Date</th>
+                        <th>Product</th>
+                        <th>Date Received</th>
                         <th class="text-end">Qty</th>
-                        <th class="text-end">Price</th>
+                        <th class="text-end">Amount</th>
                         <th class="d-none toggle-details">Store</th>
                         <th class="d-none toggle-details">Method</th>
                         <th>Notes</th>
-                        {% if not is_static %}
                         <th style="width: 100px;">Actions</th>
-                        {% endif %}
-                        <!-- Actions column will be added by JS for static site -->
                     </tr>
                 </thead>
                 <tbody>
                     {% for tx in transactions %}
                     <tr data-index="{{ loop.index0 }}">
                         <td>
-                            {% if tx['Image URL'] and tx['Image URL']|string != 'nan' %}
-                            <img src="{{ tx['Image URL'] }}" alt="" class="product-thumb">
+                            {% set tx_items = tx.get('items', []) %}
+                            {% set tx_items_in = tx.get('items_in', []) %}
+                            {% set first_item = tx_items[0] if tx_items|length > 0 else (tx_items_in[0] if tx_items_in|length > 0 else none) %}
+                            {% if first_item %}
+                            <img src="https://tcgplayer-cdn.tcgplayer.com/product/{{ first_item.product_id }}_200w.jpg" alt="" class="product-thumb">
                             {% else %}
                             <div class="product-thumb-placeholder"></div>
                             {% endif %}
                         </td>
-                         <td class="text-center">
-                            <span class="badge {% if tx['Transaction Type'] == 'BUY' %}bg-primary{% elif tx['Transaction Type'] == 'SELL' %}bg-success{% elif tx['Transaction Type'] == 'OPEN' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
-                                {{ tx['Transaction Type'] }}
+                        <td class="text-center">
+                            <span class="badge {% if tx.type == 'BUY' %}bg-primary{% elif tx.type == 'SELL' %}bg-success{% elif tx.type == 'OPEN' %}bg-warning text-dark{% elif tx.type == 'TRADE' %}bg-info{% else %}bg-secondary{% endif %}">
+                                {{ tx.type }}
                             </span>
                         </td>
-                        <td class="fw-medium">{{ tx['Item'] }}</td>
-                        <td>{{ tx['Date Purchased'] }}</td>
-                        <td class="text-end">{{ tx['Quantity']|float|int }}</td>
-                        <td class="text-end">{{ tx['Price Per Unit'] if tx['Price Per Unit']|string != 'nan' else '' }}</td>
-                        <td class="d-none toggle-details">{{ tx['Place'] if tx['Place']|string != 'nan' else '' }}</td>
-                        <td class="d-none toggle-details">{{ tx['Method'] if tx['Method']|string != 'nan' else '' }}</td>
+                        <td class="fw-medium">
+                            {% if tx.type == 'TRADE' %}
+                                {% for item in tx.get('items_out', []) %}{{ item.name }} x{{ item.quantity|int }}{% if not loop.last %}, {% endif %}{% endfor %}
+                                →
+                                {% for item in tx.get('items_in', []) %}{{ item.name }} x{{ item.quantity|int }}{% if not loop.last %}, {% endif %}{% endfor %}
+                            {% else %}
+                                {% set tx_item_list = tx.get('items', []) %}
+                                {% for item in tx_item_list %}{{ item.name }}{% if tx_item_list|length > 1 %} x{{ item.quantity|int }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}
+                            {% endif %}
+                        </td>
+                        <td>{{ tx.date_received }}</td>
+                        <td class="text-end">
+                            {% if tx.type == 'TRADE' %}
+                                -
+                            {% else %}
+                                {% set qty_items = tx.get('items', []) %}
+                                {{ qty_items[0].quantity|int if qty_items|length > 0 else '' }}
+                            {% endif %}
+                        </td>
+                        <td class="text-end">
+                            {% if tx.type in ['BUY', 'SELL'] and tx.amount %}
+                                ${{ "%.2f"|format(tx.amount) }}
+                            {% endif %}
+                        </td>
+                        <td class="d-none toggle-details">{{ tx.get('place', '') }}</td>
+                        <td class="d-none toggle-details">{{ tx.get('method', '') }}</td>
                         <td>
-                            {% set note_text = tx['Notes'] if tx['Notes']|string != 'nan' else '' %}
-                            {% if note_text %}
+                            {% if tx.notes %}
                             <span class="text-muted" 
                                   data-bs-toggle="tooltip" 
                                   data-bs-placement="top" 
-                                  data-bs-html="true"
-                                  title="{{ note_text }}"
+                                  title="{{ tx.notes }}"
                                   style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                {{ note_text }}
+                                {{ tx.notes }}
                             </span>
                             {% endif %}
                         </td>
-                        {% if not is_static %}
                         <td class="action-buttons">
                             <div class="btn-group" role="group">
-                                <a href="{{ url_for('edit_transaction', tx_id=tx['id']) }}" class="btn btn-sm btn-outline-primary" title="Edit">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form action="{{ url_for('delete_transaction', tx_id=tx['id']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this transaction?');" style="display: inline;">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger ms-1" title="Delete">
+                                <a href="{{ url_for('edit_transaction_page', txn_id=tx.id) }}" class="btn btn-sm btn-outline-primary rounded-start" id="editButton">Edit</a>
+                                <form action="{{ url_for('delete_transaction_page', txn_id=tx.id) }}" method="post" onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-end" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
                             </div>
                         </td>
-                        {% endif %}
                     </tr>
                     {% else %}
                     <tr>
@@ -117,19 +129,5 @@
 {% endblock %}
 
 {% block scripts %}
-{% if is_static %}
-<script>
-    // eslint-disable-next-line
-    window.initialTransactions = {{ transactions | tojson | safe }};
-</script>
-{% endif %}
-<script>
-    // Initialize Bootstrap tooltips for notes
-    document.addEventListener('DOMContentLoaded', function() {
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/table-init.js') }}"></script>
 {% endblock %}

@@ -2,16 +2,10 @@ name: Daily Price Update
 
 on:
   schedule:
-    # Runs at 10 PM UTC every day (2 PM US PST)
-    - cron: '0 22 * * *'
+    # 3:00 PM PST = 11:00 PM UTC
+    - cron: '0 23 * * *'
   workflow_dispatch:
-    inputs:
-      date:
-        description: 'Date to update (YYYY-MM-DD). Leave empty for yesterday.'
-        required: false
-        default: ''
 
-# Required for committing + pushing back to the repo
 permissions:
   contents: write
 
@@ -44,22 +38,20 @@ jobs:
         pip install -r requirements.txt
         sudo apt-get install -y p7zip-full
     
-    - name: Update for single day
-      run: |
-        if [ -n "${{ github.event.inputs.date }}" ]; then
-          echo "Updating for specified date: ${{ github.event.inputs.date }}"
-          python update_single_day.py "${{ github.event.inputs.date }}"
-        else
-          echo "Updating for today"
-          python update_single_day.py --today
-        fi
+    - name: Pull latest changes
+      run: git pull --rebase origin main || true
     
-    - name: Build site
-      run: python build_site.py
+    - name: Run daily update
+      run: python daily_run.py
     
-    - name: Commit and push if changes
+    - name: Commit and push
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Daily price update $(date +'%Y-%m-%d')" && git push)
+        git diff --staged --quiet || git commit -m "Daily price update $(date -u +'%Y-%m-%d')"
+        git push origin main || {
+          echo "Push failed, retrying with rebase..."
+          git pull --rebase origin main
+          git push origin main
+        }

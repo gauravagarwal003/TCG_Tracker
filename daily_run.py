@@ -1,98 +1,92 @@
+"""
+daily_run.py - Daily price update script for GitHub Actions.
+
+Runs at 3:00 PM PST via GitHub Actions:
+  1. Pull latest prices for all currently held products
+  2. Re-derive daily summary
+  3. Generate static site files (daily_summary.json for GitHub Pages)
+"""
+
 import sys
-import datetime
-import argparse
-import update_prices
-import analyze_portfolio
 import json
-import pandas as pd
 import os
+from datetime import datetime
 
-def update_config_date():
-    """Ensure the config file allows fetching up to today."""
-    try:
-        with open("data.json", 'r') as f:
-            data = json.load(f)
-        
-        # Set latest_date to yesterday to ensure we have complete data (data sources often lag by 1 day)
-        data['latest_date'] = (datetime.datetime.now() - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-        
-        with open("data.json", 'w') as f:
-            json.dump(data, f, indent=4)
-    except Exception:
-        pass # If fails, we trust the user's config
+from engine import (
+    load_transactions, today_pst, derive_daily_summary,
+    save_daily_summary, get_current_holdings, load_daily_summary,
+    BASE_DIR
+)
+from price_fetcher import fetch_today_prices, update_prices
 
-import subprocess
 
 def main():
-    parser = argparse.ArgumentParser(description="Run daily updates for Pokemon Tracker")
-    parser.add_argument("--incremental", action="store_true", help="Resume from last tracked date")
-    parser.add_argument("--rebuild-from", help="Rebuild starting from specific date (YYYY-MM-DD)")
-    parser.add_argument("--no-extend-latest", action="store_true", help="Do not auto-extend latest_date to yesterday")
-    args = parser.parse_args()
+    print("=" * 60)
+    print(f"Pokemon Tracker - Daily Run")
+    print(f"Date: {today_pst()}")
+    print("=" * 60)
+    
+    transactions = load_transactions()
+    if not transactions:
+        print("No transactions found. Exiting.")
+        return
+    
+    # Step 1: Fetch today's prices
+    print("\n--- Step 1: Fetching today's prices ---")
+    fetch_today_prices()
+    
+    # Step 2: Re-derive summary
+    print("\n--- Step 2: Deriving daily summary ---")
+    summary = derive_daily_summary(transactions)
+    save_daily_summary(summary)
+    
+    td = today_pst().strftime("%Y-%m-%d")
+    if td in summary:
+        s = summary[td]
+        print(f"  Today: value=${s['total_value']:.2f}, cost_basis=${s['cost_basis']:.2f}")
+    
+    # Step 3: Generate static files for GitHub Pages
+    print("\n--- Step 3: Generating static data ---")
+    
+    # Write holdings for frontend
+    holdings = get_current_holdings(transactions)
+    holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
+    os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
+    with open(holdings_file, "w") as f:
+        json.dump(holdings, f, indent=2)
+    
+    # Copy summary to docs for frontend
+    summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
+    with open(summary_file, "w") as f:
+        json.dump(summary, f)
+    
+    # Copy transactions to docs for frontend
+    txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
+    with open(txn_file, "w") as f:
+        json.dump(transactions, f)
+    
+    print(f"  Wrote holdings ({len(holdings)} items), summary ({len(summary)} days), transactions ({len(transactions)})")
+    
+    print("\n✅ Daily run complete.")
 
-    print("========================================")
-    print(f"  POKEMON TRACKER - DAILY UPDATE")
-    print(f"  Date: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print("========================================")
 
-    # Determine Resume Date
-    resume_date = None
-    if args.rebuild_from:
-         resume_date = args.rebuild_from
-         print(f"  MODE: Rebuild from {resume_date}")
-    elif args.incremental:
-         if os.path.exists("daily_tracker.csv"):
-             try:
-                 df = pd.read_csv("daily_tracker.csv")
-                 if not df.empty:
-                     df['Date'] = pd.to_datetime(df['Date'])
-                     last_date = df['Date'].max()
-                     resume_date = (last_date + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-                     print(f"  MODE: Incremental update from {resume_date}")
-                 else:
-                     print("  MODE: Full Rebuild (CSV empty)")
-             except Exception as e:
-                 print(f"  Warning: Could not read tracker CSV ({e}). Full rebuild.")
-         else:
-             print("  MODE: Full Rebuild (No CSV)")
-    else:
-         print("  MODE: Full Rebuild (Default)")
+def backfill():
+    """Backfill all missing prices for all owned products."""
+    print("=" * 60)
+    print("Backfilling all missing prices...")
+    print("=" * 60)
+    
+    gaps = update_prices()
+    
+    print("\nRe-deriving summary...")
+    summary = derive_daily_summary()
+    save_daily_summary(summary)
+    
+    print("✅ Backfill complete.")
 
-    # Step 0: Auto-extend the config date so we don't get stuck in the past
-    if not args.no_extend_latest:
-        update_config_date()
-
-    # Step 1: Fetch latest prices from the web
-    print("\n>>> STEP 1: Updating Historical Prices...")
-    try:
-        update_prices.main(start_from_date=resume_date)
-    except Exception as e:
-        print(f"CRITICAL ERROR in Price Update: {e}")
-        # We continue even if price update fails, to at least see current basis
-        # content with old prices
-
-    # Step 2: Recalculate Portfolio Value & Basis
-    print("\n>>> STEP 2: Analyzing Portfolio Performance...")
-    try:
-        analyze_portfolio.run_analysis(resume_date=resume_date)
-    except Exception as e:
-        print(f"CRITICAL ERROR in Analysis: {e}")
-        sys.exit(1)
-
-    # Step 3: Generate Static Site for GitHub Pages
-    print("\n>>> STEP 3: Generating Static Site...")
-    try:
-        subprocess.run(["python3", "build_site.py"], check=True)
-    except Exception as e:
-        print(f"Error building static site: {e}")
-
-    print("\n========================================")
-    print("  UPDATE COMPLETE")
-    print("  1. transactions.csv : Processed")
-    print("  2. daily_tracker.csv: Updated")
-    print("  3. portfolio_graph.html: Refreshed")
-    print("  4. docs/            : Site Generated")
-    print("========================================")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "--backfill":
+        backfill()
+    else:
+        main()
