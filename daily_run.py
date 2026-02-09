@@ -19,6 +19,16 @@ from engine import (
 )
 from price_fetcher import fetch_today_prices, update_prices
 
+# For static site generation
+try:
+    from app import app as flask_app
+    from engine import load_mappings
+    from flask import render_template
+except Exception:
+    flask_app = None
+    render_template = None
+    load_mappings = None
+
 
 def main():
     print("=" * 60)
@@ -67,6 +77,58 @@ def main():
     
     print(f"  Wrote holdings ({len(holdings)} items), summary ({len(summary)} days), transactions ({len(transactions)})")
     
+    # Attempt to regenerate static HTML pages in docs/ so GitHub Pages shows
+    # the latest derived data (only if Flask app is importable).
+    try:
+        if flask_app and render_template:
+            print("\n--- Rendering static HTML pages to docs/ ---")
+            with flask_app.app_context():
+                # Index
+                total_value = sum(h.get("total_value", 0) for h in holdings)
+                total_cost_basis = 0
+                if summary:
+                    latest = max(summary.keys())
+                    total_cost_basis = summary[latest].get("cost_basis", 0)
+
+                index_html = render_template(
+                    "index.html",
+                    holdings=holdings,
+                    total_value=total_value,
+                    total_cost_basis=total_cost_basis,
+                    summary=summary,
+                    active_page="index",
+                    is_static=True
+                )
+                with open(os.path.join(BASE_DIR, "docs", "index.html"), "w") as f:
+                    f.write(index_html)
+
+                # Transactions
+                mappings = load_mappings() if load_mappings else {}
+                transactions_html = render_template(
+                    "transactions.html",
+                    transactions=transactions,
+                    mappings=mappings,
+                    active_page="transactions",
+                    is_static=True
+                )
+                with open(os.path.join(BASE_DIR, "docs", "transactions.html"), "w") as f:
+                    f.write(transactions_html)
+
+                # Add-transaction (transaction form) -> docs/add-transaction.html
+                add_tx_html = render_template(
+                    "transaction_form.html",
+                    transaction=None,
+                    mappings=mappings,
+                    is_edit=False,
+                    is_static=True
+                )
+                with open(os.path.join(BASE_DIR, "docs", "add-transaction.html"), "w") as f:
+                    f.write(add_tx_html)
+
+            print("  Regenerated docs/index.html, docs/transactions.html, docs/add-transaction.html")
+    except Exception as e:
+        print("  Skipped static HTML regeneration:", e)
+
     print("\n✅ Daily run complete.")
 
 
