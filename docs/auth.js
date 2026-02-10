@@ -35,11 +35,10 @@
         return hash === PASSWORD_HASH;
     }
 
-    // Create blocking overlay immediately and HIDE body content
+    // Create blocking overlay immediately
     function createBlockingOverlay() {
-        // Hide all body content by making it invisible
-        document.body.style.visibility = 'hidden';
-        document.body.style.overflow = 'hidden';
+        // Prevent scrolling while locked
+        document.documentElement.style.overflow = 'hidden';
         
         const overlay = document.createElement('div');
         overlay.id = 'authBlockingOverlay';
@@ -61,8 +60,7 @@
     
     // Show body content after successful auth
     function showContent() {
-        document.body.style.visibility = 'visible';
-        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     }
 
     // Show password prompt
@@ -138,9 +136,6 @@
         }
     }
 
-    // Hide content immediately before anything renders
-    document.body.style.visibility = 'hidden';
-    
     // Run auth immediately when script loads
     if (document.body) {
         authenticate();
