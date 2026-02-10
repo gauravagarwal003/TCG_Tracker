@@ -24,6 +24,30 @@ class GitHubAPI {
     }
 
     async authenticate() {
+        if (!window.bootstrap || !bootstrap.Modal) {
+            const token = window.prompt('Paste your GitHub PAT (repo scope):');
+            if (!token) return false;
+            try {
+                const response = await fetch(
+                    `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}`,
+                    { headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' } }
+                );
+                if (!response.ok) throw new Error('Invalid token: ' + response.status);
+                const repoData = await response.json();
+                if (!repoData.permissions?.push) throw new Error('Token lacks write access');
+
+                if (window.PokeAuth) {
+                    window.PokeAuth.setToken(token);
+                } else {
+                    sessionStorage.setItem('github_token', token);
+                }
+                return true;
+            } catch (error) {
+                alert('Error: ' + error.message);
+                return false;
+            }
+        }
+
         const modal = document.createElement('div');
         modal.className = 'modal fade';
         modal.id = 'githubAuthModal';
@@ -173,3 +197,4 @@ class GitHubAPI {
 
 // Initialize global API instance
 const githubAPI = new GitHubAPI();
+window.githubAPI = githubAPI;
