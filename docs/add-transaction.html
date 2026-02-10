@@ -18,7 +18,7 @@
     
     <script src="auth.js"></script>
     
-    <link href="static/css/styles.css?v=1770708654" rel="stylesheet">
+    <link href="static/css/styles.css?v=1770708765" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -233,6 +233,36 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
+    const IS_STATIC = true;
+    const STATIC_MAPPINGS_URL = 'data/mappings.json';
+    let staticMappingsCache = null;
+
+    function searchProducts(query) {
+        if (!IS_STATIC) {
+            return fetch(`/api/search_products?q=${encodeURIComponent(query)}`).then(r => r.json());
+        }
+        const ensureMappings = staticMappingsCache
+            ? Promise.resolve(staticMappingsCache)
+            : fetch(STATIC_MAPPINGS_URL).then(r => r.json()).then(data => {
+                staticMappingsCache = data || [];
+                return staticMappingsCache;
+            });
+
+        return ensureMappings.then(list => {
+            const q = query.toLowerCase();
+            return list
+                .filter(m => (m.name || '').toLowerCase().includes(q))
+                .slice(0, 20)
+                .map(m => ({
+                    name: m.name,
+                    product_id: m.product_id,
+                    group_id: m.group_id,
+                    categoryId: m.categoryId || 3,
+                    imageUrl: m.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${m.product_id}_200w.jpg`
+                }));
+        });
+    }
+
     /* ── references ── */
     const typeSelect   = document.getElementById('transaction_type');
     const stdFields    = document.getElementById('standardFields');
@@ -269,8 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const q = this.value.trim();
         if (q.length < 2) { searchResults.style.display = 'none'; return; }
         searchTimeout = setTimeout(() => {
-            fetch(`/api/search_products?q=${encodeURIComponent(q)}`)
-                .then(r => r.json())
+            searchProducts(q)
                 .then(products => {
                     if (products.length === 0) {
                         searchResults.innerHTML = `
@@ -409,8 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const q = input.value.trim();
         if (q.length < 2) { resultsDiv.style.display = 'none'; return; }
         tradeSearchTimeout = setTimeout(() => {
-            fetch(`/api/search_products?q=${encodeURIComponent(q)}`)
-                .then(r => r.json())
+            searchProducts(q)
                 .then(products => {
                     if (products.length === 0) {
                         resultsDiv.innerHTML = '<div class="list-group-item text-muted small"><em>Not found</em></div>';
