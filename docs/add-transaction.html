@@ -239,12 +239,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let staticMappingsCache = null;
 
     async function ensureGitHubAuth() {
-        if (!window.githubAPI) return null;
-        if (!githubAPI.isAuthenticated()) {
-            const ok = await githubAPI.authenticate();
+        const api = (typeof githubAPI !== 'undefined') ? githubAPI : null;
+        if (!api) return null;
+        if (!api.isAuthenticated()) {
+            const ok = await api.authenticate();
             if (!ok) return null;
         }
-        return githubAPI;
+        return api;
     }
 
     async function upsertMappingInRepo(mapping) {
