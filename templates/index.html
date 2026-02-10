@@ -138,5 +138,5 @@ Plotly.newPlot('portfolioChart', [
     font: { color: '#e2e8f0' }
 }, { responsive: true });
 </script>
-<script src="{{ url_for('static', filename='js/table-init.js') }}"></script>
+<script src="{{ url_for('static', filename='js/table-init.js') if not (is_static is defined and is_static) else 'static/js/table-init.js' }}"></script>
 {% endblock %}

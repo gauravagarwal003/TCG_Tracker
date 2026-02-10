@@ -6,7 +6,7 @@
         <h5 class="mb-0">Transactions</h5>
         <div>
             <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
-            <a href="{{ url_for('add_transaction_page') }}" class="btn btn-sm btn-success">
+            <a href="{{ 'add-transaction.html' if (is_static is defined and is_static) else url_for('add_transaction_page') }}" class="btn btn-sm btn-success">
                 <i class="fas fa-plus me-1"></i>Add
             </a>
         </div>
@@ -106,6 +106,14 @@
                             {% endif %}
                         </td>
                         <td class="action-buttons">
+                            {% if is_static is defined and is_static %}
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-sm btn-outline-secondary rounded-start" disabled>Edit</button>
+                                <button class="btn btn-sm btn-outline-secondary rounded-end" disabled title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                            {% else %}
                             <div class="btn-group" role="group">
                                 <a href="{{ url_for('edit_transaction_page', txn_id=tx.id) }}" class="btn btn-sm btn-outline-primary rounded-start" id="editButton">Edit</a>
                                 <form action="{{ url_for('delete_transaction_page', txn_id=tx.id) }}" method="post" onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
@@ -114,6 +122,7 @@
                                     </button>
                                 </form>
                             </div>
+                            {% endif %}
                         </td>
                     </tr>
                     {% else %}
@@ -129,5 +138,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/table-init.js') }}"></script>
+<script src="{{ url_for('static', filename='js/table-init.js') if not (is_static is defined and is_static) else 'static/js/table-init.js' }}"></script>
 {% endblock %}

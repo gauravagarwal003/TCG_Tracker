@@ -208,10 +208,17 @@
 
             <!-- Submit -->
             <div class="d-flex gap-2">
+                {% if is_static is defined and is_static %}
+                <button type="button" class="btn btn-success" disabled>
+                    <i class="fas fa-save me-1"></i>{{ 'Update' if is_edit else 'Add' }} Transaction
+                </button>
+                <a href="transactions.html" class="btn btn-outline-secondary">Cancel</a>
+                {% else %}
                 <button type="submit" class="btn btn-success">
                     <i class="fas fa-save me-1"></i>{{ 'Update' if is_edit else 'Add' }} Transaction
                 </button>
                 <a href="{{ url_for('transactions_page') }}" class="btn btn-outline-secondary">Cancel</a>
+                {% endif %}
             </div>
         </form>
     </div>

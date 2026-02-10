@@ -28,7 +28,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-producti
 # ---------------------------------------------------------------------------
 @app.context_processor
 def inject_globals():
-    return {"active_page": "", "is_static": False}
+    return {"active_page": ""}
 
 
 # ---------------------------------------------------------------------------
