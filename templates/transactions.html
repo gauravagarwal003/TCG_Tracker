@@ -107,17 +107,17 @@
                         </td>
                         <td class="action-buttons">
                             {% if is_static is defined and is_static %}
-                            <div class="btn-group" role="group">
-                                <button class="btn btn-sm btn-outline-secondary rounded-start" disabled>Edit</button>
-                                <button class="btn btn-sm btn-outline-secondary rounded-end" disabled title="Delete">
+                            <div class="d-inline-flex gap-1" role="group">
+                                <button class="btn btn-sm btn-primary rounded" disabled>Edit</button>
+                                <button class="btn btn-sm btn-danger rounded" disabled title="Delete">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
                             {% else %}
-                            <div class="btn-group" role="group">
-                                <a href="{{ url_for('edit_transaction_page', txn_id=tx.id) }}" class="btn btn-sm btn-outline-primary rounded-start" id="editButton">Edit</a>
+                            <div class="d-inline-flex gap-1" role="group">
+                                <a href="{{ url_for('edit_transaction_page', txn_id=tx.id) }}" class="btn btn-sm btn-primary rounded" id="editButton">Edit</a>
                                 <form action="{{ url_for('delete_transaction_page', txn_id=tx.id) }}" method="post" onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger rounded-end" title="Delete">
+                                    <button type="submit" class="btn btn-sm btn-danger rounded" title="Delete">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>

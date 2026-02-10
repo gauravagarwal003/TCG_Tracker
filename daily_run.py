@@ -73,6 +73,12 @@ def generate_static_site(transactions, summary):
         if flask_app and render_template:
             print("\n--- Rendering static HTML pages to docs/ ---")
             with flask_app.app_context():
+                static_css_path = os.path.join(BASE_DIR, "static", "css", "styles.css")
+                try:
+                    static_version = int(os.path.getmtime(static_css_path))
+                except OSError:
+                    static_version = int(datetime.utcnow().timestamp())
+
                 # Index
                 total_value = sum(h.get("total_value", 0) for h in holdings)
                 total_cost_basis = 0
@@ -87,7 +93,8 @@ def generate_static_site(transactions, summary):
                     total_cost_basis=total_cost_basis,
                     summary=summary,
                     active_page="index",
-                    is_static=True
+                    is_static=True,
+                    static_version=static_version
                 )
                 with open(os.path.join(BASE_DIR, "docs", "index.html"), "w") as f:
                     f.write(index_html)
@@ -98,7 +105,8 @@ def generate_static_site(transactions, summary):
                     transactions=transactions,
                     mappings=mappings,
                     active_page="transactions",
-                    is_static=True
+                    is_static=True,
+                    static_version=static_version
                 )
                 with open(os.path.join(BASE_DIR, "docs", "transactions.html"), "w") as f:
                     f.write(transactions_html)
@@ -109,7 +117,8 @@ def generate_static_site(transactions, summary):
                     transaction=None,
                     mappings=mappings,
                     is_edit=False,
-                    is_static=True
+                    is_static=True,
+                    static_version=static_version
                 )
                 with open(os.path.join(BASE_DIR, "docs", "add-transaction.html"), "w") as f:
                     f.write(add_tx_html)

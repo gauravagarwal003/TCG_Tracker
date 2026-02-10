@@ -28,7 +28,12 @@ app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-producti
 # ---------------------------------------------------------------------------
 @app.context_processor
 def inject_globals():
-    return {"active_page": ""}
+    static_css_path = os.path.join(app.root_path, "static", "css", "styles.css")
+    try:
+        static_version = int(os.path.getmtime(static_css_path))
+    except OSError:
+        static_version = int(datetime.utcnow().timestamp())
+    return {"active_page": "", "static_version": static_version}
 
 
 # ---------------------------------------------------------------------------

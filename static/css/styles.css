@@ -65,6 +65,11 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--primary) !important;
 }
 
+.nav-link.active {
+    background-color: rgba(79, 70, 229, 0.12);
+    font-weight: 600;
+}
+
 .btn-refresh {
     background-color: var(--primary);
     color: white;
@@ -134,14 +139,44 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary {
     background-color: var(--primary);
     border-color: var(--primary);
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    box-shadow: none;
 }
 
 .btn-primary:hover {
     background-color: var(--primary-hover);
     border-color: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-success {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-success:hover {
+    background-color: #0ea371;
+    border-color: #0ea371;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
 }
 
 .btn-outline-primary {
@@ -431,12 +466,16 @@ html[data-bs-theme="dark"] .table-responsive,
 html[data-bs-theme="dark"] .bg-white,
 html[data-bs-theme="dark"] .bg-light,
 html[data-bs-theme="dark"] .bg-secondary,
-html[data-bs-theme="dark"] .product-thumb,
-html[data-bs-theme="dark"] .product-thumb-placeholder,
 html[data-bs-theme="dark"] .alert,
 html[data-bs-theme="dark"] .badge {
     background-color: #0f1114 !important;
     color: #e6eef8 !important;
+    border-color: #1a1a1a !important;
+}
+
+html[data-bs-theme="dark"] .product-thumb,
+html[data-bs-theme="dark"] .product-thumb-placeholder {
+    background-color: transparent !important;
     border-color: #1a1a1a !important;
 }
 
@@ -466,6 +505,24 @@ html[data-bs-theme="dark"] .btn-outline-secondary {
     background-color: transparent !important;
     color: #e6eef8 !important;
     border-color: #2a2a2a !important;
+}
+
+html[data-bs-theme="dark"] .btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] .btn-success {
+    background-color: var(--success) !important;
+    border-color: var(--success) !important;
+    color: #ffffff !important;
+}
+
+html[data-bs-theme="dark"] .btn-danger {
+    background-color: var(--danger) !important;
+    border-color: var(--danger) !important;
+    color: #ffffff !important;
 }
 
 html[data-bs-theme="dark"] a,
@@ -514,8 +571,8 @@ html[data-bs-theme="dark"] {
 /* Thumbnails and placeholders */
 html[data-bs-theme="dark"] .product-thumb,
 html[data-bs-theme="dark"] .product-thumb-placeholder {
-    background-color: #111 !important;
-    border-color: #222 !important;
+    background-color: transparent !important;
+    border-color: #1a1a1a !important;
 }
 
 /* Ensure utility backgrounds switch in dark mode */
