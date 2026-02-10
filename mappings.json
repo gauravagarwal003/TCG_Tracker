@@ -446,5 +446,13 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box"
+  },
+  {
+    "product_id": "670782",
+    "name": "Knock Out Collection [Kyogre]",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670782_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/670782"
   }
 ]

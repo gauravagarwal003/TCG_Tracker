@@ -17,6 +17,7 @@
     </style>
     {% if is_static is defined and is_static %}
     <script src="auth.js"></script>
+    <script src="github-api.js"></script>
     {% endif %}
     <link href="{{ (url_for('static', filename='css/styles.css') if not is_static else 'static/css/styles.css') ~ '?v=' ~ (static_version if static_version is defined else '0') }}" rel="stylesheet">
 </head>

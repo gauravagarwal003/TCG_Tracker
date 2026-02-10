@@ -17,6 +17,7 @@
     </style>
     
     <script src="auth.js"></script>
+    <script src="github-api.js"></script>
     
     <link href="static/css/styles.css?v=1770708765" rel="stylesheet">
 </head>
@@ -237,6 +238,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const STATIC_MAPPINGS_URL = 'data/mappings.json';
     let staticMappingsCache = null;
 
+    async function ensureGitHubAuth() {
+        if (!window.githubAPI) return null;
+        if (!githubAPI.isAuthenticated()) {
+            const ok = await githubAPI.authenticate();
+            if (!ok) return null;
+        }
+        return githubAPI;
+    }
+
+    async function upsertMappingInRepo(mapping) {
+        const api = await ensureGitHubAuth();
+        if (!api) {
+            alert('GitHub token is required to save new products on GitHub Pages.');
+            return null;
+        }
+
+        const [rootFile, docsFile] = await Promise.all([
+            api.getFile('mappings.json'),
+            api.getFile('docs/data/mappings.json')
+        ]);
+
+        const updateList = (content) => {
+            const list = JSON.parse(content || '[]');
+            const exists = list.find(m => String(m.product_id) === String(mapping.product_id)
+                && String(m.group_id) === String(mapping.group_id));
+            if (!exists) list.push(mapping);
+            return list;
+        };
+
+        const updatedRoot = updateList(rootFile.content);
+        const updatedDocs = updateList(docsFile.content);
+
+        await api.updateFile(
+            'mappings.json',
+            JSON.stringify(updatedRoot, null, 2),
+            `Add product ${mapping.name}`,
+            rootFile.sha
+        );
+
+        await api.updateFile(
+            'docs/data/mappings.json',
+            JSON.stringify(updatedDocs, null, 2),
+            `Update mappings data ${mapping.name}`,
+            docsFile.sha
+        );
+
+        staticMappingsCache = updatedDocs;
+        return mapping;
+    }
+
     function searchProducts(query) {
         if (!IS_STATIC) {
             return fetch(`/api/search_products?q=${encodeURIComponent(query)}`).then(r => r.json());
@@ -361,6 +412,32 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!name) { alert('Product name is required'); return; }
         if (!pid || !gid) { alert('Product ID and Group ID are required'); return; }
 
+        const mapping = {
+            name,
+            product_id: pid,
+            group_id: gid,
+            categoryId: parseInt(cid, 10) || 3,
+            imageUrl: `https://tcgplayer-cdn.tcgplayer.com/product/${pid}_200w.jpg`,
+            url: `https://www.tcgplayer.com/product/${pid}`
+        };
+
+        if (IS_STATIC) {
+            upsertMappingInRepo(mapping)
+                .then(saved => {
+                    if (!saved) return;
+                    searchInput.value = saved.name;
+                    document.getElementById('sel_product_id').value  = saved.product_id;
+                    document.getElementById('sel_group_id').value    = saved.group_id;
+                    document.getElementById('sel_category_id').value = saved.categoryId || 3;
+                    document.getElementById('sel_name').value        = saved.name;
+                    newProdDiv.style.display = 'none';
+                })
+                .catch(err => {
+                    alert(err?.message || 'Failed to add product');
+                });
+            return;
+        }
+
         fetch('/api/mappings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -377,12 +454,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert(result.message || 'Failed to add product');
                 return;
             }
-            const mapping = result.mapping;
-            searchInput.value = mapping.name;
-            document.getElementById('sel_product_id').value  = mapping.product_id;
-            document.getElementById('sel_group_id').value    = mapping.group_id;
-            document.getElementById('sel_category_id').value = mapping.categoryId || 3;
-            document.getElementById('sel_name').value        = mapping.name;
+            const saved = result.mapping;
+            searchInput.value = saved.name;
+            document.getElementById('sel_product_id').value  = saved.product_id;
+            document.getElementById('sel_group_id').value    = saved.group_id;
+            document.getElementById('sel_category_id').value = saved.categoryId || 3;
+            document.getElementById('sel_name').value        = saved.name;
             newProdDiv.style.display = 'none';
         })
         .catch(() => alert('Failed to add product'));
