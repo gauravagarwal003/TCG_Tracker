@@ -43,7 +43,7 @@
                                placeholder="Start typing product name..."
                                autocomplete="off"
                                value="{{ first_item.name if first_item else '' }}">
-                        <div id="search_results" class="list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:300px; overflow-y:auto; width:calc(100% - 24px);"></div>
+                        <div id="search_results" class="list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:300px; overflow-y:auto; width:calc(100% - 24px);"></div>
                     </div>
                 </div>
 
@@ -59,6 +59,9 @@
                         <i class="fas fa-info-circle"></i> Product not found. Enter IDs manually:
                     </div>
                     <div class="row g-2 mb-2">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" id="new_product_name" placeholder="Product Name">
+                        </div>
                         <div class="col-md-4">
                             <input type="text" class="form-control form-control-sm" id="new_product_id" placeholder="Product ID">
                         </div>
@@ -271,8 +274,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (products.length === 0) {
                         searchResults.innerHTML = `
                             <div class="list-group-item text-muted"><em>No products found.</em></div>
-                            <div class="list-group-item list-group-item-action" id="showNewProduct" style="cursor:pointer">
-                                <i class="fas fa-plus-circle text-success"></i> Add as new product
+                            <div class="list-group-item list-group-item-action search-result-item" id="showNewProduct" style="cursor:pointer">
+                                <div class="result-main">
+                                    <i class="fas fa-plus-circle text-success me-2"></i>
+                                    <strong>Add as new product</strong>
+                                </div>
                             </div>`;
                         searchResults.style.display = 'block';
                         document.getElementById('showNewProduct').addEventListener('click', () => {
@@ -282,9 +288,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     } else {
                         searchResults.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
-                                <strong>${p.name}</strong><br>
-                                <small class="text-muted">PID: ${p.product_id} | GID: ${p.group_id}</small>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                                <div class="result-main">
+                                    <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
+                                    <div class="result-text">
+                                        <strong>${p.name}</strong>
+                                        <small class="text-muted d-block">PID: ${p.product_id} | GID: ${p.group_id}</small>
+                                    </div>
+                                </div>
                             </div>`).join('');
                         searchResults.style.display = 'block';
                         searchResults.querySelectorAll('.list-group-item-action').forEach(el => {
@@ -312,15 +323,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ── Confirm New Product ── */
     document.getElementById('confirmNewProduct').addEventListener('click', function() {
+        const name = document.getElementById('new_product_name').value.trim() || searchInput.value.trim();
         const pid = document.getElementById('new_product_id').value.trim();
         const gid = document.getElementById('new_group_id').value.trim();
         const cid = document.getElementById('new_category_id').value.trim() || '3';
+
+        if (!name) { alert('Product name is required'); return; }
         if (!pid || !gid) { alert('Product ID and Group ID are required'); return; }
-        document.getElementById('sel_product_id').value  = pid;
-        document.getElementById('sel_group_id').value    = gid;
-        document.getElementById('sel_category_id').value = cid;
-        document.getElementById('sel_name').value        = searchInput.value;
-        newProdDiv.style.display = 'none';
+
+        fetch('/api/mappings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name,
+                product_id: pid,
+                group_id: gid,
+                categoryId: cid
+            })
+        })
+        .then(r => r.json())
+        .then(result => {
+            if (!result.success) {
+                alert(result.message || 'Failed to add product');
+                return;
+            }
+            const mapping = result.mapping;
+            searchInput.value = mapping.name;
+            document.getElementById('sel_product_id').value  = mapping.product_id;
+            document.getElementById('sel_group_id').value    = mapping.group_id;
+            document.getElementById('sel_category_id').value = mapping.categoryId || 3;
+            document.getElementById('sel_name').value        = mapping.name;
+            newProdDiv.style.display = 'none';
+        })
+        .catch(() => alert('Failed to add product'));
     });
 
     /* ── Trade item row helpers ── */
@@ -329,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="trade-item-row row g-2 mb-2 align-items-end">
             <div class="col-md-5 position-relative">
                 <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
-                <div class="trade-search-results list-group mt-1" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto; width:100%;"></div>
+                <div class="trade-search-results list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto; width:100%;"></div>
             </div>
             <div class="col-md-2">
                 <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="1">
@@ -380,8 +415,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         resultsDiv.innerHTML = '<div class="list-group-item text-muted small"><em>Not found</em></div>';
                     } else {
                         resultsDiv.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action py-1" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
-                                <strong>${p.name}</strong> <small class="text-muted">(${p.product_id})</small>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                                <div class="result-main">
+                                    <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
+                                    <div class="result-text">
+                                        <strong>${p.name}</strong>
+                                        <small class="text-muted d-block">PID: ${p.product_id} | GID: ${p.group_id}</small>
+                                    </div>
+                                </div>
                             </div>`).join('');
                         resultsDiv.querySelectorAll('.list-group-item-action').forEach(el => {
                             el.addEventListener('click', () => {
@@ -481,7 +522,47 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-.trade-search-results .list-group-item-action:hover { background-color: #f8f9fa; }
-#search_results .list-group-item-action:hover { background-color: #f8f9fa; }
+.search-results .search-result-item {
+    padding: 0.5rem 0.75rem;
+}
+
+.search-results .result-main {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-results .result-text {
+    line-height: 1.2;
+}
+
+.search-results .search-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2px;
+}
+
+.search-results .list-group-item-action:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+html[data-bs-theme="dark"] .search-results .search-thumb {
+    background: transparent;
+    border-color: #1a1a1a;
+}
+
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover {
+    background-color: #111827;
+    color: #e6eef8;
+}
+
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted {
+    color: #cbd5f5 !important;
+}
 </style>
 {% endblock %}

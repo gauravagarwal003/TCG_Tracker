@@ -265,6 +265,36 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #e2e8f0;
 }
 
+/* Search results (transaction form) */
+.search-results .search-result-item {
+    padding: 0.5rem 0.75rem;
+}
+
+.search-results .result-main {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-results .result-text {
+    line-height: 1.2;
+}
+
+.search-results .search-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 2px;
+}
+
+.search-results .list-group-item-action:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
 /* Badges */
 .badge {
     border-radius: 6px;
@@ -477,6 +507,20 @@ html[data-bs-theme="dark"] .product-thumb,
 html[data-bs-theme="dark"] .product-thumb-placeholder {
     background-color: transparent !important;
     border-color: #1a1a1a !important;
+}
+
+html[data-bs-theme="dark"] .search-results .search-thumb {
+    background: transparent;
+    border-color: #1a1a1a;
+}
+
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover {
+    background-color: #111827;
+    color: #e6eef8;
+}
+
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted {
+    color: #cbd5f5 !important;
 }
 
 html[data-bs-theme="dark"] .table th {

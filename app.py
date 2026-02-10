@@ -15,7 +15,7 @@ from datetime import datetime
 from engine import (
     load_transactions, load_daily_summary, load_mappings,
     get_current_holdings, today_pst, save_daily_summary,
-    derive_daily_summary, DAILY_SUMMARY_FILE
+    derive_daily_summary, DAILY_SUMMARY_FILE, save_mappings
 )
 from transaction_manager import add_transaction, edit_transaction, delete_transaction
 
@@ -222,6 +222,41 @@ def api_holdings():
 @app.route("/api/mappings")
 def api_mappings():
     return jsonify(load_mappings())
+
+
+@app.route("/api/mappings", methods=["POST"])
+def api_add_mapping():
+    data = request.get_json() or {}
+    name = (data.get("name") or "").strip()
+    product_id = str(data.get("product_id") or "").strip()
+    group_id = str(data.get("group_id") or "").strip()
+    category_id = str(data.get("categoryId") or "3").strip()
+
+    if not name or not product_id or not group_id:
+        return jsonify({"success": False, "message": "Name, Product ID, and Group ID are required."}), 400
+
+    try:
+        category_id_int = int(category_id)
+    except ValueError:
+        return jsonify({"success": False, "message": "Category ID must be a number."}), 400
+
+    mappings = load_mappings()
+    for m in mappings:
+        if str(m.get("product_id")) == product_id and str(m.get("group_id")) == group_id:
+            return jsonify({"success": True, "message": "Product already exists.", "mapping": m})
+
+    mapping = {
+        "product_id": product_id,
+        "name": name,
+        "group_id": group_id,
+        "imageUrl": f"https://tcgplayer-cdn.tcgplayer.com/product/{product_id}_200w.jpg",
+        "categoryId": category_id_int,
+        "url": f"https://www.tcgplayer.com/product/{product_id}"
+    }
+    mappings.append(mapping)
+    save_mappings(mappings)
+
+    return jsonify({"success": True, "message": "Product added.", "mapping": mapping})
 
 
 @app.route("/api/search_products")
