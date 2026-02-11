@@ -462,5 +462,13 @@
     "categoryId": 3,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg",
     "url": "https://www.tcgplayer.com/product/670783"
+  },
+  {
+    "name": "Shiny Treasure ex High Class Booster Box",
+    "product_id": "565232",
+    "group_id": "23601",
+    "categoryId": 85,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565232"
   }
 ]
