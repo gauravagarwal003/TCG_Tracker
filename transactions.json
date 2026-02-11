@@ -833,7 +833,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0045",
@@ -852,7 +852,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0046",
@@ -1954,7 +1954,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
+    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
   },
   {
     "id": "m0104",
@@ -2487,5 +2487,24 @@
       }
     ],
     "amount": 12.12
+  },
+  {
+    "id": "62f7b10e",
+    "date_purchased": "2025-02-24",
+    "date_received": "2025-02-28",
+    "type": "BUY",
+    "method": "Online",
+    "place": "TikTok Shop",
+    "notes": "Used $50 reward for inviting a new member to TikTok (Mom)",
+    "items": [
+      {
+        "product_id": 565232,
+        "group_id": 23601,
+        "categoryId": 85,
+        "name": "Shiny Treasure ex High Class Booster Box",
+        "quantity": 1
+      }
+    ],
+    "amount": 18.98
   }
 ]
