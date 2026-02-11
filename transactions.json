@@ -10,7 +10,7 @@
         "product_id": "565630",
         "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
-        "quantity": 3.0
+        "quantity": 3
       }
     ],
     "amount": 85.74,
@@ -29,7 +29,7 @@
         "product_id": "493974",
         "categoryId": 3,
         "name": "Paldea Evolved Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 27.38,
@@ -48,7 +48,7 @@
         "product_id": "565630",
         "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -67,7 +67,7 @@
         "product_id": "522701",
         "categoryId": 3,
         "name": "151 Mini Tin [Electabuzz & Magnemites]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 11.01,
@@ -86,7 +86,7 @@
         "product_id": "256138",
         "categoryId": 3,
         "name": "Brilliant Stars Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 14.65,
@@ -105,7 +105,7 @@
         "product_id": "277335",
         "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 41.88,
@@ -124,7 +124,7 @@
         "product_id": "527562",
         "categoryId": 3,
         "name": "Crown Zenith Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 20.52,
@@ -143,7 +143,7 @@
         "product_id": "277335",
         "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 14.65,
@@ -162,7 +162,7 @@
         "product_id": "543843",
         "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.92,
@@ -181,7 +181,7 @@
         "product_id": "543843",
         "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -200,7 +200,7 @@
         "product_id": "522701",
         "categoryId": 3,
         "name": "151 Mini Tin [Electabuzz & Magnemites]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -219,7 +219,7 @@
         "product_id": "277335",
         "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -238,10 +238,10 @@
         "product_id": "565630",
         "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
-    "amount": 55.0,
+    "amount": 55,
     "method": "In-person",
     "place": "King Kong Comics",
     "notes": ""
@@ -257,7 +257,7 @@
         "product_id": "502007",
         "categoryId": 3,
         "name": "151: Zapdos ex Collection",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 46.06,
@@ -276,7 +276,7 @@
         "product_id": "528771",
         "categoryId": 3,
         "name": "Paldean Fates Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.03,
@@ -295,7 +295,7 @@
         "product_id": "502007",
         "categoryId": 3,
         "name": "151: Zapdos ex Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -314,7 +314,7 @@
         "product_id": "493976",
         "categoryId": 3,
         "name": "Paldea Evolved Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.84,
@@ -333,7 +333,7 @@
         "product_id": "493976",
         "categoryId": 3,
         "name": "Paldea Evolved Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -352,7 +352,7 @@
         "product_id": "496914",
         "categoryId": 3,
         "name": "Paldea Evolved Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 27.21,
@@ -371,7 +371,7 @@
         "product_id": "496914",
         "categoryId": 3,
         "name": "Paldea Evolved Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -390,7 +390,7 @@
         "product_id": "527562",
         "categoryId": 3,
         "name": "Crown Zenith Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -409,7 +409,7 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 20.7,
@@ -428,7 +428,7 @@
         "product_id": "593451",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 15.7,
@@ -447,7 +447,7 @@
         "product_id": "593450",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 15.7,
@@ -466,7 +466,7 @@
         "product_id": "502007",
         "categoryId": 3,
         "name": "151: Zapdos ex Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 23.03,
@@ -485,7 +485,7 @@
         "product_id": "593451",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -504,7 +504,7 @@
         "product_id": "593450",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -523,7 +523,7 @@
         "product_id": "502007",
         "categoryId": 3,
         "name": "151: Zapdos ex Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -542,7 +542,7 @@
         "product_id": "609597",
         "categoryId": 3,
         "name": "Blooming Waters Premium Collection",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 99.2,
@@ -561,7 +561,7 @@
         "product_id": "283388",
         "categoryId": 3,
         "name": "Silver Tempest Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 1.55,
@@ -580,7 +580,7 @@
         "product_id": "557345",
         "categoryId": 3,
         "name": "Stellar Crown Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 19.86,
@@ -599,7 +599,7 @@
         "product_id": "527562",
         "categoryId": 3,
         "name": "Crown Zenith Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 18.71,
@@ -618,7 +618,7 @@
         "product_id": "552998",
         "categoryId": 3,
         "name": "Shrouded Fable Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 65.69,
@@ -637,7 +637,7 @@
         "product_id": "527562",
         "categoryId": 3,
         "name": "Crown Zenith Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -656,7 +656,7 @@
         "product_id": "502000",
         "categoryId": 3,
         "name": "151 Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 61.3,
@@ -675,7 +675,7 @@
         "product_id": "502000",
         "categoryId": 3,
         "name": "151 Booster Bundle",
-        "quantity": 3.0
+        "quantity": 3
       }
     ],
     "amount": 91.95,
@@ -694,7 +694,7 @@
         "product_id": "502000",
         "categoryId": 3,
         "name": "151 Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -713,7 +713,7 @@
         "product_id": "283388",
         "categoryId": 3,
         "name": "Silver Tempest Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -732,7 +732,7 @@
         "product_id": "557345",
         "categoryId": 3,
         "name": "Stellar Crown Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -751,7 +751,7 @@
         "product_id": "557345",
         "categoryId": 3,
         "name": "Stellar Crown Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 26.32,
@@ -770,7 +770,7 @@
         "product_id": "593466",
         "categoryId": 3,
         "name": "Prismatic Evolutions Surprise Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 22.65,
@@ -789,7 +789,7 @@
         "product_id": "502000",
         "categoryId": 3,
         "name": "151 Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 23.91,
@@ -808,7 +808,7 @@
         "product_id": "557345",
         "categoryId": 3,
         "name": "Stellar Crown Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -827,13 +827,13 @@
         "product_id": "265529",
         "categoryId": 3,
         "name": "Astral Radiance Build & Battle Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pok\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0083\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0083\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0082\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u00a9mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0045",
@@ -846,13 +846,13 @@
         "product_id": "532841",
         "categoryId": 3,
         "name": "Temporal Forces Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pok\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0083\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0083\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0082\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u00a9mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0046",
@@ -865,7 +865,7 @@
         "product_id": "532841",
         "categoryId": 3,
         "name": "Temporal Forces Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -884,7 +884,7 @@
         "product_id": "543843",
         "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 2.66,
@@ -903,7 +903,7 @@
         "product_id": "543843",
         "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -922,7 +922,7 @@
         "product_id": "609597",
         "categoryId": 3,
         "name": "Blooming Waters Premium Collection",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 110.24,
@@ -941,7 +941,7 @@
         "product_id": "265529",
         "categoryId": 3,
         "name": "Astral Radiance Build & Battle Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -960,7 +960,7 @@
         "product_id": "600518",
         "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.32,
@@ -979,7 +979,7 @@
         "product_id": "565629",
         "categoryId": 3,
         "name": "Surging Sparks Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 18.71,
@@ -998,7 +998,7 @@
         "product_id": "277568",
         "categoryId": 3,
         "name": "Infernape V Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 20.94,
@@ -1017,7 +1017,7 @@
         "product_id": "610929",
         "categoryId": 3,
         "name": "Journey Together Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 65.69,
@@ -1036,7 +1036,7 @@
         "product_id": "502000",
         "categoryId": 3,
         "name": "151 Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.32,
@@ -1055,7 +1055,7 @@
         "product_id": "277568",
         "categoryId": 3,
         "name": "Infernape V Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1074,7 +1074,7 @@
         "product_id": "502001",
         "categoryId": 3,
         "name": "151 Poster Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 5.48,
@@ -1093,7 +1093,7 @@
         "product_id": "528771",
         "categoryId": 3,
         "name": "Paldean Fates Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 24.13,
@@ -1112,7 +1112,7 @@
         "product_id": "281981",
         "categoryId": 3,
         "name": "Hidden Potential Tin [Rotom V]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 27.42,
@@ -1131,7 +1131,7 @@
         "product_id": "610934",
         "categoryId": 3,
         "name": "Journey Together Sleeved Booster Pack",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 11.04,
@@ -1150,7 +1150,7 @@
         "product_id": "606881",
         "categoryId": 3,
         "name": "Prismatic Evolutions Accessory Pouch Special Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 24.08,
@@ -1169,7 +1169,7 @@
         "product_id": "610934",
         "categoryId": 3,
         "name": "Journey Together Sleeved Booster Pack",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 0,
@@ -1188,7 +1188,7 @@
         "product_id": "593466",
         "categoryId": 3,
         "name": "Prismatic Evolutions Surprise Box",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 50.46,
@@ -1207,7 +1207,7 @@
         "product_id": "593466",
         "categoryId": 3,
         "name": "Prismatic Evolutions Surprise Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1226,7 +1226,7 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 241.4,
@@ -1245,7 +1245,7 @@
         "product_id": "600518",
         "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 59.14,
@@ -1264,7 +1264,7 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 60.35,
@@ -1283,7 +1283,7 @@
         "product_id": "593466",
         "categoryId": 3,
         "name": "Prismatic Evolutions Surprise Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1302,7 +1302,7 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 60.35,
@@ -1321,10 +1321,10 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 5.0
+        "quantity": 5
       }
     ],
-    "amount": 476.0,
+    "amount": 476,
     "method": "In-person",
     "place": "",
     "notes": "Found on Facebook Marketplace. Met in front of UCLA Police Station."
@@ -1340,7 +1340,7 @@
         "product_id": "281981",
         "categoryId": 3,
         "name": "Hidden Potential Tin [Rotom V]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1359,7 +1359,7 @@
         "product_id": "609597",
         "categoryId": 3,
         "name": "Blooming Waters Premium Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1378,7 +1378,7 @@
         "product_id": "609597",
         "categoryId": 3,
         "name": "Blooming Waters Premium Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 69.13,
@@ -1397,7 +1397,7 @@
         "product_id": "600518",
         "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 90.2,
@@ -1416,7 +1416,7 @@
         "product_id": "593355",
         "categoryId": 3,
         "name": "Prismatic Evolutions Elite Trainer Box",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 44.28,
@@ -1435,7 +1435,7 @@
         "product_id": "625670",
         "categoryId": 3,
         "name": "Destined Rivals Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 28.8,
@@ -1454,7 +1454,7 @@
         "product_id": "625684",
         "categoryId": 3,
         "name": "Destined Rivals 3 Pack Blister [Zebstrika]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 23.31,
@@ -1473,7 +1473,7 @@
         "product_id": "628396",
         "categoryId": 3,
         "name": "Destined Rivals Premium Checklane Blister [Rabsca]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 6.61,
@@ -1492,7 +1492,7 @@
         "product_id": "628395",
         "categoryId": 3,
         "name": "Destined Rivals Premium Checklane Blister [Gastrodon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 6.61,
@@ -1511,7 +1511,7 @@
         "product_id": "625670",
         "categoryId": 3,
         "name": "Destined Rivals Booster Bundle",
-        "quantity": 3.0
+        "quantity": 3
       }
     ],
     "amount": 87.75,
@@ -1530,7 +1530,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.77,
@@ -1549,7 +1549,7 @@
         "product_id": "624683",
         "categoryId": 3,
         "name": "Destined Rivals Booster Pack",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 9.54,
@@ -1568,7 +1568,7 @@
         "product_id": "624683",
         "categoryId": 3,
         "name": "Destined Rivals Booster Pack",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 0,
@@ -1587,7 +1587,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1606,7 +1606,7 @@
         "product_id": "630687",
         "categoryId": 3,
         "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 65.84,
@@ -1625,7 +1625,7 @@
         "product_id": "630688",
         "categoryId": 3,
         "name": "White Flare Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 65.84,
@@ -1644,7 +1644,7 @@
         "product_id": "630696",
         "categoryId": 3,
         "name": "White Flare Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.71,
@@ -1663,7 +1663,7 @@
         "product_id": "630431",
         "categoryId": 3,
         "name": "Black Bolt Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.71,
@@ -1682,7 +1682,7 @@
         "product_id": "630696",
         "categoryId": 3,
         "name": "White Flare Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 65.84,
@@ -1701,7 +1701,7 @@
         "product_id": "557331",
         "categoryId": 3,
         "name": "Stellar Crown Booster Pack",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 9.54,
@@ -1720,7 +1720,7 @@
         "product_id": "600518",
         "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 59.26,
@@ -1739,7 +1739,7 @@
         "product_id": "644362",
         "categoryId": 3,
         "name": "Mega Evolution Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 18.65,
@@ -1758,7 +1758,7 @@
         "product_id": "644362",
         "categoryId": 3,
         "name": "Mega Evolution Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 32.93,
@@ -1777,7 +1777,7 @@
         "product_id": "625684",
         "categoryId": 3,
         "name": "Destined Rivals 3 Pack Blister [Zebstrika]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1796,7 +1796,7 @@
         "product_id": "557331",
         "categoryId": 3,
         "name": "Stellar Crown Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1815,7 +1815,7 @@
         "product_id": "565630",
         "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 55.11,
@@ -1834,7 +1834,7 @@
         "product_id": "644279",
         "categoryId": 3,
         "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 55.11,
@@ -1853,7 +1853,7 @@
         "product_id": "634329",
         "categoryId": 3,
         "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 22.02,
@@ -1872,7 +1872,7 @@
         "product_id": "656950",
         "categoryId": 3,
         "name": "Greninja EX & Kingdra EX Special Collection Box",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 44.1,
@@ -1891,7 +1891,7 @@
         "product_id": "662770",
         "categoryId": 3,
         "name": "Snorlax ex & Blissey ex Special Collection",
-        "quantity": 3.0
+        "quantity": 3
       }
     ],
     "amount": 75.15,
@@ -1910,7 +1910,7 @@
         "product_id": "654135",
         "categoryId": 3,
         "name": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 132.28,
@@ -1929,7 +1929,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.95,
@@ -1948,13 +1948,13 @@
         "product_id": "654213",
         "categoryId": 3,
         "name": "Mega Charizard X ex Ultra Premium Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didn\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0083\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u00a2\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0082\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0080\u00c3\u0083\u00c2\u0083\u00c3\u0082\u00c2\u0082\u00c3\u0083\u00c2\u0082\u00c3\u0082\u00c2\u0099t apply to trading cards, but customer service rep applied it after the order."
+    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
   },
   {
     "id": "m0104",
@@ -1967,7 +1967,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -1986,7 +1986,7 @@
         "product_id": "557340",
         "categoryId": 3,
         "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 66.14,
@@ -2005,7 +2005,7 @@
         "product_id": "644279",
         "categoryId": 3,
         "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -2024,7 +2024,7 @@
         "product_id": "557331",
         "categoryId": 3,
         "name": "Stellar Crown Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -2043,7 +2043,7 @@
         "product_id": "665113",
         "categoryId": 3,
         "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 137.84,
@@ -2062,7 +2062,7 @@
         "product_id": "512822",
         "categoryId": 3,
         "name": "Paradox Rift Booster Pack",
-        "quantity": 6.0
+        "quantity": 6
       }
     ],
     "amount": 35.28,
@@ -2081,7 +2081,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 4.95,
@@ -2100,7 +2100,7 @@
         "product_id": "624684",
         "categoryId": 3,
         "name": "Destined Rivals Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 8.8,
@@ -2119,7 +2119,7 @@
         "product_id": "625670",
         "categoryId": 3,
         "name": "Destined Rivals Booster Bundle",
-        "quantity": 2.0
+        "quantity": 2
       }
     ],
     "amount": 66.16,
@@ -2138,7 +2138,7 @@
         "product_id": "654213",
         "categoryId": 3,
         "name": "Mega Charizard X ex Ultra Premium Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 132.26,
@@ -2157,7 +2157,7 @@
         "product_id": "600518",
         "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 33.03,
@@ -2176,7 +2176,7 @@
         "product_id": "654213",
         "categoryId": 3,
         "name": "Mega Charizard X ex Ultra Premium Collection",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 132.29,
@@ -2195,7 +2195,7 @@
         "product_id": "565604",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
-        "quantity": 3.0
+        "quantity": 3
       }
     ],
     "amount": 14.85,
@@ -2214,7 +2214,7 @@
         "product_id": "654145",
         "categoryId": 3,
         "name": "Phantasmal Flames Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 16.44,
@@ -2233,7 +2233,7 @@
         "product_id": "654154",
         "categoryId": 3,
         "name": "Phantasmal Flames 3 Pack Blister [Sneasel]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 12.79,
@@ -2252,7 +2252,7 @@
         "product_id": "654160",
         "categoryId": 3,
         "name": "Phantasmal Flames Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 24.65,
@@ -2271,7 +2271,7 @@
         "product_id": "654154",
         "categoryId": 3,
         "name": "Phantasmal Flames 3 Pack Blister [Sneasel]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 0,
@@ -2290,7 +2290,7 @@
         "product_id": "654137",
         "categoryId": 3,
         "name": "Phantasmal Flames Booster Box",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 178.21,
@@ -2309,7 +2309,7 @@
         "product_id": "624684",
         "categoryId": 3,
         "name": "Destined Rivals Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 19.8,
@@ -2328,7 +2328,7 @@
         "product_id": "565629",
         "categoryId": 3,
         "name": "Surging Sparks Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.7,
@@ -2347,7 +2347,7 @@
         "product_id": "624684",
         "categoryId": 3,
         "name": "Destined Rivals Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 19.8,
@@ -2366,7 +2366,7 @@
         "product_id": "630431",
         "categoryId": 3,
         "name": "Black Bolt Booster Bundle",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 29.7,
@@ -2385,7 +2385,7 @@
         "product_id": "624684",
         "categoryId": 3,
         "name": "Destined Rivals Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 19.8,
@@ -2404,7 +2404,7 @@
         "product_id": "654145",
         "categoryId": 3,
         "name": "Phantasmal Flames Sleeved Booster Pack",
-        "quantity": 4.0
+        "quantity": 4
       }
     ],
     "amount": 19.8,
@@ -2423,7 +2423,7 @@
         "product_id": "593451",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 11.55,
@@ -2442,12 +2442,31 @@
         "product_id": "593450",
         "categoryId": 3,
         "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
-        "quantity": 1.0
+        "quantity": 1
       }
     ],
     "amount": 11.55,
     "method": "Online",
     "place": "Walmart",
     "notes": "Used $25 promo on total order."
+  },
+  {
+    "id": "f3fc0f40",
+    "date_purchased": "2026-02-09",
+    "date_received": "2026-02-09",
+    "type": "BUY",
+    "method": "In-person",
+    "place": "Target",
+    "notes": "",
+    "items": [
+      {
+        "product_id": 670783,
+        "group_id": 2374,
+        "categoryId": 3,
+        "name": "Knock Out Collection [Suicune]",
+        "quantity": 1
+      }
+    ],
+    "amount": 12.12
   }
 ]
