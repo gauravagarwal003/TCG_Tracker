@@ -223,13 +223,26 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
     for key in all_product_keys:
         prices = load_prices(*key)
         ranges = owned_ranges.get(key, [])
-        
         for range_start, range_end in ranges:
             eff_end = min(range_end, td)
             filled, gaps = fill_price_gaps(prices, range_start, eff_end)
+            # Ensure the first day of ownership is present in the price file
+            first_day_str = range_start
+            if first_day_str not in filled or filled[first_day_str] is None or filled[first_day_str] == 0:
+                # Find the next available price
+                future_prices = [(d, filled[d]) for d in filled if filled[d] is not None and filled[d] > 0 and d > first_day_str]
+                if future_prices:
+                    next_date, next_price = min(future_prices, key=lambda x: x[0])
+                    filled[first_day_str] = next_price
+                    if f"{key[0]}/{key[1]}/{key[2]}" not in all_gaps:
+                        all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] = []
+                    all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] += [first_day_str]
             if gaps:
-                all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] = gaps
-                save_prices(*key, filled)
+                if f"{key[0]}/{key[1]}/{key[2]}" not in all_gaps:
+                    all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] = []
+                all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] += gaps
+            save_prices(*key, filled)
+            if gaps:
                 print(f"  {key[1]}/{key[2]}: {len(gaps)} gaps filled (carry-forward)")
     
     # Save gap report

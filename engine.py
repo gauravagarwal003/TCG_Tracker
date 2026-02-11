@@ -229,35 +229,39 @@ def validate_inventory(transactions, new_txn=None, exclude_txn_id=None):
 def fill_price_gaps(price_dict, start_date_str, end_date_str):
     """
     Fill gaps in a price dict using carry-forward strategy.
+    Also fills backward at the start of ownership with the next available price.
     Returns (filled_dict, gap_dates) where gap_dates is a list of dates
     that were filled.
     """
     start = parse_date(start_date_str)
     end = parse_date(end_date_str)
-    
     filled = dict(price_dict)
     gap_dates = []
-    
     current = start
     last_known_price = None
-    
-    # First pass: find the first known price before or at start
+    # Find the first known price before or at start
     for d_str in sorted(filled.keys()):
         d = parse_date(d_str)
         if d <= start and filled[d_str] is not None and filled[d_str] > 0:
             last_known_price = filled[d_str]
-    
+    # If no price before or at start, fill with next available price
+    if last_known_price is None:
+        future_prices = [(parse_date(d_str), filled[d_str]) for d_str in filled if filled[d_str] is not None and filled[d_str] > 0 and parse_date(d_str) > start]
+        if future_prices:
+            next_date, next_price = min(future_prices, key=lambda x: x[0])
+            # Fill the first day of ownership explicitly
+            first_day_str = start.strftime("%Y-%m-%d")
+            filled[first_day_str] = next_price
+            gap_dates.append(first_day_str)
+            last_known_price = next_price
     while current <= end:
         d_str = current.strftime("%Y-%m-%d")
-        
         if d_str in filled and filled[d_str] is not None and filled[d_str] > 0:
             last_known_price = filled[d_str]
         elif last_known_price is not None:
             filled[d_str] = last_known_price
             gap_dates.append(d_str)
-        
         current += timedelta(days=1)
-    
     return filled, gap_dates
 
 
