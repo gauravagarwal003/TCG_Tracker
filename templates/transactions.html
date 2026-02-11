@@ -51,85 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for tx in transactions %}
-                    <tr data-index="{{ loop.index0 }}">
-                        <td>
-                            {% set tx_items = tx.get('items', []) %}
-                            {% set tx_items_in = tx.get('items_in', []) %}
-                            {% set first_item = tx_items[0] if tx_items|length > 0 else (tx_items_in[0] if tx_items_in|length > 0 else none) %}
-                            {% if first_item %}
-                            <img src="https://tcgplayer-cdn.tcgplayer.com/product/{{ first_item.product_id }}_200w.jpg" alt="" class="product-thumb">
-                            {% else %}
-                            <div class="product-thumb-placeholder"></div>
-                            {% endif %}
-                        </td>
-                        <td class="text-center">
-                            <span class="badge {% if tx.type == 'BUY' %}bg-primary{% elif tx.type == 'SELL' %}bg-success{% elif tx.type == 'OPEN' %}bg-warning text-dark{% elif tx.type == 'TRADE' %}bg-info{% else %}bg-secondary{% endif %}">
-                                {{ tx.type }}
-                            </span>
-                        </td>
-                        <td class="fw-medium">
-                            {% if tx.type == 'TRADE' %}
-                                {% for item in tx.get('items_out', []) %}{{ item.name }} x{{ item.quantity|int }}{% if not loop.last %}, {% endif %}{% endfor %}
-                                →
-                                {% for item in tx.get('items_in', []) %}{{ item.name }} x{{ item.quantity|int }}{% if not loop.last %}, {% endif %}{% endfor %}
-                            {% else %}
-                                {% set tx_item_list = tx.get('items', []) %}
-                                {% for item in tx_item_list %}{{ item.name }}{% if tx_item_list|length > 1 %} x{{ item.quantity|int }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}
-                            {% endif %}
-                        </td>
-                        <td>{{ tx.date_received }}</td>
-                        <td class="text-end">
-                            {% if tx.type == 'TRADE' %}
-                                -
-                            {% else %}
-                                {% set qty_items = tx.get('items', []) %}
-                                {{ qty_items[0].quantity|int if qty_items|length > 0 else '' }}
-                            {% endif %}
-                        </td>
-                        <td class="text-end">
-                            {% if tx.type in ['BUY', 'SELL'] and tx.amount %}
-                                ${{ "%.2f"|format(tx.amount) }}
-                            {% endif %}
-                        </td>
-                        <td class="d-none toggle-details">{{ tx.get('place', '') }}</td>
-                        <td class="d-none toggle-details">{{ tx.get('method', '') }}</td>
-                        <td>
-                            {% if tx.notes %}
-                            <span class="text-muted" 
-                                  data-bs-toggle="tooltip" 
-                                  data-bs-placement="top" 
-                                  title="{{ tx.notes }}"
-                                  style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                {{ tx.notes }}
-                            </span>
-                            {% endif %}
-                        </td>
-                        <td class="action-buttons">
-                            {% if is_static is defined and is_static %}
-                            <div class="d-inline-flex gap-1" role="group">
-                                <button class="btn btn-sm btn-primary rounded" disabled>Edit</button>
-                                <button class="btn btn-sm btn-danger rounded" disabled title="Delete">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                            {% else %}
-                            <div class="d-inline-flex gap-1" role="group">
-                                <a href="{{ url_for('edit_transaction_page', txn_id=tx.id) }}" class="btn btn-sm btn-primary rounded" id="editButton">Edit</a>
-                                <form action="{{ url_for('delete_transaction_page', txn_id=tx.id) }}" method="post" onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
-                                    <button type="submit" class="btn btn-sm btn-danger rounded" title="Delete">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                            </div>
-                            {% endif %}
-                        </td>
-                    </tr>
-                    {% else %}
-                    <tr>
-                        <td colspan="10" class="text-center py-4 text-muted">No transactions found.</td>
-                    </tr>
-                    {% endfor %}
+                    <tbody id="transactions-tbody"></tbody>
                 </tbody>
             </table>
         </div>
@@ -139,4 +61,5 @@
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/table-init.js') if not (is_static is defined and is_static) else 'static/js/table-init.js' }}"></script>
+<script src="{{ url_for('static', filename='js/transactions-dynamic.js') if not (is_static is defined and is_static) else 'static/js/transactions-dynamic.js' }}"></script>
 {% endblock %}
