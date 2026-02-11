@@ -26,6 +26,20 @@ Track the total market value of your Pokemon TCG collection and your net cost ba
    ```
    Open http://127.0.0.1:5001
 
+## Local GitHub Pages Preview
+
+To preview the GitHub Pages site locally (with the same static HTML + docs/data files), run:
+
+```bash
+./run_docs.sh
+```
+
+Then open http://127.0.0.1:8000/index.html
+
+Notes:
+- Serving over http://127.0.0.1 is required (opening files via file:// will break auth/crypto in the browser).
+- The script regenerates docs/data and the static HTML before starting the server.
+
 ## Project Structure
 
 | File | Purpose |

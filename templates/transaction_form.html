@@ -212,7 +212,7 @@
             <!-- Submit -->
             <div class="d-flex gap-2">
                 {% if is_static is defined and is_static %}
-                <button type="button" class="btn btn-success" disabled>
+                <button type="submit" class="btn btn-success" id="submitTxnBtn">
                     <i class="fas fa-save me-1"></i>{{ 'Update' if is_edit else 'Add' }} Transaction
                 </button>
                 <a href="transactions.html" class="btn btn-outline-secondary">Cancel</a>
@@ -556,8 +556,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    function generateTxnId() {
+        const bytes = new Uint8Array(4);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function saveTransactionStatic(txnData) {
+        const api = await ensureGitHubAuth();
+        if (!api) {
+            alert('GitHub token is required to save transactions on GitHub Pages.');
+            return false;
+        }
+
+        const [rootFile, docsFile] = await Promise.all([
+            api.getFile('transactions.json'),
+            api.getFile('docs/data/transactions.json')
+        ]);
+
+        const updateTxns = (content) => {
+            const list = JSON.parse(content || '[]');
+            list.push(txnData);
+            return list;
+        };
+
+        const updatedRoot = updateTxns(rootFile.content);
+        const updatedDocs = updateTxns(docsFile.content);
+
+        await api.updateFile(
+            'transactions.json',
+            JSON.stringify(updatedRoot, null, 2),
+            `Add transaction ${txnData.id}`,
+            rootFile.sha
+        );
+
+        await api.updateFile(
+            'docs/data/transactions.json',
+            JSON.stringify(updatedDocs, null, 2),
+            `Update transactions data ${txnData.id}`,
+            docsFile.sha
+        );
+
+        return true;
+    }
+
     /* ── Form Submission ── */
-    document.getElementById('txnForm').addEventListener('submit', function(e) {
+    document.getElementById('txnForm').addEventListener('submit', async function(e) {
         const type = typeSelect.value;
         if (!type) { e.preventDefault(); alert('Select a transaction type'); return; }
 
@@ -600,6 +644,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: name,
                 quantity: qty
             }]);
+        }
+
+        if (!IS_STATIC) return;
+
+        e.preventDefault();
+        if (!this.reportValidity()) return;
+
+        const submitBtn = document.getElementById('submitTxnBtn');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+        }
+
+        try {
+            const txnData = {
+                id: generateTxnId(),
+                date_purchased: document.getElementById('date_purchased').value || '',
+                date_received: document.getElementById('date_received').value || '',
+                type: type,
+                method: document.getElementById('method').value || '',
+                place: document.getElementById('place').value || '',
+                notes: document.getElementById('notes').value || ''
+            };
+
+            if (type === 'TRADE') {
+                txnData.items_out = JSON.parse(document.getElementById('items_out_json').value || '[]');
+                txnData.items_in  = JSON.parse(document.getElementById('items_in_json').value || '[]');
+                txnData.cost_basis_out = 0;
+                txnData.cost_basis_in = 0;
+            } else {
+                const itemsField = document.getElementById('items_json_hidden');
+                txnData.items = JSON.parse(itemsField?.value || '[]');
+                txnData.amount = parseFloat(document.getElementById('amount').value) || 0;
+            }
+
+            const ok = await saveTransactionStatic(txnData);
+            if (ok) {
+                alert('Transaction saved to GitHub. Pages will update on the next rebuild.');
+                window.location.href = 'transactions.html';
+            }
+        } catch (err) {
+            alert(err?.message || 'Failed to save transaction');
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-save me-1"></i>{{ "Update" if is_edit else "Add" }} Transaction';
+            }
         }
     });
 
