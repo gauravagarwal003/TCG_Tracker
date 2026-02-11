@@ -449,5 +449,16 @@
     "quantity": 1,
     "latest_price": 14.95,
     "total_value": 14.95
+  },
+  {
+    "categoryId": "85",
+    "group_id": "23601",
+    "product_id": "565232",
+    "name": "Shiny Treasure ex High Class Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565232",
+    "quantity": 1,
+    "latest_price": 0.0,
+    "total_value": 0.0
   }
 ]
