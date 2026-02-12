@@ -2,9 +2,21 @@
 // Assumes a <tbody id="transactions-tbody"></tbody> in the HTML
 
 async function fetchTransactions() {
-    const response = await fetch('/api/transactions');
-    if (!response.ok) return [];
-    return await response.json();
+    // Try API endpoint first (development server). If that fails, fall back
+    // to the static JSON file used by GitHub Pages.
+    try {
+        const resp = await fetch('/api/transactions');
+        if (resp.ok) return await resp.json();
+    } catch (e) {
+        // ignore and fall back
+    }
+    try {
+        const resp2 = await fetch('data/transactions.json');
+        if (resp2.ok) return await resp2.json();
+    } catch (e) {
+        // ignore
+    }
+    return [];
 }
 
 function renderTransactionsTable(transactions) {
