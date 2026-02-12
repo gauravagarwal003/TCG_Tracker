@@ -9,6 +9,9 @@ on:
       - 'docs/data/mappings.json'
       - 'data/transactions.json'
       - 'data/mappings.json'
+    paths-ignore:
+      - 'docs/**'
+      - '.github/**'
   pull_request:
     types: [closed]
 
@@ -71,7 +74,7 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add -A
-        git diff --staged --quiet || git commit -m "Rebuild docs after transactions/mappings change"
+        git diff --staged --quiet || git commit -m "Rebuild docs after transactions/mappings change [skip ci]"
         git push origin main || {
           echo "Push failed, retrying with rebase..."
           git pull --rebase origin main
