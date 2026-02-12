@@ -142,7 +142,7 @@ function parseDateString(dateStr) {
 }
 
 function sortTable(table, colIndex) {
-    const tbody = table.querySelector('tbody');
+    const tbody = table.querySelector('#transactions-tbody') || table.querySelector('tbody');
     let rows = Array.from(tbody.querySelectorAll('tr'));
     const header = table.querySelectorAll('th')[colIndex];
     
