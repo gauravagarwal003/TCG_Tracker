@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!table) return;
 
     // Store original order
-    const tbody = table.querySelector('tbody');
+    // Prefer an explicit transactions tbody if present (avoids nested tbody issues)
+    const tbody = table.querySelector('#transactions-tbody') || table.querySelector('tbody');
     const rows = Array.from(tbody.querySelectorAll('tr'));
     rows.forEach((row, index) => {
-        row.setAttribute('data-original-index', index);
+        if (!row.hasAttribute('data-original-index')) row.setAttribute('data-original-index', index);
     });
 
     // --- 1. Client-Side Sorting ---
@@ -87,8 +88,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function applyDefaultSort(table) {
     const headers = Array.from(table.querySelectorAll('th'));
-    const tbody = table.querySelector('tbody');
-    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const tbody = table.querySelector('#transactions-tbody') || table.querySelector('tbody');
+    let rows = Array.from(tbody.querySelectorAll('tr'));
+    // Ensure original indices exist (in case rows were rendered after init)
+    rows.forEach((row, i) => {
+        if (!row.hasAttribute('data-original-index')) row.setAttribute('data-original-index', i);
+    });
     
     // Check if this is the holdings table
     const latestPriceIndex = headers.findIndex(h => h.textContent.includes('Latest Price'));
@@ -218,29 +223,26 @@ function sortTable(table, colIndex) {
 function filterData(table) {
     const searchInput = document.getElementById('globalSearch');
     const typeFilter = document.getElementById('typeFilter');
-    
+
     const query = searchInput ? searchInput.value.toLowerCase() : '';
     const typeQuery = typeFilter ? typeFilter.value.toLowerCase() : '';
-    
-    const tbody = table.querySelector('tbody');
+
+    const tbody = table.querySelector('#transactions-tbody') || table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
+    const headers = Array.from(table.querySelectorAll('th'));
+    const typeIndex = headers.findIndex(h => h.textContent.toLowerCase().includes('type'));
 
     rows.forEach(row => {
-        // Find the "Type" cell (1st column, index 0)
-        const typeCell = row.cells[0]; 
         const rowText = row.innerText.toLowerCase();
-        
+
         let matchesSearch = rowText.includes(query);
         let matchesType = true;
-        
-        if (typeQuery && typeCell) {
-            matchesType = typeCell.textContent.toLowerCase().includes(typeQuery);
+
+        if (typeQuery && typeIndex !== -1) {
+            const typeCell = row.cells[typeIndex];
+            matchesType = typeCell && typeCell.textContent.toLowerCase().includes(typeQuery);
         }
-        
-        if (matchesSearch && matchesType) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
+
+        row.style.display = (matchesSearch && matchesType) ? '' : 'none';
     });
 }
