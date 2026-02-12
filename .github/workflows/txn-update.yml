@@ -1,0 +1,79 @@
+name: Rebuild on Transactions / Products Change
+
+on:
+  push:
+    paths:
+      - 'transactions.json'
+      - 'docs/data/transactions.json'
+      - 'mappings.json'
+      - 'docs/data/mappings.json'
+      - 'data/transactions.json'
+      - 'data/mappings.json'
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-on-change
+  cancel-in-progress: true
+
+jobs:
+  rebuild-docs:
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        persist-credentials: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Rebuild summary and static docs
+      run: |
+        python - <<'PY'
+        from engine import load_transactions, derive_daily_summary, save_daily_summary
+        import daily_run
+
+        tx = load_transactions()
+        if not tx:
+            print('No transactions found; nothing to rebuild.')
+        else:
+            print(f'Re-deriving summary for {len(tx)} transactions...')
+            s = derive_daily_summary(tx)
+            save_daily_summary(s)
+            print('Generating static site assets...')
+            daily_run.generate_static_site(tx, s)
+        PY
+
+    - name: Commit and push docs
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -A
+        git diff --staged --quiet || git commit -m "Rebuild docs after transactions/mappings change"
+        git push origin main || {
+          echo "Push failed, retrying with rebase..."
+          git pull --rebase origin main
+          git push origin main
+        }
