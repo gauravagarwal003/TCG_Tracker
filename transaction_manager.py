@@ -42,6 +42,9 @@ def _ensure_mapping(items):
     mapping_keys = {(str(m["group_id"]), str(m["product_id"])) for m in mappings}
     
     for item in items:
+        # Require explicit categoryId on items
+        if "categoryId" not in item:
+            raise ValueError(f"Transaction item missing 'categoryId': {item}")
         key = (str(item["group_id"]), str(item["product_id"]))
         if key not in mapping_keys:
             new_mapping = {
@@ -49,7 +52,7 @@ def _ensure_mapping(items):
                 "name": item.get("name", f"Product {item['product_id']}"),
                 "group_id": str(item["group_id"]),
                 "imageUrl": f"https://tcgplayer-cdn.tcgplayer.com/product/{item['product_id']}_200w.jpg",
-                "categoryId": int(item.get("categoryId", 3)),
+                "categoryId": int(item["categoryId"]),
                 "url": f"https://www.tcgplayer.com/product/{item['product_id']}"
             }
             mappings.append(new_mapping)
@@ -107,8 +110,11 @@ def add_transaction(txn_data):
     # Assign ID
     txn_data["id"] = _generate_id()
     
-    # Ensure mappings exist
-    _ensure_mapping(_get_all_items(txn_data))
+    # Ensure mappings exist (and that items include categoryId)
+    try:
+        _ensure_mapping(_get_all_items(txn_data))
+    except ValueError as e:
+        return False, str(e), None
     
     # Validate inventory
     transactions = load_transactions()
@@ -199,8 +205,11 @@ def edit_transaction(txn_id, new_data):
     # Keep the same ID
     new_data["id"] = txn_id
     
-    # Ensure mappings
-    _ensure_mapping(_get_all_items(new_data))
+    # Ensure mappings (and that items include categoryId)
+    try:
+        _ensure_mapping(_get_all_items(new_data))
+    except ValueError as e:
+        return False, str(e), None
     
     # Validate: remove old, add new
     test_txns = [t for t in transactions if t["id"] != txn_id]

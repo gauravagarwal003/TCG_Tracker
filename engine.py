@@ -32,6 +32,12 @@ def load_config():
         return json.load(f)
 
 
+def save_config(cfg):
+    """Save config dict back to CONFIG_FILE."""
+    with open(CONFIG_FILE, "w") as f:
+        json.dump(cfg, f, indent=2, sort_keys=True)
+
+
 def today_pst():
     """Return today's date in Pacific time."""
     import pytz
@@ -119,8 +125,15 @@ def parse_date(d):
 
 
 def _product_key(item):
-    """Return (categoryId, group_id, product_id) tuple from an item dict."""
-    return (str(item.get("categoryId", 3)), str(item["group_id"]), str(item["product_id"]))
+    """Return (categoryId, group_id, product_id) tuple from an item dict.
+
+    Require that `categoryId` is present on the item. This prevents silently
+    assuming a magic default and ensures transactions explicitly state the
+    product category.
+    """
+    if "categoryId" not in item:
+        raise ValueError(f"Item missing 'categoryId': {item}")
+    return (str(item["categoryId"]), str(item["group_id"]), str(item["product_id"]))
 
 
 def compute_inventory_timeline(transactions):
@@ -393,6 +406,20 @@ def save_daily_summary(summary=None):
         summary = derive_daily_summary()
     with open(DAILY_SUMMARY_FILE, "w") as f:
         json.dump(summary, f, indent=2, sort_keys=True)
+
+    # Update config with latest derived date so other parts of the app
+    # can read the most recent summary date. Do this only if summary
+    # has at least one date.
+    try:
+        if summary:
+            latest = max(summary.keys())
+            cfg = load_config()
+            cfg["latest_date"] = latest
+            save_config(cfg)
+    except Exception:
+        # Keep summary saving best-effort; don't raise on config write failures
+        pass
+
     return summary
 
 

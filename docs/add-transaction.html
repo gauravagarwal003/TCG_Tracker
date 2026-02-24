@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1770852562" rel="stylesheet">
+    <link href="static/css/styles.css?v=1770708765" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -107,7 +107,7 @@
                 <!-- Hidden IDs -->
                 <input type="hidden" id="sel_product_id"  name="product_id"  value="">
                 <input type="hidden" id="sel_group_id"    name="group_id"    value="">
-                <input type="hidden" id="sel_category_id" name="category_id" value="3">
+                <input type="hidden" id="sel_category_id" name="category_id" value="">
                 <input type="hidden" id="sel_name"        name="product_name" value="">
 
                 <!-- New Product mini-form -->
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     name: m.name,
                     product_id: m.product_id,
                     group_id: m.group_id,
-                    categoryId: m.categoryId || 3,
+                    categoryId: m.categoryId || null,
                     imageUrl: m.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${m.product_id}_200w.jpg`
                 }));
         });
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.value = p.name;
         document.getElementById('sel_product_id').value  = p.product_id;
         document.getElementById('sel_group_id').value    = p.group_id;
-        document.getElementById('sel_category_id').value = p.categoryId || 3;
+        document.getElementById('sel_category_id').value = p.categoryId || '';
         document.getElementById('sel_name').value        = p.name;
         searchResults.style.display = 'none';
         newProdDiv.style.display = 'none';
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
             name,
             product_id: pid,
             group_id: gid,
-            categoryId: parseInt(cid, 10) || 3,
+            categoryId: parseInt(cid, 10) || null,
             imageUrl: `https://tcgplayer-cdn.tcgplayer.com/product/${pid}_200w.jpg`,
             url: `https://www.tcgplayer.com/product/${pid}`
         };
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     searchInput.value = saved.name;
                     document.getElementById('sel_product_id').value  = saved.product_id;
                     document.getElementById('sel_group_id').value    = saved.group_id;
-                    document.getElementById('sel_category_id').value = saved.categoryId || 3;
+                    document.getElementById('sel_category_id').value = saved.categoryId || '';
                     document.getElementById('sel_name').value        = saved.name;
                     newProdDiv.style.display = 'none';
                 })
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 input.value = p.name;
                                 row.querySelector('.trade-product-id').value  = p.product_id;
                                 row.querySelector('.trade-group-id').value    = p.group_id;
-                                row.querySelector('.trade-category-id').value = p.categoryId || 3;
+                                row.querySelector('.trade-category-id').value = p.categoryId || '';
                                 row.querySelector('.trade-name').value        = p.name;
                                 row.querySelector('.trade-id-label').textContent = p.product_id;
                                 resultsDiv.style.display = 'none';

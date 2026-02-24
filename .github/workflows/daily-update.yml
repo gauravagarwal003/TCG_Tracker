@@ -1,18 +1,14 @@
 name: Daily Price Update
 
 on:
-
   schedule:
-    # 3:00 PM PST = 11:00 PM UTC
     - cron: '0 23 * * *'
   workflow_dispatch:
   push:
     paths:
       - 'transactions.json'
-      - 'docs/data/transactions.json'
-    paths-ignore:
-      - 'docs/**'
-      - '.github/**'
+    branches:
+      - main
 
 permissions:
   contents: write
