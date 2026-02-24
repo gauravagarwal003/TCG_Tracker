@@ -117,12 +117,15 @@ function applyDefaultSort(table) {
         rows.sort((rowA, rowB) => {
             const cellA = rowA.cells[dateIndex].textContent.trim();
             const cellB = rowB.cells[dateIndex].textContent.trim();
-            
-            // Parse MM/DD/YYYY format
+
+            // Use numeric timestamps for comparison
             const dateA = parseDateString(cellA);
             const dateB = parseDateString(cellB);
-            
-            return dateB - dateA; // Descending (newest first)
+
+            const aVal = isNaN(dateA) ? -Infinity : dateA;
+            const bVal = isNaN(dateB) ? -Infinity : dateB;
+
+            return bVal - aVal; // Descending (newest first)
         });
         rows.forEach(row => tbody.appendChild(row));
         return;
@@ -130,15 +133,22 @@ function applyDefaultSort(table) {
 }
 
 function parseDateString(dateStr) {
-    // Handle MM/DD/YYYY format
-    if (dateStr.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
-        return new Date(dateStr);
+    // Return a numeric timestamp (ms since epoch) for consistent comparisons.
+    if (!dateStr) return NaN;
+    dateStr = dateStr.trim();
+    // Handle YYYY-MM-DD format reliably
+    var m1 = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (m1) {
+        return Date.UTC(parseInt(m1[1], 10), parseInt(m1[2], 10) - 1, parseInt(m1[3], 10));
     }
-    // Handle YYYY-MM-DD format
-    if (dateStr.match(/\d{4}-\d{2}-\d{2}/)) {
-        return new Date(dateStr);
+    // Handle MM/DD/YYYY format reliably (US)
+    var m2 = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (m2) {
+        return Date.UTC(parseInt(m2[3], 10), parseInt(m2[1], 10) - 1, parseInt(m2[2], 10));
     }
-    return new Date(0); // Invalid date goes to bottom
+    // Fallback to Date.parse for other formats
+    var t = Date.parse(dateStr);
+    return isNaN(t) ? NaN : t;
 }
 
 function sortTable(table, colIndex) {
@@ -203,14 +213,14 @@ function sortTable(table, colIndex) {
             
             // Date sort (handles both MM/DD/YYYY and YYYY-MM-DD formats)
             if (cellA.match(/\d{1,2}\/\d{1,2}\/\d{4}/) && cellB.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
-                 return isAscending 
-                    ? new Date(cellA) - new Date(cellB) 
-                    : new Date(cellB) - new Date(cellA);
+                  const ta = parseDateString(cellA);
+                  const tb = parseDateString(cellB);
+                  return isAscending ? ta - tb : tb - ta;
             }
             if (cellA.match(/\d{4}-\d{2}-\d{2}/) && cellB.match(/\d{4}-\d{2}-\d{2}/)) {
-                 return isAscending 
-                    ? new Date(cellA) - new Date(cellB) 
-                    : new Date(cellB) - new Date(cellA);
+                  const ta = parseDateString(cellA);
+                  const tb = parseDateString(cellB);
+                  return isAscending ? ta - tb : tb - ta;
             }
 
             return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);

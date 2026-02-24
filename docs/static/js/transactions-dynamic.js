@@ -27,6 +27,16 @@ function renderTransactionsTable(transactions) {
         tbody.innerHTML = `<tr><td colspan="10" class="text-center py-4 text-muted">No transactions found.</td></tr>`;
         return;
     }
+    // Preserve original order index so table-init can restore it if needed
+    transactions = transactions.map((t, idx) => ({...t, _originalIndex: idx}));
+
+    // Ensure transactions are shown newest-first by `date_received`
+    transactions.sort((a, b) => {
+        const da = new Date(a.date_received);
+        const db = new Date(b.date_received);
+        return db - da; // descending
+    });
+
     for (const [i, tx] of transactions.entries()) {
         // Compose product cell
         let productCell = '';
@@ -65,7 +75,7 @@ function renderTransactionsTable(transactions) {
             </form>
         </div>`;
         // Compose row
-        tbody.innerHTML += `<tr data-index="${i}">
+        tbody.innerHTML += `<tr data-original-index="${tx._originalIndex}" data-index="${i}">
             <td>${imgCell}</td>
             <td class="text-center">${typeBadge}</td>
             <td class="fw-medium">${productCell}</td>
@@ -78,6 +88,21 @@ function renderTransactionsTable(transactions) {
             <td class="action-buttons">${actions}</td>
         </tr>`;
     }
+
+    // Mark the Date header as sorted descending so the UI reflects default order
+    try {
+        const table = document.querySelector('table');
+        if (table) {
+            const headers = Array.from(table.querySelectorAll('th'));
+            const dateIndex = headers.findIndex(h => h.textContent.includes('Date'));
+            if (dateIndex !== -1) {
+                const header = headers[dateIndex];
+                header.setAttribute('data-order', 'desc');
+                const icon = header.querySelector('.fas');
+                if (icon) icon.className = 'fas fa-sort-down text-primary ms-1 small';
+            }
+        }
+    } catch (e) {}
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
