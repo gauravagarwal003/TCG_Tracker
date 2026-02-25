@@ -583,19 +583,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const updatedRoot = updateTxns(rootFile.content);
         const updatedDocs = updateTxns(docsFile.content);
 
-        await api.updateFile(
-            'transactions.json',
-            JSON.stringify(updatedRoot, null, 2),
-            `Add transaction ${txnData.id}`,
-            rootFile.sha
-        );
-
-        await api.updateFile(
-            'docs/data/transactions.json',
-            JSON.stringify(updatedDocs, null, 2),
-            `Update transactions data ${txnData.id}`,
-            docsFile.sha
-        );
+        // Perform a single atomic commit that updates both files together
+        await api.updateFilesAtomic([
+            { path: 'transactions.json', content: JSON.stringify(updatedRoot, null, 2), sha: rootFile.sha },
+            { path: 'docs/data/transactions.json', content: JSON.stringify(updatedDocs, null, 2), sha: docsFile.sha }
+        ], `Add transaction ${txnData.id}`);
 
         return true;
     }

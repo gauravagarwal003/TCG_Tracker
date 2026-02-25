@@ -208,6 +208,63 @@ class GitHubAPI {
             })
         });
     }
+
+    // Update multiple files in a single atomic commit using the Git Data API
+    async updateFilesAtomic(files, message) {
+        // files: [{ path, content, sha? }]
+        if (this.isLocal) {
+            console.log('[LOCAL] Skipping atomic commit:', message);
+            alert('Local mode – changes not committed to GitHub.');
+            return null;
+        }
+
+        // 1) Get reference for branch
+        const refUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/ref/heads/${this.config.branch}`;
+        const ref = await this.request(refUrl);
+        const commitSha = ref.object.sha;
+
+        // 2) Get commit to obtain tree SHA
+        const commitUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits/${commitSha}`;
+        const commit = await this.request(commitUrl);
+        const baseTreeSha = commit.tree.sha;
+
+        // 3) Create blobs for each file
+        const blobPromises = files.map(f => {
+            const utf8Bytes = new TextEncoder().encode(f.content);
+            const binaryString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
+            const base64Content = btoa(binaryString);
+            return this.request(`${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/blobs`, {
+                method: 'POST',
+                body: JSON.stringify({ content: base64Content, encoding: 'base64' })
+            }).then(res => ({ path: f.path, sha: res.sha }));
+        });
+        const blobs = await Promise.all(blobPromises);
+
+        // 4) Create tree entries
+        const tree = blobs.map(b => ({ path: b.path, mode: '100644', type: 'blob', sha: b.sha }));
+
+        const createTreeUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/trees`;
+        const newTree = await this.request(createTreeUrl, {
+            method: 'POST',
+            body: JSON.stringify({ base_tree: baseTreeSha, tree })
+        });
+
+        // 5) Create commit
+        const createCommitUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits`;
+        const newCommit = await this.request(createCommitUrl, {
+            method: 'POST',
+            body: JSON.stringify({ message, tree: newTree.sha, parents: [commitSha] })
+        });
+
+        // 6) Update ref to point to new commit
+        const updateRefUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/refs/heads/${this.config.branch}`;
+        await this.request(updateRefUrl, {
+            method: 'PATCH',
+            body: JSON.stringify({ sha: newCommit.sha })
+        });
+
+        return newCommit;
+    }
 }
 
 // Initialize global API instance
