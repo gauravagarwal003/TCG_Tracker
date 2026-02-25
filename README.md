@@ -1,6 +1,6 @@
-# Pokemon Investment Tracker
+# TCG Investment Tracker
 
-Track the total market value of your Pokemon TCG collection and your net cost basis over time.
+Track the total market value of your TCG collection and your net cost basis over time.
 
 ## Features
 

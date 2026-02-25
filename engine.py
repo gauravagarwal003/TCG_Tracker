@@ -1,5 +1,5 @@
 """
-engine.py - Core engine for Pokemon Tracker
+engine.py - Core engine for TCG Tracker
 
 Derives the daily timeline (total_value, cost_basis) from:
   1. transactions.json  (source of truth for all transactions)

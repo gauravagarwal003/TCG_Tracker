@@ -1,11 +1,11 @@
-// GitHub API Integration for Pokemon Tracker v2
+// GitHub API Integration for TCG Tracker v2
 // Works with transactions.json (not CSV)
 
 class GitHubAPI {
     constructor() {
         this.config = {
             owner: 'gauravagarwal003',
-            repo: 'Pokemon_Tracker',
+            repo: 'tcg_tacker',
             branch: 'main'
         };
         this.apiBase = 'https://api.github.com';
@@ -16,7 +16,7 @@ class GitHubAPI {
     }
 
     get token() {
-        return window.PokeAuth?.getToken() || sessionStorage.getItem('github_token');
+        return window.TCGAuth?.getToken() || sessionStorage.getItem('github_token');
     }
 
     isAuthenticated() {
@@ -36,8 +36,8 @@ class GitHubAPI {
                 const repoData = await response.json();
                 if (!repoData.permissions?.push) throw new Error('Token lacks write access');
 
-                if (window.PokeAuth) {
-                    window.PokeAuth.setToken(token);
+                if (window.TCGAuth) {
+                    window.TCGAuth.setToken(token);
                 } else {
                     sessionStorage.setItem('github_token', token);
                 }
@@ -114,8 +114,8 @@ class GitHubAPI {
                     const repoData = await response.json();
                     if (!repoData.permissions?.push) throw new Error('Token lacks write access');
 
-                    if (window.PokeAuth) {
-                        window.PokeAuth.setToken(token);
+                    if (window.TCGAuth) {
+                        window.TCGAuth.setToken(token);
                     } else {
                         sessionStorage.setItem('github_token', token);
                     }
@@ -138,8 +138,8 @@ class GitHubAPI {
     }
 
     logout() {
-        if (window.PokeAuth) {
-            window.PokeAuth.logout();
+        if (window.TCGAuth) {
+            window.TCGAuth.logout();
         } else {
             sessionStorage.removeItem('github_token');
             window.location.reload();

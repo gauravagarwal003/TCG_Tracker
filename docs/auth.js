@@ -1,4 +1,4 @@
-// Authentication for Pokemon Tracker GitHub Pages
+// Authentication for TCG Tracker GitHub Pages
 // Dual-layer: Password + GitHub PAT
 
 (function() {
@@ -9,7 +9,7 @@
     // crypto.subtle.digest('SHA-256', new TextEncoder().encode('your-password')).then(h => console.log(Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, '0')).join('')))
     const PASSWORD_HASH = 'e91e78805d7e65607f3c2f25f174d385dbef65f56f325ca1331e380abcd54838';
     
-    const AUTH_KEY = 'poketracker_auth';
+    const AUTH_KEY = 'tcgtracker_auth';
     const TOKEN_KEY = 'github_token';
 
     // Check if user has passed password auth
@@ -70,7 +70,7 @@
                 <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); max-width: 400px; width: 90%; font-family: 'Inter', -apple-system, sans-serif;">
                     <div style="text-align: center; margin-bottom: 24px;">
                         <div style="font-size: 48px; margin-bottom: 16px;">🔒</div>
-                        <h2 style="margin: 0; color: #1e293b; font-size: 24px;">PokeTracker</h2>
+                        <h2 style="margin: 0; color: #1e293b; font-size: 24px;">TCG Tracker</h2>
                         <p style="color: #64748b; margin-top: 8px;">Enter password to continue</p>
                     </div>
                     <form id="authForm">
@@ -144,7 +144,7 @@
     }
 
     // Export functions for use by other scripts
-    window.PokeAuth = {
+    window.TCGAuth = {
         isPasswordAuthenticated,
         hasGitHubToken,
         getToken: () => sessionStorage.getItem(TOKEN_KEY),

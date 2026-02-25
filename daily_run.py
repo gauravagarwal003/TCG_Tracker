@@ -130,7 +130,7 @@ def generate_static_site(transactions, summary):
 
 def main():
     print("=" * 60)
-    print(f"Pokemon Tracker - Daily Run")
+    print(f"TCG Tracker - Daily Run")
     print(f"Date: {today_pst()}")
     print("=" * 60)
     
@@ -177,7 +177,7 @@ def backfill():
 def docs_only():
     """Regenerate GitHub Pages assets without fetching new prices."""
     print("=" * 60)
-    print("Pokemon Tracker - Docs-Only Rebuild")
+    print("TCG Tracker - Docs-Only Rebuild")
     print("=" * 60)
 
     transactions = load_transactions()

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Pokemon Tracker - Flask Web App Runner
+# TCG Tracker - Flask Web App Runner
 # This script starts the Flask development server for local editing
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
 
-echo "🎮 Pokemon Tracker - Starting Web Application..."
+echo "🎮 TCG Tracker - Starting Web Application..."
 echo ""
 
 # Check if virtual environment exists

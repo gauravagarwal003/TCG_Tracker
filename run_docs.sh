@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Pokemon Tracker - Local GitHub Pages Preview
+# TCG Tracker - Local GitHub Pages Preview
 # This script rebuilds docs/ data and serves the static site locally.
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
 
-echo "🧪 Pokemon Tracker - Local GitHub Pages Preview"
+echo "🧪 TCG Tracker - Local GitHub Pages Preview"
 echo ""
 
 # Check if virtual environment exists
