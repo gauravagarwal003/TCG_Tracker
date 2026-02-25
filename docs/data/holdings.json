@@ -386,6 +386,17 @@
   },
   {
     "categoryId": "3",
+    "group_id": "23651",
+    "product_id": "565604",
+    "name": "Surging Sparks Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
+    "quantity": 5,
+    "latest_price": 6.35,
+    "total_value": 31.75
+  },
+  {
+    "categoryId": "3",
     "group_id": "23821",
     "product_id": "593450",
     "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
@@ -405,17 +416,6 @@
     "quantity": 1,
     "latest_price": 29.01,
     "total_value": 29.01
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23651",
-    "product_id": "565604",
-    "name": "Surging Sparks Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
-    "quantity": 4,
-    "latest_price": 6.35,
-    "total_value": 25.4
   },
   {
     "categoryId": "3",

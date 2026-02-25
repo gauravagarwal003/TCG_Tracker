@@ -1824,31 +1824,35 @@
     "total_value": 7799.75
   },
   "2026-02-18": {
-    "cost_basis": 3480.18,
-    "total_value": 7833.39
+    "cost_basis": 3485.13,
+    "total_value": 7839.87
   },
   "2026-02-19": {
-    "cost_basis": 3480.18,
-    "total_value": 7895.49
+    "cost_basis": 3485.13,
+    "total_value": 7902.23
   },
   "2026-02-20": {
-    "cost_basis": 3480.18,
-    "total_value": 7920.76
+    "cost_basis": 3485.13,
+    "total_value": 7927.5
   },
   "2026-02-21": {
-    "cost_basis": 3480.18,
-    "total_value": 8059.04
+    "cost_basis": 3485.13,
+    "total_value": 8066.22
   },
   "2026-02-22": {
-    "cost_basis": 3480.18,
-    "total_value": 8080.4
+    "cost_basis": 3485.13,
+    "total_value": 8087.52
   },
   "2026-02-23": {
-    "cost_basis": 3480.18,
-    "total_value": 8081.71
+    "cost_basis": 3485.13,
+    "total_value": 8088.39
   },
   "2026-02-24": {
-    "cost_basis": 3480.18,
-    "total_value": 8144.49
+    "cost_basis": 3485.13,
+    "total_value": 8150.84
+  },
+  "2026-02-25": {
+    "cost_basis": 3485.13,
+    "total_value": 8150.84
   }
 }

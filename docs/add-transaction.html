@@ -7,7 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>TCG Tracker</title>
+    <title>TCG Investment Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1771976358" rel="stylesheet">
+    <link href="static/css/styles.css?v=1772010248" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -275,10 +275,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const updatedRoot = updateList(rootFile.content);
         const updatedDocs = updateList(docsFile.content);
 
-        await api.updateFilesAtomic([
-            { path: 'mappings.json', content: JSON.stringify(updatedRoot, null, 2), sha: rootFile.sha },
-            { path: 'docs/data/mappings.json', content: JSON.stringify(updatedDocs, null, 2), sha: docsFile.sha }
-        ], `Add product ${mapping.name}`);
+        await api.updateFile(
+            'mappings.json',
+            JSON.stringify(updatedRoot, null, 2),
+            `Add product ${mapping.name}`,
+            rootFile.sha
+        );
+
+        await api.updateFile(
+            'docs/data/mappings.json',
+            JSON.stringify(updatedDocs, null, 2),
+            `Update mappings data ${mapping.name}`,
+            docsFile.sha
+        );
 
         staticMappingsCache = updatedDocs;
         return mapping;
@@ -580,6 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const updatedRoot = updateTxns(rootFile.content);
         const updatedDocs = updateTxns(docsFile.content);
 
+        // Perform a single atomic commit that updates both files together
         await api.updateFilesAtomic([
             { path: 'transactions.json', content: JSON.stringify(updatedRoot, null, 2), sha: rootFile.sha },
             { path: 'docs/data/transactions.json', content: JSON.stringify(updatedDocs, null, 2), sha: docsFile.sha }
