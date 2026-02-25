@@ -28,4 +28,4 @@ echo "   📝 You can now add/edit transactions through the web interface"
 echo "   ⛔ Press Ctrl+C to stop"
 echo ""
 
-python app.py
+python3 app.py
