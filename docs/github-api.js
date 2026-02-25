@@ -5,7 +5,7 @@ class GitHubAPI {
     constructor() {
         this.config = {
             owner: 'gauravagarwal003',
-            repo: 'tcg_tacker',
+            repo: 'TCG_Tracker',
             branch: 'main'
         };
         this.apiBase = 'https://api.github.com';
@@ -13,6 +13,21 @@ class GitHubAPI {
         this.isLocal = window.location.hostname === 'localhost' ||
                        window.location.hostname === '127.0.0.1' ||
                        window.location.hostname === '';
+    }
+
+    async loadConfig() {
+        try {
+            const resp = await fetch('/config.json', { cache: 'no-store' });
+            if (!resp.ok) return;
+            const cfg = await resp.json();
+            if (cfg.github) {
+                this.config.owner = cfg.github.owner || this.config.owner;
+                this.config.repo = cfg.github.repo || this.config.repo;
+                this.config.branch = cfg.github.branch || this.config.branch;
+            }
+        } catch (e) {
+            console.warn('Could not load /config.json', e);
+        }
     }
 
     get token() {
