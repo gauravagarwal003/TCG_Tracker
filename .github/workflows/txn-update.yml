@@ -9,9 +9,6 @@ on:
       - 'docs/data/mappings.json'
       - 'data/transactions.json'
       - 'data/mappings.json'
-    paths-ignore:
-      - 'docs/**'
-      - '.github/**'
   pull_request:
     types: [closed]
 
