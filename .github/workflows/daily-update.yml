@@ -4,11 +4,7 @@ on:
   schedule:
     - cron: '0 23 * * *'
   workflow_dispatch:
-  push:
-    paths:
-      - 'transactions.json'
-    branches:
-      - main
+  # push trigger removed to avoid running daily price update on transaction edits
 
 permissions:
   contents: write
