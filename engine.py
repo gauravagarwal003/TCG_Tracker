@@ -27,14 +27,51 @@ DAILY_SUMMARY_FILE = os.path.join(BASE_DIR, "daily_summary.json")
 PRICE_GAPS_FILE = os.path.join(BASE_DIR, "price_gaps.json")
 
 
+def _try_fix_mojibake(s: str) -> str:
+    """Attempt to fix common double-encoding (mojibake) like 'PokÃ©mon' -> 'Pokémon'.
+
+    The heuristic looks for common invalid sequences and tries to re-decode
+    from latin-1 -> utf-8 up to a few times until stable.
+    """
+    if not isinstance(s, str):
+        return s
+    # Quick heuristic: these sequences commonly appear in mojibake
+    if "Ã" not in s and "Â" not in s:
+        return s
+    out = s
+    # Try repeated latin-1 -> utf-8 decoding which often recovers
+    # text that has been double/triple encoded. Cap iterations to
+    # avoid pathological loops.
+    for _ in range(10):
+        try:
+            candidate = out.encode("latin-1").decode("utf-8")
+        except Exception:
+            break
+        if candidate == out:
+            break
+        out = candidate
+    return out
+
+
+def _fix_mojibake_in_obj(obj):
+    """Recursively fix strings inside lists/dicts returned from JSON files."""
+    if isinstance(obj, str):
+        return _try_fix_mojibake(obj)
+    if isinstance(obj, list):
+        return [_fix_mojibake_in_obj(i) for i in obj]
+    if isinstance(obj, dict):
+        return {k: _fix_mojibake_in_obj(v) for k, v in obj.items()}
+    return obj
+
+
 def load_config():
-    with open(CONFIG_FILE, "r") as f:
-        return json.load(f)
+    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+        return _fix_mojibake_in_obj(json.load(f))
 
 
 def save_config(cfg):
     """Save config dict back to CONFIG_FILE."""
-    with open(CONFIG_FILE, "w") as f:
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=2, sort_keys=True)
 
 
@@ -52,14 +89,14 @@ def load_transactions():
     """Load all transactions from transactions.json."""
     if not os.path.exists(TRANSACTIONS_FILE):
         return []
-    with open(TRANSACTIONS_FILE, "r") as f:
-        return json.load(f)
+    with open(TRANSACTIONS_FILE, "r", encoding="utf-8") as f:
+        return _fix_mojibake_in_obj(json.load(f))
 
 
 def save_transactions(txns):
     """Save all transactions to transactions.json."""
-    with open(TRANSACTIONS_FILE, "w") as f:
-        json.dump(txns, f, indent=2)
+    with open(TRANSACTIONS_FILE, "w", encoding="utf-8") as f:
+        json.dump(txns, f, indent=2, ensure_ascii=False)
 
 
 # ---------------------------------------------------------------------------
@@ -74,16 +111,16 @@ def load_prices(category_id, group_id, product_id):
     path = _price_file_path(category_id, group_id, product_id)
     if not os.path.exists(path):
         return {}
-    with open(path, "r") as f:
-        return json.load(f)
+    with open(path, "r", encoding="utf-8") as f:
+        return _fix_mojibake_in_obj(json.load(f))
 
 
 def save_prices(category_id, group_id, product_id, price_dict):
     """Save price dict {date_str: float} for a product."""
     path = _price_file_path(category_id, group_id, product_id)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(price_dict, f, indent=2, sort_keys=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(price_dict, f, indent=2, sort_keys=True, ensure_ascii=False)
 
 
 def get_price(category_id, group_id, product_id, date_str):
@@ -98,13 +135,13 @@ def get_price(category_id, group_id, product_id, date_str):
 def load_mappings():
     if not os.path.exists(MAPPINGS_FILE):
         return []
-    with open(MAPPINGS_FILE, "r") as f:
-        return json.load(f)
+    with open(MAPPINGS_FILE, "r", encoding="utf-8") as f:
+        return _fix_mojibake_in_obj(json.load(f))
 
 
 def save_mappings(mappings):
-    with open(MAPPINGS_FILE, "w") as f:
-        json.dump(mappings, f, indent=2)
+    with open(MAPPINGS_FILE, "w", encoding="utf-8") as f:
+        json.dump(mappings, f, indent=2, ensure_ascii=False)
 
 
 def get_mapping(group_id, product_id):
