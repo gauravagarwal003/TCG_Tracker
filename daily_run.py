@@ -139,9 +139,15 @@ def main():
         print("No transactions found. Exiting.")
         return
     
-    # Step 1: Fetch today's prices
+    # Step 1: Fetch today's prices for all products owned today
+    # Use update_prices constrained to today's date so the daily job
+    # fetches and saves prices (and fills gaps) as the single committer.
     print("\n--- Step 1: Fetching today's prices ---")
-    fetch_today_prices()
+    td = today_pst().strftime("%Y-%m-%d")
+    try:
+        update_prices(start_date_str=td, end_date_str=td)
+    except Exception as e:
+        print('fetch/update today prices failed:', e)
     
     # Step 2: Re-derive summary
     print("\n--- Step 2: Deriving daily summary ---")
