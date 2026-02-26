@@ -15,6 +15,7 @@ on:
 permissions:
   contents: write
   pages: write
+  id-token: write
 
 concurrency:
   group: rebuild-on-change

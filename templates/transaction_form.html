@@ -269,19 +269,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const updatedRoot = updateList(rootFile.content);
         const updatedDocs = updateList(docsFile.content);
 
-        await api.updateFile(
-            'mappings.json',
-            JSON.stringify(updatedRoot, null, 2),
-            `Add product ${mapping.name}`,
-            rootFile.sha
-        );
-
-        await api.updateFile(
-            'docs/data/mappings.json',
-            JSON.stringify(updatedDocs, null, 2),
-            `Update mappings data ${mapping.name}`,
-            docsFile.sha
-        );
+        // Commit both files in a single atomic commit to avoid double commits
+        await api.updateFilesAtomic([
+            { path: 'mappings.json', content: JSON.stringify(updatedRoot, null, 2) },
+            { path: 'docs/data/mappings.json', content: JSON.stringify(updatedDocs, null, 2) }
+        ], `Add product ${mapping.name}`);
 
         staticMappingsCache = updatedDocs;
         return mapping;
