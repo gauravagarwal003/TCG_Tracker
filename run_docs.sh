@@ -23,7 +23,7 @@ fi
 
 echo ""
 echo "✓ Rebuilding docs/data..."
-python daily_run.py --docs-only
+"$SCRIPT_DIR/.venv/bin/python3" daily_run.py --docs-only
 
 echo ""
 echo "✅ Starting local static server for docs/"
@@ -32,4 +32,4 @@ echo "   ⛔ Press Ctrl+C to stop"
 echo ""
 
 cd "$SCRIPT_DIR/docs"
-python -m http.server 8000
+"$SCRIPT_DIR/.venv/bin/python3" -m http.server 8000

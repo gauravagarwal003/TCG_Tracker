@@ -87,6 +87,19 @@ Notes:
 - Serving over http://127.0.0.1 is required (opening files via file:// will break auth/crypto in the browser).
 - The script regenerates `docs/data/` and the static HTML before starting the server.
 
+## Editing data: static pages vs local server
+
+- The static `docs/` pages include a client-side GitHub helper that can commit changes directly to the repository. To save new products or transactions from the static pages the browser must provide a GitHub Personal Access Token (PAT) with repository write permissions.
+- If you open the static `add-transaction.html` or `docs/add-transaction.html` and see an alert like "GitHub token is required to save new products on GitHub Pages", that's because the static frontend could not obtain a token (or the helper files `auth.js` / `github-api.js` are not present).
+- Recommended for local development: run the Flask app (see "Local setup & run") and use the dynamic UI — it POSTs to the local server and does not require a GitHub token.
+
+If you really want to enable editing directly from the static site locally, you must provide a client-side implementation that exposes `githubAPI.authenticate()` and related methods. A minimal approach is:
+
+1. Create `docs/auth.js` that prompts for a PAT and stores it in `localStorage` (only for local testing).
+2. Create `docs/github-api.js` that uses the token to call GitHub's REST API to `GET`/`PUT` files and create commits (must implement `isAuthenticated()`, `authenticate()`, `getFile()` and `updateFilesAtomic()`).
+
+Warning: storing a PAT in the browser is insecure. Only use this flow for short-lived local testing and never expose your token on public machines.
+
 ## Project structure (high level)
 
 - `engine.py` — Core engine: inventory timeline, daily summary derivation, price loading
