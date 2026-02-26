@@ -4,11 +4,7 @@ on:
   push:
     paths:
       - 'transactions.json'
-      - 'docs/data/transactions.json'
       - 'mappings.json'
-      - 'docs/data/mappings.json'
-      - 'data/transactions.json'
-      - 'data/mappings.json'
   pull_request:
     types: [closed]
 

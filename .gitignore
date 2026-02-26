@@ -71,3 +71,6 @@ Icon?
 
 # Project specific
 price_gaps.json
+
+# Ignore generated GitHub Pages site
+/docs/
