@@ -1,6 +1,17 @@
 [
   {
     "categoryId": "3",
+    "group_id": "24448",
+    "product_id": "654137",
+    "name": "Phantasmal Flames Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box",
+    "quantity": 1,
+    "latest_price": 324.12,
+    "total_value": 324.12
+  },
+  {
+    "categoryId": "3",
     "group_id": "2374",
     "product_id": "609597",
     "name": "Blooming Waters Premium Collection",
@@ -9,50 +20,6 @@
     "quantity": 4,
     "latest_price": 244.26,
     "total_value": 977.04
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23237",
-    "product_id": "502000",
-    "name": "151 Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502000_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/502000/pokemon-sv-scarlet-and-violet-151-151-booster-bundle",
-    "quantity": 6,
-    "latest_price": 147.68,
-    "total_value": 886.08
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23821",
-    "product_id": "593355",
-    "name": "Prismatic Evolutions Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/593355/pokemon-sv-prismatic-evolutions-prismatic-evolutions-elite-trainer-box",
-    "quantity": 4,
-    "latest_price": 180.13,
-    "total_value": 720.52
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23821",
-    "product_id": "600518",
-    "name": "Prismatic Evolutions Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/600518/pokemon-sv-prismatic-evolutions-prismatic-evolutions-booster-bundle",
-    "quantity": 8,
-    "latest_price": 72.06,
-    "total_value": 576.48
-  },
-  {
-    "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "654213",
-    "name": "Mega Charizard X ex Ultra Premium Collection",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654213_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/654213/pokemon-miscellaneous-cards-and-products-mega-charizard-x-ex-ultra-premium-collection",
-    "quantity": 3,
-    "latest_price": 177.82,
-    "total_value": 533.46
   },
   {
     "categoryId": "3",
@@ -67,6 +34,17 @@
   },
   {
     "categoryId": "3",
+    "group_id": "24325",
+    "product_id": "630687",
+    "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630687_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/630687/pokemon-sv-black-bolt-black-bolt-pokemon-center-elite-trainer-box-exclusive",
+    "quantity": 1,
+    "latest_price": 189.72,
+    "total_value": 189.72
+  },
+  {
+    "categoryId": "3",
     "group_id": "23353",
     "product_id": "665113",
     "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
@@ -78,58 +56,25 @@
   },
   {
     "categoryId": "3",
-    "group_id": "24448",
-    "product_id": "654137",
-    "name": "Phantasmal Flames Booster Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box",
-    "quantity": 1,
-    "latest_price": 324.12,
-    "total_value": 324.12
+    "group_id": "23821",
+    "product_id": "593355",
+    "name": "Prismatic Evolutions Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/593355/pokemon-sv-prismatic-evolutions-prismatic-evolutions-elite-trainer-box",
+    "quantity": 4,
+    "latest_price": 180.13,
+    "total_value": 720.52
   },
   {
     "categoryId": "3",
-    "group_id": "3118",
-    "product_id": "277335",
-    "name": "Lost Origin Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/277335_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/277335/pokemon-swsh11-lost-origin-lost-origin-elite-trainer-box",
-    "quantity": 2,
-    "latest_price": 160.81,
-    "total_value": 321.62
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24269",
-    "product_id": "625670",
-    "name": "Destined Rivals Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/625670_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/625670/pokemon-sv10-destined-rivals-destined-rivals-booster-bundle",
-    "quantity": 6,
-    "latest_price": 51.99,
-    "total_value": 311.94
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23353",
-    "product_id": "528771",
-    "name": "Paldean Fates Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/528771_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/528771/pokemon-sv-paldean-fates-paldean-fates-booster-bundle",
-    "quantity": 2,
-    "latest_price": 127.19,
-    "total_value": 254.38
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24325",
-    "product_id": "630687",
-    "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630687_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/630687/pokemon-sv-black-bolt-black-bolt-pokemon-center-elite-trainer-box-exclusive",
-    "quantity": 1,
-    "latest_price": 189.72,
-    "total_value": 189.72
+    "group_id": "2374",
+    "product_id": "654213",
+    "name": "Mega Charizard X ex Ultra Premium Collection",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654213_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/654213/pokemon-miscellaneous-cards-and-products-mega-charizard-x-ex-ultra-premium-collection",
+    "quantity": 3,
+    "latest_price": 177.82,
+    "total_value": 533.46
   },
   {
     "categoryId": "3",
@@ -144,36 +89,14 @@
   },
   {
     "categoryId": "3",
-    "group_id": "23651",
-    "product_id": "565630",
-    "name": "Surging Sparks Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565630_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565630/pokemon-sv08-surging-sparks-surging-sparks-elite-trainer-box",
+    "group_id": "3118",
+    "product_id": "277335",
+    "name": "Lost Origin Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/277335_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/277335/pokemon-swsh11-lost-origin-lost-origin-elite-trainer-box",
     "quantity": 2,
-    "latest_price": 82.7,
-    "total_value": 165.4
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24326",
-    "product_id": "630696",
-    "name": "White Flare Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630696_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/630696/pokemon-sv-white-flare-white-flare-booster-bundle",
-    "quantity": 3,
-    "latest_price": 52.21,
-    "total_value": 156.63
-  },
-  {
-    "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "662770",
-    "name": "Snorlax ex & Blissey ex Special Collection",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/662770_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/662770/pokemon-miscellaneous-cards-and-products-snorlax-ex-and-blissey-ex-special-collection",
-    "quantity": 3,
-    "latest_price": 51.79,
-    "total_value": 155.37
+    "latest_price": 160.81,
+    "total_value": 321.62
   },
   {
     "categoryId": "3",
@@ -188,14 +111,14 @@
   },
   {
     "categoryId": "3",
-    "group_id": "24269",
-    "product_id": "624684",
-    "name": "Destined Rivals Sleeved Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/624684_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/624684/pokemon-sv10-destined-rivals-destined-rivals-sleeved-booster-pack",
-    "quantity": 16,
-    "latest_price": 9.14,
-    "total_value": 146.24
+    "group_id": "23237",
+    "product_id": "502000",
+    "name": "151 Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502000_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/502000/pokemon-sv-scarlet-and-violet-151-151-booster-bundle",
+    "quantity": 6,
+    "latest_price": 147.68,
+    "total_value": 886.08
   },
   {
     "categoryId": "3",
@@ -207,6 +130,17 @@
     "quantity": 1,
     "latest_price": 133.82,
     "total_value": 133.82
+  },
+  {
+    "categoryId": "3",
+    "group_id": "23353",
+    "product_id": "528771",
+    "name": "Paldean Fates Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/528771_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/528771/pokemon-sv-paldean-fates-paldean-fates-booster-bundle",
+    "quantity": 2,
+    "latest_price": 127.19,
+    "total_value": 254.38
   },
   {
     "categoryId": "3",
@@ -232,17 +166,6 @@
   },
   {
     "categoryId": "3",
-    "group_id": "24325",
-    "product_id": "630431",
-    "name": "Black Bolt Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630431_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/630431/pokemon-sv-black-bolt-black-bolt-booster-bundle",
-    "quantity": 2,
-    "latest_price": 60.67,
-    "total_value": 121.34
-  },
-  {
-    "categoryId": "3",
     "group_id": "23537",
     "product_id": "557340",
     "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
@@ -265,36 +188,14 @@
   },
   {
     "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "656950",
-    "name": "Greninja EX & Kingdra EX Special Collection Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/656950_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/656950/pokemon-miscellaneous-cards-and-products-greninja-ex-and-kingdra-ex-special-collection-box",
-    "quantity": 2,
-    "latest_price": 48.2,
-    "total_value": 96.4
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24380",
-    "product_id": "644362",
-    "name": "Mega Evolution Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644362_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle",
-    "quantity": 2,
-    "latest_price": 47.94,
-    "total_value": 95.88
-  },
-  {
-    "categoryId": "3",
     "group_id": "23651",
-    "product_id": "565629",
-    "name": "Surging Sparks Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565629_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565629/pokemon-sv08-surging-sparks-surging-sparks-booster-bundle",
+    "product_id": "565630",
+    "name": "Surging Sparks Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565630_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565630/pokemon-sv08-surging-sparks-surging-sparks-elite-trainer-box",
     "quantity": 2,
-    "latest_price": 43.77,
-    "total_value": 87.54
+    "latest_price": 82.7,
+    "total_value": 165.4
   },
   {
     "categoryId": "3",
@@ -309,14 +210,25 @@
   },
   {
     "categoryId": "3",
-    "group_id": "24448",
-    "product_id": "654145",
-    "name": "Phantasmal Flames Sleeved Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654145_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/654145/pokemon-me02-phantasmal-flames-phantasmal-flames-sleeved-booster-pack",
+    "group_id": "23821",
+    "product_id": "600518",
+    "name": "Prismatic Evolutions Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/600518/pokemon-sv-prismatic-evolutions-prismatic-evolutions-booster-bundle",
     "quantity": 8,
-    "latest_price": 8.14,
-    "total_value": 65.12
+    "latest_price": 72.06,
+    "total_value": 576.48
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24325",
+    "product_id": "630431",
+    "name": "Black Bolt Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630431_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/630431/pokemon-sv-black-bolt-black-bolt-booster-bundle",
+    "quantity": 2,
+    "latest_price": 60.67,
+    "total_value": 121.34
   },
   {
     "categoryId": "3",
@@ -353,6 +265,61 @@
   },
   {
     "categoryId": "3",
+    "group_id": "24326",
+    "product_id": "630696",
+    "name": "White Flare Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630696_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/630696/pokemon-sv-white-flare-white-flare-booster-bundle",
+    "quantity": 3,
+    "latest_price": 52.21,
+    "total_value": 156.63
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24269",
+    "product_id": "625670",
+    "name": "Destined Rivals Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/625670_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/625670/pokemon-sv10-destined-rivals-destined-rivals-booster-bundle",
+    "quantity": 6,
+    "latest_price": 51.99,
+    "total_value": 311.94
+  },
+  {
+    "categoryId": "3",
+    "group_id": "2374",
+    "product_id": "662770",
+    "name": "Snorlax ex & Blissey ex Special Collection",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/662770_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/662770/pokemon-miscellaneous-cards-and-products-snorlax-ex-and-blissey-ex-special-collection",
+    "quantity": 3,
+    "latest_price": 51.79,
+    "total_value": 155.37
+  },
+  {
+    "categoryId": "3",
+    "group_id": "2374",
+    "product_id": "656950",
+    "name": "Greninja EX & Kingdra EX Special Collection Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/656950_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/656950/pokemon-miscellaneous-cards-and-products-greninja-ex-and-kingdra-ex-special-collection-box",
+    "quantity": 2,
+    "latest_price": 48.2,
+    "total_value": 96.4
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24380",
+    "product_id": "644362",
+    "name": "Mega Evolution Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644362_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle",
+    "quantity": 2,
+    "latest_price": 47.94,
+    "total_value": 95.88
+  },
+  {
+    "categoryId": "3",
     "group_id": "23821",
     "product_id": "593466",
     "name": "Prismatic Evolutions Surprise Box",
@@ -364,36 +331,14 @@
   },
   {
     "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "634329",
-    "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/634329_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/634329/pokemon-miscellaneous-cards-and-products-2-pack-blister-tornadus-thundurus-and-landorus",
-    "quantity": 2,
-    "latest_price": 21.39,
-    "total_value": 42.78
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23286",
-    "product_id": "512822",
-    "name": "Paradox Rift Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/512822_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/512822/pokemon-sv03-paradox-rift-paradox-rift-booster-pack",
-    "quantity": 6,
-    "latest_price": 6.8,
-    "total_value": 40.8
-  },
-  {
-    "categoryId": "3",
     "group_id": "23651",
-    "product_id": "565604",
-    "name": "Surging Sparks Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
-    "quantity": 5,
-    "latest_price": 6.46,
-    "total_value": 32.3
+    "product_id": "565629",
+    "name": "Surging Sparks Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565629_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565629/pokemon-sv08-surging-sparks-surging-sparks-booster-bundle",
+    "quantity": 2,
+    "latest_price": 43.77,
+    "total_value": 87.54
   },
   {
     "categoryId": "3",
@@ -416,6 +361,17 @@
     "quantity": 1,
     "latest_price": 29.26,
     "total_value": 29.26
+  },
+  {
+    "categoryId": "3",
+    "group_id": "2374",
+    "product_id": "634329",
+    "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/634329_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/634329/pokemon-miscellaneous-cards-and-products-2-pack-blister-tornadus-thundurus-and-landorus",
+    "quantity": 2,
+    "latest_price": 21.39,
+    "total_value": 42.78
   },
   {
     "categoryId": "3",
@@ -460,5 +416,49 @@
     "quantity": 1,
     "latest_price": 15.74,
     "total_value": 15.74
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24269",
+    "product_id": "624684",
+    "name": "Destined Rivals Sleeved Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/624684_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/624684/pokemon-sv10-destined-rivals-destined-rivals-sleeved-booster-pack",
+    "quantity": 16,
+    "latest_price": 9.14,
+    "total_value": 146.24
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24448",
+    "product_id": "654145",
+    "name": "Phantasmal Flames Sleeved Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654145_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/654145/pokemon-me02-phantasmal-flames-phantasmal-flames-sleeved-booster-pack",
+    "quantity": 8,
+    "latest_price": 8.14,
+    "total_value": 65.12
+  },
+  {
+    "categoryId": "3",
+    "group_id": "23286",
+    "product_id": "512822",
+    "name": "Paradox Rift Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/512822_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/512822/pokemon-sv03-paradox-rift-paradox-rift-booster-pack",
+    "quantity": 6,
+    "latest_price": 6.8,
+    "total_value": 40.8
+  },
+  {
+    "categoryId": "3",
+    "group_id": "23651",
+    "product_id": "565604",
+    "name": "Surging Sparks Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
+    "quantity": 5,
+    "latest_price": 6.46,
+    "total_value": 32.3
   }
 ]

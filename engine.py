@@ -508,7 +508,7 @@ def get_current_holdings(transactions=None):
                 "total_value": round(qty * latest_price, 2)
             })
     
-    holdings.sort(key=lambda h: h["total_value"], reverse=True)
+    holdings.sort(key=lambda h: h["latest_price"], reverse=True)
     return holdings
 
 

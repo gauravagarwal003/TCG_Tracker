@@ -177,6 +177,9 @@ Promise.all([
     retEl.style.color = glColour;
 
     // --- Holdings table ---
+    // Sort by latest_price descending
+    holdings.sort((a, b) => b.latest_price - a.latest_price);
+
     const tbody      = document.getElementById('holdings-body');
     const countBadge = document.getElementById('holdings-count');
     if (!holdings || holdings.length === 0) {
