@@ -5,6 +5,66 @@
 {% endblock %}
 
 {% block content %}
+<!-- Summary Stat Cards -->
+<div class="row mb-3 g-2">
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body text-center py-3">
+                <div class="text-muted small mb-1">Current Value</div>
+                {% if is_static is defined and is_static %}
+                <div class="fs-4 fw-bold text-success" id="stat-total-value">—</div>
+                {% else %}
+                <div class="fs-4 fw-bold text-success">${{ '%.2f'|format(total_value) }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body text-center py-3">
+                <div class="text-muted small mb-1">Cost Basis</div>
+                {% if is_static is defined and is_static %}
+                <div class="fs-4 fw-bold" style="color:#ef4444" id="stat-cost-basis">—</div>
+                {% else %}
+                {% set gain_loss = total_value - total_cost_basis %}
+                <div class="fs-4 fw-bold" style="color:#ef4444">${{ '%.2f'|format(total_cost_basis) }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body text-center py-3">
+                <div class="text-muted small mb-1">Unrealised Gain / Loss</div>
+                {% if is_static is defined and is_static %}
+                <div class="fs-4 fw-bold" id="stat-gain-loss">—</div>
+                {% else %}
+                {% set gain_loss = total_value - total_cost_basis %}
+                <div class="fs-4 fw-bold" style="color:{{ '#10b981' if gain_loss >= 0 else '#ef4444' }}">
+                    {{ '+' if gain_loss >= 0 else '' }}${{ '%.2f'|format(gain_loss) }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-3">
+        <div class="card h-100">
+            <div class="card-body text-center py-3">
+                <div class="text-muted small mb-1">Return</div>
+                {% if is_static is defined and is_static %}
+                <div class="fs-4 fw-bold" id="stat-return-pct">—</div>
+                {% else %}
+                {% set gain_loss = total_value - total_cost_basis %}
+                {% set return_pct = (gain_loss / total_cost_basis * 100) if total_cost_basis > 0 else 0 %}
+                <div class="fs-4 fw-bold" style="color:{{ '#10b981' if return_pct >= 0 else '#ef4444' }}">
+                    {{ '+' if return_pct >= 0 else '' }}{{ '%.1f'|format(return_pct) }}%
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Portfolio Chart -->
 <div class="row mb-4">
     <div class="col-md-12">
@@ -22,7 +82,11 @@
         <div class="table-section">
             <div class="table-header d-flex justify-content-between align-items-center mb-3">
                 <h5 class="mb-0">Current Holdings</h5>
+                {% if is_static is defined and is_static %}
+                <span class="badge bg-success fs-6" id="holdings-count">...</span>
+                {% else %}
                 <span class="badge bg-success fs-6">{{ holdings|length }} items</span>
+                {% endif %}
             </div>
             <div class="table-content">
                 <div class="table-responsive">
@@ -36,7 +100,10 @@
                                 <th class="text-end">Total Value</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody{% if is_static is defined and is_static %} id="holdings-body"{% endif %}>
+                            {% if is_static is defined and is_static %}
+                            <tr><td colspan="5" class="text-center py-4 text-muted">Loading...</td></tr>
+                            {% else %}
                             {% for item in holdings %}
                             <tr>
                                 <td>
@@ -62,6 +129,7 @@
                                 <td colspan="5" class="text-center py-4 text-muted">No holdings.</td>
                             </tr>
                             {% endfor %}
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -72,8 +140,105 @@
 {% endblock %}
 
 {% block scripts %}
+{% if is_static is defined and is_static %}
 <script>
-// Build portfolio chart from summary data
+// Dynamically load holdings and summary from data/ JSON files so the page
+// always reflects the latest data committed by GitHub Actions without
+// requiring Flask to re-render the HTML template.
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+const fmtUSD = v => '$' + v.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+Promise.all([
+    fetch('data/daily_summary.json?cb=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }),
+    fetch('data/holdings.json?cb='      + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+]).then(([summary, holdings]) => {
+
+    // --- Stat cards ---
+    const latestDate = Object.keys(summary).sort().pop();
+    const latestVal  = latestDate ? summary[latestDate].total_value : 0;
+    const latestCost = latestDate ? summary[latestDate].cost_basis  : 0;
+    const gainLoss   = latestVal - latestCost;
+    const returnPct  = latestCost > 0 ? (gainLoss / latestCost) * 100 : 0;
+    const glColour   = gainLoss >= 0 ? '#10b981' : '#ef4444';
+
+    document.getElementById('stat-total-value').textContent = fmtUSD(latestVal);
+    document.getElementById('stat-cost-basis').textContent  = fmtUSD(latestCost);
+
+    const glEl = document.getElementById('stat-gain-loss');
+    glEl.textContent = (gainLoss >= 0 ? '+' : '') + fmtUSD(gainLoss);
+    glEl.style.color = glColour;
+
+    const retEl = document.getElementById('stat-return-pct');
+    retEl.textContent = (returnPct >= 0 ? '+' : '') + returnPct.toFixed(1) + '%';
+    retEl.style.color = glColour;
+
+    // --- Holdings table ---
+    const tbody      = document.getElementById('holdings-body');
+    const countBadge = document.getElementById('holdings-count');
+    if (!holdings || holdings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No holdings.</td></tr>';
+    } else {
+        tbody.innerHTML = holdings.map(item => {
+            const thumb = item.imageUrl
+                ? `<img src="${escapeHtml(item.imageUrl)}" alt="" class="product-thumb">`
+                : '<div class="product-thumb-placeholder"></div>';
+            const name = item.url
+                ? `<a href="${escapeHtml(item.url)}" target="_blank" class="text-decoration-none">${escapeHtml(item.name)}</a>`
+                : escapeHtml(item.name);
+            return `<tr>
+                <td>${thumb}</td>
+                <td class="fw-medium">${name}</td>
+                <td class="text-end">${Math.round(item.quantity)}</td>
+                <td class="text-end">$${item.latest_price.toFixed(2)}</td>
+                <td class="text-end fw-bold">$${item.total_value.toFixed(2)}</td>
+            </tr>`;
+        }).join('');
+        countBadge.textContent = holdings.length + ' items';
+    }
+
+    // --- Portfolio chart ---
+    const dates     = Object.keys(summary).sort();
+    const values    = dates.map(d => summary[d].total_value);
+    const costBasis = dates.map(d => summary[d].cost_basis);
+
+    Plotly.newPlot('portfolioChart', [
+        {
+            x: dates, y: values,
+            type: 'scatter', mode: 'lines', name: 'Total Value',
+            line: { color: '#10b981', width: 2 },
+            fill: 'tozeroy', fillcolor: 'rgba(16, 185, 129, 0.12)'
+        },
+        {
+            x: dates, y: costBasis,
+            type: 'scatter', mode: 'lines', name: 'Cost Basis',
+            line: { color: '#ef4444', width: 2, dash: 'dot' }
+        }
+    ], {
+        margin: { t: 30, r: 20, b: 40, l: 60 },
+        xaxis: { title: '', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+        yaxis: { title: '', tickprefix: '$', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+        legend: { x: 0.02, y: 0.98, font: { color: '#e2e8f0' } },
+        hovermode: 'x unified',
+        hoverlabel: { bgcolor: '#0f1114', bordercolor: '#222222', font: { color: '#e6eef8', size: 12 } },
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: { color: '#e2e8f0' }
+    }, { responsive: true });
+
+}).catch(err => {
+    console.error('Failed to load dashboard data:', err);
+    const tbody = document.getElementById('holdings-body');
+    if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-danger">Failed to load holdings data.</td></tr>';
+});
+</script>
+{% else %}
+<script>
+// Build portfolio chart from summary data (Flask/server-rendered mode)
 const summary = {{ summary|tojson }};
 const dates = Object.keys(summary).sort();
 const values = dates.map(d => summary[d].total_value);
@@ -112,11 +277,11 @@ Plotly.newPlot('portfolioChart', [
                 size: 12
             }
         },
-
     plot_bgcolor: 'rgba(0,0,0,0)',
     paper_bgcolor: 'rgba(0,0,0,0)',
     font: { color: '#e2e8f0' }
 }, { responsive: true });
 </script>
+{% endif %}
 <script src="{{ url_for('static', filename='js/table-init.js') if not (is_static is defined and is_static) else 'static/js/table-init.js' }}"></script>
 {% endblock %}
