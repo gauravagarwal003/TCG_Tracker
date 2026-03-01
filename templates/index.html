@@ -7,47 +7,31 @@
 {% block content %}
 <!-- Summary Stat Cards -->
 <div class="row mb-3 g-2">
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-4">
         <div class="card h-100">
             <div class="card-body text-center py-3">
                 <div class="text-muted small mb-1">Current Value</div>
                 {% if is_static is defined and is_static %}
                 <div class="fs-4 fw-bold text-success" id="stat-total-value">—</div>
                 {% else %}
-                <div class="fs-4 fw-bold text-success">${{ '%.2f'|format(total_value) }}</div>
+                <div class="fs-4 fw-bold text-success">${{ "{:,.2f}".format(total_value) }}</div>
                 {% endif %}
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-4">
         <div class="card h-100">
             <div class="card-body text-center py-3">
                 <div class="text-muted small mb-1">Cost Basis</div>
                 {% if is_static is defined and is_static %}
                 <div class="fs-4 fw-bold" style="color:#ef4444" id="stat-cost-basis">—</div>
                 {% else %}
-                {% set gain_loss = total_value - total_cost_basis %}
-                <div class="fs-4 fw-bold" style="color:#ef4444">${{ '%.2f'|format(total_cost_basis) }}</div>
+                <div class="fs-4 fw-bold" style="color:#ef4444">${{ "{:,.2f}".format(total_cost_basis) }}</div>
                 {% endif %}
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-3">
-        <div class="card h-100">
-            <div class="card-body text-center py-3">
-                <div class="text-muted small mb-1">Unrealised Gain / Loss</div>
-                {% if is_static is defined and is_static %}
-                <div class="fs-4 fw-bold" id="stat-gain-loss">—</div>
-                {% else %}
-                {% set gain_loss = total_value - total_cost_basis %}
-                <div class="fs-4 fw-bold" style="color:{{ '#10b981' if gain_loss >= 0 else '#ef4444' }}">
-                    {{ '+' if gain_loss >= 0 else '' }}${{ '%.2f'|format(gain_loss) }}
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <div class="col-6 col-md-3">
+    <div class="col-6 col-md-4">
         <div class="card h-100">
             <div class="card-body text-center py-3">
                 <div class="text-muted small mb-1">Return</div>
@@ -168,10 +152,6 @@ Promise.all([
 
     document.getElementById('stat-total-value').textContent = fmtUSD(latestVal);
     document.getElementById('stat-cost-basis').textContent  = fmtUSD(latestCost);
-
-    const glEl = document.getElementById('stat-gain-loss');
-    glEl.textContent = (gainLoss >= 0 ? '+' : '') + fmtUSD(gainLoss);
-    glEl.style.color = glColour;
 
     const retEl = document.getElementById('stat-return-pct');
     retEl.textContent = (returnPct >= 0 ? '+' : '') + returnPct.toFixed(1) + '%';
