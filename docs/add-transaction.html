@@ -242,6 +242,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const STATIC_MAPPINGS_URL = 'data/mappings.json';
     let staticMappingsCache = null;
 
+    // Edit-mode detection (GitHub Pages / static only — URL params ?edit=1&id=xxx)
+    const _urlParams = new URLSearchParams(window.location.search);
+    const EDIT_MODE  = IS_STATIC && _urlParams.get('edit') === '1';
+    const EDIT_ID    = EDIT_MODE ? (_urlParams.get('id') || '') : '';
+
     async function ensureGitHubAuth() {
         const api = (typeof githubAPI !== 'undefined') ? githubAPI : null;
         if (!api) return null;
@@ -554,6 +559,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // ── Edit-mode prefill (static only) ─────────────────────────────────────
+    async function prefillEditForm() {
+        if (!EDIT_MODE || !EDIT_ID) return;
+        // Update page heading and submit button
+        const heading = document.querySelector('.table-header h5');
+        if (heading) heading.textContent = 'Edit Transaction';
+        const submitBtn = document.getElementById('submitTxnBtn');
+        if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-save me-1"></i>Update Transaction';
+
+        try {
+            const resp = await fetch('data/transactions.json', { cache: 'no-store' });
+            if (!resp.ok) { alert('Could not load transaction data.'); return; }
+            const list = await resp.json();
+            const tx = list.find(t => t.id === EDIT_ID);
+            if (!tx) { alert('Transaction not found: ' + EDIT_ID); return; }
+
+            typeSelect.value = tx.type || '';
+            toggleType();
+
+            document.getElementById('date_received').value  = tx.date_received  || '';
+            document.getElementById('date_purchased').value = tx.date_purchased || '';
+            document.getElementById('place').value          = tx.place          || '';
+            document.getElementById('method').value         = tx.method         || '';
+            document.getElementById('notes').value          = tx.notes          || '';
+
+            if (tx.type !== 'TRADE') {
+                const item = tx.items && tx.items[0];
+                if (item) {
+                    document.getElementById('product_search').value  = item.name       || '';
+                    document.getElementById('sel_product_id').value  = item.product_id || '';
+                    document.getElementById('sel_group_id').value    = item.group_id   || '';
+                    document.getElementById('sel_category_id').value = item.categoryId || '';
+                    document.getElementById('sel_name').value        = item.name       || '';
+                    document.getElementById('quantity').value        = item.quantity   || 1;
+                }
+                document.getElementById('amount').value = tx.amount != null ? tx.amount : '';
+            } else {
+                const outContainer = document.getElementById('itemsOutContainer');
+                const inContainer  = document.getElementById('itemsInContainer');
+                outContainer.innerHTML = '';
+                inContainer.innerHTML  = '';
+                const fillItems = (items, container, direction) => {
+                    (items || []).forEach(item => {
+                        container.insertAdjacentHTML('beforeend', tradeItemRowHTML(direction));
+                        const row = container.lastElementChild;
+                        row.querySelector('.trade-search').value       = item.name       || '';
+                        row.querySelector('.trade-product-id').value   = item.product_id || '';
+                        row.querySelector('.trade-group-id').value     = item.group_id   || '';
+                        row.querySelector('.trade-category-id').value  = item.categoryId || 3;
+                        row.querySelector('.trade-name').value         = item.name       || '';
+                        row.querySelector('.trade-qty').value          = item.quantity   || 1;
+                        row.querySelector('.trade-id-label').textContent = item.product_id || '';
+                    });
+                };
+                fillItems(tx.items_out, outContainer, 'out');
+                fillItems(tx.items_in,  inContainer,  'in');
+            }
+        } catch (err) {
+            console.error('prefillEditForm error:', err);
+        }
+    }
+
+    // Kick off prefill (runs after all the handler setup below)
+    prefillEditForm();
+
     function generateTxnId() {
         const bytes = new Uint8Array(4);
         crypto.getRandomValues(bytes);
@@ -574,18 +644,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const updateTxns = (content) => {
             const list = JSON.parse(content || '[]');
-            list.push(txnData);
+            if (EDIT_MODE) {
+                const idx = list.findIndex(t => t.id === EDIT_ID);
+                if (idx >= 0) list[idx] = txnData; else list.push(txnData);
+            } else {
+                list.push(txnData);
+            }
             return list;
         };
 
-        const updatedRoot = updateTxns(rootFile.content);
-        const updatedDocs = updateTxns(docsFile.content);
+        const commitMsg = EDIT_MODE
+            ? `Edit transaction ${txnData.id}`
+            : `Add transaction ${txnData.id}`;
 
         // Perform a single atomic commit that updates both files together
         await api.updateFilesAtomic([
-            { path: 'transactions.json', content: JSON.stringify(updatedRoot, null, 2), sha: rootFile.sha },
-            { path: 'docs/data/transactions.json', content: JSON.stringify(updatedDocs, null, 2), sha: docsFile.sha }
-        ], `Add transaction ${txnData.id}`);
+            { path: 'transactions.json',           content: JSON.stringify(updateTxns(rootFile.content), null, 2), sha: rootFile.sha },
+            { path: 'docs/data/transactions.json', content: JSON.stringify(updateTxns(docsFile.content), null, 2), sha: docsFile.sha }
+        ], commitMsg);
 
         return true;
     }
@@ -649,7 +725,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const txnData = {
-                id: generateTxnId(),
+                id: EDIT_MODE ? EDIT_ID : generateTxnId(),
                 date_purchased: document.getElementById('date_purchased').value || '',
                 date_received: document.getElementById('date_received').value || '',
                 type: type,
@@ -671,7 +747,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const ok = await saveTransactionStatic(txnData);
             if (ok) {
-                alert('Transaction saved to GitHub. Pages will update on the next rebuild.');
+                alert((EDIT_MODE ? 'Transaction updated' : 'Transaction saved') + ' on GitHub. Pages will rebuild shortly.');
                 window.location.href = 'transactions.html';
             }
         } catch (err) {

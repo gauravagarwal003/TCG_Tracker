@@ -1,27 +1,33 @@
-name: Rebuild on Data Change
+name: Rebuild Docs on Code Change
 
-# Fires when transactions or product mappings are pushed directly to main.
-# This covers: add/edit/delete transaction, add/edit product.
-# The [skip ci] suffix on bot commits prevents an infinite rebuild loop.
+# Fires when you push changes to templates, static assets, or Python source.
+# Does a docs-only rebuild (no price fetching) so GitHub Pages reflects
+# the latest layout/style/logic changes immediately after a commit.
+# Skips bot commits to avoid loops.
 
 on:
   push:
     branches: [main]
     paths:
-      - 'transactions.json'
-      - 'mappings.json'
+      - 'templates/**'
+      - 'static/**'
+      - 'app.py'
+      - 'engine.py'
+      - 'daily_run.py'
+      - 'transaction_manager.py'
+      - 'price_fetcher.py'
+      - 'requirements.txt'
 
 permissions:
   contents: write
 
 concurrency:
-  group: data-rebuild
+  group: code-rebuild
   cancel-in-progress: true
 
 jobs:
   rebuild:
     runs-on: ubuntu-latest
-    # Skip commits that the bot itself made to avoid infinite loops
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
 
     steps:
@@ -50,29 +56,15 @@ jobs:
     - name: Pull latest changes
       run: git pull --rebase origin main || true
 
-    - name: Re-derive summary and rebuild docs
-      run: |
-        python - <<'PY'
-        from engine import load_transactions, derive_daily_summary, save_daily_summary
-        import daily_run
-
-        tx = load_transactions()
-        if not tx:
-            print('No transactions found; nothing to rebuild.')
-        else:
-            print(f'Re-deriving summary for {len(tx)} transactions...')
-            s = derive_daily_summary(tx)
-            save_daily_summary(s)
-            print('Generating static site assets...')
-            daily_run.generate_static_site(tx, s)
-        PY
+    - name: Rebuild docs from existing data (no price fetch)
+      run: python daily_run.py --docs-only
 
     - name: Commit and push rebuilt docs
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add docs/ daily_summary.json
-        git diff --staged --quiet || git commit -m "Rebuild docs after data change [skip ci]"
+        git add docs/
+        git diff --staged --quiet || git commit -m "Rebuild docs after code change [skip ci]"
         git push origin main || {
           echo "Push failed, retrying with rebase..."
           git pull --rebase origin main

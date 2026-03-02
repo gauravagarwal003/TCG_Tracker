@@ -1,22 +1,68 @@
 // Dynamically loads and renders the transactions table
 // Assumes a <tbody id="transactions-tbody"></tbody> in the HTML
 
+// true when running on GitHub Pages / static server (no Flask backend)
+let isStaticMode = false;
+
 async function fetchTransactions() {
     // Try API endpoint first (development server). If that fails, fall back
     // to the static JSON file used by GitHub Pages.
     try {
         const resp = await fetch('/api/transactions');
-        if (resp.ok) return await resp.json();
+        if (resp.ok) {
+            isStaticMode = false;
+            return await resp.json();
+        }
     } catch (e) {
         // ignore and fall back
     }
     try {
         const resp2 = await fetch('data/transactions.json');
-        if (resp2.ok) return await resp2.json();
+        if (resp2.ok) {
+            isStaticMode = true;
+            return await resp2.json();
+        }
     } catch (e) {
         // ignore
     }
+    isStaticMode = true;
     return [];
+}
+
+// ── GitHub API helpers (used in static / GitHub Pages mode) ─────────────────
+
+async function ensureGitHubAuth() {
+    const api = window.githubAPI;
+    if (!api) return null;
+    if (!api.isAuthenticated()) {
+        const ok = await api.authenticate();
+        if (!ok) return null;
+    }
+    return api;
+}
+
+async function deleteTransactionStatic(txnId) {
+    const api = await ensureGitHubAuth();
+    if (!api) {
+        alert('A GitHub token is required to delete transactions.');
+        return false;
+    }
+    try {
+        const [rootFile, docsFile] = await Promise.all([
+            api.getFile('transactions.json'),
+            api.getFile('docs/data/transactions.json')
+        ]);
+        const filterOut = (content) =>
+            JSON.parse(content || '[]').filter(t => t.id !== txnId);
+        await api.updateFilesAtomic([
+            { path: 'transactions.json',           content: JSON.stringify(filterOut(rootFile.content), null, 2), sha: rootFile.sha },
+            { path: 'docs/data/transactions.json', content: JSON.stringify(filterOut(docsFile.content), null, 2), sha: docsFile.sha }
+        ], `Delete transaction ${txnId}`);
+        return true;
+    } catch (err) {
+        alert('Failed to delete: ' + (err?.message || err));
+        return false;
+    }
 }
 
 function renderTransactionsTable(transactions) {
@@ -65,15 +111,30 @@ function renderTransactionsTable(transactions) {
         let amount = (['BUY','SELL'].includes(tx.type) && tx.amount) ? `$${tx.amount.toFixed(2)}` : '';
         // Compose notes
         let notes = tx.notes ? `<span class="text-muted" title="${tx.notes}" style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${tx.notes}</span>` : '';
-        // Compose actions (edit/delete)
-        let actions = `<div class="d-inline-flex gap-1" role="group">
-            <a href="/transactions/edit/${tx.id}" class="btn btn-sm btn-primary rounded" id="editButton">Edit</a>
-            <form action="/transactions/delete/${tx.id}" method="post" onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
-                <button type="submit" class="btn btn-sm btn-danger rounded" title="Delete">
+        // Compose actions (edit/delete) — mode-aware
+        let actions;
+        if (isStaticMode) {
+            // GitHub Pages: edit navigates to add-transaction page with ?edit=1&id=...,
+            // delete calls GitHub API directly.
+            actions = `<div class="d-inline-flex gap-1" role="group">
+                <a href="add-transaction.html?edit=1&id=${tx.id}" class="btn btn-sm btn-primary rounded">Edit</a>
+                <button type="button" class="btn btn-sm btn-danger rounded delete-txn-btn"
+                        data-txn-id="${tx.id}" title="Delete">
                     <i class="fas fa-trash-alt"></i>
                 </button>
-            </form>
-        </div>`;
+            </div>`;
+        } else {
+            // Flask dev server: use server-side routes.
+            actions = `<div class="d-inline-flex gap-1" role="group">
+                <a href="/transactions/edit/${tx.id}" class="btn btn-sm btn-primary rounded">Edit</a>
+                <form action="/transactions/delete/${tx.id}" method="post"
+                      onsubmit="return confirm('Delete this transaction?');" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-danger rounded" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </div>`;
+        }
         // Compose row
         tbody.innerHTML += `<tr data-original-index="${tx._originalIndex}" data-index="${i}">
             <td>${imgCell}</td>
@@ -108,4 +169,23 @@ function renderTransactionsTable(transactions) {
 document.addEventListener('DOMContentLoaded', async () => {
     const transactions = await fetchTransactions();
     renderTransactionsTable(transactions);
+});
+
+// Delegated handler for static-mode delete buttons (rendered after DOMContentLoaded)
+document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.delete-txn-btn');
+    if (!btn) return;
+    const txnId = btn.dataset.txnId;
+    if (!confirm('Delete this transaction? This cannot be undone.')) return;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+    const ok = await deleteTransactionStatic(txnId);
+    if (ok) {
+        const row = btn.closest('tr');
+        if (row) row.remove();
+        alert('Transaction deleted. GitHub Pages will rebuild shortly.');
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    }
 });
