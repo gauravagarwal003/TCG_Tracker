@@ -45,22 +45,27 @@ jobs:
           ${{ runner.os }}-pip-
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: |
+        pip install -r requirements.txt
+        sudo apt-get install -y p7zip-full
 
     - name: Pull latest changes
       run: git pull --rebase origin main || true
 
-    - name: Re-derive summary and rebuild docs
+    - name: Fetch missing prices then rebuild docs
       run: |
         python - <<'PY'
         from engine import load_transactions, derive_daily_summary, save_daily_summary
+        from price_fetcher import update_prices
         import daily_run
 
         tx = load_transactions()
         if not tx:
             print('No transactions found; nothing to rebuild.')
         else:
-            print(f'Re-deriving summary for {len(tx)} transactions...')
+            print(f'Fetching any missing prices for {len(tx)} transactions...')
+            update_prices()  # only fetches dates/products that have no price yet
+            print(f'Re-deriving summary...')
             s = derive_daily_summary(tx)
             save_daily_summary(s)
             print('Generating static site assets...')
@@ -71,7 +76,7 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add docs/ daily_summary.json
+        git add docs/ daily_summary.json prices/
         git diff --staged --quiet || git commit -m "Rebuild docs after data change [skip ci]"
         git push origin main || {
           echo "Push failed, retrying with rebase..."

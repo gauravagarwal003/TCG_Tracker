@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1772421010" rel="stylesheet">
+    <link href="static/css/styles.css?v=1770708765" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -704,8 +704,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.appendChild(itemsField);
             }
             itemsField.value = JSON.stringify([{
-                product_id: parseInt(pid),
-                group_id: parseInt(gid),
+                product_id: String(pid),
+                group_id: String(gid),
                 categoryId: parseInt(cid),
                 name: name,
                 quantity: qty
@@ -770,8 +770,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const qty  = parseInt(row.querySelector('.trade-qty').value) || 1;
             if (pid && gid && name) {
                 items.push({
-                    product_id: parseInt(pid),
-                    group_id: parseInt(gid),
+                    product_id: String(pid),
+                    group_id: String(gid),
                     categoryId: parseInt(cid),
                     name: name,
                     quantity: qty

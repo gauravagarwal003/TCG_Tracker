@@ -698,8 +698,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.appendChild(itemsField);
             }
             itemsField.value = JSON.stringify([{
-                product_id: parseInt(pid),
-                group_id: parseInt(gid),
+                product_id: String(pid),
+                group_id: String(gid),
                 categoryId: parseInt(cid),
                 name: name,
                 quantity: qty
@@ -764,8 +764,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const qty  = parseInt(row.querySelector('.trade-qty').value) || 1;
             if (pid && gid && name) {
                 items.push({
-                    product_id: parseInt(pid),
-                    group_id: parseInt(gid),
+                    product_id: String(pid),
+                    group_id: String(gid),
                     categoryId: parseInt(cid),
                     name: name,
                     quantity: qty

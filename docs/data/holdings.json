@@ -12,6 +12,17 @@
   },
   {
     "categoryId": "3",
+    "group_id": "24541",
+    "product_id": "668497",
+    "name": "Ascended Heroes Pokemon Center Elite Trainer Box (Exclusive)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/668497",
+    "quantity": 2,
+    "latest_price": 300.98,
+    "total_value": 601.96
+  },
+  {
+    "categoryId": "3",
     "group_id": "2374",
     "product_id": "609597",
     "name": "Blooming Waters Premium Collection",
@@ -471,16 +482,5 @@
     "quantity": 5,
     "latest_price": 6.81,
     "total_value": 34.05
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24541",
-    "product_id": "668497",
-    "name": "Ascended Heroes Pokemon Center Elite Trainer Box (Exclusive)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/668497",
-    "quantity": 2,
-    "latest_price": 0.0,
-    "total_value": 0.0
   }
 ]
