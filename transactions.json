@@ -2479,8 +2479,8 @@
     "notes": "",
     "items": [
       {
-        "product_id": 670782,
-        "group_id": 2374,
+        "product_id": "670782",
+        "group_id": "2374",
         "categoryId": 3,
         "name": "Knock Out Collection [Kyogre]",
         "quantity": 1
@@ -2498,8 +2498,8 @@
     "notes": "Used $50 reward for inviting a new member to TikTok (Mom)",
     "items": [
       {
-        "product_id": 565232,
-        "group_id": 23601,
+        "product_id": "565232",
+        "group_id": "23601",
         "categoryId": 85,
         "name": "Shiny Treasure ex High Class Booster Box",
         "quantity": 1
@@ -2517,8 +2517,8 @@
     "notes": "",
     "items": [
       {
-        "product_id": 565604,
-        "group_id": 23651,
+        "product_id": "565604",
+        "group_id": "23651",
         "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
         "quantity": 1
@@ -2536,8 +2536,8 @@
     "notes": "",
     "items": [
       {
-        "product_id": 644352,
-        "group_id": 24380,
+        "product_id": "644352",
+        "group_id": "24380",
         "categoryId": 3,
         "name": "Mega Evolution Booster Pack",
         "quantity": 1
