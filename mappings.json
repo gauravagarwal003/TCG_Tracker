@@ -486,5 +486,85 @@
     "categoryId": 3,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
     "url": "https://www.tcgplayer.com/product/668497"
+  },
+  {
+    "product_id": "563842",
+    "name": "Double Pack Set Volume 6",
+    "group_id": "23589",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/563842_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/563842"
+  },
+  {
+    "product_id": "542503",
+    "name": "Two Legends - Sleeved Booster Pack",
+    "group_id": "23462",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542503_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/542503"
+  },
+  {
+    "product_id": "620141",
+    "name": "Special DON Set Vol 1 Luffy",
+    "group_id": "17675",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/620141_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/620141"
+  },
+  {
+    "product_id": "666576",
+    "name": "The Azure Sea's Seven Sleeved Booster Pack",
+    "group_id": "24537",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666576_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/666576"
+  },
+  {
+    "product_id": "671479",
+    "name": "Starter Deck 29: Egghead",
+    "group_id": "24575",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671479_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/671479"
+  },
+  {
+    "product_id": "586671",
+    "name": "Royal Blood Booster Box",
+    "group_id": "23766",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/586671_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/586671"
+  },
+  {
+    "product_id": "542504",
+    "name": "Two Legends - Booster Box",
+    "group_id": "23462",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542504_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/542504"
+  },
+  {
+    "product_id": "628352",
+    "name": "Carrying On His Will Booster Box",
+    "group_id": "24303",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/628352"
+  },
+  {
+    "product_id": "661934",
+    "name": "Spiritforged - Booster Display",
+    "group_id": "24519",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
+    "categoryId": 89,
+    "url": "https://www.tcgplayer.com/product/661934"
+  },
+  {
+    "product_id": "666891",
+    "name": "Extra Booster: One Piece Heroines Edition Box",
+    "group_id": "24545",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/666891"
   }
 ]

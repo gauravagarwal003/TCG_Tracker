@@ -80,7 +80,7 @@ def _fetch_prices_for_transaction(txn):
         update_prices(product_keys=product_keys)
 
 
-def add_transaction(txn_data):
+def add_transaction(txn_data, fetch_prices=True, rebuild_summary=True):
     """
     Add a new transaction.
     
@@ -95,6 +95,8 @@ def add_transaction(txn_data):
             - amount: float (total paid for BUY, total received for SELL)
             - cost_basis_out / cost_basis_in: float (for TRADE)
             - method, place, notes: str (optional)
+        fetch_prices: if False, skip price fetching (useful for bulk imports).
+        rebuild_summary: if False, skip daily summary rebuild (useful for bulk imports).
     
     Returns:
         (success: bool, message: str, txn: dict)
@@ -127,11 +129,13 @@ def add_transaction(txn_data):
     save_transactions(transactions)
     
     # Fetch prices
-    _fetch_prices_for_transaction(txn_data)
+    if fetch_prices:
+        _fetch_prices_for_transaction(txn_data)
     
     # Re-derive summary
-    summary = derive_daily_summary(transactions)
-    save_daily_summary(summary)
+    if rebuild_summary:
+        summary = derive_daily_summary(transactions)
+        save_daily_summary(summary)
     
     return True, "Transaction added successfully.", txn_data
 

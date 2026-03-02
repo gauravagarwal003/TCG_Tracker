@@ -570,5 +570,27 @@ def get_owned_date_ranges(transactions=None):
         
         if product_ranges:
             ranges[key] = product_ranges
-    
+
+    # Edge case: a product bought and fully consumed (opened/sold) on the same
+    # day ends up with qty=0 in the inventory timeline for that date, so the
+    # loop above never opens a range for it.  We still need a price for that
+    # date to compute cost-basis on the open/sell.  Scan BUY transactions and
+    # add a single-day range for any buy-date where the end-of-day qty is 0
+    # and no existing range already covers that date.
+    buy_dates = defaultdict(set)  # key -> set of date strings from BUY txns
+    for txn in transactions:
+        if txn["type"].upper() == "BUY":
+            for item in txn.get("items", []):
+                key = _product_key(item)
+                buy_dates[key].add(txn["date_received"])
+
+    for key, dates in buy_dates.items():
+        inv = inventory.get(key, {})
+        for d_str in dates:
+            if inv.get(d_str, 0) == 0:
+                # Bought and fully consumed same day — add single-day range.
+                existing = ranges.get(key, [])
+                if not any(start <= d_str <= end for start, end in existing):
+                    ranges.setdefault(key, []).append((d_str, d_str))
+
     return ranges
