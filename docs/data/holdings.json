@@ -1,5 +1,27 @@
 [
   {
+    "categoryId": "68",
+    "group_id": "24303",
+    "product_id": "628352",
+    "name": "Carrying On His Will Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/628352",
+    "quantity": 1,
+    "latest_price": 527.52,
+    "total_value": 527.52
+  },
+  {
+    "categoryId": "68",
+    "group_id": "24545",
+    "product_id": "666891",
+    "name": "Extra Booster: One Piece Heroines Edition Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/666891",
+    "quantity": 2,
+    "latest_price": 331.78,
+    "total_value": 663.56
+  },
+  {
     "categoryId": "3",
     "group_id": "24448",
     "product_id": "654137",
@@ -33,6 +55,17 @@
     "total_value": 983.32
   },
   {
+    "categoryId": "68",
+    "group_id": "23462",
+    "product_id": "542504",
+    "name": "Two Legends - Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542504_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/542504",
+    "quantity": 1,
+    "latest_price": 217.37,
+    "total_value": 217.37
+  },
+  {
     "categoryId": "3",
     "group_id": "24448",
     "product_id": "654135",
@@ -42,6 +75,17 @@
     "quantity": 2,
     "latest_price": 212.56,
     "total_value": 425.12
+  },
+  {
+    "categoryId": "68",
+    "group_id": "23766",
+    "product_id": "586671",
+    "name": "Royal Blood Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/586671_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/586671",
+    "quantity": 3,
+    "latest_price": 208.6,
+    "total_value": 625.8
   },
   {
     "categoryId": "3",
@@ -75,6 +119,17 @@
     "quantity": 2,
     "latest_price": 182.4,
     "total_value": 364.8
+  },
+  {
+    "categoryId": "89",
+    "group_id": "24519",
+    "product_id": "661934",
+    "name": "Spiritforged - Booster Display",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/661934",
+    "quantity": 1,
+    "latest_price": 182.12,
+    "total_value": 182.12
   },
   {
     "categoryId": "3",
@@ -207,6 +262,17 @@
     "quantity": 2,
     "latest_price": 85.14,
     "total_value": 170.28
+  },
+  {
+    "categoryId": "68",
+    "group_id": "23589",
+    "product_id": "563842",
+    "name": "Double Pack Set Volume 6",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/563842_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/563842",
+    "quantity": 1,
+    "latest_price": 83.3,
+    "total_value": 83.3
   },
   {
     "categoryId": "3",
@@ -352,6 +418,17 @@
     "total_value": 42.49
   },
   {
+    "categoryId": "68",
+    "group_id": "24575",
+    "product_id": "671479",
+    "name": "Starter Deck 29: Egghead",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671479_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/671479",
+    "quantity": 2,
+    "latest_price": 33.7,
+    "total_value": 67.4
+  },
+  {
     "categoryId": "3",
     "group_id": "23821",
     "product_id": "593450",
@@ -427,6 +504,17 @@
     "quantity": 1,
     "latest_price": 15.74,
     "total_value": 15.74
+  },
+  {
+    "categoryId": "68",
+    "group_id": "24537",
+    "product_id": "666576",
+    "name": "The Azure Sea's Seven Sleeved Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666576_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/666576",
+    "quantity": 4,
+    "latest_price": 9.81,
+    "total_value": 39.24
   },
   {
     "categoryId": "3",
