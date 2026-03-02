@@ -460,5 +460,16 @@
     "quantity": 5,
     "latest_price": 6.81,
     "total_value": 34.05
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24380",
+    "product_id": "644352",
+    "name": "Mega Evolution Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/644352",
+    "quantity": 1,
+    "latest_price": 0.0,
+    "total_value": 0.0
   }
 ]
