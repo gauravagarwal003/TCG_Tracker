@@ -474,13 +474,33 @@ def load_daily_summary():
 def get_current_holdings(transactions=None):
     """
     Returns list of currently held products with quantities and latest prices.
+
+    Each holding also includes:
+      avg_buy_price - weighted average price paid per unit (BUY txns only)
     """
     if transactions is None:
         transactions = load_transactions()
-    
+
+    # --- Pre-compute average buy price per product key ---
+    # buy_costs: key -> [total_units_bought, total_cost_paid]
+    buy_costs = defaultdict(lambda: [0, 0.0])
+    for txn in transactions:
+        if txn["type"].upper() != "BUY":
+            continue
+        items = txn.get("items", [])
+        total_qty_in_txn = sum(item.get("quantity", 0) for item in items)
+        txn_amount = txn.get("amount", 0.0) or 0.0
+        for item in items:
+            key = _product_key(item)
+            item_qty = item.get("quantity", 0)
+            # Prorate cost by this item's share of units in the transaction
+            item_cost = txn_amount * (item_qty / total_qty_in_txn) if total_qty_in_txn > 0 else 0.0
+            buy_costs[key][0] += item_qty
+            buy_costs[key][1] += item_cost
+
     inventory = compute_inventory_timeline(transactions)
     td = today_pst().strftime("%Y-%m-%d")
-    
+
     holdings = []
     for key, inv in inventory.items():
         qty = get_quantity_on_date(inv, td)
@@ -488,14 +508,18 @@ def get_current_holdings(transactions=None):
             cat, gid, pid = key
             mapping = get_mapping(gid, pid)
             prices = load_prices(cat, gid, pid)
-            
+
             # Get latest available price
             latest_price = 0.0
             for d_str in sorted(prices.keys(), reverse=True):
                 if d_str <= td and prices[d_str] and prices[d_str] > 0:
                     latest_price = prices[d_str]
                     break
-            
+
+            # Average buy price (buys only)
+            bc = buy_costs.get(key, [0, 0.0])
+            avg_buy_price = round(bc[1] / bc[0], 2) if bc[0] > 0 else None
+
             holdings.append({
                 "categoryId": cat,
                 "group_id": gid,
@@ -505,9 +529,10 @@ def get_current_holdings(transactions=None):
                 "url": mapping.get("url", "") if mapping else "",
                 "quantity": qty,
                 "latest_price": latest_price,
-                "total_value": round(qty * latest_price, 2)
+                "total_value": round(qty * latest_price, 2),
+                "avg_buy_price": avg_buy_price,
             })
-    
+
     holdings.sort(key=lambda h: h["latest_price"], reverse=True)
     return holdings
 

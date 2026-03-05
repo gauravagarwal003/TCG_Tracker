@@ -198,17 +198,29 @@ function sortTable(table, colIndex) {
         });
     } else {
         const isAscending = newOrder === 'asc';
-        
+
+        // Parse a cell's text into a sortable number.
+        // Handles: $1,234.56  |  +43.2%  |  ▲ 2.8%  |  ▼ 5.1%  |  — (null)
+        function parseCellNum(text) {
+            text = text.trim();
+            if (!text || text === '—') return null;
+            const negative = text.includes('▼') || (/^[-−]/.test(text));
+            const num = parseFloat(text.replace(/[▲▼$,% ]/g, ''));
+            if (isNaN(num)) return null;
+            return negative ? -Math.abs(num) : Math.abs(num);
+        }
+
         rows.sort((rowA, rowB) => {
             const cellA = rowA.cells[colIndex].textContent.trim();
             const cellB = rowB.cells[colIndex].textContent.trim();
-            
-            // Try numerical sort
-            const valA = parseFloat(cellA.replace(/[$,]/g, ''));
-            const valB = parseFloat(cellB.replace(/[$,]/g, ''));
-            
-            if (!isNaN(valA) && !isNaN(valB)) {
-                return isAscending ? valA - valB : valB - valA;
+
+            // Numeric / currency / percentage / arrow sort
+            const valA = parseCellNum(cellA);
+            const valB = parseCellNum(cellB);
+            if (valA !== null || valB !== null) {
+                const a = valA !== null ? valA : (isAscending ? Infinity : -Infinity);
+                const b = valB !== null ? valB : (isAscending ? Infinity : -Infinity);
+                return isAscending ? a - b : b - a;
             }
             
             // Date sort (handles both MM/DD/YYYY and YYYY-MM-DD formats)

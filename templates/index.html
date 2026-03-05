@@ -80,7 +80,10 @@
                                 <th style="width: 50px;" class="no-sort"></th>
                                 <th>Product Name</th>
                                 <th class="text-end">Qty</th>
+                                <th class="text-end">Avg Buy</th>
                                 <th class="text-end">Latest Price</th>
+                                <th class="text-end">Gain %</th>
+                                <th class="text-end">±/Unit</th>
                                 <th class="text-end">Total Value</th>
                             </tr>
                         </thead>
@@ -105,12 +108,27 @@
                                     {% endif %}
                                 </td>
                                 <td class="text-end">{{ item.quantity|int }}</td>
+                                <td class="text-end">{% if item.avg_buy_price is not none %}${{ "%.2f"|format(item.avg_buy_price) }}{% else %}—{% endif %}</td>
                                 <td class="text-end">${{ "%.2f"|format(item.latest_price) }}</td>
+                                <td class="text-end">
+                                {% if item.avg_buy_price is not none and item.avg_buy_price > 0 %}
+                                    {% set unit_pct = (item.latest_price - item.avg_buy_price) / item.avg_buy_price * 100 %}
+                                    {% set sign = "+" if unit_pct >= 0 else "-" %}
+                                    <span style="color:{% if unit_pct >= 0 %}#10b981{% else %}#ef4444{% endif %}">{{ sign }}{{ "%.1f"|format(unit_pct|abs) }}%</span>
+                                {% else %}—{% endif %}
+                                </td>
+                                <td class="text-end">
+                                {% if item.avg_buy_price is not none %}
+                                    {% set unit_abs = item.latest_price - item.avg_buy_price %}
+                                    {% set sign = "+" if unit_abs >= 0 else "-" %}
+                                    <span style="color:{% if unit_abs >= 0 %}#10b981{% else %}#ef4444{% endif %}">{{ sign }}${{ "%.2f"|format(unit_abs|abs) }}</span>
+                                {% else %}—{% endif %}
+                                </td>
                                 <td class="text-end fw-bold">${{ "%.2f"|format(item.total_value) }}</td>
                             </tr>
                             {% else %}
                             <tr>
-                                <td colspan="5" class="text-center py-4 text-muted">No holdings.</td>
+                                <td colspan="8" class="text-center py-4 text-muted">No holdings.</td>
                             </tr>
                             {% endfor %}
                             {% endif %}
@@ -164,7 +182,7 @@ Promise.all([
     const tbody      = document.getElementById('holdings-body');
     const countBadge = document.getElementById('holdings-count');
     if (!holdings || holdings.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No holdings.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center py-4 text-muted">No holdings.</td></tr>';
     } else {
         tbody.innerHTML = holdings.map(item => {
             const thumb = item.imageUrl
@@ -173,11 +191,29 @@ Promise.all([
             const name = item.url
                 ? `<a href="${escapeHtml(item.url)}" target="_blank" class="text-decoration-none">${escapeHtml(item.name)}</a>`
                 : escapeHtml(item.name);
+            const avgBuy = item.avg_buy_price != null ? `$${item.avg_buy_price.toFixed(2)}` : '—';
+            // Gain % column
+            let gainPctHtml = '—';
+            if (item.avg_buy_price != null && item.avg_buy_price > 0) {
+                const pct = (item.latest_price - item.avg_buy_price) / item.avg_buy_price * 100;
+                const glColor = pct >= 0 ? '#10b981' : '#ef4444';
+                gainPctHtml = `<span style="color:${glColor}">${pct >= 0 ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>`;
+            }
+            // ±/Unit absolute $ column
+            let unitAbsHtml = '—';
+            if (item.avg_buy_price != null) {
+                const gl = item.latest_price - item.avg_buy_price;
+                const glColor = gl >= 0 ? '#10b981' : '#ef4444';
+                unitAbsHtml = `<span style="color:${glColor}">${gl >= 0 ? '+' : '-'}$${Math.abs(gl).toFixed(2)}</span>`;
+            }
             return `<tr>
                 <td>${thumb}</td>
                 <td class="fw-medium">${name}</td>
                 <td class="text-end">${Math.round(item.quantity)}</td>
+                <td class="text-end">${avgBuy}</td>
                 <td class="text-end">$${item.latest_price.toFixed(2)}</td>
+                <td class="text-end">${gainPctHtml}</td>
+                <td class="text-end">${unitAbsHtml}</td>
                 <td class="text-end fw-bold">$${item.total_value.toFixed(2)}</td>
             </tr>`;
         }).join('');
