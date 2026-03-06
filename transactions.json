@@ -833,7 +833,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0045",
@@ -852,7 +852,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0046",
@@ -1954,7 +1954,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didnÃ¢ÂÂt apply to trading cards, but customer service rep applied it after the order."
+    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂ¢ÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
   },
   {
     "id": "m0104",
@@ -2867,5 +2867,24 @@
       }
     ],
     "amount": 0
+  },
+  {
+    "id": "e9c62edb",
+    "date_purchased": "2026-03-06",
+    "date_received": "2026-03-06",
+    "type": "BUY",
+    "method": "In-person",
+    "place": "Pokemon Center Vending Machine",
+    "notes": "Machine ID Q00928 (7499 Dublin Blvd, Dublin, CA)",
+    "items": [
+      {
+        "product_id": "600518",
+        "group_id": "23821",
+        "categoryId": 3,
+        "name": "Prismatic Evolutions Booster Bundle",
+        "quantity": 1
+      }
+    ],
+    "amount": 29.7
   }
 ]
