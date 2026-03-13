@@ -833,7 +833,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0045",
@@ -852,7 +852,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0046",
@@ -1954,7 +1954,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order."
+    "notes": "Got 25% off from a Target Circle reward on toys that didnât apply to trading cards, but customer service rep applied it after the order."
   },
   {
     "id": "m0104",
@@ -2886,5 +2886,24 @@
       }
     ],
     "amount": 29.7
+  },
+  {
+    "id": "8540f313",
+    "date_purchased": "2026-03-13",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "method": "In-person",
+    "place": "Barnes & Noble",
+    "notes": "",
+    "items": [
+      {
+        "product_id": "679503",
+        "group_id": "24545",
+        "categoryId": 68,
+        "name": "Extra Booster: One Piece Heroines Edition Sleeved Booster Pack",
+        "quantity": 1
+      }
+    ],
+    "amount": 5.5
   }
 ]
