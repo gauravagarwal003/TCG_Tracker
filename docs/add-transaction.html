@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1773523388" rel="stylesheet">
+    <link href="static/css/styles.css?v=1773532628" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -110,30 +110,6 @@
                 <input type="hidden" id="sel_category_id" name="category_id" value="">
                 <input type="hidden" id="sel_name"        name="product_name" value="">
 
-                <!-- New Product mini-form -->
-                <div id="new_product_fields" class="mb-3" style="display:none;">
-                    <div class="alert alert-info py-2">
-                        <i class="fas fa-info-circle"></i> Product not found. Enter IDs manually:
-                    </div>
-                    <div class="row g-2 mb-2">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control form-control-sm" id="new_product_name" placeholder="Product Name">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm" id="new_product_id" placeholder="Product ID">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control form-control-sm" id="new_group_id" placeholder="Group ID">
-                        </div>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control form-control-sm" id="new_category_id" placeholder="Cat ID" value="3">
-                        </div>
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-sm btn-primary w-100" id="confirmNewProduct">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Quantity & Amount -->
                 <div class="row mb-3">
                     <div class="col-md-4">
@@ -142,9 +118,35 @@
                                value="1">
                     </div>
                     <div class="col-md-4" id="amountGroup">
-                        <label for="amount" class="form-label">Total Amount ($)</label>
+                        <label for="amount" class="form-label">Price Per Unit ($)</label>
                         <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0"
                                value="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ══════════════════════════════════════════════
+                 NEW PRODUCT MINI-FORM (shared for standard & trade)
+                 ══════════════════════════════════════════════ -->
+            <div id="new_product_fields" class="mb-3" style="display:none;">
+                <div class="alert alert-info py-2">
+                    <i class="fas fa-info-circle"></i> Product not found. Enter IDs manually:
+                </div>
+                <div class="row g-2 mb-2">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control form-control-sm" id="new_product_name" placeholder="Product Name">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="new_product_id" placeholder="Product ID">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control form-control-sm" id="new_group_id" placeholder="Group ID">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control form-control-sm" id="new_category_id" placeholder="Cat ID" value="3">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-sm btn-primary w-100" id="confirmNewProduct">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -325,6 +327,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchResults= document.getElementById('search_results');
     const newProdDiv   = document.getElementById('new_product_fields');
 
+    let activeTradeRow = null; // trade row that triggered the new-product form
+
     /* ── Type toggle ── */
     typeSelect.addEventListener('change', toggleType);
     function toggleType() {
@@ -332,9 +336,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (t === 'TRADE') {
             stdFields.style.display  = 'none';
             tradeFields.style.display = 'block';
+            // Seed one empty row per side for new transactions
+            const outContainer = document.getElementById('itemsOutContainer');
+            const inContainer  = document.getElementById('itemsInContainer');
+            if (outContainer.children.length === 0)
+                outContainer.insertAdjacentHTML('beforeend', tradeItemRowHTML('out'));
+            if (inContainer.children.length === 0)
+                inContainer.insertAdjacentHTML('beforeend', tradeItemRowHTML('in'));
         } else {
             stdFields.style.display  = 'block';
             tradeFields.style.display = 'none';
+            newProdDiv.style.display = 'none';
+            activeTradeRow = null;
         }
         // Hide amount for OPEN
         if (t === 'OPEN') {
@@ -366,6 +379,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         searchResults.style.display = 'block';
                         document.getElementById('showNewProduct').addEventListener('click', () => {
                             document.getElementById('sel_name').value = searchInput.value;
+                            document.getElementById('new_product_name').value = searchInput.value.trim();
+                            activeTradeRow = null;
                             searchResults.style.display = 'none';
                             newProdDiv.style.display = 'block';
                         });
@@ -423,46 +438,41 @@ document.addEventListener('DOMContentLoaded', function() {
             url: `https://www.tcgplayer.com/product/${pid}`
         };
 
+        function applyMapping(saved) {
+            if (activeTradeRow) {
+                activeTradeRow.querySelector('.trade-product-id').value  = saved.product_id;
+                activeTradeRow.querySelector('.trade-group-id').value    = saved.group_id;
+                activeTradeRow.querySelector('.trade-category-id').value = saved.categoryId || 3;
+                activeTradeRow.querySelector('.trade-name').value        = saved.name;
+                activeTradeRow.querySelector('.trade-search').value      = saved.name;
+                activeTradeRow.querySelector('.trade-id-label').textContent = saved.product_id;
+                activeTradeRow = null;
+            } else {
+                searchInput.value = saved.name;
+                document.getElementById('sel_product_id').value  = saved.product_id;
+                document.getElementById('sel_group_id').value    = saved.group_id;
+                document.getElementById('sel_category_id').value = saved.categoryId || '';
+                document.getElementById('sel_name').value        = saved.name;
+            }
+            newProdDiv.style.display = 'none';
+        }
+
         if (IS_STATIC) {
             upsertMappingInRepo(mapping)
-                .then(saved => {
-                    if (!saved) return;
-                    searchInput.value = saved.name;
-                    document.getElementById('sel_product_id').value  = saved.product_id;
-                    document.getElementById('sel_group_id').value    = saved.group_id;
-                    document.getElementById('sel_category_id').value = saved.categoryId || '';
-                    document.getElementById('sel_name').value        = saved.name;
-                    newProdDiv.style.display = 'none';
-                })
-                .catch(err => {
-                    alert(err?.message || 'Failed to add product');
-                });
+                .then(saved => { if (saved) applyMapping(saved); })
+                .catch(err => { alert(err?.message || 'Failed to add product'); });
             return;
         }
 
         fetch('/api/mappings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name,
-                product_id: pid,
-                group_id: gid,
-                categoryId: cid
-            })
+            body: JSON.stringify({ name, product_id: pid, group_id: gid, categoryId: cid })
         })
         .then(r => r.json())
         .then(result => {
-            if (!result.success) {
-                alert(result.message || 'Failed to add product');
-                return;
-            }
-            const saved = result.mapping;
-            searchInput.value = saved.name;
-            document.getElementById('sel_product_id').value  = saved.product_id;
-            document.getElementById('sel_group_id').value    = saved.group_id;
-            document.getElementById('sel_category_id').value = saved.categoryId || 3;
-            document.getElementById('sel_name').value        = saved.name;
-            newProdDiv.style.display = 'none';
+            if (!result.success) { alert(result.message || 'Failed to add product'); return; }
+            applyMapping(result.mapping);
         })
         .catch(() => alert('Failed to add product'));
     });
@@ -520,7 +530,18 @@ document.addEventListener('DOMContentLoaded', function() {
             searchProducts(q)
                 .then(products => {
                     if (products.length === 0) {
-                        resultsDiv.innerHTML = '<div class="list-group-item text-muted small"><em>Not found</em></div>';
+                        resultsDiv.innerHTML = `
+                            <div class="list-group-item text-muted small"><em>No products found.</em></div>
+                            <div class="list-group-item list-group-item-action trade-add-new" style="cursor:pointer">
+                                <i class="fas fa-plus-circle text-success me-2"></i><strong>Add as new product</strong>
+                            </div>`;
+                        resultsDiv.querySelector('.trade-add-new').addEventListener('click', () => {
+                            activeTradeRow = input.closest('.trade-item-row');
+                            document.getElementById('new_product_name').value = input.value.trim();
+                            resultsDiv.style.display = 'none';
+                            newProdDiv.style.display = 'block';
+                            newProdDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        });
                     } else {
                         resultsDiv.innerHTML = products.map(p => `
                             <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
@@ -594,7 +615,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('sel_name').value        = item.name       || '';
                     document.getElementById('quantity').value        = item.quantity   || 1;
                 }
-                document.getElementById('amount').value = tx.amount != null ? tx.amount : '';
+                const qty = item ? (parseInt(item.quantity) || 1) : 1;
+                document.getElementById('amount').value = tx.amount != null ? (tx.amount / qty).toFixed(2) : '';
             } else {
                 const outContainer = document.getElementById('itemsOutContainer');
                 const inContainer  = document.getElementById('itemsInContainer');
@@ -710,6 +732,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: name,
                 quantity: qty
             }]);
+        }
+
+        // Convert per-unit price to total amount before submitting
+        if (type !== 'TRADE' && type !== 'OPEN') {
+            const amtInput = document.getElementById('amount');
+            const qty = parseInt(document.getElementById('quantity').value) || 1;
+            amtInput.value = ((parseFloat(amtInput.value) || 0) * qty).toFixed(2);
         }
 
         if (!IS_STATIC) return;
