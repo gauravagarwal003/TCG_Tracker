@@ -456,6 +456,18 @@
     "avg_buy_price": 24.2
   },
   {
+    "categoryId": "3",
+    "group_id": "2374",
+    "product_id": "671250",
+    "name": "Mega Charizard Tin (Mega Charizard Y)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/671250",
+    "quantity": 1,
+    "latest_price": 35.02,
+    "total_value": 35.02,
+    "avg_buy_price": 27.55
+  },
+  {
     "categoryId": "68",
     "group_id": "24575",
     "product_id": "671479",
