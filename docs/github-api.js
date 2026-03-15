@@ -218,17 +218,7 @@ class GitHubAPI {
             return null;
         }
 
-        // 1) Get reference for branch
-        const refUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/ref/heads/${this.config.branch}`;
-        const ref = await this.request(refUrl);
-        const commitSha = ref.object.sha;
-
-        // 2) Get commit to obtain tree SHA
-        const commitUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits/${commitSha}`;
-        const commit = await this.request(commitUrl);
-        const baseTreeSha = commit.tree.sha;
-
-        // 3) Create blobs for each file
+        // Create blobs first — content-addressed so safe to do once outside the retry loop
         const blobPromises = files.map(f => {
             const utf8Bytes = new TextEncoder().encode(f.content);
             const binaryString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
@@ -239,31 +229,51 @@ class GitHubAPI {
             }).then(res => ({ path: f.path, sha: res.sha }));
         });
         const blobs = await Promise.all(blobPromises);
+        const treeEntries = blobs.map(b => ({ path: b.path, mode: '100644', type: 'blob', sha: b.sha }));
 
-        // 4) Create tree entries
-        const tree = blobs.map(b => ({ path: b.path, mode: '100644', type: 'blob', sha: b.sha }));
+        // Retry loop — handles the case where another commit (e.g. daily CI) lands
+        // between our fetch and our push, causing a "not a fast forward" rejection.
+        const MAX_RETRIES = 3;
+        for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+            // Get current branch HEAD
+            const ref = await this.request(
+                `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/ref/heads/${this.config.branch}`
+            );
+            const commitSha = ref.object.sha;
 
-        const createTreeUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/trees`;
-        const newTree = await this.request(createTreeUrl, {
-            method: 'POST',
-            body: JSON.stringify({ base_tree: baseTreeSha, tree })
-        });
+            // Get base tree SHA from current commit
+            const commitData = await this.request(
+                `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits/${commitSha}`
+            );
 
-        // 5) Create commit
-        const createCommitUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits`;
-        const newCommit = await this.request(createCommitUrl, {
-            method: 'POST',
-            body: JSON.stringify({ message, tree: newTree.sha, parents: [commitSha] })
-        });
+            // Create tree on top of current HEAD
+            const newTree = await this.request(
+                `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/trees`,
+                { method: 'POST', body: JSON.stringify({ base_tree: commitData.tree.sha, tree: treeEntries }) }
+            );
 
-        // 6) Update ref to point to new commit
-        const updateRefUrl = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/refs/heads/${this.config.branch}`;
-        await this.request(updateRefUrl, {
-            method: 'PATCH',
-            body: JSON.stringify({ sha: newCommit.sha })
-        });
+            // Create commit with current HEAD as parent
+            const newCommit = await this.request(
+                `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/commits`,
+                { method: 'POST', body: JSON.stringify({ message, tree: newTree.sha, parents: [commitSha] }) }
+            );
 
-        return newCommit;
+            // Advance the branch ref — retry on fast-forward conflict
+            try {
+                await this.request(
+                    `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/refs/heads/${this.config.branch}`,
+                    { method: 'PATCH', body: JSON.stringify({ sha: newCommit.sha }) }
+                );
+                return newCommit;
+            } catch (err) {
+                if (attempt < MAX_RETRIES - 1 && err.message?.toLowerCase().includes('not a fast forward')) {
+                    console.warn(`Commit race on attempt ${attempt + 1}, retrying…`);
+                    continue;
+                }
+                throw err;
+            }
+        }
+        throw new Error('Failed to commit after several retries due to concurrent updates. Please try again.');
     }
 }
 
