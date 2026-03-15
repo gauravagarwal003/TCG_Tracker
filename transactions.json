@@ -833,7 +833,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0045",
@@ -852,7 +852,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
+    "notes": "Recieved 2024 PokÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©mon Illustration Contest Promo Cards with order."
   },
   {
     "id": "m0046",
@@ -1954,7 +1954,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂÃÂ¢ÃÂÃÂÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
+    "notes": "Got 25% off from a Target Circle reward on toys that didnÃÂÃÂÃÂÃÂ¢ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂt apply to trading cards, but customer service rep applied it after the order."
   },
   {
     "id": "m0104",
@@ -2962,5 +2962,24 @@
       }
     ],
     "amount": 27.55
+  },
+  {
+    "id": "2db802b4",
+    "date_purchased": "2026-03-13",
+    "date_received": "2026-03-10",
+    "type": "BUY",
+    "method": "Online",
+    "place": "Walmart",
+    "notes": "Used $25 promo on total order.",
+    "items": [
+      {
+        "product_id": "283396",
+        "group_id": "3170",
+        "categoryId": 3,
+        "name": "Silver Tempest Booster Bundle",
+        "quantity": 1
+      }
+    ],
+    "amount": 60.63
   }
 ]
