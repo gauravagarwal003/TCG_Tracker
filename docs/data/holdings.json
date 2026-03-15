@@ -313,6 +313,18 @@
   },
   {
     "categoryId": "3",
+    "group_id": "3170",
+    "product_id": "283396",
+    "name": "Silver Tempest Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/283396_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/283396",
+    "quantity": 1,
+    "latest_price": 75.42,
+    "total_value": 75.42,
+    "avg_buy_price": 60.63
+  },
+  {
+    "categoryId": "3",
     "group_id": "23821",
     "product_id": "600518",
     "name": "Prismatic Evolutions Booster Bundle",
