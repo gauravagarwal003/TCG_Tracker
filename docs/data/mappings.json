@@ -582,5 +582,13 @@
     "categoryId": 3,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668590_200w.jpg",
     "url": "https://www.tcgplayer.com/product/668590"
+  },
+  {
+    "name": "Mega Charizard Tin (Mega Charizard Y)",
+    "product_id": "671250",
+    "group_id": "2374",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/671250"
   }
 ]
