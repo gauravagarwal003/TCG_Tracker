@@ -492,18 +492,6 @@
     "avg_buy_price": 26.45
   },
   {
-    "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "671250",
-    "name": "Mega Charizard Tin (Mega Charizard Y)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/671250",
-    "quantity": 1,
-    "latest_price": 35.02,
-    "total_value": 35.02,
-    "avg_buy_price": 27.55
-  },
-  {
     "categoryId": "68",
     "group_id": "24575",
     "product_id": "671479",
@@ -522,9 +510,9 @@
     "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669273_200w.jpg",
     "url": "https://www.tcgplayer.com/product/669273",
-    "quantity": 2,
+    "quantity": 3,
     "latest_price": 32.04,
-    "total_value": 64.08,
+    "total_value": 96.12,
     "avg_buy_price": 12.12
   },
   {
@@ -562,6 +550,18 @@
     "latest_price": 27.54,
     "total_value": 27.54,
     "avg_buy_price": 19.83
+  },
+  {
+    "categoryId": "68",
+    "group_id": "17675",
+    "product_id": "669278",
+    "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669278_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/669278",
+    "quantity": 1,
+    "latest_price": 26.75,
+    "total_value": 26.75,
+    "avg_buy_price": null
   },
   {
     "categoryId": "3",
