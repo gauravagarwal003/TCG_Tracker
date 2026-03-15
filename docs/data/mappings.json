@@ -590,5 +590,13 @@
     "categoryId": 3,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
     "url": "https://www.tcgplayer.com/product/671250"
+  },
+  {
+    "name": "Silver Tempest Booster Bundle",
+    "product_id": "283396",
+    "group_id": "3170",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/283396_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/283396"
   }
 ]
