@@ -468,6 +468,18 @@
     "avg_buy_price": 24.2
   },
   {
+    "categoryId": "80",
+    "group_id": "24571",
+    "product_id": "670179",
+    "name": "Starter Deck EX: The Beat of Ki",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670179_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/670179",
+    "quantity": 1,
+    "latest_price": 41.55,
+    "total_value": 41.55,
+    "avg_buy_price": 26.45
+  },
+  {
     "categoryId": "3",
     "group_id": "2374",
     "product_id": "671250",
