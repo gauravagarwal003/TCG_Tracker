@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1773609925" rel="stylesheet">
+    <link href="static/css/styles.css?v=1773642027" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const ensureMappings = staticMappingsCache
             ? Promise.resolve(staticMappingsCache)
-            : fetch(STATIC_MAPPINGS_URL, { cache: 'no-store' }).then(r => r.json()).then(data => {
+            : fetch(STATIC_MAPPINGS_URL).then(r => r.json()).then(data => {
                 staticMappingsCache = data || [];
                 return staticMappingsCache;
             });

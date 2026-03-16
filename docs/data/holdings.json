@@ -9,7 +9,8 @@
     "quantity": 1,
     "latest_price": 538.33,
     "total_value": 538.33,
-    "avg_buy_price": 557.64
+    "avg_buy_price": 557.64,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -21,7 +22,8 @@
     "quantity": 1,
     "latest_price": 342.55,
     "total_value": 342.55,
-    "avg_buy_price": 178.21
+    "avg_buy_price": 178.21,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -33,7 +35,8 @@
     "quantity": 2,
     "latest_price": 335.65,
     "total_value": 671.3,
-    "avg_buy_price": 136.01
+    "avg_buy_price": 136.01,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -45,7 +48,8 @@
     "quantity": 2,
     "latest_price": 326.6,
     "total_value": 653.2,
-    "avg_buy_price": 66.14
+    "avg_buy_price": 66.14,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -57,7 +61,8 @@
     "quantity": 4,
     "latest_price": 304.6,
     "total_value": 1218.4,
-    "avg_buy_price": 55.71
+    "avg_buy_price": 55.71,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -69,7 +74,8 @@
     "quantity": 2,
     "latest_price": 241.49,
     "total_value": 482.98,
-    "avg_buy_price": 66.14
+    "avg_buy_price": 66.14,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -81,7 +87,8 @@
     "quantity": 1,
     "latest_price": 237.87,
     "total_value": 237.87,
-    "avg_buy_price": 65.84
+    "avg_buy_price": 65.84,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -93,7 +100,8 @@
     "quantity": 3,
     "latest_price": 204.71,
     "total_value": 614.13,
-    "avg_buy_price": 155.02
+    "avg_buy_price": 155.02,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -105,7 +113,8 @@
     "quantity": 1,
     "latest_price": 201.11,
     "total_value": 201.11,
-    "avg_buy_price": 183.85
+    "avg_buy_price": 183.85,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -117,7 +126,8 @@
     "quantity": 4,
     "latest_price": 197.21,
     "total_value": 788.84,
-    "avg_buy_price": 47.45
+    "avg_buy_price": 47.45,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -129,7 +139,8 @@
     "quantity": 2,
     "latest_price": 194.47,
     "total_value": 388.94,
-    "avg_buy_price": 68.92
+    "avg_buy_price": 68.92,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -141,7 +152,8 @@
     "quantity": 1,
     "latest_price": 193.11,
     "total_value": 193.11,
-    "avg_buy_price": 65.84
+    "avg_buy_price": 65.84,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -153,7 +165,8 @@
     "quantity": 3,
     "latest_price": 188.3,
     "total_value": 564.9,
-    "avg_buy_price": 122.8
+    "avg_buy_price": 122.8,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -165,7 +178,8 @@
     "quantity": 6,
     "latest_price": 181.8,
     "total_value": 1090.8,
-    "avg_buy_price": 29.5
+    "avg_buy_price": 29.5,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -177,7 +191,8 @@
     "quantity": 2,
     "latest_price": 170.7,
     "total_value": 341.4,
-    "avg_buy_price": 18.84
+    "avg_buy_price": 18.84,
+    "via_trade": false
   },
   {
     "categoryId": "89",
@@ -189,7 +204,8 @@
     "quantity": 1,
     "latest_price": 163.9,
     "total_value": 163.9,
-    "avg_buy_price": 125.25
+    "avg_buy_price": 125.25,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -201,7 +217,8 @@
     "quantity": 1,
     "latest_price": 162.95,
     "total_value": 162.95,
-    "avg_buy_price": 65.69
+    "avg_buy_price": 65.69,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -213,7 +230,8 @@
     "quantity": 1,
     "latest_price": 147.85,
     "total_value": 147.85,
-    "avg_buy_price": 27.38
+    "avg_buy_price": 27.38,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -225,7 +243,8 @@
     "quantity": 1,
     "latest_price": 140.54,
     "total_value": 140.54,
-    "avg_buy_price": 14.65
+    "avg_buy_price": 14.65,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -237,7 +256,8 @@
     "quantity": 2,
     "latest_price": 133.63,
     "total_value": 267.26,
-    "avg_buy_price": 26.58
+    "avg_buy_price": 26.58,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -249,7 +269,8 @@
     "quantity": 1,
     "latest_price": 133.27,
     "total_value": 133.27,
-    "avg_buy_price": 65.69
+    "avg_buy_price": 65.69,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -261,7 +282,8 @@
     "quantity": 1,
     "latest_price": 131.71,
     "total_value": 131.71,
-    "avg_buy_price": 66.14
+    "avg_buy_price": 66.14,
+    "via_trade": false
   },
   {
     "categoryId": "85",
@@ -273,7 +295,8 @@
     "quantity": 1,
     "latest_price": 114.06,
     "total_value": 114.06,
-    "avg_buy_price": 18.98
+    "avg_buy_price": 18.98,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -285,7 +308,8 @@
     "quantity": 1,
     "latest_price": 99.39,
     "total_value": 99.39,
-    "avg_buy_price": 23.03
+    "avg_buy_price": 23.03,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -297,7 +321,8 @@
     "quantity": 2,
     "latest_price": 87.58,
     "total_value": 175.16,
-    "avg_buy_price": 35.21
+    "avg_buy_price": 35.21,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -309,7 +334,8 @@
     "quantity": 1,
     "latest_price": 85.63,
     "total_value": 85.63,
-    "avg_buy_price": 10.96
+    "avg_buy_price": 10.96,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -321,7 +347,8 @@
     "quantity": 1,
     "latest_price": 79.98,
     "total_value": 79.98,
-    "avg_buy_price": 60.63
+    "avg_buy_price": 60.63,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -333,7 +360,8 @@
     "quantity": 9,
     "latest_price": 76.26,
     "total_value": 686.34,
-    "avg_buy_price": 33.41
+    "avg_buy_price": 33.41,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -345,7 +373,8 @@
     "quantity": 1,
     "latest_price": 70.2,
     "total_value": 70.2,
-    "avg_buy_price": 5.48
+    "avg_buy_price": 5.48,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -357,7 +386,8 @@
     "quantity": 1,
     "latest_price": 62.08,
     "total_value": 62.08,
-    "avg_buy_price": 24.08
+    "avg_buy_price": 24.08,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -369,7 +399,8 @@
     "quantity": 2,
     "latest_price": 58.91,
     "total_value": 117.82,
-    "avg_buy_price": 29.7
+    "avg_buy_price": 29.7,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -381,7 +412,8 @@
     "quantity": 6,
     "latest_price": 58.52,
     "total_value": 351.12,
-    "avg_buy_price": 30.45
+    "avg_buy_price": 30.45,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -393,7 +425,8 @@
     "quantity": 3,
     "latest_price": 57.51,
     "total_value": 172.53,
-    "avg_buy_price": 31.85
+    "avg_buy_price": 31.85,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -405,7 +438,8 @@
     "quantity": 1,
     "latest_price": 55.87,
     "total_value": 55.87,
-    "avg_buy_price": 24.65
+    "avg_buy_price": 24.65,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -417,7 +451,8 @@
     "quantity": 3,
     "latest_price": 53.59,
     "total_value": 160.77,
-    "avg_buy_price": 25.05
+    "avg_buy_price": 25.05,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -429,7 +464,8 @@
     "quantity": 1,
     "latest_price": 49.55,
     "total_value": 49.55,
-    "avg_buy_price": 24.37
+    "avg_buy_price": 24.37,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -441,7 +477,8 @@
     "quantity": 2,
     "latest_price": 48.58,
     "total_value": 97.16,
-    "avg_buy_price": 22.05
+    "avg_buy_price": 22.05,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -453,7 +490,8 @@
     "quantity": 2,
     "latest_price": 48.01,
     "total_value": 96.02,
-    "avg_buy_price": 25.79
+    "avg_buy_price": 25.79,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -465,7 +503,8 @@
     "quantity": 2,
     "latest_price": 46.33,
     "total_value": 92.66,
-    "avg_buy_price": 24.2
+    "avg_buy_price": 24.2,
+    "via_trade": false
   },
   {
     "categoryId": "80",
@@ -477,7 +516,8 @@
     "quantity": 1,
     "latest_price": 40.13,
     "total_value": 40.13,
-    "avg_buy_price": 26.45
+    "avg_buy_price": 26.45,
+    "via_trade": false
   },
   {
     "categoryId": "80",
@@ -489,7 +529,8 @@
     "quantity": 1,
     "latest_price": 39.19,
     "total_value": 39.19,
-    "avg_buy_price": 26.45
+    "avg_buy_price": 26.45,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -501,7 +542,8 @@
     "quantity": 3,
     "latest_price": 31.99,
     "total_value": 95.97,
-    "avg_buy_price": 12.12
+    "avg_buy_price": 18.9,
+    "via_trade": true
   },
   {
     "categoryId": "68",
@@ -513,7 +555,8 @@
     "quantity": 2,
     "latest_price": 31.95,
     "total_value": 63.9,
-    "avg_buy_price": 19.93
+    "avg_buy_price": 19.93,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -525,7 +568,8 @@
     "quantity": 1,
     "latest_price": 31.69,
     "total_value": 31.69,
-    "avg_buy_price": 13.62
+    "avg_buy_price": 13.62,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -537,7 +581,8 @@
     "quantity": 1,
     "latest_price": 28.58,
     "total_value": 28.58,
-    "avg_buy_price": 13.62
+    "avg_buy_price": 13.62,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -549,7 +594,8 @@
     "quantity": 1,
     "latest_price": 26.77,
     "total_value": 26.77,
-    "avg_buy_price": 19.83
+    "avg_buy_price": 19.83,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -561,7 +607,8 @@
     "quantity": 1,
     "latest_price": 26.72,
     "total_value": 26.72,
-    "avg_buy_price": null
+    "avg_buy_price": 26.94,
+    "via_trade": true
   },
   {
     "categoryId": "3",
@@ -573,7 +620,8 @@
     "quantity": 2,
     "latest_price": 21.85,
     "total_value": 43.7,
-    "avg_buy_price": 11.01
+    "avg_buy_price": 11.01,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -585,7 +633,8 @@
     "quantity": 1,
     "latest_price": 17.21,
     "total_value": 17.21,
-    "avg_buy_price": 6.61
+    "avg_buy_price": 6.61,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -597,7 +646,8 @@
     "quantity": 1,
     "latest_price": 16.69,
     "total_value": 16.69,
-    "avg_buy_price": 12.12
+    "avg_buy_price": 12.12,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -609,7 +659,8 @@
     "quantity": 1,
     "latest_price": 16.64,
     "total_value": 16.64,
-    "avg_buy_price": 12.12
+    "avg_buy_price": 12.12,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -621,7 +672,8 @@
     "quantity": 1,
     "latest_price": 16.08,
     "total_value": 16.08,
-    "avg_buy_price": 6.61
+    "avg_buy_price": 6.61,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -633,7 +685,8 @@
     "quantity": 1,
     "latest_price": 12.02,
     "total_value": 12.02,
-    "avg_buy_price": 5.5
+    "avg_buy_price": 5.5,
+    "via_trade": false
   },
   {
     "categoryId": "68",
@@ -645,7 +698,8 @@
     "quantity": 4,
     "latest_price": 9.45,
     "total_value": 37.8,
-    "avg_buy_price": 5.5
+    "avg_buy_price": 5.5,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -657,7 +711,8 @@
     "quantity": 16,
     "latest_price": 9.3,
     "total_value": 148.8,
-    "avg_buy_price": 4.26
+    "avg_buy_price": 4.26,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -669,7 +724,8 @@
     "quantity": 9,
     "latest_price": 9.05,
     "total_value": 81.45,
-    "avg_buy_price": 4.64
+    "avg_buy_price": 4.64,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -681,7 +737,8 @@
     "quantity": 1,
     "latest_price": 7.14,
     "total_value": 7.14,
-    "avg_buy_price": 4.95
+    "avg_buy_price": 4.95,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -693,7 +750,8 @@
     "quantity": 6,
     "latest_price": 7.12,
     "total_value": 42.72,
-    "avg_buy_price": 5.88
+    "avg_buy_price": 5.88,
+    "via_trade": false
   },
   {
     "categoryId": "3",
@@ -705,6 +763,7 @@
     "quantity": 6,
     "latest_price": 7.0,
     "total_value": 42.0,
-    "avg_buy_price": 4.93
+    "avg_buy_price": 4.93,
+    "via_trade": false
   }
 ]
