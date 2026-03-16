@@ -476,7 +476,8 @@ def get_current_holdings(transactions=None):
     Returns list of currently held products with quantities and latest prices.
 
     Each holding also includes:
-      avg_buy_price - weighted average price paid per unit (BUY txns only)
+      avg_buy_price - weighted average cost per unit (BUY cost + market price at trade date for traded-in items)
+      via_trade     - True if any quantity of this product was acquired through a TRADE
     """
     if transactions is None:
         transactions = load_transactions()
@@ -498,6 +499,31 @@ def get_current_holdings(transactions=None):
             buy_costs[key][0] += item_qty
             buy_costs[key][1] += item_cost
 
+    # --- Pre-compute trade-in cost basis using market price at trade date ---
+    # trade_costs: key -> [units_with_known_price, total_cost_at_trade_date]
+    trade_costs = defaultdict(lambda: [0, 0.0])
+    via_trade_keys = set()
+    for txn in transactions:
+        if txn["type"].upper() != "TRADE":
+            continue
+        trade_date = txn.get("date_received") or txn.get("date_purchased") or ""
+        for item in txn.get("items_in", []):
+            key = _product_key(item)
+            item_qty = item.get("quantity", 0)
+            via_trade_keys.add(key)
+            if item_qty <= 0 or not trade_date:
+                continue
+            cat, gid, pid = key
+            prices = load_prices(cat, gid, pid)
+            trade_price = 0.0
+            for d_str in sorted(prices.keys(), reverse=True):
+                if d_str <= trade_date and prices[d_str] and prices[d_str] > 0:
+                    trade_price = prices[d_str]
+                    break
+            if trade_price > 0:
+                trade_costs[key][0] += item_qty
+                trade_costs[key][1] += item_qty * trade_price
+
     inventory = compute_inventory_timeline(transactions)
     td = today_pst().strftime("%Y-%m-%d")
 
@@ -516,9 +542,13 @@ def get_current_holdings(transactions=None):
                     latest_price = prices[d_str]
                     break
 
-            # Average buy price (buys only)
+            # Average buy price: weighted average across BUY cost and trade-date market price
             bc = buy_costs.get(key, [0, 0.0])
-            avg_buy_price = round(bc[1] / bc[0], 2) if bc[0] > 0 else None
+            tc = trade_costs.get(key, [0, 0.0])
+            total_units = bc[0] + tc[0]
+            total_cost  = bc[1] + tc[1]
+            avg_buy_price = round(total_cost / total_units, 2) if total_units > 0 else None
+            via_trade = key in via_trade_keys
 
             holdings.append({
                 "categoryId": cat,
@@ -531,6 +561,7 @@ def get_current_holdings(transactions=None):
                 "latest_price": latest_price,
                 "total_value": round(qty * latest_price, 2),
                 "avg_buy_price": avg_buy_price,
+                "via_trade": via_trade,
             })
 
     holdings.sort(key=lambda h: h["latest_price"], reverse=True)
