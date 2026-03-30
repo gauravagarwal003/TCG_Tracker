@@ -117,6 +117,19 @@
     "via_trade": false
   },
   {
+    "categoryId": "3",
+    "group_id": "24587",
+    "product_id": "672394",
+    "name": "Perfect Order Booster Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672394_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/672394",
+    "quantity": 1,
+    "latest_price": 212.08,
+    "total_value": 212.08,
+    "avg_buy_price": 178.21,
+    "via_trade": false
+  },
+  {
     "categoryId": "68",
     "group_id": "23462",
     "product_id": "542504",
