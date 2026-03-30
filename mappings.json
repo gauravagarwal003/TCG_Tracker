@@ -638,5 +638,13 @@
     "categoryId": 3,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672404_200w.jpg",
     "url": "https://www.tcgplayer.com/product/672404"
+  },
+  {
+    "name": "Perfect Order Booster Box",
+    "product_id": "672394",
+    "group_id": "24587",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672394_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/672394"
   }
 ]
