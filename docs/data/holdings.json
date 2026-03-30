@@ -286,6 +286,19 @@
     "via_trade": false
   },
   {
+    "categoryId": "3",
+    "group_id": "24587",
+    "product_id": "672404",
+    "name": "Perfect Order Pokemon Center Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672404_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/672404",
+    "quantity": 2,
+    "latest_price": 134.29,
+    "total_value": 268.58,
+    "avg_buy_price": 66.14,
+    "via_trade": false
+  },
+  {
     "categoryId": "85",
     "group_id": "23601",
     "product_id": "565232",
