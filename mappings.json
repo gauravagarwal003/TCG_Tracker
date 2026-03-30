@@ -630,5 +630,13 @@
     "categoryId": 68,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669278_200w.jpg",
     "url": "https://www.tcgplayer.com/product/669278"
+  },
+  {
+    "name": "Perfect Order Pokemon Center Elite Trainer Box",
+    "product_id": "24587",
+    "group_id": "24587",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/24587_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/24587"
   }
 ]
