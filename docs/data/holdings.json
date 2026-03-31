@@ -573,6 +573,19 @@
   },
   {
     "categoryId": "3",
+    "group_id": "24541",
+    "product_id": "666909",
+    "name": "Mega Evolution: Ascended Heroes Tech Sticker Collection - Gastly",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666909_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/666909",
+    "quantity": 1,
+    "latest_price": 33.22,
+    "total_value": 33.22,
+    "avg_buy_price": 17.63,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
     "group_id": "23821",
     "product_id": "593450",
     "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
