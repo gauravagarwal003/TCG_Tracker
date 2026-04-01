@@ -4,6 +4,20 @@
 // true when running on GitHub Pages / static server (no Flask backend)
 let isStaticMode = false;
 
+function appendCacheBust(url) {
+    const sep = url.includes('?') ? '&' : '?';
+    return `${url}${sep}cb=${Date.now()}`;
+}
+
+async function fetchFreshJson(url) {
+    const response = await fetch(appendCacheBust(url), {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache' }
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+}
+
 async function fetchTransactions() {
     // Try API endpoint first (development server). If that fails, fall back
     // to the static JSON file used by GitHub Pages.
@@ -17,10 +31,10 @@ async function fetchTransactions() {
         // ignore and fall back
     }
     try {
-        const resp2 = await fetch('data/transactions.json');
-        if (resp2.ok) {
+        const transactions = await fetchFreshJson('data/transactions.json');
+        if (Array.isArray(transactions)) {
             isStaticMode = true;
-            return await resp2.json();
+            return transactions;
         }
     } catch (e) {
         // ignore
