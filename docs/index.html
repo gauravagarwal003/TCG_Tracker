@@ -25,7 +25,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1774992968" rel="stylesheet">
+    <link href="static/css/styles.css?v=1775106325" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -126,7 +126,7 @@
                                 <th class="text-end">Avg Buy</th>
                                 <th class="text-end">Latest Price</th>
                                 <th class="text-end">Gain %</th>
-                                <th class="text-end">±/Unit</th>
+                                <th class="text-end">1-Week Change</th>
                                 <th class="text-end">Total Value</th>
                             </tr>
                         </thead>
@@ -148,6 +148,56 @@
     
 
 <script>
+// Function to calculate weekly price change
+function getWeekAgoDate() {
+    const today = new Date();
+    const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    return weekAgo.toISOString().split('T')[0]; // YYYY-MM-DD
+}
+
+function formatWeeklyChange(weekAgoPrice, currentPrice) {
+    if (weekAgoPrice == null) return '—';
+    const change = currentPrice - weekAgoPrice;
+    const changePct = (change / weekAgoPrice) * 100;
+    const color = changePct >= 0 ? '#10b981' : '#ef4444';
+    return `<span style="color:${color}">${changePct >= 0 ? '+' : ''}${changePct.toFixed(1)}%</span>`;
+}
+
+async function loadWeeklyChanges() {
+    const rows = document.querySelectorAll('tbody tr[data-product-id]');
+    const weekAgoDate = getWeekAgoDate();
+    console.log('1-week change: Looking for prices from', weekAgoDate);
+    
+    rows.forEach(async (row) => {
+        const categoryId = row.getAttribute('data-category-id');
+        const groupId = row.getAttribute('data-group-id');
+        const productId = row.getAttribute('data-product-id');
+        const currentPrice = parseFloat(row.getAttribute('data-latest-price'));
+        
+        try {
+            const response = await fetch(`prices/${categoryId}/${groupId}/${productId}.json?cb=${Date.now()}`);
+            if (!response.ok) {
+                console.log(`Price file not found for product ${productId}`);
+                return;
+            }
+            const priceData = await response.json();
+            const weekAgoPrice = priceData[weekAgoDate];
+            
+            if (weekAgoPrice !== undefined) {
+                console.log(`Found 1-week data for ${productId}: ${weekAgoPrice}`);
+            }
+            
+            // Update the cell with the weekly change
+            const cell = row.querySelector('.week-change-cell');
+            if (cell) {
+                cell.innerHTML = formatWeeklyChange(weekAgoPrice, currentPrice);
+            }
+        } catch (e) {
+            console.error(`Error loading prices for product ${productId}:`, e);
+        }
+    });
+}
+
 // Dynamically load holdings and summary from data/ JSON files so the page
 // always reflects the latest data committed by GitHub Actions without
 // requiring Flask to re-render the HTML template.
@@ -203,25 +253,21 @@ Promise.all([
                 const glColor = pct >= 0 ? '#10b981' : '#ef4444';
                 gainPctHtml = `<span style="color:${glColor}">${pct >= 0 ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>`;
             }
-            // ±/Unit absolute $ column
-            let unitAbsHtml = '—';
-            if (item.avg_buy_price != null) {
-                const gl = item.latest_price - item.avg_buy_price;
-                const glColor = gl >= 0 ? '#10b981' : '#ef4444';
-                unitAbsHtml = `<span style="color:${glColor}">${gl >= 0 ? '+' : '-'}$${Math.abs(gl).toFixed(2)}</span>`;
-            }
-            return `<tr>
+            return `<tr data-product-id="${item.product_id}" data-category-id="${item.categoryId}" data-group-id="${item.group_id}" data-latest-price="${item.latest_price}">
                 <td>${thumb}</td>
                 <td class="fw-medium">${name}</td>
                 <td class="text-end">${Math.round(item.quantity)}</td>
                 <td class="text-end">${avgBuy}</td>
                 <td class="text-end">$${item.latest_price.toFixed(2)}</td>
                 <td class="text-end">${gainPctHtml}</td>
-                <td class="text-end">${unitAbsHtml}</td>
+                <td class="text-end week-change-cell">—</td>
                 <td class="text-end fw-bold">$${item.total_value.toFixed(2)}</td>
             </tr>`;
         }).join('');
         countBadge.textContent = holdings.length + ' items';
+        
+        // Load weekly price changes asynchronously
+        loadWeeklyChanges();
     }
 
     // --- Portfolio chart ---

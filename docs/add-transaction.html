@@ -23,7 +23,7 @@
     <script src="auth.js"></script>
     <script src="github-api.js"></script>
     
-    <link href="static/css/styles.css?v=1774992968" rel="stylesheet">
+    <link href="static/css/styles.css?v=1775106325" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -244,20 +244,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const STATIC_MAPPINGS_URL = 'data/mappings.json';
     let staticMappingsCache = null;
 
-    function appendCacheBust(url) {
-        const sep = url.includes('?') ? '&' : '?';
-        return `${url}${sep}cb=${Date.now()}`;
-    }
-
-    async function fetchFreshJson(url) {
-        const response = await fetch(appendCacheBust(url), {
-            cache: 'no-store',
-            headers: { 'Cache-Control': 'no-cache' }
-        });
-        if (!response.ok) throw new Error('Failed to load ' + url + ': ' + response.status);
-        return response.json();
-    }
-
     // Edit-mode detection (GitHub Pages / static only — URL params ?edit=1&id=xxx)
     const _urlParams = new URLSearchParams(window.location.search);
     const EDIT_MODE  = IS_STATIC && _urlParams.get('edit') === '1';
@@ -312,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const ensureMappings = staticMappingsCache
             ? Promise.resolve(staticMappingsCache)
-            : fetchFreshJson(STATIC_MAPPINGS_URL).then(data => {
+            : fetch(STATIC_MAPPINGS_URL).then(r => r.json()).then(data => {
                 staticMappingsCache = data || [];
                 return staticMappingsCache;
             });
@@ -604,7 +590,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-save me-1"></i>Update Transaction';
 
         try {
-            const list = await fetchFreshJson('data/transactions.json');
+            const resp = await fetch('data/transactions.json', { cache: 'no-store' });
+            if (!resp.ok) { alert('Could not load transaction data.'); return; }
+            const list = await resp.json();
             const tx = list.find(t => t.id === EDIT_ID);
             if (!tx) { alert('Transaction not found: ' + EDIT_ID); return; }
 
@@ -789,7 +777,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const ok = await saveTransactionStatic(txnData);
             if (ok) {
                 alert((EDIT_MODE ? 'Transaction updated' : 'Transaction saved') + ' on GitHub. Pages will rebuild shortly.');
-                window.location.href = appendCacheBust('transactions.html');
+                window.location.href = 'transactions.html';
             }
         } catch (err) {
             alert(err?.message || 'Failed to save transaction');
