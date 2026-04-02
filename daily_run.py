@@ -63,6 +63,12 @@ def generate_static_site(transactions, summary):
     if os.path.isdir(static_src):
         shutil.copytree(static_src, static_dest, dirs_exist_ok=True)
 
+    # Sync prices directory for GitHub Pages (needed for 1-week change calculations)
+    prices_src = os.path.join(BASE_DIR, "prices")
+    prices_dest = os.path.join(BASE_DIR, "docs", "prices")
+    if os.path.isdir(prices_src):
+        shutil.copytree(prices_src, prices_dest, dirs_exist_ok=True)
+
     print(
         f"  Wrote holdings ({len(holdings)} items), summary ({len(summary)} days), transactions ({len(transactions)})"
     )
