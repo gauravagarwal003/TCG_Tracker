@@ -255,50 +255,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const EDIT_MODE  = IS_STATIC && _urlParams.get('edit') === '1';
     const EDIT_ID    = EDIT_MODE ? (_urlParams.get('id') || '') : '';
 
-    async function ensureGitHubAuth() {
-        const api = (typeof githubAPI !== 'undefined') ? githubAPI : null;
-        if (!api) return null;
-        if (!api.isAuthenticated()) {
-            const ok = await api.authenticate();
-            if (!ok) return null;
+    async function saveMapping(mapping) {
+        if (!window.TCGFirestore?.saveProductMapping) {
+            throw new Error('Firestore product mapping support is not loaded.');
         }
-        return api;
+        const saved = await window.TCGFirestore.saveProductMapping(mapping);
+        staticMappingsCache = null;
+        return saved;
     }
 
-    async function upsertMappingInRepo(mapping) {
-        const api = await ensureGitHubAuth();
-        if (!api) {
-            alert('GitHub token is required to save new products on GitHub Pages.');
-            return null;
-        }
-
-        const [rootFile, docsFile] = await Promise.all([
-            api.getFile('mappings.json'),
-            api.getFile('docs/data/mappings.json')
-        ]);
-
-        const updateList = (content) => {
-            const list = JSON.parse(content || '[]');
-            const exists = list.find(m => String(m.product_id) === String(mapping.product_id)
-                && String(m.group_id) === String(mapping.group_id));
-            if (!exists) list.push(mapping);
-            return list;
-        };
-
-        const updatedRoot = updateList(rootFile.content);
-        const updatedDocs = updateList(docsFile.content);
-
-        // Commit both files in a single atomic commit to avoid double commits
-        await api.updateFilesAtomic([
-            { path: 'mappings.json', content: JSON.stringify(updatedRoot, null, 2) },
-            { path: 'docs/data/mappings.json', content: JSON.stringify(updatedDocs, null, 2) }
-        ], `Add product ${mapping.name}`);
-
-        staticMappingsCache = updatedDocs;
-        return mapping;
-    }
-
-    function searchProducts(query) {
+    async function searchProducts(query) {
         if (!IS_STATIC) {
             return fetch(`/api/search_products?q=${encodeURIComponent(query)}`).then(r => r.json());
         }
@@ -309,19 +275,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 return staticMappingsCache;
             });
 
-        return ensureMappings.then(list => {
-            const q = query.toLowerCase();
-            return list
-                .filter(m => (m.name || '').toLowerCase().includes(q))
-                .slice(0, 20)
-                .map(m => ({
-                    name: m.name,
-                    product_id: m.product_id,
-                    group_id: m.group_id,
-                    categoryId: m.categoryId || null,
-                    imageUrl: m.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${m.product_id}_200w.jpg`
-                }));
+        const [staticList, firestoreList] = await Promise.all([
+            ensureMappings,
+            window.TCGFirestore?.getAllProductMappings ? window.TCGFirestore.getAllProductMappings() : Promise.resolve([])
+        ]);
+
+        const merged = new Map();
+        [...staticList, ...firestoreList].forEach((m) => {
+            const key = `${String(m.group_id)}_${String(m.product_id)}`;
+            if (!merged.has(key)) merged.set(key, m);
         });
+
+        const q = query.toLowerCase();
+        return Array.from(merged.values())
+            .filter(m => (m.name || '').toLowerCase().includes(q))
+            .slice(0, 20)
+            .map(m => ({
+                name: m.name,
+                product_id: m.product_id,
+                group_id: m.group_id,
+                categoryId: m.categoryId || null,
+                imageUrl: m.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${m.product_id}_200w.jpg`
+            }));
     }
 
     /* ── references ── */
@@ -464,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (IS_STATIC) {
-            upsertMappingInRepo(mapping)
+            saveMapping(mapping)
                 .then(saved => { if (saved) applyMapping(saved); })
                 .catch(err => { alert(err?.message || 'Failed to add product'); });
             return;
@@ -586,9 +561,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ── Edit-mode prefill (static only) ─────────────────────────────────────
-    async function prefillEditForm() {
+    // ── Edit-mode prefill (Firestore user data) ─────────────────────────────
+    async function prefillEditForm(user) {
         if (!EDIT_MODE || !EDIT_ID) return;
+        if (!user || !window.TCGFirestore) return;
         // Update page heading and submit button
         const heading = document.querySelector('.table-header h5');
         if (heading) heading.textContent = 'Edit Transaction';
@@ -596,10 +572,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (submitBtn) submitBtn.innerHTML = '<i class="fas fa-save me-1"></i>Update Transaction';
 
         try {
-            const resp = await fetch('data/transactions.json', { cache: 'no-store' });
-            if (!resp.ok) { alert('Could not load transaction data.'); return; }
-            const list = await resp.json();
-            const tx = list.find(t => t.id === EDIT_ID);
+            await window.TCGFirestore.ensureLegacyDataSeeded(user);
+            const tx = await window.TCGFirestore.getTransactionById(user.uid, EDIT_ID);
             if (!tx) { alert('Transaction not found: ' + EDIT_ID); return; }
 
             typeSelect.value = tx.type || '';
@@ -649,8 +623,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Kick off prefill (runs after all the handler setup below)
-    prefillEditForm();
+    // Kick off prefill once auth is ready.
+    if (window.TCGAuth) {
+        window.TCGAuth.onAuthStateChange((user) => {
+            if (user) {
+                prefillEditForm(user);
+            }
+        });
+    }
 
     function generateTxnId() {
         const bytes = new Uint8Array(4);
@@ -769,7 +749,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const ok = await saveTransactionStatic(txnData);
             if (ok) {
-                alert((EDIT_MODE ? 'Transaction updated' : 'Transaction saved') + ' on GitHub. Pages will rebuild shortly.');
+                alert((EDIT_MODE ? 'Transaction updated' : 'Transaction saved') + ' to Firestore.');
                 window.location.href = 'transactions.html';
             }
         } catch (err) {

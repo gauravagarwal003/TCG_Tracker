@@ -34,22 +34,24 @@ except Exception:
 def generate_static_site(transactions, summary):
     print("\n--- Step 3: Generating static data ---")
 
-    # Write holdings for frontend
-    holdings = get_current_holdings(transactions)
+    # The public GitHub Pages site now reads user-specific data from Firestore.
+    # Keep docs/data as empty placeholders so no user portfolio data is exposed
+    # via public static JSON files.
+    holdings = []
     holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
     os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
     with open(holdings_file, "w") as f:
         json.dump(holdings, f, indent=2)
 
-    # Copy summary to docs for frontend
+    # Summary placeholder
     summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
     with open(summary_file, "w") as f:
-        json.dump(summary, f)
+        json.dump({}, f)
 
-    # Copy transactions to docs for frontend
+    # Transactions placeholder
     txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
     with open(txn_file, "w") as f:
-        json.dump(transactions, f)
+        json.dump([], f)
 
     # Copy mappings to docs for frontend (metadata / names / images)
     mappings = load_mappings() if load_mappings else {}
@@ -70,68 +72,13 @@ def generate_static_site(transactions, summary):
         shutil.copytree(prices_src, prices_dest, dirs_exist_ok=True)
 
     print(
-        f"  Wrote holdings ({len(holdings)} items), summary ({len(summary)} days), transactions ({len(transactions)})"
+        "  Wrote empty public placeholders for holdings, summary, and transactions"
     )
 
-    # Attempt to regenerate static HTML pages in docs/ so GitHub Pages shows
-    # the latest derived data (only if Flask app is importable).
-    try:
-        if flask_app and render_template:
-            print("\n--- Rendering static HTML pages to docs/ ---")
-            with flask_app.app_context():
-                static_css_path = os.path.join(BASE_DIR, "static", "css", "styles.css")
-                try:
-                    static_version = int(os.path.getmtime(static_css_path))
-                except OSError:
-                    static_version = int(datetime.utcnow().timestamp())
-
-                # Index
-                total_value = sum(h.get("total_value", 0) for h in holdings)
-                total_cost_basis = 0
-                if summary:
-                    latest = max(summary.keys())
-                    total_cost_basis = summary[latest].get("cost_basis", 0)
-
-                index_html = render_template(
-                    "index.html",
-                    holdings=holdings,
-                    total_value=total_value,
-                    total_cost_basis=total_cost_basis,
-                    summary=summary,
-                    active_page="index",
-                    is_static=True,
-                    static_version=static_version
-                )
-                with open(os.path.join(BASE_DIR, "docs", "index.html"), "w") as f:
-                    f.write(index_html)
-
-                # Transactions
-                transactions_html = render_template(
-                    "transactions.html",
-                    transactions=transactions,
-                    mappings=mappings,
-                    active_page="transactions",
-                    is_static=True,
-                    static_version=static_version
-                )
-                with open(os.path.join(BASE_DIR, "docs", "transactions.html"), "w") as f:
-                    f.write(transactions_html)
-
-                # Add-transaction (transaction form) -> docs/add-transaction.html
-                add_tx_html = render_template(
-                    "transaction_form.html",
-                    transaction=None,
-                    mappings=mappings,
-                    is_edit=False,
-                    is_static=True,
-                    static_version=static_version
-                )
-                with open(os.path.join(BASE_DIR, "docs", "add-transaction.html"), "w") as f:
-                    f.write(add_tx_html)
-
-            print("  Regenerated docs/index.html, docs/transactions.html, docs/add-transaction.html")
-    except Exception as e:
-        print("  Skipped static HTML regeneration:", e)
+    # Static HTML pages are now maintained directly in docs/ so they can
+    # contain the Firebase auth and Firestore client logic. Do not overwrite
+    # them from the Flask templates anymore.
+    print("  Skipped HTML regeneration (docs pages are Firebase client pages now)")
 
 
 def main():
