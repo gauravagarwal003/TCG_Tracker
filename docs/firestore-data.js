@@ -26,6 +26,10 @@ import {
 let db = null;
 
 export const LEGACY_OWNER_EMAIL = "gagarwal003@gmail.com";
+const LEGACY_SEED_URLS = [
+    "https://raw.githubusercontent.com/gauravagarwal003/TCG_Tracker/main/transactions.json",
+    "data/transactions.json",
+];
 
 export function initDB(firebaseDB) {
     db = firebaseDB;
@@ -93,12 +97,25 @@ export async function ensureLegacyDataSeeded(user) {
         return false;
     }
 
-    const response = await fetch("data/transactions.json?cb=" + Date.now());
-    if (!response.ok) {
+    let legacyTransactions = null;
+    for (const url of LEGACY_SEED_URLS) {
+        try {
+            const response = await fetch(url + (url.includes("?") ? "" : "?cb=" + Date.now()));
+            if (!response.ok) continue;
+            const parsed = await response.json();
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                legacyTransactions = parsed;
+                break;
+            }
+        } catch (error) {
+            // try next source
+        }
+    }
+
+    if (!legacyTransactions) {
         throw new Error("Could not load legacy transactions to seed your account.");
     }
 
-    const legacyTransactions = await response.json();
     if (!Array.isArray(legacyTransactions) || legacyTransactions.length === 0) {
         await setDoc(seededRef, {
             legacy_seeded: true,
