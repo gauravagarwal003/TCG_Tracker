@@ -12,6 +12,8 @@ permissions:
 jobs:
   update-prices:
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
     
     steps:
     - name: Checkout repository
@@ -42,7 +44,14 @@ jobs:
       run: git pull --rebase origin main || true
     
     - name: Run daily update
-      run: python daily_run.py
+      run: |
+        if [ -n "$FIREBASE_SERVICE_ACCOUNT_JSON" ]; then
+          echo "Firebase credentials detected: running union fetch mode"
+          python daily_run.py --firebase-union
+        else
+          echo "No Firebase credentials: running legacy local mode"
+          python daily_run.py
+        fi
     
     - name: Commit and push
       run: |

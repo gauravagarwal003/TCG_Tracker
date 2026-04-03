@@ -18,7 +18,7 @@ from engine import (
     save_daily_summary, get_current_holdings, load_daily_summary,
     BASE_DIR
 )
-from price_fetcher import fetch_today_prices, update_prices
+from price_fetcher import fetch_today_prices, update_prices, fetch_prices_for_product_keys_on_date
 
 # For static site generation
 try:
@@ -171,6 +171,52 @@ def main():
     print("\n✅ Daily run complete.")
 
 
+def firebase_union_daily_run():
+    """
+    Daily mode for multi-user setup:
+      1) Build union product list from Firestore
+      2) Fetch today's prices once for that union
+      3) Publish shared prices and derived local docs assets
+    """
+    print("=" * 60)
+    print("TCG Tracker - Firebase Union Daily Run")
+    print(f"Date: {today_pst()}")
+    print("=" * 60)
+
+    td = today_pst().strftime("%Y-%m-%d")
+
+    try:
+        from firebase_union import init_firestore_from_env, get_union_product_keys
+    except Exception as e:
+        raise RuntimeError(
+            "Firebase union mode requires firebase_union.py and firebase-admin dependency"
+        ) from e
+
+    print("\n--- Step 1: Loading union product keys from Firestore ---")
+    db = init_firestore_from_env()
+    union_keys = get_union_product_keys(db)
+    print(f"  Loaded {len(union_keys)} unique product keys")
+
+    if not union_keys:
+        print("No active products found in Firestore. Exiting without fetch.")
+        return
+
+    print("\n--- Step 2: Fetching today's prices for union keys ---")
+    stats = fetch_prices_for_product_keys_on_date(td, union_keys, carry_forward=True)
+    print(
+        f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
+    )
+
+    # Keep current local docs generation path so GitHub Pages static assets remain updated.
+    print("\n--- Step 3: Rebuilding local derived assets ---")
+    transactions = load_transactions()
+    summary = derive_daily_summary(transactions)
+    save_daily_summary(summary)
+    generate_static_site(transactions, summary)
+
+    print("\n✅ Firebase union daily run complete.")
+
+
 def backfill():
     """Backfill all missing prices for all owned products."""
     print("=" * 60)
@@ -214,5 +260,7 @@ if __name__ == "__main__":
         backfill()
     elif len(sys.argv) > 1 and sys.argv[1] == "--docs-only":
         docs_only()
+    elif len(sys.argv) > 1 and sys.argv[1] == "--firebase-union":
+        firebase_union_daily_run()
     else:
         main()

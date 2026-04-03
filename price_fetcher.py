@@ -317,6 +317,64 @@ def fetch_today_prices():
     return found
 
 
+def fetch_prices_for_product_keys_on_date(date_str, product_keys, carry_forward=True):
+    """
+    Fetch prices for an explicit set of product keys on a single date.
+
+    Args:
+        date_str: YYYY-MM-DD
+        product_keys: iterable of (cat, gid, pid)
+        carry_forward: if True, fill missing date price from last known value
+
+    Returns:
+        dict with stats and missing keys
+    """
+    key_set = {(str(cat), str(gid), str(pid)) for cat, gid, pid in product_keys}
+    if not key_set:
+        print("No product keys provided for explicit date fetch.")
+        return {
+            "requested": 0,
+            "found": 0,
+            "carried": 0,
+            "missing": [],
+        }
+
+    products_by_cat = build_products_by_category(key_set)
+    print(f"Fetching prices for {len(key_set)} explicit products on {date_str}...")
+    found = fetch_prices_for_date(date_str, products_by_cat)
+
+    for key, price in found.items():
+        existing = load_prices(*key)
+        existing[date_str] = price
+        save_prices(*key, existing)
+
+    missing = []
+    carried = 0
+    if carry_forward:
+        for key in key_set:
+            if key in found:
+                continue
+            prices = load_prices(*key)
+            sorted_dates = sorted(d for d in prices if prices[d] and prices[d] > 0 and d < date_str)
+            if sorted_dates:
+                prices[date_str] = prices[sorted_dates[-1]]
+                save_prices(*key, prices)
+                carried += 1
+            else:
+                missing.append(key)
+
+    print(
+        f"  Explicit fetch complete: found={len(found)}, carried={carried}, missing={len(missing)}"
+    )
+
+    return {
+        "requested": len(key_set),
+        "found": len(found),
+        "carried": carried,
+        "missing": sorted(missing),
+    }
+
+
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1 and sys.argv[1] == "--today":
