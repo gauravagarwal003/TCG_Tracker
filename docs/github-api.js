@@ -179,11 +179,62 @@ class GitHubAPI {
         return response.json();
     }
 
+    decodeBase64Utf8(base64Text) {
+        if (!base64Text) return '';
+        const binary = atob(base64Text.replace(/\n/g, ''));
+        const bytes = Uint8Array.from(binary, ch => ch.charCodeAt(0));
+        return new TextDecoder('utf-8').decode(bytes);
+    }
+
+    async fetchRawFile(path) {
+        const rawUrl = `https://raw.githubusercontent.com/${this.config.owner}/${this.config.repo}/${this.config.branch}/${path}`;
+        const response = await fetch(rawUrl, {
+            headers: {
+                'Authorization': `Bearer ${this.token}`,
+                'Accept': 'application/vnd.github.v3.raw'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch raw ${path}: ${response.status}`);
+        }
+        return response.text();
+    }
+
     async getFile(path) {
         const url = `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/contents/${path}?ref=${this.config.branch}`;
         const data = await this.request(url);
+
+        if (data.content && data.encoding === 'base64') {
+            return {
+                content: this.decodeBase64Utf8(data.content),
+                sha: data.sha
+            };
+        }
+
+        // Contents API may omit file content for larger files (>1 MB).
+        // Fall back to blob API first, then raw download as a final fallback.
+        if (data.sha) {
+            try {
+                const blob = await this.request(
+                    `${this.apiBase}/repos/${this.config.owner}/${this.config.repo}/git/blobs/${data.sha}`
+                );
+                if (blob.content && blob.encoding === 'base64') {
+                    return {
+                        content: this.decodeBase64Utf8(blob.content),
+                        sha: data.sha
+                    };
+                }
+            } catch (e) {
+                console.warn(`Blob API fallback failed for ${path}:`, e);
+            }
+        }
+
+        const rawText = await this.fetchRawFile(path);
+        if (!rawText && (data.size || 0) > 0) {
+            throw new Error(`Failed to read non-empty file: ${path}`);
+        }
         return {
-            content: atob(data.content.replace(/\n/g, '')),
+            content: rawText,
             sha: data.sha
         };
     }

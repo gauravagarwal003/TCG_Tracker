@@ -197,11 +197,12 @@ def docs_only():
         print("No transactions found. Exiting.")
         return
 
-    summary = load_daily_summary()
-    if not summary:
-        print("Daily summary missing, deriving from existing prices...")
-        summary = derive_daily_summary(transactions)
-        save_daily_summary(summary)
+    # Always re-derive from transactions in docs-only mode.
+    # Relying on cached daily_summary.json can keep stale/incorrect graph data
+    # after transaction recovery or manual edits.
+    print("Deriving daily summary from transactions...")
+    summary = derive_daily_summary(transactions)
+    save_daily_summary(summary)
 
     generate_static_site(transactions, summary)
 
