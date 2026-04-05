@@ -1,55 +1,75 @@
 # Firestore Security Rules
 
-Add these rules to your Firestore database in the Firebase Console.
+Use this as the canonical production ruleset for this repository.
 
-Go to: **Firestore Database → Rules → Edit and publish**
+Firebase Console path:
 
-```
+1. Firestore Database -> Rules
+2. Replace existing rules
+3. Publish
+
+```text
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // User transactions - only authenticated users can access their own
-    match /users/{userId}/transactions/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+    function signedIn() {
+      return request.auth != null;
     }
 
-    // User holdings (future per-user view) - only authenticated users
-    match /users/{userId}/holdings/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
     }
 
-    // Optional per-user metadata (seed flags, preferences, etc.)
-    match /users/{userId}/meta/{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+    match /users/{userId} {
+      // Keep parent doc locked unless you explicitly use it.
+      allow read, write: if false;
+
+      match /transactions/{txnId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /holdings/{holdingId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /meta/{metaId} {
+        allow read, write: if isOwner(userId);
+      }
     }
 
-    // Active products index - read-only for authenticated users
-    // Write-only by backend (via Firestore Admin SDK)
-    match /active_products/{document=**} {
-      allow read: if request.auth != null;
+    // Shared union index for scheduler and authenticated client reads.
+    match /active_products/{docId} {
+      allow read: if signedIn();
       allow write: if false;
+    }
+
+    // Shared mapping metadata used by product search/autocomplete.
+    match /product_mappings/{docId} {
+      allow read, write: if signedIn();
+    }
+
+    // Default deny for anything not explicitly allowed above.
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
 ```
 
-## What These Rules Do
+## Rule Summary
 
-1. **User Transactions**: Each user can only read/write transactions in their own `users/{uid}/transactions` collection.
-2. **User Holdings**: Supports future per-user portfolio views, isolated by UID.
-3. **Active Products Index**: Shared read-only index for the daily price fetch job to discover which products need fetching.
+1. Users can only access their own `users/{uid}/...` subcollections.
+2. `active_products` is read-only from clients.
+3. `product_mappings` is available to authenticated users.
+4. Everything else is denied by default.
 
-## Important Security Notes
+## Validation Checklist
 
-- No anonymous access: `request.auth != null` requires Google login.
-- Users cannot see other users' data.
-- Backend (GitHub Actions) updates `active_products` via service account (Admin SDK), bypassing client rules.
-- All writes to user data are scoped to the authenticated user's UID.
+Use Rules Simulator:
 
-## Testing Rules
-
-Use the Rules Simulator in Firebase Console to test:
-1. Test **read** of `users/user123/transactions/txn1` as **user123** → ✅ Allow
-2. Test **read** of `users/user456/transactions/txn1` as **user123** → ❌ Deny
-3. Test **write** to `active_products/any_doc` as any user → ❌ Deny
+1. Read `users/userA/transactions/x` as `userA` -> allow
+2. Read `users/userB/transactions/x` as `userA` -> deny
+3. Write `active_products/any` as authenticated user -> deny
+4. Write `product_mappings/any` as authenticated user -> allow
 
