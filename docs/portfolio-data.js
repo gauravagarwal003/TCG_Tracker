@@ -87,6 +87,19 @@ function getLatestPriceOnOrBefore(priceMap, dateStr) {
     return bestPrice;
 }
 
+function getLatestPriceDate(priceMaps) {
+    let bestDate = null;
+    for (const priceMap of priceMaps.values()) {
+        for (const [d, price] of Object.entries(priceMap || {})) {
+            if (!price || Number(price) <= 0) continue;
+            if (!bestDate || d > bestDate) {
+                bestDate = d;
+            }
+        }
+    }
+    return bestDate;
+}
+
 function computeInventoryTimeline(transactions) {
     const deltas = new Map();
     for (const txn of transactions || []) {
@@ -181,8 +194,10 @@ export async function computeDashboardSnapshot(transactions) {
 
     const sortedTxDates = txns.map((t) => t.date_received).filter(Boolean).sort();
     const startDate = parseDate(sortedTxDates[0]);
-    const endDate = new Date();
-    const endDateStr = formatDate(endDate);
+    const todayDateStr = formatDate(new Date());
+    const lastPriceDate = getLatestPriceDate(priceMaps);
+    const endDateStr = lastPriceDate && lastPriceDate < todayDateStr ? lastPriceDate : todayDateStr;
+    const endDate = parseDate(endDateStr);
 
     const summary = {};
     const lastKnownPrice = new Map();
