@@ -132,3 +132,15 @@ The `docs/` folder is served via GitHub Pages with password + PAT authentication
 This repo now includes an optional Firebase-based union fetch mode for multi-user portfolios while keeping daily retrieval free via GitHub Actions cron.
 
 See `FIREBASE_MULTIUSER_SETUP.md` for full setup.
+
+### Firestore empty but local data exists?
+
+If your Firestore `users/{uid}/transactions` is empty but you already have historical data in local `transactions.json`, run:
+
+```bash
+.venv/bin/python3 migrate_transactions_to_firestore.py --uid YOUR_FIREBASE_UID
+```
+
+Notes:
+- Requires `FIREBASE_SERVICE_ACCOUNT_JSON` (or `FIREBASE_SERVICE_ACCOUNT_FILE`) in your shell environment.
+- Use `--overwrite` only if you want to replace existing Firestore transactions for that UID.

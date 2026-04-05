@@ -78,6 +78,23 @@ GitHub Actions will deploy to GitHub Pages automatically.
    - Navigate to `users/{your-uid}/transactions`
    - You should see your new transaction document
 
+### Step 7: Migrate existing local history (optional)
+
+If your Firestore is empty but your repo already has historical records in `transactions.json`, migrate that data directly:
+
+```bash
+.venv/bin/python3 migrate_transactions_to_firestore.py --uid YOUR_FIREBASE_UID
+```
+
+Optional full replace for that user:
+
+```bash
+.venv/bin/python3 migrate_transactions_to_firestore.py --uid YOUR_FIREBASE_UID --overwrite
+```
+
+Requirements:
+- Set `FIREBASE_SERVICE_ACCOUNT_JSON` or `FIREBASE_SERVICE_ACCOUNT_FILE` before running.
+
 ## Architecture
 
 ### User Data Flow

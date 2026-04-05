@@ -82,67 +82,69 @@ export async function ensureLegacyDataSeeded(user) {
         return false;
     }
 
-    const seededRef = doc(db, `users/${user.uid}/meta`, "seeded");
-    const seededSnapshot = await getDoc(seededRef);
-    if (seededSnapshot.exists() && seededSnapshot.data()?.legacy_seeded) {
-        return false;
-    }
+    // Seeding is a best-effort helper. It should never block dashboard loading.
+    try {
+        const seededRef = doc(db, `users/${user.uid}/meta`, "seeded");
+        const seededSnapshot = await getDoc(seededRef);
+        if (seededSnapshot.exists() && seededSnapshot.data()?.legacy_seeded) {
+            return false;
+        }
 
-    if (await hasUserTransactions(user.uid)) {
-        await setDoc(seededRef, {
+        if (await hasUserTransactions(user.uid)) {
+            // User already has data; no need to write meta marker (may be denied by rules).
+            return false;
+        }
+
+        let legacyTransactions = null;
+        for (const url of LEGACY_SEED_URLS) {
+            try {
+                const response = await fetch(url + (url.includes("?") ? "" : "?cb=" + Date.now()));
+                if (!response.ok) continue;
+                const parsed = await response.json();
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    legacyTransactions = parsed;
+                    break;
+                }
+            } catch (error) {
+                // try next source
+            }
+        }
+
+        if (!legacyTransactions) {
+            throw new Error("Could not load legacy transactions to seed your account.");
+        }
+
+        if (!Array.isArray(legacyTransactions) || legacyTransactions.length === 0) {
+            await setDoc(seededRef, {
+                legacy_seeded: true,
+                seeded_at: new Date().toISOString(),
+                source: "empty",
+            }, { merge: true });
+            return false;
+        }
+
+        const batch = writeBatch(db);
+        for (const txn of legacyTransactions) {
+            if (!txn?.id) continue;
+            const txnRef = doc(db, `users/${user.uid}/transactions`, txn.id);
+            batch.set(txnRef, {
+                ...txn,
+                migrated_from: "legacy_public_json",
+                migrated_at: new Date().toISOString(),
+            });
+        }
+        batch.set(seededRef, {
             legacy_seeded: true,
             seeded_at: new Date().toISOString(),
             source: "existing_transactions.json",
+            total_seeded: legacyTransactions.length,
         }, { merge: true });
+        await batch.commit();
+        return true;
+    } catch (error) {
+        console.warn("Legacy seed skipped:", error);
         return false;
     }
-
-    let legacyTransactions = null;
-    for (const url of LEGACY_SEED_URLS) {
-        try {
-            const response = await fetch(url + (url.includes("?") ? "" : "?cb=" + Date.now()));
-            if (!response.ok) continue;
-            const parsed = await response.json();
-            if (Array.isArray(parsed) && parsed.length > 0) {
-                legacyTransactions = parsed;
-                break;
-            }
-        } catch (error) {
-            // try next source
-        }
-    }
-
-    if (!legacyTransactions) {
-        throw new Error("Could not load legacy transactions to seed your account.");
-    }
-
-    if (!Array.isArray(legacyTransactions) || legacyTransactions.length === 0) {
-        await setDoc(seededRef, {
-            legacy_seeded: true,
-            seeded_at: new Date().toISOString(),
-            source: "empty",
-        }, { merge: true });
-        return false;
-    }
-
-    const batch = writeBatch(db);
-    for (const txn of legacyTransactions) {
-        if (!txn?.id) continue;
-        const txnRef = doc(db, `users/${user.uid}/transactions`, txn.id);
-        batch.set(txnRef, {
-            ...txn,
-            migrated_from: "legacy_public_json",
-            migrated_at: new Date().toISOString(),
-        });
-    }
-    batch.set(seededRef, {
-        legacy_seeded: true,
-        seeded_at: new Date().toISOString(),
-        source: "existing_transactions.json",
-        total_seeded: legacyTransactions.length,
-    }, { merge: true });
-    await batch.commit();
-    return true;
 }
 
 export async function saveUserTransaction(uid, txnData) {

@@ -18,6 +18,11 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
+    // Optional per-user metadata (seed flags, preferences, etc.)
+    match /users/{userId}/meta/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
     // Active products index - read-only for authenticated users
     // Write-only by backend (via Firestore Admin SDK)
     match /active_products/{document=**} {
