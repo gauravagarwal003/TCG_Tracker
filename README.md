@@ -1,4 +1,4 @@
-# TCG Investment Tracker
+# TCG Tracker
 
 Track the total market value of your TCG collection and your net cost basis over time.
 

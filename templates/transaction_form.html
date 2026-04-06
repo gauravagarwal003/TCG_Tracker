@@ -454,7 +454,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (IS_STATIC) {
             upsertMappingInRepo(mapping)
                 .then(saved => { if (saved) applyMapping(saved); })
-                .catch(err => { alert(err?.message || 'Failed to add product'); });
+                .catch(err => {
+                    console.warn('Shared mapping save failed, using local mapping only:', err);
+                    applyMapping(mapping);
+                    alert('Product added for this transaction. Shared catalog update requires admin access.');
+                });
             return;
         }
 

@@ -10,6 +10,7 @@ Provides:
 import os
 import json
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from functools import wraps
 from datetime import datetime
 
 from engine import (
@@ -20,7 +21,50 @@ from engine import (
 from transaction_manager import add_transaction, edit_transaction, delete_transaction
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "dev-secret-key-change-in-production")
+
+
+def _is_production() -> bool:
+    return os.environ.get("FLASK_ENV", "").lower() == "production"
+
+
+secret_key = os.environ.get("SECRET_KEY", "").strip()
+if not secret_key:
+    if _is_production():
+        raise RuntimeError("SECRET_KEY is required when FLASK_ENV=production")
+    secret_key = "dev-secret-key-change-in-production"
+app.secret_key = secret_key
+
+
+def require_write_access(view_func):
+    """
+    Protect mutable endpoints.
+
+    Behavior:
+      - If APP_API_KEY is set, require X-API-Key header to match.
+      - Else, only allow loopback requests for local development safety.
+    """
+    @wraps(view_func)
+    def wrapper(*args, **kwargs):
+        configured_api_key = os.environ.get("APP_API_KEY", "").strip()
+        if configured_api_key:
+            provided_key = request.headers.get("X-API-Key", "")
+            if provided_key != configured_api_key:
+                return jsonify({"success": False, "message": "Unauthorized"}), 401
+            return view_func(*args, **kwargs)
+
+        remote = (request.remote_addr or "").strip()
+        if remote not in {"127.0.0.1", "::1", "localhost"}:
+            return jsonify(
+                {
+                    "success": False,
+                    "message": (
+                        "Write access denied. Set APP_API_KEY for non-local writes."
+                    ),
+                }
+            ), 403
+        return view_func(*args, **kwargs)
+
+    return wrapper
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +219,7 @@ def edit_transaction_page(txn_id):
 
 
 @app.route("/transactions/delete/<txn_id>", methods=["POST"])
+@require_write_access
 def delete_transaction_page(txn_id):
     success, message = delete_transaction(txn_id)
     flash(message, "success" if success else "error")
@@ -190,6 +235,7 @@ def api_transactions():
 
 
 @app.route("/api/transactions", methods=["POST"])
+@require_write_access
 def api_add_transaction():
     data = request.get_json()
     success, message, txn = add_transaction(data)
@@ -197,6 +243,7 @@ def api_add_transaction():
 
 
 @app.route("/api/transactions/<txn_id>", methods=["PUT"])
+@require_write_access
 def api_edit_transaction(txn_id):
     data = request.get_json()
     success, message, txn = edit_transaction(txn_id, data)
@@ -204,6 +251,7 @@ def api_edit_transaction(txn_id):
 
 
 @app.route("/api/transactions/<txn_id>", methods=["DELETE"])
+@require_write_access
 def api_delete_transaction(txn_id):
     success, message = delete_transaction(txn_id)
     return jsonify({"success": success, "message": message})
@@ -225,6 +273,7 @@ def api_mappings():
 
 
 @app.route("/api/mappings", methods=["POST"])
+@require_write_access
 def api_add_mapping():
     data = request.get_json() or {}
     name = (data.get("name") or "").strip()
@@ -278,6 +327,7 @@ def search_products():
 
 
 @app.route("/api/refresh", methods=["POST"])
+@require_write_access
 def api_refresh():
     """Manually trigger re-derive of daily summary."""
     summary = derive_daily_summary()
@@ -287,4 +337,5 @@ def api_refresh():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
-    app.run(debug=True, host="127.0.0.1", port=port)
+    debug_mode = os.environ.get("FLASK_DEBUG", "0").strip() == "1"
+    app.run(debug=debug_mode, host="127.0.0.1", port=port)

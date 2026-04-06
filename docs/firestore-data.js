@@ -190,7 +190,8 @@ export async function updateTransaction(uid, txnId, updates) {
     if (!db || !uid) throw new Error("User not authenticated");
     try {
         const txnRef = doc(db, `users/${uid}/transactions`, txnId);
-        const oldTxn = (await getDocs(query(collection(db, `users/${uid}/transactions`), where("id", "==", txnId)))).docs[0]?.data();
+        const oldTxnSnap = await getDoc(txnRef);
+        const oldTxn = oldTxnSnap.exists() ? oldTxnSnap.data() : null;
         
         await updateDoc(txnRef, {
             ...updates,
@@ -217,8 +218,8 @@ export async function deleteTransaction(uid, txnId) {
     if (!db || !uid) throw new Error("User not authenticated");
     try {
         const txnRef = doc(db, `users/${uid}/transactions`, txnId);
-        const txnSnapshot = await getDocs(query(collection(db, `users/${uid}/transactions`), where("id", "==", txnId)));
-        const txn = txnSnapshot.docs[0]?.data();
+        const txnSnapshot = await getDoc(txnRef);
+        const txn = txnSnapshot.exists() ? txnSnapshot.data() : null;
         
         await deleteDoc(txnRef);
         
@@ -245,40 +246,37 @@ async function updateActiveProductsIndex(uid, txn, operation) {
     if (!products.length) return;
     
     try {
-        const batch = writeBatch(db);
-        
         for (const [cat, gid, pid] of products) {
             const docId = `${cat}_${gid}_${pid}`;
             const productRef = doc(db, "active_products", docId);
+            const currentSnap = await getDoc(productRef);
+            const current = currentSnap.exists() ? currentSnap.data() : null;
             
             if (operation === "add") {
-                // Increment or create count
-                const current = (await getDocs(query(collection(db, "active_products")))).docs
-                    .find((d) => d.id === docId)?.data();
-                batch.set(productRef, {
+                const currentCount = Number(current?.count) || 0;
+                await setDoc(productRef, {
                     categoryId: cat,
                     group_id: gid,
                     product_id: pid,
-                    count: (current?.count || 0) + 1,
+                    count: currentCount + 1,
                     users: arrayUnion(uid),
                     last_updated: new Date().toISOString(),
                 }, { merge: true });
             } else if (operation === "remove") {
-                // Decrement count
-                const current = (await getDocs(query(collection(db, "active_products")))).docs
-                    .find((d) => d.id === docId)?.data();
                 if (current) {
-                    const newCount = Math.max(0, (current.count || 1) - 1);
-                    batch.update(productRef, {
+                    const currentCount = Number(current.count) || 1;
+                    const newCount = Math.max(0, currentCount - 1);
+                    await setDoc(productRef, {
+                        categoryId: cat,
+                        group_id: gid,
+                        product_id: pid,
                         count: newCount,
                         users: arrayRemove(uid),
                         last_updated: new Date().toISOString(),
-                    });
+                    }, { merge: true });
                 }
             }
         }
-        
-        await batch.commit();
     } catch (error) {
         console.error("Error updating active products index:", error);
     }

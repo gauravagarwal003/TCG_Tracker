@@ -3,6 +3,19 @@
 
 let currentUser = null;
 
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function safeAttr(value) {
+    return escapeHtml(value);
+}
+
 function ensureFirestore() {
     if (!window.TCGFirestore) {
         throw new Error('Firestore helpers not loaded');
@@ -75,16 +88,16 @@ function renderTransactionsTable(transactions) {
         // Compose product cell
         let productCell = '';
         if (tx.type === 'TRADE') {
-            const out = (tx.items_out || []).map(item => `${item.name} x${item.quantity}`).join(', ');
-            const inn = (tx.items_in || []).map(item => `${item.name} x${item.quantity}`).join(', ');
+            const out = (tx.items_out || []).map(item => `${escapeHtml(item.name)} x${escapeHtml(item.quantity)}`).join(', ');
+            const inn = (tx.items_in || []).map(item => `${escapeHtml(item.name)} x${escapeHtml(item.quantity)}`).join(', ');
             productCell = `${out} &rarr; ${inn}`;
         } else {
             const items = tx.items || [];
-            productCell = items.map(item => `${item.name}${items.length > 1 ? ' x' + item.quantity : ''}`).join(', ');
+            productCell = items.map(item => `${escapeHtml(item.name)}${items.length > 1 ? ' x' + escapeHtml(item.quantity) : ''}`).join(', ');
         }
         // Compose image
         let firstItem = (tx.items && tx.items[0]) || (tx.items_in && tx.items_in[0]) || null;
-        let imgCell = firstItem ? `<img src="https://tcgplayer-cdn.tcgplayer.com/product/${firstItem.product_id}_200w.jpg" alt="" class="product-thumb">` : '<div class="product-thumb-placeholder"></div>';
+        let imgCell = firstItem ? `<img src="https://tcgplayer-cdn.tcgplayer.com/product/${safeAttr(firstItem.product_id)}_200w.jpg" alt="" class="product-thumb">` : '<div class="product-thumb-placeholder"></div>';
         // Compose type badge
         let typeClass = {
             'BUY': 'bg-primary',
@@ -92,18 +105,18 @@ function renderTransactionsTable(transactions) {
             'OPEN': 'bg-warning text-dark',
             'TRADE': 'bg-info',
         }[tx.type] || 'bg-secondary';
-        let typeBadge = `<span class="badge ${typeClass}">${tx.type}</span>`;
+        let typeBadge = `<span class="badge ${typeClass}">${escapeHtml(tx.type)}</span>`;
         // Compose qty
-        let qty = tx.type === 'TRADE' ? '-' : ((tx.items && tx.items[0] && tx.items[0].quantity) || '');
+        let qty = tx.type === 'TRADE' ? '-' : escapeHtml((tx.items && tx.items[0] && tx.items[0].quantity) || '');
         // Compose amount
-        let amount = (['BUY','SELL'].includes(tx.type) && tx.amount) ? `$${tx.amount.toFixed(2)}` : '';
+        let amount = (['BUY','SELL'].includes(tx.type) && tx.amount) ? `$${Number(tx.amount).toFixed(2)}` : '';
         // Compose notes
-        let notes = tx.notes ? `<span class="text-muted" title="${tx.notes}" style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${tx.notes}</span>` : '';
+        let notes = tx.notes ? `<span class="text-muted" title="${safeAttr(tx.notes)}" style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(tx.notes)}</span>` : '';
         // Compose actions (edit/delete) for Firestore-backed mode.
         const actions = `<div class="d-inline-flex gap-1" role="group">
-            <a href="add-transaction.html?edit=1&id=${tx.id}" class="btn btn-sm btn-primary rounded">Edit</a>
+            <a href="add-transaction.html?edit=1&id=${encodeURIComponent(String(tx.id || ''))}" class="btn btn-sm btn-primary rounded">Edit</a>
             <button type="button" class="btn btn-sm btn-danger rounded delete-txn-btn"
-                    data-txn-id="${tx.id}" title="Delete">
+                    data-txn-id="${safeAttr(tx.id)}" title="Delete">
                 <i class="fas fa-trash-alt"></i>
             </button>
         </div>`;
@@ -112,11 +125,11 @@ function renderTransactionsTable(transactions) {
             <td>${imgCell}</td>
             <td class="text-center">${typeBadge}</td>
             <td class="fw-medium">${productCell}</td>
-            <td>${tx.date_received}</td>
+            <td>${escapeHtml(tx.date_received)}</td>
             <td class="text-end">${qty}</td>
             <td class="text-end">${amount}</td>
-            <td class="d-none toggle-details">${tx.place || ''}</td>
-            <td class="d-none toggle-details">${tx.method || ''}</td>
+            <td class="d-none toggle-details">${escapeHtml(tx.place || '')}</td>
+            <td class="d-none toggle-details">${escapeHtml(tx.method || '')}</td>
             <td>${notes}</td>
             <td class="action-buttons">${actions}</td>
         </tr>`;
