@@ -4,10 +4,22 @@ let MAPPINGS_CACHE = null;
 export async function loadMappings() {
     if (MAPPINGS_CACHE) return MAPPINGS_CACHE;
     try {
-        const resp = await fetch('data/mappings.json?cb=' + Date.now());
-        if (!resp.ok) return [];
-        const data = await resp.json();
-        MAPPINGS_CACHE = Array.isArray(data) ? data : [];
+        const staticPromise = fetch('data/mappings.json?cb=' + Date.now())
+            .then((resp) => (resp.ok ? resp.json() : []))
+            .catch(() => []);
+        const firestorePromise = (globalThis?.TCGFirestore?.getAllProductMappings)
+            ? globalThis.TCGFirestore.getAllProductMappings().catch(() => [])
+            : Promise.resolve([]);
+
+        const [staticMappings, firestoreMappings] = await Promise.all([staticPromise, firestorePromise]);
+        const merged = new Map();
+        for (const mapping of [...(Array.isArray(staticMappings) ? staticMappings : []), ...(Array.isArray(firestoreMappings) ? firestoreMappings : [])]) {
+            if (!mapping || mapping.group_id == null || mapping.product_id == null) continue;
+            const key = asKey(mapping.categoryId || 3, mapping.group_id, mapping.product_id);
+            if (!merged.has(key)) merged.set(key, mapping);
+        }
+
+        MAPPINGS_CACHE = Array.from(merged.values());
         return MAPPINGS_CACHE;
     } catch (error) {
         console.error('Failed to load mappings:', error);
@@ -186,6 +198,23 @@ export async function computeDashboardSnapshot(transactions) {
     const mappingByKey = new Map(
         mappings.map((m) => [asKey(m.categoryId || 3, m.group_id, m.product_id), m])
     );
+    const metadataByKey = new Map();
+    for (const txn of txns) {
+        const collect = (item) => {
+            if (item?.categoryId == null || item?.group_id == null || item?.product_id == null) return;
+            const key = asKey(item.categoryId, item.group_id, item.product_id);
+            const existing = metadataByKey.get(key) || {};
+            metadataByKey.set(key, {
+                name: item.name || existing.name || '',
+                imageUrl: item.imageUrl || existing.imageUrl || '',
+                url: item.url || existing.url || '',
+            });
+        };
+
+        for (const item of (txn.items || [])) collect(item);
+        for (const item of (txn.items_out || [])) collect(item);
+        for (const item of (txn.items_in || [])) collect(item);
+    }
 
     const keys = extractProductKeys(txns);
     const priceMaps = await loadPriceMaps(keys);
@@ -235,6 +264,7 @@ export async function computeDashboardSnapshot(transactions) {
         const priceMap = priceMaps.get(key) || {};
         const latestPrice = getLatestPriceOnOrBefore(priceMap, endDateStr);
         const mapping = mappingByKey.get(key) || null;
+        const metadata = metadataByKey.get(key) || null;
 
         let buyUnits = 0;
         let buyCost = 0;
@@ -277,9 +307,9 @@ export async function computeDashboardSnapshot(transactions) {
             categoryId,
             group_id: groupId,
             product_id: productId,
-            name: mapping?.name || `Unknown (${groupId}/${productId})`,
-            imageUrl: mapping?.imageUrl || '',
-            url: mapping?.url || '',
+            name: mapping?.name || metadata?.name || `Unknown (${groupId}/${productId})`,
+            imageUrl: mapping?.imageUrl || metadata?.imageUrl || '',
+            url: mapping?.url || metadata?.url || '',
             quantity: qty,
             latest_price: latestPrice,
             total_value: Math.round(qty * latestPrice * 100) / 100,
