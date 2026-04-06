@@ -18,11 +18,30 @@ It covers:
 ## Quick Start Checklist
 
 1. Enable Google Sign-In in Firebase Auth
-2. Add GitHub Pages domain to authorized domains
-3. Publish rules from `FIRESTORE_RULES.md`
-4. Sign in on your live site and confirm reads/writes
-5. (Optional) migrate local JSON to Firestore
-6. Add `FIREBASE_SERVICE_ACCOUNT_JSON` secret for union daily fetch
+2. Configure GitHub Pages to serve from `main` branch `/docs` folder
+3. Add GitHub Pages domain to authorized domains
+4. Publish rules from `FIRESTORE_RULES.md`
+5. Sign in on your live site and confirm reads/writes
+6. (Optional) migrate local JSON to Firestore
+7. Add `FIREBASE_SERVICE_ACCOUNT_JSON` secret for union daily fetch
+
+## GitHub Pages Setup
+
+1. GitHub repo -> Settings -> Pages
+2. Source: Deploy from a branch
+3. Branch: `main`
+4. Folder: `/docs`
+5. Save and wait for first publish
+
+Your production URL should be:
+
+- `https://<username>.github.io/<repo>/`
+
+Example for this repo:
+
+- `https://gauravagarwal003.github.io/TCG_Tracker/`
+
+Do not include `/docs` in the live URL.
 
 ## 1) Frontend Auth + Firestore Setup
 
@@ -35,7 +54,7 @@ It covers:
 ### Add Authorized Domain
 
 1. Authentication -> Settings -> Authorized domains
-2. Add your Pages domain (example: `gauravagarwal003.github.io`)
+2. Add your Pages domain host (example: `gauravagarwal003.github.io`)
 
 ### Publish Firestore Rules
 
@@ -43,7 +62,7 @@ Copy the full rules from `FIRESTORE_RULES.md` and publish them in Firebase Conso
 
 ### Verify Live Site
 
-1. Open `https://<username>.github.io/TCG_Tracker/docs/index.html`
+1. Open `https://<username>.github.io/<repo>/`
 2. Sign in with Google
 3. Confirm dashboard and transactions load
 
@@ -78,6 +97,12 @@ The workflow auto-detects this secret:
 
 - Present: runs `python daily_run.py --firebase-union`
 - Missing: runs legacy local mode
+
+### Add cost guardrails (recommended)
+
+1. Firebase Console -> Usage and billing -> Budgets and alerts
+2. Set budget to $0 and alert at 50%, 90%, 100%
+3. Firestore -> Usage tab: monitor daily reads/writes
 
 ## Data Model
 
@@ -121,3 +146,4 @@ Implemented:
 
 1. `FIRESTORE_RULES.md` - production rules used by this setup
 2. `README.md` - project overview and local run commands
+3. `DEPLOYMENT.md` - deployment checklist, runbook, and free hosting options

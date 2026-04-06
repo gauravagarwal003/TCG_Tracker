@@ -353,13 +353,18 @@ export async function getProductMapping(groupId, productId) {
 }
 
 export async function saveProductMapping(mapping) {
-    if (!db) throw new Error("Firestore not initialized");
+    if (!db) return mapping;
     const mappingRef = doc(db, "product_mappings", `${mapping.group_id}_${mapping.product_id}`);
-    await setDoc(mappingRef, {
-        ...mapping,
-        updated_at: new Date().toISOString(),
-        created_at: new Date().toISOString(),
-    }, { merge: true });
+    try {
+        await setDoc(mappingRef, {
+            ...mapping,
+            updated_at: new Date().toISOString(),
+            created_at: new Date().toISOString(),
+        }, { merge: true });
+    } catch (error) {
+        // Keep transaction flow working even if shared mapping writes are restricted.
+        console.warn("Skipping shared mapping write:", error);
+    }
     return mapping;
 }
 
@@ -367,26 +372,31 @@ export async function saveProductMapping(mapping) {
  * Get all products in mappings (for search autocomplete)
  */
 export async function getAllProductMappings() {
+    let staticMappings = [];
     try {
         const response = await fetch("data/mappings.json?cb=" + Date.now());
-        const staticMappings = response.ok ? await response.json() : [];
+        staticMappings = response.ok ? await response.json() : [];
+    } catch (error) {
+        console.warn("Error loading static mappings:", error);
+    }
 
-        let firestoreMappings = [];
-        if (db) {
+    let firestoreMappings = [];
+    if (db) {
+        try {
             const snapshot = await getDocs(query(collection(db, "product_mappings")));
             firestoreMappings = snapshot.docs.map((docSnap) => ({ id: docSnap.id, ...docSnap.data() }));
+        } catch (error) {
+            // Reads may be restricted in stricter production rulesets.
+            console.warn("Error loading Firestore mappings:", error);
         }
-
-        const byKey = new Map();
-        for (const mapping of [...staticMappings, ...firestoreMappings]) {
-            const key = `${String(mapping.group_id)}_${String(mapping.product_id)}`;
-            if (!byKey.has(key)) byKey.set(key, mapping);
-        }
-        return Array.from(byKey.values());
-    } catch (error) {
-        console.error("Error loading mappings:", error);
-        return [];
     }
+
+    const byKey = new Map();
+    for (const mapping of [...staticMappings, ...firestoreMappings]) {
+        const key = `${String(mapping.group_id)}_${String(mapping.product_id)}`;
+        if (!byKey.has(key)) byKey.set(key, mapping);
+    }
+    return Array.from(byKey.values());
 }
 
 window.TCGFirestore = {

@@ -73,3 +73,13 @@ Icon?
 price_gaps.json
 
 # docs/ is the GitHub Pages source - must be tracked by git
+
+# Firebase local state/cache
+.firebase/
+.firebaserc
+
+# Local AI/tooling workspace metadata
+.agents/
+.claude/
+.cortex/
+skills-lock.json
