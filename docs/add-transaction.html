@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     } else {
                         searchResults.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p="${escapeHtml(JSON.stringify(p))}">
                                 <div class="result-main">
                                     <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
                                     <div class="result-text">
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     } else {
                         resultsDiv.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p="${escapeHtml(JSON.stringify(p))}">
                                 <div class="result-main">
                                     <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
                                     <div class="result-text">
