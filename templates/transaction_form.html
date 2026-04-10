@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     } else {
                         searchResults.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p="${encodeURIComponent(JSON.stringify(p))}">
                                 <div class="result-main">
                                     <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
                                     <div class="result-text">
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>`).join('');
                         searchResults.style.display = 'block';
                         searchResults.querySelectorAll('.list-group-item-action').forEach(el => {
-                            el.addEventListener('click', () => selectProduct(JSON.parse(el.dataset.p)));
+                            el.addEventListener('click', () => selectProduct(JSON.parse(decodeURIComponent(el.dataset.p))));
                         });
                     }
                 });
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         });
                     } else {
                         resultsDiv.innerHTML = products.map(p => `
-                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p='${JSON.stringify(p)}'>
+                            <div class="list-group-item list-group-item-action search-result-item" style="cursor:pointer" data-p="${encodeURIComponent(JSON.stringify(p))}">
                                 <div class="result-main">
                                     <img class="search-thumb" src="${p.imageUrl || `https://tcgplayer-cdn.tcgplayer.com/product/${p.product_id}_200w.jpg`}" alt="">
                                     <div class="result-text">
@@ -553,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>`).join('');
                         resultsDiv.querySelectorAll('.list-group-item-action').forEach(el => {
                             el.addEventListener('click', () => {
-                                const p = JSON.parse(el.dataset.p);
+                                const p = JSON.parse(decodeURIComponent(el.dataset.p));
                                 const row = input.closest('.trade-item-row');
                                 input.value = p.name;
                                 row.querySelector('.trade-product-id').value  = p.product_id;
