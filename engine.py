@@ -153,6 +153,68 @@ def get_mapping(group_id, product_id):
     return None
 
 
+def _normalize_category_id(category_id):
+    if category_id in (None, ""):
+        return None
+    try:
+        return str(int(category_id))
+    except (TypeError, ValueError):
+        return str(category_id)
+
+
+def _build_mapping_by_product(mappings=None):
+    mappings = mappings if mappings is not None else load_mappings()
+    by_product = {}
+    for mapping in mappings:
+        group_id = mapping.get("group_id")
+        product_id = mapping.get("product_id")
+        if group_id is None or product_id is None:
+            continue
+        key = (str(group_id), str(product_id))
+        current = by_product.get(key)
+        next_cat = _normalize_category_id(mapping.get("categoryId"))
+        current_cat = _normalize_category_id(current.get("categoryId")) if current else None
+        if current is None or (current_cat is None and next_cat is not None):
+            by_product[key] = mapping
+    return by_product
+
+
+def _normalize_item_for_pricing(item, mapping_by_product):
+    if not item:
+        return item
+    group_id = item.get("group_id")
+    product_id = item.get("product_id")
+    if group_id is None or product_id is None:
+        return dict(item)
+
+    mapping = mapping_by_product.get((str(group_id), str(product_id)))
+    category_id = _normalize_category_id(mapping.get("categoryId")) if mapping else None
+    if category_id is None:
+        category_id = _normalize_category_id(item.get("categoryId"))
+
+    normalized = dict(item)
+    if category_id is not None:
+        normalized["categoryId"] = category_id
+    if mapping:
+        normalized["name"] = normalized.get("name") or mapping.get("name", "")
+        normalized["imageUrl"] = normalized.get("imageUrl") or mapping.get("imageUrl", "")
+        normalized["url"] = normalized.get("url") or mapping.get("url", "")
+    return normalized
+
+
+def normalize_transactions_for_pricing(transactions, mappings=None):
+    mapping_by_product = _build_mapping_by_product(mappings)
+    normalized = []
+    for txn in transactions or []:
+        normalized.append({
+            **txn,
+            "items": [_normalize_item_for_pricing(item, mapping_by_product) for item in txn.get("items", [])],
+            "items_in": [_normalize_item_for_pricing(item, mapping_by_product) for item in txn.get("items_in", [])],
+            "items_out": [_normalize_item_for_pricing(item, mapping_by_product) for item in txn.get("items_out", [])],
+        })
+    return normalized
+
+
 # ---------------------------------------------------------------------------
 # Inventory helpers
 # ---------------------------------------------------------------------------
@@ -327,6 +389,7 @@ def derive_daily_summary(transactions=None):
     """
     if transactions is None:
         transactions = load_transactions()
+    transactions = normalize_transactions_for_pricing(transactions)
     
     if not transactions:
         return {}
@@ -481,6 +544,7 @@ def get_current_holdings(transactions=None):
     """
     if transactions is None:
         transactions = load_transactions()
+    transactions = normalize_transactions_for_pricing(transactions)
 
     # --- Pre-compute average buy price per product key ---
     # buy_costs: key -> [total_units_bought, total_cost_paid]

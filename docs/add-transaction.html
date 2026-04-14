@@ -119,12 +119,12 @@
                 <!-- Quantity & Amount -->
                 <div class="row mb-3">
                     <div class="col-md-4">
-                        <label for="quantity" class="form-label">Quantity *</label>
+                        <label for="quantity" class="form-label" id="quantity_label">Quantity *</label>
                         <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" required
                                value="1">
                     </div>
                     <div class="col-md-4" id="amountGroup">
-                        <label for="amount" class="form-label">Price Per Unit ($)</label>
+                        <label for="amount" class="form-label" id="amount_label">Price Per Unit ($)</label>
                         <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0"
                                value="">
                     </div>
@@ -190,20 +190,20 @@
             <hr class="my-4">
             <h6 class="text-primary mb-3">Dates & Details</h6>
 
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <label for="date_received" class="form-label">Date Received *</label>
-                    <input type="date" class="form-control" id="date_received" name="date_received" required
-                           value="">
-                </div>
-                <div class="col-md-4">
+            <div class="row mb-3" id="datesRow">
+                <div class="col-md-4" id="purchaseDateCol">
                     <label for="date_purchased" class="form-label">Date Purchased</label>
                     <input type="date" class="form-control" id="date_purchased" name="date_purchased"
                            value="">
                 </div>
+                <div class="col-md-4">
+                    <label for="date_received" class="form-label" id="date_received_label">Date Received *</label>
+                    <input type="date" class="form-control" id="date_received" name="date_received" required
+                           value="">
+                </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3" id="placeMethodRow">
                 <div class="col-md-4">
                     <label for="place" class="form-label">Store / Place</label>
                     <input type="text" class="form-control" id="place" name="place" placeholder="e.g., Target"
@@ -315,6 +315,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const stdFields    = document.getElementById('standardFields');
     const tradeFields  = document.getElementById('tradeFields');
     const amountGroup  = document.getElementById('amountGroup');
+    const amountLabel  = document.getElementById('amount_label');
+    const quantityLabel = document.getElementById('quantity_label');
+    const purchaseDateCol = document.getElementById('purchaseDateCol');
+    const dateReceivedLabel = document.getElementById('date_received_label');
+    const placeMethodRow = document.getElementById('placeMethodRow');
     const searchInput  = document.getElementById('product_search');
     const searchResults= document.getElementById('search_results');
     const newProdDiv   = document.getElementById('new_product_fields');
@@ -325,6 +330,11 @@ document.addEventListener('DOMContentLoaded', function() {
     typeSelect.addEventListener('change', toggleType);
     function toggleType() {
         const t = typeSelect.value;
+        const isBuy = t === 'BUY';
+        const isSell = t === 'SELL';
+        const isOpen = t === 'OPEN';
+        const isTrade = t === 'TRADE';
+
         if (t === 'TRADE') {
             stdFields.style.display  = 'none';
             tradeFields.style.display = 'block';
@@ -341,11 +351,27 @@ document.addEventListener('DOMContentLoaded', function() {
             newProdDiv.style.display = 'none';
             activeTradeRow = null;
         }
-        // Hide amount for OPEN
-        if (t === 'OPEN') {
-            amountGroup.style.display = 'none';
+        amountGroup.style.display = (isBuy || isSell) ? '' : 'none';
+        purchaseDateCol.style.display = isBuy ? '' : 'none';
+        placeMethodRow.style.display = (isBuy || isSell) ? '' : 'none';
+
+        if (isBuy) {
+            quantityLabel.textContent = 'Quantity *';
+            amountLabel.textContent = 'Price Per Unit ($)';
+            dateReceivedLabel.textContent = 'Date Received *';
+        } else if (isSell) {
+            quantityLabel.textContent = 'Quantity Sold *';
+            amountLabel.textContent = 'Sale Price Per Unit ($)';
+            dateReceivedLabel.textContent = 'Date Sold *';
+        } else if (isOpen) {
+            quantityLabel.textContent = 'Quantity Opened *';
+            dateReceivedLabel.textContent = 'Date Opened *';
+        } else if (isTrade) {
+            dateReceivedLabel.textContent = 'Trade Date *';
         } else {
-            amountGroup.style.display = '';
+            quantityLabel.textContent = 'Quantity *';
+            amountLabel.textContent = 'Price Per Unit ($)';
+            dateReceivedLabel.textContent = 'Date *';
         }
     }
     toggleType(); // init

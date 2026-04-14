@@ -31,6 +31,54 @@ function asKey(categoryId, groupId, productId) {
     return `${String(categoryId)}|${String(groupId)}|${String(productId)}`;
 }
 
+function asProductKey(groupId, productId) {
+    return `${String(groupId)}|${String(productId)}`;
+}
+
+function normalizeCategoryId(categoryId) {
+    if (categoryId == null || categoryId === '') return null;
+    const value = Number(categoryId);
+    return Number.isFinite(value) ? String(value) : String(categoryId);
+}
+
+function buildMappingByProduct(mappings) {
+    const byProduct = new Map();
+    for (const mapping of mappings || []) {
+        if (!mapping || mapping.group_id == null || mapping.product_id == null) continue;
+        const productKey = asProductKey(mapping.group_id, mapping.product_id);
+        const current = byProduct.get(productKey);
+        const nextCategoryId = normalizeCategoryId(mapping.categoryId);
+        const currentCategoryId = normalizeCategoryId(current?.categoryId);
+        if (!current || (currentCategoryId == null && nextCategoryId != null)) {
+            byProduct.set(productKey, mapping);
+        }
+    }
+    return byProduct;
+}
+
+function normalizeProductItem(item, mappingByProduct) {
+    if (!item || item.group_id == null || item.product_id == null) return item;
+    const mapping = mappingByProduct.get(asProductKey(item.group_id, item.product_id)) || null;
+    const categoryId = normalizeCategoryId(mapping?.categoryId) ?? normalizeCategoryId(item.categoryId);
+    return {
+        ...item,
+        categoryId,
+        name: item.name || mapping?.name || '',
+        imageUrl: item.imageUrl || mapping?.imageUrl || '',
+        url: item.url || mapping?.url || '',
+    };
+}
+
+function normalizeTransactions(transactions, mappings) {
+    const mappingByProduct = buildMappingByProduct(mappings);
+    return (transactions || []).map((txn) => ({
+        ...txn,
+        items: (txn.items || []).map((item) => normalizeProductItem(item, mappingByProduct)),
+        items_in: (txn.items_in || []).map((item) => normalizeProductItem(item, mappingByProduct)),
+        items_out: (txn.items_out || []).map((item) => normalizeProductItem(item, mappingByProduct)),
+    }));
+}
+
 function parseDate(dateStr) {
     return new Date(`${dateStr}T00:00:00Z`);
 }
@@ -189,12 +237,13 @@ async function loadPriceMaps(keys) {
 }
 
 export async function computeDashboardSnapshot(transactions) {
-    const txns = Array.isArray(transactions) ? transactions.slice() : [];
-    if (!txns.length) {
+    const rawTxns = Array.isArray(transactions) ? transactions.slice() : [];
+    if (!rawTxns.length) {
         return { summary: {}, holdings: [], latestDate: null };
     }
 
     const mappings = await loadMappings();
+    const txns = normalizeTransactions(rawTxns, mappings);
     const mappingByKey = new Map(
         mappings.map((m) => [asKey(m.categoryId || 3, m.group_id, m.product_id), m])
     );
