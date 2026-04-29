@@ -16,19 +16,17 @@ from datetime import datetime
 from engine import (
     load_transactions, today_pst, derive_daily_summary,
     save_daily_summary, get_current_holdings, load_daily_summary,
-    BASE_DIR
+    BASE_DIR, load_mappings
 )
 from price_fetcher import fetch_today_prices, update_prices, fetch_prices_for_product_keys_on_date
 
 # For static site generation
 try:
     from app import app as flask_app
-    from engine import load_mappings
     from flask import render_template
 except Exception:
     flask_app = None
     render_template = None
-    load_mappings = None
 
 
 def generate_static_site(transactions, summary):
@@ -101,6 +99,7 @@ def main():
         update_prices(start_date_str=td, end_date_str=td)
     except Exception as e:
         print('fetch/update today prices failed:', e)
+        raise
     
     # Step 2: Re-derive summary
     print("\n--- Step 2: Deriving daily summary ---")

@@ -20,6 +20,14 @@ from engine import (
     PRICES_DIR, PRICE_GAPS_FILE, BASE_DIR
 )
 
+REQUEST_HEADERS = {
+    "User-Agent": "TCG_Tracker/1.0 (GitHub Actions price updater)"
+}
+
+
+class PriceArchiveFetchError(RuntimeError):
+    """Raised when a daily tcgcsv archive cannot be downloaded or extracted."""
+
 
 def cleanup_files(*paths):
     """Remove files and directories."""
@@ -52,9 +60,22 @@ def fetch_prices_for_date(date_str, products_by_category):
     found_prices = {}
     
     try:
-        resp = requests.get(archive_url, stream=True, timeout=60)
+        resp = requests.get(
+            archive_url,
+            stream=True,
+            timeout=60,
+            headers=REQUEST_HEADERS,
+        )
         if resp.status_code != 200:
-            return found_prices
+            body = ""
+            try:
+                body = resp.text.strip()
+            except Exception:
+                body = ""
+            detail = f"HTTP {resp.status_code} while fetching {archive_url}"
+            if body:
+                detail = f"{detail}: {body[:300]}"
+            raise PriceArchiveFetchError(detail)
         
         with open(archive_filename, "wb") as f:
             for chunk in resp.iter_content(chunk_size=8192):
@@ -67,7 +88,10 @@ def fetch_prices_for_date(date_str, products_by_category):
         
         if result.returncode != 0:
             cleanup_files(archive_filename, extracted_folder)
-            return found_prices
+            detail = result.stderr.strip() or result.stdout.strip()
+            raise PriceArchiveFetchError(
+                f"7z failed extracting {archive_filename}: {detail[:500]}"
+            )
         
         base_path = Path(extracted_folder)
         
@@ -111,9 +135,13 @@ def fetch_prices_for_date(date_str, products_by_category):
         
         cleanup_files(archive_filename, extracted_folder)
     
+    except PriceArchiveFetchError:
+        cleanup_files(archive_filename, extracted_folder)
+        raise
     except Exception as e:
         print(f"  Error fetching {date_str}: {e}")
         cleanup_files(archive_filename, extracted_folder)
+        raise PriceArchiveFetchError(f"Unexpected error fetching {date_str}: {e}") from e
     
     return found_prices
 
@@ -215,6 +243,15 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
             print(f" [{len(found)} prices]")
         else:
             print(" [no data]")
+
+        if force:
+            # A forced repair should not leave old carried-forward values in
+            # place for products that were absent from the fetched archive.
+            for key in date_product_keys - set(found.keys()):
+                existing = load_prices(*key)
+                if date_str in existing:
+                    del existing[date_str]
+                    save_prices(*key, existing)
     
     # Fill gaps and record them
     print("\nFilling price gaps...")
@@ -224,7 +261,7 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
         prices = load_prices(*key)
         ranges = owned_ranges.get(key, [])
         for range_start, range_end in ranges:
-            eff_end = min(range_end, td)
+            eff_end = min(range_end, end_date_str) if end_date_str else min(range_end, td)
             filled, gaps = fill_price_gaps(prices, range_start, eff_end)
             # Ensure the first day of ownership is present in the price file
             first_day_str = range_start
@@ -245,10 +282,11 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
             if gaps:
                 print(f"  {key[1]}/{key[2]}: {len(gaps)} gaps filled (carry-forward)")
     
-    # Save gap report
+    # Save a fresh gap report for this run. Rewriting even when empty prevents
+    # stale carry-forward warnings from surviving after a successful refetch.
+    with open(PRICE_GAPS_FILE, "w") as f:
+        json.dump(all_gaps, f, indent=2)
     if all_gaps:
-        with open(PRICE_GAPS_FILE, "w") as f:
-            json.dump(all_gaps, f, indent=2)
         print(f"\n⚠️  Price gaps recorded in {PRICE_GAPS_FILE}")
     
     print("\n✅ Price update complete.")
