@@ -1,6 +1,6 @@
 # Firestore Security Rules
 
-Use this as the canonical production ruleset for this repository.
+Use this as the canonical production ruleset for this personal tracker.
 
 Firebase Console path:
 
@@ -17,30 +17,13 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isOwnerEmail() {
+      return signedIn()
+        && request.auth.token.email == 'gagarwal003@gmail.com';
+    }
+
     function isOwner(userId) {
-      return signedIn() && request.auth.uid == userId;
-    }
-
-    function validDocIdFromFields(docId, categoryId, groupId, productId) {
-      return docId == (string(categoryId) + '_' + string(groupId) + '_' + string(productId));
-    }
-
-    function validActiveProductShape() {
-      return request.resource.data.keys().hasOnly([
-        'categoryId',
-        'group_id',
-        'product_id',
-        'count',
-        'users',
-        'last_updated'
-      ])
-      && request.resource.data.categoryId is string
-      && request.resource.data.group_id is string
-      && request.resource.data.product_id is string
-      && request.resource.data.count is number
-      && request.resource.data.count >= 0
-      && request.resource.data.users is list
-      && request.resource.data.last_updated is string;
+      return isOwnerEmail() && request.auth.uid == userId;
     }
 
     function validProductMappingShape() {
@@ -82,23 +65,10 @@ service cloud.firestore {
       }
     }
 
-    // Shared union index for scheduler and authenticated client reads.
-    match /active_products/{docId} {
-      allow read: if signedIn();
-      allow write: if signedIn()
-        && validActiveProductShape()
-        && validDocIdFromFields(
-          docId,
-          request.resource.data.categoryId,
-          request.resource.data.group_id,
-          request.resource.data.product_id
-        );
-    }
-
     // Shared mapping metadata used by product search/autocomplete.
     match /product_mappings/{docId} {
-      allow read: if signedIn();
-      allow write: if signedIn()
+        allow read: if isOwnerEmail();
+        allow write: if isOwnerEmail()
         && validProductMappingShape()
         && docId == (request.resource.data.group_id + '_' + request.resource.data.product_id);
     }
@@ -113,19 +83,18 @@ service cloud.firestore {
 
 ## Rule Summary
 
-1. Users can only access their own `users/{uid}/...` subcollections.
-2. `active_products` is readable and writable by authenticated users with strict shape/docId validation.
-3. `product_mappings` is readable and writable by authenticated users with strict shape/docId validation.
+1. Only `gagarwal003@gmail.com` can read or write data.
+2. The owner can only access their own `users/{uid}/...` subcollections.
+3. `product_mappings` is readable and writable only by the owner with strict shape/docId validation.
 4. Everything else is denied by default.
 
 ## Validation Checklist
 
 Use Rules Simulator:
 
-1. Read `users/userA/transactions/x` as `userA` -> allow
-2. Read `users/userB/transactions/x` as `userA` -> deny
-3. Write valid `active_products/{cat}_{gid}_{pid}` as authenticated user -> allow
-4. Write invalid `active_products` doc (bad id/shape) -> deny
-5. Write valid `product_mappings/{gid}_{pid}` as authenticated user -> allow
-6. Write invalid `product_mappings` doc (bad id/shape) -> deny
-
+1. Read `users/{yourUid}/transactions/x` as `gagarwal003@gmail.com` -> allow
+2. Read any user data as another Google account -> deny
+3. Read `users/{otherUid}/transactions/x` as `gagarwal003@gmail.com` -> deny
+4. Write valid `product_mappings/{gid}_{pid}` as `gagarwal003@gmail.com` -> allow
+5. Write valid `product_mappings/{gid}_{pid}` as another Google account -> deny
+6. Read or write `active_products/{docId}` from the browser -> deny

@@ -44,10 +44,18 @@ import { initDB } from "./firestore-data.js";
         initDB(window.TCGFirebase.db);
 
         // Listen for auth state changes
-        window.TCGFirebase.onAuthStateChanged((user) => {
+        window.TCGFirebase.onAuthStateChanged(async (user) => {
             currentUser = user;
             
             if (user) {
+                if (!isAuthorizedOwner(user)) {
+                    await window.TCGFirebase.logoutGoogle();
+                    currentUser = null;
+                    sessionStorage.removeItem("tcg_user_id");
+                    showLoginPrompt("This tracker is limited to the owner's Google account.");
+                    return;
+                }
+
                 // User is signed in
                 sessionStorage.setItem("tcg_user_id", user.uid);
                 document.documentElement.style.overflow = "";
@@ -63,7 +71,13 @@ import { initDB } from "./firestore-data.js";
     /**
      * Show login overlay
      */
-    function showLoginPrompt() {
+    function isAuthorizedOwner(user) {
+        const allowedEmail = window.TCGFirebase?.authorizedOwnerEmail;
+        if (!allowedEmail) return true;
+        return String(user?.email || "").toLowerCase() === String(allowedEmail).toLowerCase();
+    }
+
+    function showLoginPrompt(message = "") {
         // Prevent scrolling
         document.documentElement.style.overflow = "hidden";
 
@@ -100,7 +114,7 @@ import { initDB } from "./firestore-data.js";
                     </svg>
                     Sign in with Google
                 </button>
-                <div id="loginError" style="color: #ef4444; margin-top: 16px; text-align: center; display: none; font-size: 14px;"></div>
+                <div id="loginError" style="color: #ef4444; margin-top: 16px; text-align: center; display: ${message ? "block" : "none"}; font-size: 14px;">${message}</div>
             </div>
         `;
 
@@ -115,6 +129,10 @@ import { initDB } from "./firestore-data.js";
 
             try {
                 const result = await window.TCGFirebase.loginWithGoogle();
+                if (!isAuthorizedOwner(result.user)) {
+                    await window.TCGFirebase.logoutGoogle();
+                    throw new Error("This tracker is limited to the owner's Google account.");
+                }
                 currentUser = result.user;
                 sessionStorage.setItem("tcg_user_id", result.user.uid);
                 overlay.remove();

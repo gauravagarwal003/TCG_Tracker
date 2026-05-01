@@ -2,7 +2,7 @@
 firebase_union.py - Firestore helpers for union product price fetching.
 
 This module is intentionally read-only for the daily fetch path:
-it builds a deduplicated union of product keys across all users.
+it builds a deduplicated set of product keys from Firestore transactions.
 """
 
 from __future__ import annotations
@@ -201,7 +201,7 @@ def _scan_user_transaction_start_dates(db) -> Dict[ProductKey, Set[str]]:
 
 def get_union_product_keys(db=None) -> Set[ProductKey]:
     """
-    Return deduplicated product keys across all users.
+    Return deduplicated product keys from Firestore.
 
     Strategy:
       1. Try active_products index (fast, scalable)

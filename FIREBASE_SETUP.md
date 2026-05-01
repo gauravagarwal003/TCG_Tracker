@@ -1,12 +1,12 @@
-# Firebase Setup (Auth, Firestore, and Daily Union Fetch)
+# Firebase Setup (Owner Auth, Firestore, and Daily Price Fetch)
 
 This is the canonical setup guide for Firebase in this repository.
 
 It covers:
 
-1. Frontend Google Auth + Firestore per-user data
+1. Frontend Google Auth + Firestore owner data
 2. Migration from local `transactions.json` to Firestore
-3. Daily GitHub Actions union fetch via Firestore
+3. Daily GitHub Actions price fetch via Firestore
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ It covers:
 4. Publish rules from `FIRESTORE_RULES.md`
 5. Sign in on your live site and confirm reads/writes
 6. (Optional) migrate local JSON to Firestore
-7. Add `FIREBASE_SERVICE_ACCOUNT_JSON` secret for union daily fetch
+7. Add `FIREBASE_SERVICE_ACCOUNT_JSON` secret for daily price fetch
 
 ## GitHub Pages Setup
 
@@ -85,7 +85,7 @@ Required env var (one of):
 - `FIREBASE_SERVICE_ACCOUNT_JSON`
 - `FIREBASE_SERVICE_ACCOUNT_FILE`
 
-## 3) Enable Daily Union Fetch in GitHub Actions
+## 3) Enable Daily Price Fetch in GitHub Actions
 
 ### Add service-account secret
 
@@ -95,7 +95,7 @@ Required env var (one of):
 
 The workflow auto-detects this secret:
 
-- Present: runs `python daily_run.py --firebase-union`
+- Present: runs `python daily_run.py --firebase-union`, which reads your Firestore transactions and refreshes shared price files
 - Missing: runs legacy local mode
 
 ### Add cost guardrails (recommended)
@@ -106,11 +106,10 @@ The workflow auto-detects this secret:
 
 ## Data Model
 
-- `users/{uid}/transactions/{txnId}`: per-user transaction history
+- `users/{uid}/transactions/{txnId}`: owner transaction history
 - `users/{uid}/holdings/{holdingId}`: optional derived holdings
 - `users/{uid}/meta/{docId}`: user metadata flags/preferences
 - `product_mappings/{groupId_productId}`: shared mapping metadata for search/autocomplete
-- `active_products/{cat_gid_pid}`: shared union index for scheduler
 
 ## Troubleshooting
 
@@ -127,7 +126,7 @@ The workflow auto-detects this secret:
 2. Re-check rules for `users/{uid}/transactions`
 3. Confirm `firebase-config.js` points to the correct project
 
-### Daily job not fetching union prices
+### Daily job not fetching prices
 
 1. Confirm `FIREBASE_SERVICE_ACCOUNT_JSON` exists in GitHub Actions secrets
 2. Confirm service account has Firestore access
@@ -138,8 +137,8 @@ The workflow auto-detects this secret:
 Implemented:
 
 1. Frontend Firebase Google Auth + Firestore CRUD flow
-2. Client-side `active_products` index maintenance on add/update/delete
-3. Daily union fetch in GitHub Actions
+2. Owner-only login guard in the static app and Firestore rules
+3. Daily Firestore-backed price fetch in GitHub Actions
 4. Local migration script from JSON to Firestore
 
 ## Related Docs

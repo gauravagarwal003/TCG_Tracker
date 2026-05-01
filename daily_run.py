@@ -124,13 +124,13 @@ def main():
 
 def firebase_union_daily_run():
     """
-    Daily mode for multi-user setup:
-      1) Build union product list from Firestore
-      2) Fetch today's prices once for that union
+    Daily mode for owner Firestore setup:
+      1) Build product list from Firestore transactions
+      2) Fetch today's prices once for that product set
       3) Publish shared prices and derived local docs assets
     """
     print("=" * 60)
-    print("TCG Tracker - Firebase Union Daily Run")
+    print("TCG Tracker - Firestore Daily Run")
     print(f"Date: {today_pst()}")
     print("=" * 60)
 

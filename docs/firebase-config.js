@@ -21,6 +21,8 @@ const firebaseConfig = {
     measurementId: "G-803J3HNGL7",
 };
 
+const authorizedOwnerEmail = "gagarwal003@gmail.com";
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -47,6 +49,7 @@ window.TCGFirebase = {
     app,
     auth,
     db,
+    authorizedOwnerEmail,
     analytics: () => analytics,
     loginWithGoogle,
     logoutGoogle,

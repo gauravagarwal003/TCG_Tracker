@@ -1,10 +1,9 @@
 /**
  * firestore-data.js - Firestore CRUD operations for TCG Tracker
  * 
- * Handles per-user collections:
+ * Handles owner collections:
  * - users/{uid}/transactions
  * - users/{uid}/holdings (derived view)
- * - active_products (shared product index)
  */
 
 import {
@@ -18,8 +17,6 @@ import {
     updateDoc,
     deleteDoc,
     doc,
-    arrayUnion,
-    arrayRemove,
     writeBatch,
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
@@ -172,10 +169,6 @@ export async function addTransaction(uid, txn) {
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
         });
-        
-        // Update active_products index
-        await updateActiveProductsIndex(uid, txn, "add");
-        
         return txnRef.id;
     } catch (error) {
         console.error("Error adding transaction:", error);
@@ -190,20 +183,11 @@ export async function updateTransaction(uid, txnId, updates) {
     if (!db || !uid) throw new Error("User not authenticated");
     try {
         const txnRef = doc(db, `users/${uid}/transactions`, txnId);
-        const oldTxnSnap = await getDoc(txnRef);
-        const oldTxn = oldTxnSnap.exists() ? oldTxnSnap.data() : null;
-        
         await updateDoc(txnRef, {
             ...updates,
             updated_at: new Date().toISOString(),
         });
-        
-        // Update active_products index
-        if (oldTxn) {
-            await updateActiveProductsIndex(uid, oldTxn, "remove");
-        }
-        await updateActiveProductsIndex(uid, updates, "add");
-        
+
         return txnId;
     } catch (error) {
         console.error("Error updating transaction:", error);
@@ -218,121 +202,13 @@ export async function deleteTransaction(uid, txnId) {
     if (!db || !uid) throw new Error("User not authenticated");
     try {
         const txnRef = doc(db, `users/${uid}/transactions`, txnId);
-        const txnSnapshot = await getDoc(txnRef);
-        const txn = txnSnapshot.exists() ? txnSnapshot.data() : null;
-        
         await deleteDoc(txnRef);
-        
-        // Update active_products index
-        if (txn) {
-            await updateActiveProductsIndex(uid, txn, "remove");
-        }
-        
+
         return true;
     } catch (error) {
         console.error("Error deleting transaction:", error);
         throw error;
     }
-}
-
-/**
- * Update active_products index to track which products are held
- * Used by daily fetch to build union of all products
- */
-async function updateActiveProductsIndex(uid, txn, operation) {
-    if (!db) return;
-    
-    const products = extractProductKeys(txn);
-    if (!products.length) return;
-    const receivedDate = String(txn?.date_received || '').slice(0, 10);
-    
-    try {
-        for (const [cat, gid, pid] of products) {
-            const docId = `${cat}_${gid}_${pid}`;
-            const productRef = doc(db, "active_products", docId);
-            const currentSnap = await getDoc(productRef);
-            const current = currentSnap.exists() ? currentSnap.data() : null;
-            
-            if (operation === "add") {
-                const currentCount = Number(current?.count) || 0;
-                const firstReceived = current?.first_received && receivedDate
-                    ? (String(current.first_received) < receivedDate ? String(current.first_received) : receivedDate)
-                    : (current?.first_received || receivedDate || null);
-                const lastReceived = current?.last_received && receivedDate
-                    ? (String(current.last_received) > receivedDate ? String(current.last_received) : receivedDate)
-                    : (current?.last_received || receivedDate || null);
-                await setDoc(productRef, {
-                    categoryId: cat,
-                    group_id: gid,
-                    product_id: pid,
-                    count: currentCount + 1,
-                    users: arrayUnion(uid),
-                    first_received: firstReceived,
-                    last_received: lastReceived,
-                    last_updated: new Date().toISOString(),
-                }, { merge: true });
-            } else if (operation === "remove") {
-                if (current) {
-                    const currentCount = Number(current.count) || 1;
-                    const newCount = Math.max(0, currentCount - 1);
-                    await setDoc(productRef, {
-                        categoryId: cat,
-                        group_id: gid,
-                        product_id: pid,
-                        count: newCount,
-                        users: arrayRemove(uid),
-                        last_updated: new Date().toISOString(),
-                    }, { merge: true });
-                }
-            }
-        }
-    } catch (error) {
-        console.error("Error updating active products index:", error);
-    }
-}
-
-/**
- * Extract product keys from transaction
- */
-function extractProductKeys(txn) {
-    const keys = [];
-    
-    if (txn.items) {
-        for (const item of txn.items) {
-            if (item.categoryId && item.group_id && item.product_id) {
-                keys.push([String(item.categoryId), String(item.group_id), String(item.product_id)]);
-            }
-        }
-    }
-    
-    if (txn.items_out) {
-        for (const item of txn.items_out) {
-            if (item.categoryId && item.group_id && item.product_id) {
-                keys.push([String(item.categoryId), String(item.group_id), String(item.product_id)]);
-            }
-        }
-    }
-    
-    if (txn.items_in) {
-        for (const item of txn.items_in) {
-            if (item.categoryId && item.group_id && item.product_id) {
-                keys.push([String(item.categoryId), String(item.group_id), String(item.product_id)]);
-            }
-        }
-    }
-    
-    // Deduplicate
-    const seen = new Set();
-    const deduped = [];
-    for (const key of keys) {
-        const keyStr = key.join("_");
-        if (!seen.has(keyStr)) {
-            seen.add(keyStr);
-            deduped.push(key);
-        }
-    }
-    
-    return deduped;
 }
 
 /**

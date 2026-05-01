@@ -1,6 +1,6 @@
 # Deployment Runbook (GitHub Pages + Firestore)
 
-This runbook prepares TCG Tracker for real users while staying on free tiers.
+This runbook prepares TCG Tracker as a personal app available from anywhere while staying on free tiers.
 
 ## Architecture
 
@@ -18,33 +18,11 @@ This runbook prepares TCG Tracker for real users while staying on free tiers.
 5. Publish Firestore rules from `FIRESTORE_RULES.md`.
 6. Add GitHub Actions secret `FIREBASE_SERVICE_ACCOUNT_JSON`.
 7. Run one manual GitHub Actions dispatch for `Daily Price Update`.
-8. Verify a new user can sign in, add a transaction, and see dashboard updates.
+8. Verify your Google account can sign in, add a transaction, and see dashboard updates.
 
-## Firebase Hosting Automation (Implemented)
+## Hosting
 
-The daily workflow now supports automatic Firebase Hosting deployment after data refresh.
-
-Files already configured:
-
-1. `.github/workflows/daily-update.yml`: optional deploy step after fetch/commit
-2. `firebase.json`: hosting `public` points to `docs`
-
-Required GitHub secrets:
-
-1. `FIREBASE_SERVICE_ACCOUNT_JSON` (already used for union fetch mode)
-2. `FIREBASE_PROJECT_ID` (example: `tcg-tracker-b1fb3`)
-3. `FIREBASE_TOKEN` (CLI token for deploy)
-
-How to create `FIREBASE_TOKEN`:
-
-1. Install CLI locally: `npm install -g firebase-tools`
-2. Login and generate token: `firebase login:ci`
-3. Copy token to GitHub repo -> Settings -> Secrets and variables -> Actions
-
-Behavior:
-
-1. If `FIREBASE_PROJECT_ID` + `FIREBASE_TOKEN` are present, workflow deploys Hosting.
-2. If either is missing, workflow still does daily price update and skips Hosting deploy.
+GitHub Pages is the only hosting path. Firebase is used for Google Auth and Firestore, not for hosting deploys.
 
 ## Production Verification
 
@@ -60,7 +38,7 @@ Behavior:
 
 1. Trigger `.github/workflows/daily-update.yml` manually.
 2. Check logs show either:
-   - `Firebase credentials detected: running union fetch mode`, or
+   - `Firebase credentials detected: running Firestore-backed price update`, or
    - `No Firebase credentials: running legacy local mode`.
 3. Confirm new/updated price files were committed under `prices/` and `docs/prices/`.
 
@@ -87,13 +65,12 @@ Behavior:
 ## Recommended Next Improvements
 
 1. Enable Firebase App Check for Firestore in web clients to reduce automated abuse.
-2. Move shared index maintenance (`active_products`) to trusted server/admin paths only.
-3. Add lightweight synthetic checks (GitHub Action hitting `index.html` and `transactions.html`).
+2. Add a lightweight synthetic check that loads `index.html` and `transactions.html`.
 
 ## Other Free Hosting Options
 
 If you want alternatives later (still free):
 
 1. Cloudflare Pages + Firestore: similar static flow, strong CDN, custom domain support.
-2. Firebase Hosting + Firestore: best same-vendor integration, generous free tier.
-3. Netlify + Firestore: easy previews and deploys; works with this static architecture.
+2. Netlify + Firestore: easy previews and deploys; works with this static architecture.
+3. Firebase Hosting + Firestore: useful later if you decide to leave GitHub Pages.

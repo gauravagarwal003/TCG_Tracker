@@ -10,7 +10,7 @@ Track the total market value of your TCG collection and your net cost basis over
 - **Carry-Forward Pricing:** Missing price days use the last known price
 - **Inventory Validation:** Prevents negative quantities at any point in time
 - **Backdated Transactions:** Full timeline rebuild on every change
-- **GitHub Pages Dashboard:** Google-authenticated, per-user Firestore portfolio with interactive Plotly charts
+- **GitHub Pages Dashboard:** Google-authenticated personal Firestore portfolio with interactive Plotly charts
 - **Flask Local UI:** Add/edit/delete transactions with product search
 
 ## Requirements
@@ -89,8 +89,8 @@ Notes:
 
 ## Editing data: static pages vs local server
 
-- The static `docs/` pages now use Firebase Google Auth + Firestore.
-- Transactions and portfolio data are loaded per authenticated user from Firestore.
+- The static `docs/` pages use Firebase Google Auth + Firestore.
+- Transactions and portfolio data are loaded from your owner account in Firestore.
 - Recommended for local development: run the Flask app (see "Local setup & run") for server-backed editing, or use the Firebase static pages if your Firebase config/rules are set.
 
 ## Project structure (high level)
@@ -101,7 +101,7 @@ Notes:
 - `app.py` — Flask web app for local development
 - `daily_run.py` — Daily job: fetch prices, derive summary, generate static data
 - `config.json` — Start date, timezone, GitHub config
-- `transactions.json` — All transactions (source of truth)
+- `transactions.json` — Legacy/local transaction data; production data lives in Firestore
 - `mappings.json` — Product metadata (name, URL, image)
 - `prices/` — Per-product price history (`{cat}/{group}/{product}.json`)
 - `daily_summary.json` — Derived daily portfolio values
@@ -126,13 +126,13 @@ The `docs/` folder is served via GitHub Pages using Firebase Google Auth. Shared
 2. Enable Firebase Google Auth and Firestore
 3. Publish `FIRESTORE_RULES.md`
 4. Add GitHub Pages domain in Firebase Authorized domains
-5. Add `FIREBASE_SERVICE_ACCOUNT_JSON` in GitHub Actions secrets for daily union fetch
+5. Add `FIREBASE_SERVICE_ACCOUNT_JSON` in GitHub Actions secrets so the daily price fetch can read your Firestore transactions
 
 Detailed runbook: `DEPLOYMENT.md`
 
-## Firebase multi-user mode
+## Firebase Personal Mode
 
-This repo now includes an optional Firebase-based union fetch mode for multi-user portfolios while keeping daily retrieval free via GitHub Actions cron.
+This repo is configured as a personal tracker. GitHub Pages hosts the app, Firebase Auth gates access to your Google account, Firestore stores your private transaction data, and GitHub Actions refreshes shared price files.
 
 See `FIREBASE_SETUP.md` for full setup, migration steps, and GitHub Actions secret configuration.
 See `FIRESTORE_RULES.md` for the canonical production ruleset.
