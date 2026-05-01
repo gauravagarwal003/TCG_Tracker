@@ -203,7 +203,8 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
             
             while current <= end:
                 d_str = current.strftime("%Y-%m-%d")
-                if force or d_str not in existing_prices or existing_prices[d_str] is None:
+                existing_price = existing_prices.get(d_str)
+                if force or d_str not in existing_prices or existing_price is None or existing_price <= 0:
                     if key not in needed:
                         needed[key] = set()
                     needed[key].add(d_str)
@@ -290,6 +291,104 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
         print(f"\n⚠️  Price gaps recorded in {PRICE_GAPS_FILE}")
     
     print("\n✅ Price update complete.")
+    return all_gaps
+
+
+def update_prices_for_product_date_ranges(product_ranges, start_date_str=None, end_date_str=None, force=False):
+    """
+    Fetch and store prices for explicit product ownership ranges.
+
+    Args:
+        product_ranges: dict {(cat, gid, pid): [(start, end), ...]}
+        start_date_str: Optional lower bound (YYYY-MM-DD)
+        end_date_str: Optional upper bound (YYYY-MM-DD)
+        force: If True, re-fetch even if data exists.
+
+    Returns:
+        all_gaps: dict {product_key: [gap_dates]}
+    """
+    normalized_ranges = {}
+    for key, ranges in (product_ranges or {}).items():
+        cat, gid, pid = key
+        norm_key = (str(cat), str(gid), str(pid))
+        normalized_ranges.setdefault(norm_key, [])
+        for range_start, range_end in ranges:
+            if not range_start or not range_end:
+                continue
+            normalized_ranges[norm_key].append((str(range_start), str(range_end)))
+
+    if not normalized_ranges:
+        print("No product date ranges provided.")
+        return {}
+
+    td = today_pst().strftime("%Y-%m-%d")
+    needed = {}
+
+    for key, ranges in normalized_ranges.items():
+        existing_prices = load_prices(*key)
+        for range_start, range_end in ranges:
+            eff_start = max(range_start, start_date_str) if start_date_str else range_start
+            eff_end = min(range_end, end_date_str) if end_date_str else min(range_end, td)
+
+            current = datetime.strptime(eff_start, "%Y-%m-%d").date()
+            end = datetime.strptime(eff_end, "%Y-%m-%d").date()
+            while current <= end:
+                d_str = current.strftime("%Y-%m-%d")
+                existing_price = existing_prices.get(d_str)
+                if force or d_str not in existing_prices or existing_price is None or existing_price <= 0:
+                    needed.setdefault(key, set()).add(d_str)
+                current += timedelta(days=1)
+
+    if not needed:
+        print("All explicit product range prices are up to date.")
+        return {}
+
+    all_dates = sorted({d for dates in needed.values() for d in dates})
+    print(f"Fetching range prices for {len(needed)} products across {len(all_dates)} dates...")
+
+    for i, date_str in enumerate(all_dates):
+        date_product_keys = {k for k, dates in needed.items() if date_str in dates}
+        date_products_by_cat = build_products_by_category(date_product_keys)
+
+        print(f"  [{i+1}/{len(all_dates)}] {date_str}...", end="", flush=True)
+        found = fetch_prices_for_date(date_str, date_products_by_cat)
+
+        if found:
+            for key, price in found.items():
+                existing = load_prices(*key)
+                existing[date_str] = price
+                save_prices(*key, existing)
+            print(f" [{len(found)} prices]")
+        else:
+            print(" [no data]")
+
+        if force:
+            for key in date_product_keys - set(found.keys()):
+                existing = load_prices(*key)
+                if date_str in existing:
+                    del existing[date_str]
+                    save_prices(*key, existing)
+
+    print("\nFilling explicit range price gaps...")
+    all_gaps = {}
+    for key, ranges in normalized_ranges.items():
+        prices = load_prices(*key)
+        for range_start, range_end in ranges:
+            eff_end = min(range_end, end_date_str) if end_date_str else min(range_end, td)
+            filled, gaps = fill_price_gaps(prices, range_start, eff_end)
+            if gaps:
+                gap_key = f"{key[0]}/{key[1]}/{key[2]}"
+                all_gaps.setdefault(gap_key, [])
+                all_gaps[gap_key] += gaps
+            save_prices(*key, filled)
+
+    with open(PRICE_GAPS_FILE, "w") as f:
+        json.dump(all_gaps, f, indent=2)
+
+    if all_gaps:
+        print(f"\n⚠️  Price gaps recorded in {PRICE_GAPS_FILE}")
+
+    print("\n✅ Explicit range price update complete.")
     return all_gaps
 
 

@@ -18,7 +18,12 @@ from engine import (
     save_daily_summary, get_current_holdings, load_daily_summary,
     BASE_DIR, load_mappings
 )
-from price_fetcher import fetch_today_prices, update_prices, fetch_prices_for_product_keys_on_date
+from price_fetcher import (
+    fetch_today_prices,
+    update_prices,
+    fetch_prices_for_product_keys_on_date,
+    update_prices_for_product_date_ranges,
+)
 
 # For static site generation
 try:
@@ -132,7 +137,11 @@ def firebase_union_daily_run():
     td = today_pst().strftime("%Y-%m-%d")
 
     try:
-        from firebase_union import init_firestore_from_env, get_union_product_keys
+        from firebase_union import (
+            init_firestore_from_env,
+            get_union_product_date_ranges,
+            get_union_product_keys,
+        )
     except Exception as e:
         raise RuntimeError(
             "Firebase union mode requires firebase_union.py and firebase-admin dependency"
@@ -140,18 +149,25 @@ def firebase_union_daily_run():
 
     print("\n--- Step 1: Loading union product keys from Firestore ---")
     db = init_firestore_from_env()
-    union_keys = get_union_product_keys(db)
+    product_ranges = get_union_product_date_ranges(db, end_date_str=td)
+    union_keys = set(product_ranges.keys())
+    if not union_keys:
+        union_keys = get_union_product_keys(db)
     print(f"  Loaded {len(union_keys)} unique product keys")
 
     if not union_keys:
         print("No active products found in Firestore. Exiting without fetch.")
         return
 
-    print("\n--- Step 2: Fetching today's prices for union keys ---")
-    stats = fetch_prices_for_product_keys_on_date(td, union_keys, carry_forward=True)
-    print(
-        f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
-    )
+    print("\n--- Step 2: Fetching prices for union product ranges ---")
+    if product_ranges:
+        gaps = update_prices_for_product_date_ranges(product_ranges, end_date_str=td)
+        print(f"  Range fetch complete: products={len(product_ranges)}, gaps={len(gaps)}")
+    else:
+        stats = fetch_prices_for_product_keys_on_date(td, union_keys, carry_forward=True)
+        print(
+            f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
+        )
 
     # Keep current local docs generation path so GitHub Pages static assets remain updated.
     print("\n--- Step 3: Rebuilding local derived assets ---")

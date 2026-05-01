@@ -244,6 +244,7 @@ async function updateActiveProductsIndex(uid, txn, operation) {
     
     const products = extractProductKeys(txn);
     if (!products.length) return;
+    const receivedDate = String(txn?.date_received || '').slice(0, 10);
     
     try {
         for (const [cat, gid, pid] of products) {
@@ -254,12 +255,20 @@ async function updateActiveProductsIndex(uid, txn, operation) {
             
             if (operation === "add") {
                 const currentCount = Number(current?.count) || 0;
+                const firstReceived = current?.first_received && receivedDate
+                    ? (String(current.first_received) < receivedDate ? String(current.first_received) : receivedDate)
+                    : (current?.first_received || receivedDate || null);
+                const lastReceived = current?.last_received && receivedDate
+                    ? (String(current.last_received) > receivedDate ? String(current.last_received) : receivedDate)
+                    : (current?.last_received || receivedDate || null);
                 await setDoc(productRef, {
                     categoryId: cat,
                     group_id: gid,
                     product_id: pid,
                     count: currentCount + 1,
                     users: arrayUnion(uid),
+                    first_received: firstReceived,
+                    last_received: lastReceived,
                     last_updated: new Date().toISOString(),
                 }, { merge: true });
             } else if (operation === "remove") {
