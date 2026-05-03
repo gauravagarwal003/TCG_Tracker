@@ -61,6 +61,46 @@ def _ensure_mapping(items):
     save_mappings(mappings)
 
 
+def _normalize_items_from_mappings(items):
+    """Fill legacy item payloads with metadata from mappings when available."""
+    mappings = load_mappings()
+    mapping_by_key = {
+        (str(m["group_id"]), str(m["product_id"])): m
+        for m in mappings
+        if "group_id" in m and "product_id" in m
+    }
+
+    normalized_items = []
+    for item in items or []:
+        normalized = dict(item)
+        key = (str(normalized.get("group_id")), str(normalized.get("product_id")))
+        mapping = mapping_by_key.get(key)
+        if mapping:
+            if (
+                normalized.get("categoryId") in (None, "")
+                and mapping.get("categoryId") not in (None, "")
+            ):
+                normalized["categoryId"] = mapping["categoryId"]
+            normalized["name"] = normalized.get("name") or mapping.get("name", "")
+            normalized["imageUrl"] = normalized.get("imageUrl") or mapping.get("imageUrl", "")
+            normalized["url"] = normalized.get("url") or mapping.get("url", "")
+        normalized_items.append(normalized)
+
+    return normalized_items
+
+
+def _normalize_transaction_from_mappings(txn):
+    """Accept older API clients that omit categoryId/name but use known product ids."""
+    normalized = dict(txn)
+    if "items" in txn:
+        normalized["items"] = _normalize_items_from_mappings(txn.get("items", []))
+    if "items_out" in txn:
+        normalized["items_out"] = _normalize_items_from_mappings(txn.get("items_out", []))
+    if "items_in" in txn:
+        normalized["items_in"] = _normalize_items_from_mappings(txn.get("items_in", []))
+    return normalized
+
+
 def _get_all_items(txn):
     """Get all items from a transaction regardless of type."""
     if txn["type"].upper() == "TRADE":
@@ -101,6 +141,8 @@ def add_transaction(txn_data, fetch_prices=True, rebuild_summary=True):
     Returns:
         (success: bool, message: str, txn: dict)
     """
+    txn_data = _normalize_transaction_from_mappings(txn_data)
+
     # Validate date
     try:
         _validate_date(txn_data["date_received"])
@@ -198,6 +240,8 @@ def edit_transaction(txn_id, new_data):
     if old_txn is None:
         return False, f"Transaction {txn_id} not found.", None
     
+    new_data = _normalize_transaction_from_mappings(new_data)
+
     # Validate date
     try:
         _validate_date(new_data["date_received"])
