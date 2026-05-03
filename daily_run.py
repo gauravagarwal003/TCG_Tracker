@@ -69,38 +69,25 @@ def build_widget_summary(summary, holdings):
     }
 
 
-def should_publish_public_widget_data():
-    value = os.getenv("PUBLISH_PUBLIC_WIDGET_DATA", "1").strip().lower()
-    return value not in {"0", "false", "no", "off"}
-
-
 def generate_static_site(transactions, summary):
     print("\n--- Step 3: Generating static data ---")
 
-    # Scriptable can read widget_summary.json either from public GitHub Pages
-    # or from the private gist publisher in scripts/publish_widget_gist.py.
+    # Scriptable widgets read these public GitHub Pages JSON files directly.
     holdings = get_current_holdings(transactions)
     widget_summary = build_widget_summary(summary, holdings)
-    publish_public_widget_data = should_publish_public_widget_data()
 
     holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
     os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
     with open(holdings_file, "w") as f:
-        json.dump(holdings if publish_public_widget_data else [], f, indent=2)
+        json.dump(holdings, f, indent=2)
 
     summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
     with open(summary_file, "w") as f:
-        json.dump(summary if publish_public_widget_data else {}, f, indent=2)
-
-    private_widget_dir = os.path.join(BASE_DIR, "build", "widget")
-    os.makedirs(private_widget_dir, exist_ok=True)
-    private_widget_summary_file = os.path.join(private_widget_dir, "widget_summary.json")
-    with open(private_widget_summary_file, "w") as f:
-        json.dump(widget_summary, f, indent=2)
+        json.dump(summary, f, indent=2)
 
     widget_summary_file = os.path.join(BASE_DIR, "docs", "data", "widget_summary.json")
     with open(widget_summary_file, "w") as f:
-        json.dump(widget_summary if publish_public_widget_data else {}, f, indent=2)
+        json.dump(widget_summary, f, indent=2)
 
     # Transactions placeholder
     txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
@@ -125,10 +112,7 @@ def generate_static_site(transactions, summary):
     if os.path.isdir(prices_src):
         shutil.copytree(prices_src, prices_dest, dirs_exist_ok=True)
 
-    if publish_public_widget_data:
-        print(f"  Wrote public widget data: {len(holdings)} holdings")
-    else:
-        print("  Wrote empty public widget placeholders")
+    print(f"  Wrote public widget data: {len(holdings)} holdings")
 
     # Static HTML pages are now maintained directly in docs/ so they can
     # contain the Firebase auth and Firestore client logic. Do not overwrite

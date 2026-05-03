@@ -23,10 +23,6 @@ jobs:
     runs-on: ubuntu-latest
     # Skip commits that the bot itself made to avoid infinite loops
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PUBLISH_PUBLIC_WIDGET_DATA: ${{ secrets.PUBLISH_PUBLIC_WIDGET_DATA }}
-      WIDGET_PRIVATE_REPO: ${{ secrets.WIDGET_PRIVATE_REPO }}
-      WIDGET_PRIVATE_REPO_TOKEN: ${{ secrets.WIDGET_PRIVATE_REPO_TOKEN }}
 
     steps:
     - name: Checkout repository
@@ -75,9 +71,6 @@ jobs:
             print('Generating static site assets...')
             daily_run.generate_static_site(tx, s)
         PY
-
-    - name: Publish private widget repo
-      run: python scripts/publish_widget_private_repo.py
 
     - name: Commit and push rebuilt docs
       run: |
