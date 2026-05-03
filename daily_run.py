@@ -34,40 +34,73 @@ except Exception:
     render_template = None
 
 
-def generate_static_site(transactions, summary):
-    print("\n--- Step 3: Generating static data ---")
-
-    # Scriptable widgets read these public GitHub Pages JSON files directly.
-    # Publishing them means portfolio summary/holdings are visible to anyone
-    # with the URL, but keeps the widget independent of the local laptop.
-    holdings = get_current_holdings(transactions)
-    holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
-    os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
-    with open(holdings_file, "w") as f:
-        json.dump(holdings, f, indent=2)
-
-    summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
-    with open(summary_file, "w") as f:
-        json.dump(summary, f, indent=2)
-
+def build_widget_summary(summary, holdings):
     summary_dates = sorted((summary or {}).keys())
     latest_date = summary_dates[-1] if summary_dates else None
+    previous_date = summary_dates[-2] if len(summary_dates) > 1 else None
+
     latest = summary.get(latest_date, {}) if latest_date else {}
+    previous = summary.get(previous_date, {}) if previous_date else {}
+
     total_value = float(latest.get("total_value", 0) or 0)
     cost_basis = float(latest.get("cost_basis", 0) or 0)
-    gain_loss = total_value - cost_basis
-    widget_summary = {
+    previous_total_value = float(previous.get("total_value", 0) or 0)
+    previous_cost_basis = float(previous.get("cost_basis", 0) or 0)
+
+    lifetime_gain_loss = total_value - cost_basis
+    previous_lifetime_gain_loss = previous_total_value - previous_cost_basis
+    day_value_change = total_value - previous_total_value if previous_date else 0
+    day_cost_basis_change = cost_basis - previous_cost_basis if previous_date else 0
+    day_gain_loss = lifetime_gain_loss - previous_lifetime_gain_loss if previous_date else 0
+
+    return {
         "latest_date": latest_date,
+        "previous_date": previous_date,
         "total_value": round(total_value, 2),
         "cost_basis": round(cost_basis, 2),
-        "gain_loss": round(gain_loss, 2),
-        "return_pct": round((gain_loss / cost_basis) * 100, 2) if cost_basis else 0,
+        "gain_loss": round(lifetime_gain_loss, 2),
+        "return_pct": round((lifetime_gain_loss / cost_basis) * 100, 2) if cost_basis else 0,
+        "day_value_change": round(day_value_change, 2),
+        "day_cost_basis_change": round(day_cost_basis_change, 2),
+        "day_gain_loss": round(day_gain_loss, 2),
+        "day_gain_loss_pct": round((day_gain_loss / previous_total_value) * 100, 2) if previous_total_value else 0,
         "holdings_count": len(holdings),
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
     }
+
+
+def should_publish_public_widget_data():
+    value = os.getenv("PUBLISH_PUBLIC_WIDGET_DATA", "1").strip().lower()
+    return value not in {"0", "false", "no", "off"}
+
+
+def generate_static_site(transactions, summary):
+    print("\n--- Step 3: Generating static data ---")
+
+    # Scriptable can read widget_summary.json either from public GitHub Pages
+    # or from the private gist publisher in scripts/publish_widget_gist.py.
+    holdings = get_current_holdings(transactions)
+    widget_summary = build_widget_summary(summary, holdings)
+    publish_public_widget_data = should_publish_public_widget_data()
+
+    holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
+    os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
+    with open(holdings_file, "w") as f:
+        json.dump(holdings if publish_public_widget_data else [], f, indent=2)
+
+    summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
+    with open(summary_file, "w") as f:
+        json.dump(summary if publish_public_widget_data else {}, f, indent=2)
+
+    private_widget_dir = os.path.join(BASE_DIR, "build", "widget")
+    os.makedirs(private_widget_dir, exist_ok=True)
+    private_widget_summary_file = os.path.join(private_widget_dir, "widget_summary.json")
+    with open(private_widget_summary_file, "w") as f:
+        json.dump(widget_summary, f, indent=2)
+
     widget_summary_file = os.path.join(BASE_DIR, "docs", "data", "widget_summary.json")
     with open(widget_summary_file, "w") as f:
-        json.dump(widget_summary, f, indent=2)
+        json.dump(widget_summary if publish_public_widget_data else {}, f, indent=2)
 
     # Transactions placeholder
     txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
@@ -92,7 +125,10 @@ def generate_static_site(transactions, summary):
     if os.path.isdir(prices_src):
         shutil.copytree(prices_src, prices_dest, dirs_exist_ok=True)
 
-    print(f"  Wrote public widget data: {len(holdings)} holdings")
+    if publish_public_widget_data:
+        print(f"  Wrote public widget data: {len(holdings)} holdings")
+    else:
+        print("  Wrote empty public widget placeholders")
 
     # Static HTML pages are now maintained directly in docs/ so they can
     # contain the Firebase auth and Firestore client logic. Do not overwrite

@@ -1,9 +1,14 @@
 {
-  "latest_date": "2026-05-02",
+  "latest_date": "2026-05-03",
+  "previous_date": "2026-05-02",
   "total_value": 16305.9,
   "cost_basis": 6021.91,
   "gain_loss": 10283.99,
   "return_pct": 170.78,
+  "day_value_change": 0.0,
+  "day_cost_basis_change": 0.0,
+  "day_gain_loss": 0.0,
+  "day_gain_loss_pct": 0.0,
   "holdings_count": 62,
-  "updated_at": "2026-05-03T04:34:21Z"
+  "updated_at": "2026-05-03T18:06:45Z"
 }
