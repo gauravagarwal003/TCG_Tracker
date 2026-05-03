@@ -11,7 +11,7 @@ import sys
 import json
 import os
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 
 from engine import (
     load_transactions, today_pst, derive_daily_summary,
@@ -37,19 +37,37 @@ except Exception:
 def generate_static_site(transactions, summary):
     print("\n--- Step 3: Generating static data ---")
 
-    # The public GitHub Pages site now reads user-specific data from Firestore.
-    # Keep docs/data as empty placeholders so no user portfolio data is exposed
-    # via public static JSON files.
-    holdings = []
+    # Scriptable widgets read these public GitHub Pages JSON files directly.
+    # Publishing them means portfolio summary/holdings are visible to anyone
+    # with the URL, but keeps the widget independent of the local laptop.
+    holdings = get_current_holdings(transactions)
     holdings_file = os.path.join(BASE_DIR, "docs", "data", "holdings.json")
     os.makedirs(os.path.dirname(holdings_file), exist_ok=True)
     with open(holdings_file, "w") as f:
         json.dump(holdings, f, indent=2)
 
-    # Summary placeholder
     summary_file = os.path.join(BASE_DIR, "docs", "data", "daily_summary.json")
     with open(summary_file, "w") as f:
-        json.dump({}, f)
+        json.dump(summary, f, indent=2)
+
+    summary_dates = sorted((summary or {}).keys())
+    latest_date = summary_dates[-1] if summary_dates else None
+    latest = summary.get(latest_date, {}) if latest_date else {}
+    total_value = float(latest.get("total_value", 0) or 0)
+    cost_basis = float(latest.get("cost_basis", 0) or 0)
+    gain_loss = total_value - cost_basis
+    widget_summary = {
+        "latest_date": latest_date,
+        "total_value": round(total_value, 2),
+        "cost_basis": round(cost_basis, 2),
+        "gain_loss": round(gain_loss, 2),
+        "return_pct": round((gain_loss / cost_basis) * 100, 2) if cost_basis else 0,
+        "holdings_count": len(holdings),
+        "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
+    }
+    widget_summary_file = os.path.join(BASE_DIR, "docs", "data", "widget_summary.json")
+    with open(widget_summary_file, "w") as f:
+        json.dump(widget_summary, f, indent=2)
 
     # Transactions placeholder
     txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
@@ -74,9 +92,7 @@ def generate_static_site(transactions, summary):
     if os.path.isdir(prices_src):
         shutil.copytree(prices_src, prices_dest, dirs_exist_ok=True)
 
-    print(
-        "  Wrote empty public placeholders for holdings, summary, and transactions"
-    )
+    print(f"  Wrote public widget data: {len(holdings)} holdings")
 
     # Static HTML pages are now maintained directly in docs/ so they can
     # contain the Firebase auth and Firestore client logic. Do not overwrite
