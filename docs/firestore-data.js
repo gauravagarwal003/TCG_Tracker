@@ -32,6 +32,14 @@ export function initDB(firebaseDB) {
     db = firebaseDB;
 }
 
+async function ensureUserDoc(uid) {
+    if (!db || !uid) return;
+    const userRef = doc(db, "users", uid);
+    await setDoc(userRef, {
+        updated_at: new Date().toISOString(),
+    }, { merge: true });
+}
+
 /**
  * Get current user's transactions
  */
@@ -146,6 +154,7 @@ export async function ensureLegacyDataSeeded(user) {
 
 export async function saveUserTransaction(uid, txnData) {
     if (!db || !uid) throw new Error("User not authenticated");
+    await ensureUserDoc(uid);
     const txnRef = doc(collection(db, `users/${uid}/transactions`));
     await setDoc(txnRef, {
         ...txnData,
@@ -162,6 +171,7 @@ export async function saveUserTransaction(uid, txnData) {
 export async function addTransaction(uid, txn) {
     if (!db || !uid) throw new Error("User not authenticated");
     try {
+        await ensureUserDoc(uid);
         const txnRef = doc(collection(db, `users/${uid}/transactions`));
         await setDoc(txnRef, {
             ...txn,

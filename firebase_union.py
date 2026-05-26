@@ -164,6 +164,17 @@ def _scan_user_holdings(db) -> Set[ProductKey]:
             if key:
                 keys.add(key)
 
+    # Some clients write subcollections without creating parent users/{uid}
+    # docs, so also scan holdings via collection group to avoid missing data.
+    try:
+        for hdoc in db.collection_group("holdings").stream():
+            data = hdoc.to_dict() or {}
+            key = _normalize_key_fields(data)
+            if key:
+                keys.add(key)
+    except Exception:
+        pass
+
     return keys
 
 
@@ -195,6 +206,24 @@ def _scan_user_transaction_start_dates(db) -> Dict[ProductKey, Set[str]]:
                     key = _normalize_key_fields(item)
                     if key:
                         ranges.setdefault(key, set()).add(date_received)
+
+    # Some clients write subcollections without creating parent users/{uid}
+    # docs, so also scan transactions via collection group to avoid missing
+    # Firestore-only products in the daily fetcher.
+    try:
+        for txn_doc in db.collection_group("transactions").stream():
+            txn = txn_doc.to_dict() or {}
+            date_received = str(txn.get("date_received") or "")[:10]
+            if not date_received:
+                continue
+
+            for field in ("items", "items_in", "items_out"):
+                for item in txn.get(field, []) or []:
+                    key = _normalize_key_fields(item)
+                    if key:
+                        ranges.setdefault(key, set()).add(date_received)
+    except Exception:
+        pass
 
     return ranges
 
