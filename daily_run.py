@@ -174,7 +174,9 @@ def firebase_union_daily_run():
 
     try:
         from firebase_union import (
+            discover_owner_uid,
             init_firestore_from_env,
+            get_owner_transactions,
             get_union_product_date_ranges,
             get_union_product_keys,
         )
@@ -205,9 +207,13 @@ def firebase_union_daily_run():
             f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
         )
 
-    # Keep current local docs generation path so GitHub Pages static assets remain updated.
+    # Rebuild public assets from the same Firestore transaction source that
+    # powers the shared price fetch, otherwise the widget can lag behind the
+    # Firebase-backed app after local JSON stops being the source of truth.
     print("\n--- Step 3: Rebuilding local derived assets ---")
-    transactions = load_transactions()
+    owner_uid = discover_owner_uid(db)
+    transactions = get_owner_transactions(db, owner_uid=owner_uid)
+    print(f"  Loaded {len(transactions)} owner transactions from Firestore for uid={owner_uid}")
     summary = derive_daily_summary(transactions)
     save_daily_summary(summary)
     generate_static_site(transactions, summary)

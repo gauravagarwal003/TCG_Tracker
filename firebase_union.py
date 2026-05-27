@@ -3,6 +3,8 @@ firebase_union.py - Firestore helpers for union product price fetching.
 
 This module is intentionally read-only for the daily fetch path:
 it builds a deduplicated set of product keys from Firestore transactions.
+It also exposes helpers for loading the owner account's transaction history
+when rebuilding public docs/widget assets from Firestore-backed data.
 """
 
 from __future__ import annotations
@@ -10,7 +12,7 @@ from __future__ import annotations
 import json
 import os
 from datetime import date
-from typing import Dict, Iterable, Optional, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Set, Tuple
 
 try:
     import firebase_admin
@@ -275,3 +277,89 @@ def get_union_product_date_ranges(db=None, end_date_str: Optional[str] = None) -
         for key, dates in start_dates.items()
         if dates
     }
+
+
+def _iter_user_transaction_docs(db, owner_uid: str):
+    return (
+        db.collection("users")
+        .document(owner_uid)
+        .collection("transactions")
+        .stream()
+    )
+
+
+def discover_owner_uid(db=None) -> str:
+    """
+    Resolve the owner UID for public docs/widget generation.
+
+    Resolution order:
+      1. FIREBASE_OWNER_UID env var
+      2. Single uid found under users/*/transactions
+      3. Single uid found via collection-group transactions scan
+
+    Raises when multiple candidate users exist, because publishing the wrong
+    user's portfolio would be a bad default.
+    """
+    if db is None:
+        db = init_firestore_from_env()
+
+    configured_uid = os.getenv("FIREBASE_OWNER_UID", "").strip()
+    if configured_uid:
+        return configured_uid
+
+    candidate_uids: Set[str] = set()
+
+    for user_doc in db.collection("users").stream():
+        first_txn = next(_iter_user_transaction_docs(db, user_doc.id), None)
+        if first_txn is not None:
+            candidate_uids.add(user_doc.id)
+
+    if len(candidate_uids) == 1:
+        return next(iter(candidate_uids))
+
+    if not candidate_uids:
+        try:
+            for txn_doc in db.collection_group("transactions").stream():
+                parent = txn_doc.reference.parent.parent
+                if parent is not None:
+                    candidate_uids.add(parent.id)
+        except Exception:
+            pass
+        if len(candidate_uids) == 1:
+            return next(iter(candidate_uids))
+
+    if not candidate_uids:
+        raise RuntimeError("No Firestore transactions found for any user.")
+
+    raise RuntimeError(
+        "Multiple Firestore users have transactions. Set FIREBASE_OWNER_UID so docs/widget generation knows which portfolio to publish."
+    )
+
+
+def get_owner_transactions(db=None, owner_uid: Optional[str] = None) -> List[Dict]:
+    """
+    Load and return the owner account's transactions from Firestore.
+
+    The returned shape mirrors the frontend/local JSON transaction objects and
+    includes the Firestore doc id as `id` when missing.
+    """
+    if db is None:
+        db = init_firestore_from_env()
+
+    resolved_uid = owner_uid or discover_owner_uid(db)
+    transactions: List[Dict] = []
+
+    for txn_doc in _iter_user_transaction_docs(db, resolved_uid):
+        txn = txn_doc.to_dict() or {}
+        if "id" not in txn:
+            txn["id"] = txn_doc.id
+        transactions.append(txn)
+
+    transactions.sort(
+        key=lambda txn: (
+            str(txn.get("date_received") or ""),
+            str(txn.get("date_purchased") or ""),
+            str(txn.get("id") or ""),
+        )
+    )
+    return transactions

@@ -98,6 +98,10 @@ The workflow auto-detects this secret:
 - Present: runs `python daily_run.py --firebase-union`, which reads your Firestore transactions and refreshes shared price files
 - Missing: runs legacy local mode
 
+If more than one Firestore user has transactions, also add:
+
+- `FIREBASE_OWNER_UID`: the UID whose portfolio should be published to the public docs/widget payloads
+
 ### Add cost guardrails (recommended)
 
 1. Firebase Console -> Usage and billing -> Budgets and alerts
