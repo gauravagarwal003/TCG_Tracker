@@ -7,8 +7,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
     "url": "https://www.tcgplayer.com/product/668497",
     "quantity": 2,
-    "latest_price": 462.77,
-    "total_value": 925.54,
+    "latest_price": 462.17,
+    "total_value": 924.34,
     "avg_buy_price": 66.14,
     "via_trade": false
   },
@@ -20,8 +20,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
     "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box",
     "quantity": 1,
-    "latest_price": 437.18,
-    "total_value": 437.18,
+    "latest_price": 436.98,
+    "total_value": 436.98,
     "avg_buy_price": 178.21,
     "via_trade": false
   },
@@ -33,8 +33,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg",
     "url": "https://www.tcgplayer.com/product/628352",
     "quantity": 1,
-    "latest_price": 408.31,
-    "total_value": 408.31,
+    "latest_price": 397.28,
+    "total_value": 397.28,
     "avg_buy_price": 557.64,
     "via_trade": false
   },
@@ -46,8 +46,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654135_200w.jpg",
     "url": "https://www.tcgplayer.com/product/654135/pokemon-me02-phantasmal-flames-phantasmal-flames-pokemon-center-elite-trainer-box-exclusive",
     "quantity": 2,
-    "latest_price": 337.32,
-    "total_value": 674.64,
+    "latest_price": 336.04,
+    "total_value": 672.08,
     "avg_buy_price": 66.14,
     "via_trade": false
   },
@@ -65,19 +65,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "3",
-    "group_id": "24325",
-    "product_id": "630687",
-    "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630687_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/630687/pokemon-sv-black-bolt-black-bolt-pokemon-center-elite-trainer-box-exclusive",
-    "quantity": 1,
-    "latest_price": 296.37,
-    "total_value": 296.37,
-    "avg_buy_price": 65.84,
-    "via_trade": false
-  },
-  {
     "categoryId": "68",
     "group_id": "24545",
     "product_id": "666891",
@@ -85,9 +72,22 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg",
     "url": "https://www.tcgplayer.com/product/666891",
     "quantity": 2,
-    "latest_price": 292.43,
-    "total_value": 584.86,
+    "latest_price": 303.08,
+    "total_value": 606.16,
     "avg_buy_price": 136.01,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24325",
+    "product_id": "630687",
+    "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630687_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/630687/pokemon-sv-black-bolt-black-bolt-pokemon-center-elite-trainer-box-exclusive",
+    "quantity": 1,
+    "latest_price": 296.17,
+    "total_value": 296.17,
+    "avg_buy_price": 65.84,
     "via_trade": false
   },
   {
@@ -104,6 +104,19 @@
     "via_trade": false
   },
   {
+    "categoryId": "68",
+    "group_id": "24637",
+    "product_id": "682057",
+    "name": "Unknown (24637/682057)",
+    "imageUrl": "",
+    "url": "",
+    "quantity": 1,
+    "latest_price": 253.31,
+    "total_value": 253.31,
+    "avg_buy_price": 150.44,
+    "via_trade": false
+  },
+  {
     "categoryId": "3",
     "group_id": "23120",
     "product_id": "493974",
@@ -117,19 +130,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "68",
-    "group_id": "24637",
-    "product_id": "682057",
-    "name": "Unknown (24637/682057)",
-    "imageUrl": "",
-    "url": "",
-    "quantity": 1,
-    "latest_price": 251.2,
-    "total_value": 251.2,
-    "avg_buy_price": 150.44,
-    "via_trade": false
-  },
-  {
     "categoryId": "3",
     "group_id": "23353",
     "product_id": "665113",
@@ -137,8 +137,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/665113_200w.jpg",
     "url": "https://www.tcgplayer.com/product/665113/pokemon-sv-paldean-fates-paldean-fates-great-tusk-ex-and-iron-treads-ex-premium-collection",
     "quantity": 2,
-    "latest_price": 247.89,
-    "total_value": 495.78,
+    "latest_price": 248.42,
+    "total_value": 496.84,
     "avg_buy_price": 68.92,
     "via_trade": false
   },
@@ -150,8 +150,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654213_200w.jpg",
     "url": "https://www.tcgplayer.com/product/654213/pokemon-miscellaneous-cards-and-products-mega-charizard-x-ex-ultra-premium-collection",
     "quantity": 3,
-    "latest_price": 243.75,
-    "total_value": 731.25,
+    "latest_price": 243.55,
+    "total_value": 730.65,
     "avg_buy_price": 122.8,
     "via_trade": false
   },
@@ -163,8 +163,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/586671_200w.jpg",
     "url": "https://www.tcgplayer.com/product/586671",
     "quantity": 3,
-    "latest_price": 242.71,
-    "total_value": 728.13,
+    "latest_price": 242.59,
+    "total_value": 727.77,
     "avg_buy_price": 155.02,
     "via_trade": false
   },
@@ -189,8 +189,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/277335_200w.jpg",
     "url": "https://www.tcgplayer.com/product/277335/pokemon-swsh11-lost-origin-lost-origin-elite-trainer-box",
     "quantity": 2,
-    "latest_price": 231.42,
-    "total_value": 462.84,
+    "latest_price": 230.54,
+    "total_value": 461.08,
     "avg_buy_price": 18.84,
     "via_trade": false
   },
@@ -202,8 +202,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672394_200w.jpg",
     "url": "https://www.tcgplayer.com/product/672394",
     "quantity": 1,
-    "latest_price": 213.54,
-    "total_value": 213.54,
+    "latest_price": 208.53,
+    "total_value": 208.53,
     "avg_buy_price": 178.21,
     "via_trade": false
   },
@@ -215,8 +215,8 @@
     "imageUrl": "",
     "url": "",
     "quantity": 1,
-    "latest_price": 208.03,
-    "total_value": 208.03,
+    "latest_price": 208.23,
+    "total_value": 208.23,
     "avg_buy_price": 178.21,
     "via_trade": false
   },
@@ -228,8 +228,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/610929_200w.jpg",
     "url": "https://www.tcgplayer.com/product/610929/pokemon-sv09-journey-together-journey-together-pokemon-center-elite-trainer-box-exclusive",
     "quantity": 1,
-    "latest_price": 204.62,
-    "total_value": 204.62,
+    "latest_price": 204.74,
+    "total_value": 204.74,
     "avg_buy_price": 65.69,
     "via_trade": false
   },
@@ -241,22 +241,9 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557340_200w.jpg",
     "url": "https://www.tcgplayer.com/product/557340/pokemon-sv07-stellar-crown-stellar-crown-pokemon-center-elite-trainer-box-exclusive",
     "quantity": 1,
-    "latest_price": 179.74,
-    "total_value": 179.74,
+    "latest_price": 180.21,
+    "total_value": 180.21,
     "avg_buy_price": 66.14,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23821",
-    "product_id": "593355",
-    "name": "Prismatic Evolutions Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/593355/pokemon-sv-prismatic-evolutions-prismatic-evolutions-elite-trainer-box",
-    "quantity": 4,
-    "latest_price": 173.04,
-    "total_value": 692.16,
-    "avg_buy_price": 47.45,
     "via_trade": false
   },
   {
@@ -267,9 +254,22 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/256138_200w.jpg",
     "url": "https://www.tcgplayer.com/product/256138/pokemon-swsh09-brilliant-stars-brilliant-stars-elite-trainer-box",
     "quantity": 1,
-    "latest_price": 172.16,
-    "total_value": 172.16,
+    "latest_price": 170.82,
+    "total_value": 170.82,
     "avg_buy_price": 14.65,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
+    "group_id": "23821",
+    "product_id": "593355",
+    "name": "Prismatic Evolutions Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/593355/pokemon-sv-prismatic-evolutions-prismatic-evolutions-elite-trainer-box",
+    "quantity": 4,
+    "latest_price": 169.25,
+    "total_value": 677.0,
+    "avg_buy_price": 47.45,
     "via_trade": false
   },
   {
@@ -280,8 +280,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502000_200w.jpg",
     "url": "https://www.tcgplayer.com/product/502000/pokemon-sv-scarlet-and-violet-151-151-booster-bundle",
     "quantity": 6,
-    "latest_price": 169.13,
-    "total_value": 1014.78,
+    "latest_price": 168.13,
+    "total_value": 1008.78,
     "avg_buy_price": 29.5,
     "via_trade": false
   },
@@ -293,9 +293,22 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/552998_200w.jpg",
     "url": "https://www.tcgplayer.com/product/552998/pokemon-sv-shrouded-fable-shrouded-fable-pokemon-center-elite-trainer-box-exclusive",
     "quantity": 1,
-    "latest_price": 166.73,
-    "total_value": 166.73,
+    "latest_price": 167.17,
+    "total_value": 167.17,
     "avg_buy_price": 65.69,
+    "via_trade": false
+  },
+  {
+    "categoryId": "89",
+    "group_id": "24519",
+    "product_id": "661934",
+    "name": "Spiritforged - Booster Display",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/661934",
+    "quantity": 1,
+    "latest_price": 164.12,
+    "total_value": 164.12,
+    "avg_buy_price": 125.25,
     "via_trade": false
   },
   {
@@ -319,22 +332,9 @@
     "imageUrl": "",
     "url": "",
     "quantity": 1,
-    "latest_price": 156.5,
-    "total_value": 156.5,
+    "latest_price": 156.13,
+    "total_value": 156.13,
     "avg_buy_price": 66.14,
-    "via_trade": false
-  },
-  {
-    "categoryId": "89",
-    "group_id": "24519",
-    "product_id": "661934",
-    "name": "Spiritforged - Booster Display",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/661934",
-    "quantity": 1,
-    "latest_price": 155.97,
-    "total_value": 155.97,
-    "avg_buy_price": 125.25,
     "via_trade": false
   },
   {
@@ -345,8 +345,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg",
     "url": "https://www.tcgplayer.com/product/565232",
     "quantity": 1,
-    "latest_price": 136.94,
-    "total_value": 136.94,
+    "latest_price": 136.86,
+    "total_value": 136.86,
     "avg_buy_price": 18.98,
     "via_trade": false
   },
@@ -358,8 +358,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565630_200w.jpg",
     "url": "https://www.tcgplayer.com/product/565630/pokemon-sv08-surging-sparks-surging-sparks-elite-trainer-box",
     "quantity": 2,
-    "latest_price": 134.47,
-    "total_value": 268.94,
+    "latest_price": 133.71,
+    "total_value": 267.42,
     "avg_buy_price": 35.21,
     "via_trade": false
   },
@@ -371,8 +371,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672404_200w.jpg",
     "url": "https://www.tcgplayer.com/product/672404",
     "quantity": 2,
-    "latest_price": 123.08,
-    "total_value": 246.16,
+    "latest_price": 123.27,
+    "total_value": 246.54,
     "avg_buy_price": 66.14,
     "via_trade": false
   },
@@ -410,8 +410,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg",
     "url": "https://www.tcgplayer.com/product/600518/pokemon-sv-prismatic-evolutions-prismatic-evolutions-booster-bundle",
     "quantity": 13,
-    "latest_price": 85.0,
-    "total_value": 1105.0,
+    "latest_price": 85.07,
+    "total_value": 1105.91,
     "avg_buy_price": 32.27,
     "via_trade": false
   },
@@ -423,8 +423,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630431_200w.jpg",
     "url": "https://www.tcgplayer.com/product/630431/pokemon-sv-black-bolt-black-bolt-booster-bundle",
     "quantity": 2,
-    "latest_price": 82.49,
-    "total_value": 164.98,
+    "latest_price": 82.56,
+    "total_value": 165.12,
     "avg_buy_price": 29.7,
     "via_trade": false
   },
@@ -449,8 +449,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502001_200w.jpg",
     "url": "https://www.tcgplayer.com/product/502001/pokemon-sv-scarlet-and-violet-151-151-poster-collection",
     "quantity": 1,
-    "latest_price": 80.38,
-    "total_value": 80.38,
+    "latest_price": 80.63,
+    "total_value": 80.63,
     "avg_buy_price": 5.48,
     "via_trade": false
   },
@@ -462,8 +462,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/606881_200w.jpg",
     "url": "https://www.tcgplayer.com/product/606881/pokemon-sv-prismatic-evolutions-prismatic-evolutions-accessory-pouch-special-collection",
     "quantity": 1,
-    "latest_price": 79.94,
-    "total_value": 79.94,
+    "latest_price": 79.36,
+    "total_value": 79.36,
     "avg_buy_price": 24.08,
     "via_trade": false
   },
@@ -475,35 +475,9 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/662770_200w.jpg",
     "url": "https://www.tcgplayer.com/product/662770/pokemon-miscellaneous-cards-and-products-snorlax-ex-and-blissey-ex-special-collection",
     "quantity": 3,
-    "latest_price": 77.72,
-    "total_value": 233.16,
+    "latest_price": 78.16,
+    "total_value": 234.48,
     "avg_buy_price": 25.05,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24326",
-    "product_id": "630696",
-    "name": "White Flare Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630696_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/630696/pokemon-sv-white-flare-white-flare-booster-bundle",
-    "quantity": 3,
-    "latest_price": 76.17,
-    "total_value": 228.51,
-    "avg_buy_price": 31.85,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24269",
-    "product_id": "625670",
-    "name": "Destined Rivals Booster Bundle",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/625670_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/625670/pokemon-sv10-destined-rivals-destined-rivals-booster-bundle",
-    "quantity": 6,
-    "latest_price": 74.93,
-    "total_value": 449.58,
-    "avg_buy_price": 30.45,
     "via_trade": false
   },
   {
@@ -514,9 +488,22 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654160_200w.jpg",
     "url": "https://www.tcgplayer.com/product/654160/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-bundle",
     "quantity": 1,
-    "latest_price": 74.92,
-    "total_value": 74.92,
+    "latest_price": 75.16,
+    "total_value": 75.16,
     "avg_buy_price": 24.65,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24326",
+    "product_id": "630696",
+    "name": "White Flare Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630696_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/630696/pokemon-sv-white-flare-white-flare-booster-bundle",
+    "quantity": 3,
+    "latest_price": 75.12,
+    "total_value": 225.36,
+    "avg_buy_price": 31.85,
     "via_trade": false
   },
   {
@@ -534,14 +521,27 @@
   },
   {
     "categoryId": "3",
+    "group_id": "24269",
+    "product_id": "625670",
+    "name": "Destined Rivals Booster Bundle",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/625670_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/625670/pokemon-sv10-destined-rivals-destined-rivals-booster-bundle",
+    "quantity": 6,
+    "latest_price": 72.17,
+    "total_value": 433.02,
+    "avg_buy_price": 30.45,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
     "group_id": "23821",
     "product_id": "593466",
     "name": "Prismatic Evolutions Surprise Box",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593466_200w.jpg",
     "url": "https://www.tcgplayer.com/product/593466/pokemon-sv-prismatic-evolutions-prismatic-evolutions-surprise-box",
     "quantity": 1,
-    "latest_price": 70.87,
-    "total_value": 70.87,
+    "latest_price": 70.71,
+    "total_value": 70.71,
     "avg_buy_price": 24.37,
     "via_trade": false
   },
@@ -579,8 +579,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644362_200w.jpg",
     "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle",
     "quantity": 2,
-    "latest_price": 63.34,
-    "total_value": 126.68,
+    "latest_price": 63.38,
+    "total_value": 126.76,
     "avg_buy_price": 25.79,
     "via_trade": false
   },
@@ -670,8 +670,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668590_200w.jpg",
     "url": "https://www.tcgplayer.com/product/668590",
     "quantity": 1,
-    "latest_price": 36.09,
-    "total_value": 36.09,
+    "latest_price": 36.24,
+    "total_value": 36.24,
     "avg_buy_price": 19.83,
     "via_trade": false
   },
@@ -686,6 +686,19 @@
     "latest_price": 34.35,
     "total_value": 34.35,
     "avg_buy_price": 11.01,
+    "via_trade": false
+  },
+  {
+    "categoryId": "80",
+    "group_id": "24570",
+    "product_id": "670177",
+    "name": "Starter Deck EX: The Phase of Evolution",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670177_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/670177",
+    "quantity": 1,
+    "latest_price": 33.39,
+    "total_value": 33.39,
+    "avg_buy_price": 26.45,
     "via_trade": false
   },
   {
@@ -715,19 +728,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "80",
-    "group_id": "24570",
-    "product_id": "670177",
-    "name": "Starter Deck EX: The Phase of Evolution",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670177_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/670177",
-    "quantity": 1,
-    "latest_price": 32.47,
-    "total_value": 32.47,
-    "avg_buy_price": 26.45,
-    "via_trade": false
-  },
-  {
     "categoryId": "3",
     "group_id": "24541",
     "product_id": "668534",
@@ -748,8 +748,8 @@
     "imageUrl": "",
     "url": "",
     "quantity": 1,
-    "latest_price": 31.38,
-    "total_value": 31.38,
+    "latest_price": 32.09,
+    "total_value": 32.09,
     "avg_buy_price": 13.2,
     "via_trade": false
   },
@@ -891,8 +891,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666576_200w.jpg",
     "url": "https://www.tcgplayer.com/product/666576",
     "quantity": 4,
-    "latest_price": 11.61,
-    "total_value": 46.44,
+    "latest_price": 11.68,
+    "total_value": 46.72,
     "avg_buy_price": 5.5,
     "via_trade": false
   },
@@ -917,8 +917,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg",
     "url": "https://www.tcgplayer.com/product/644352",
     "quantity": 1,
-    "latest_price": 8.35,
-    "total_value": 8.35,
+    "latest_price": 8.41,
+    "total_value": 8.41,
     "avg_buy_price": 4.95,
     "via_trade": false
   },
@@ -930,8 +930,8 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
     "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
     "quantity": 6,
-    "latest_price": 8.03,
-    "total_value": 48.18,
+    "latest_price": 8.21,
+    "total_value": 49.26,
     "avg_buy_price": 4.93,
     "via_trade": false
   },
@@ -943,8 +943,8 @@
     "imageUrl": "",
     "url": "",
     "quantity": 3,
-    "latest_price": 7.22,
-    "total_value": 21.66,
+    "latest_price": 7.21,
+    "total_value": 21.63,
     "avg_buy_price": 4.95,
     "via_trade": false
   },
@@ -956,9 +956,9 @@
     "imageUrl": "",
     "url": "",
     "quantity": 4,
-    "latest_price": 7.11,
-    "total_value": 28.44,
-    "avg_buy_price": 4.95,
+    "latest_price": 7.08,
+    "total_value": 28.32,
+    "avg_buy_price": 5.12,
     "via_trade": false
   }
 ]
