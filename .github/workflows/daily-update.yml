@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: daily-price-update
+  cancel-in-progress: true
+
 jobs:
   update-prices:
     runs-on: ubuntu-latest
@@ -61,6 +65,6 @@ jobs:
         git diff --staged --quiet || git commit -m "Daily price update $(date -u +'%Y-%m-%d') [skip ci]"
         git push origin main || {
           echo "Push failed, retrying with rebase..."
-          git pull --rebase origin main
+          git pull --rebase -X ours origin main
           git push origin main
         }
