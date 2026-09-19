@@ -9,6 +9,22 @@ function escapeHtml(str) {
 
 const fmtUSD = (v) => '$' + Number(v || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
+function formatPercent(value, includeSign = false) {
+    if (value == null || isNaN(value)) return '—';
+    let num = Number(value);
+    if (Math.abs(num) < 0.05) num = 0;
+    const abs = Math.abs(num);
+    const sign = num > 0 ? (includeSign ? '+' : '') : (num < 0 ? '-' : (includeSign ? '+' : ''));
+
+    // If small value (< 10): 1 decimal point (e.g. 0.5%, 4.9%, 9.8%)
+    // If >= 10: whole number (e.g. 10%, 82%, 148%, 11,328%)
+    if (Math.round(abs * 10) / 10 < 10) {
+        return `${sign}${abs.toFixed(1)}%`;
+    } else {
+        return `${sign}${Math.round(abs).toLocaleString('en-US')}%`;
+    }
+}
+
 let currentSnapshot = null;
 let activeTimeframe = 'ALL';
 let activeAllocationMode = 'franchise';
@@ -46,6 +62,11 @@ function renderAllocationChart(holdings, mode = 'franchise') {
     const sortedEntries = Object.entries(groupTotals).sort((a, b) => b[1] - a[1]);
     const labels = sortedEntries.map(e => e[0]);
     const values = sortedEntries.map(e => Math.round(e[1] * 100) / 100);
+    const totalVal = values.reduce((a, b) => a + b, 0);
+    const customShares = values.map(v => {
+        const pct = totalVal > 0 ? (v / totalVal) * 100 : 0;
+        return formatPercent(pct, false);
+    });
 
     const franchiseColors = {
         'Pokémon (English)': '#3b82f6',
@@ -73,14 +94,15 @@ function renderAllocationChart(holdings, mode = 'franchise') {
     Plotly.react('allocationChart', [{
         labels: labels,
         values: values,
+        customdata: customShares,
         type: 'pie',
         hole: 0.55,
-        textinfo: 'percent',
+        texttemplate: '%{customdata}',
         textposition: 'inside',
         hoverinfo: 'label+value+percent',
-        hovertemplate: '<b>%{label}</b><br>Value: $%{value:,.2f}<br>Share: %{percent}<extra></extra>',
+        hovertemplate: '<b>%{label}</b><br>Value: $%{value:,.2f}<br>Share: %{customdata}<extra></extra>',
         marker: { colors: colors, line: { color: '#0f172a', width: 2 } },
-        textfont: { color: '#ffffff', size: 12, family: 'Inter, sans-serif' }
+        textfont: { color: '#ffffff', size: 12, family: 'Inter, system-ui, sans-serif' }
     }], {
         margin: { t: 10, r: 10, b: 30, l: 10 },
         showlegend: true,
@@ -91,7 +113,15 @@ function renderAllocationChart(holdings, mode = 'franchise') {
             y: -0.15,
             font: { color: '#94a3b8', size: 12 }
         },
-        hoverlabel: { bgcolor: '#0f1114', bordercolor: '#334155', font: { color: '#e6eef8', size: 12 } },
+        hoverlabel: {
+            bgcolor: '#1e293b',
+            bordercolor: '#475569',
+            font: {
+                color: '#f8fafc',
+                size: 13,
+                family: 'Inter, system-ui, -apple-system, sans-serif'
+            }
+        },
         plot_bgcolor: 'rgba(0,0,0,0)',
         paper_bgcolor: 'rgba(0,0,0,0)',
     }, { responsive: true, displayModeBar: false });
@@ -133,8 +163,9 @@ function updatePortfolioChart(summary, timeframe = 'ALL') {
         const diff = endVal - startVal;
         const diffPct = startVal > 0 ? (diff / startVal) * 100 : 0;
         const sign = diff >= 0 ? '+' : '';
-        const color = diff >= 0 ? '#10b981' : '#ef4444';
-        perfEl.innerHTML = `<span style="color:${color}">${timeframe}: ${sign}${fmtUSD(diff)} (${sign}${diffPct.toFixed(1)}%)</span>`;
+        const color = Math.abs(diffPct) < 0.05 ? '#94a3b8' : (diff >= 0 ? '#10b981' : '#ef4444');
+        const diffPctStr = formatPercent(diffPct, true);
+        perfEl.innerHTML = `<span style="color:${color}">${timeframe}: ${sign}${fmtUSD(diff)} (${diffPctStr})</span>`;
     } else if (perfEl) {
         perfEl.textContent = '';
     }
@@ -164,7 +195,15 @@ function updatePortfolioChart(summary, timeframe = 'ALL') {
         yaxis: { title: '', tickprefix: '$', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
         legend: { x: 0.02, y: 0.98, font: { color: '#e2e8f0' } },
         hovermode: 'x unified',
-        hoverlabel: { bgcolor: '#0f1114', bordercolor: '#222222', font: { color: '#e6eef8', size: 12 } },
+        hoverlabel: {
+            bgcolor: '#1e293b',
+            bordercolor: '#475569',
+            font: {
+                color: '#f8fafc',
+                size: 13,
+                family: 'Inter, system-ui, -apple-system, sans-serif'
+            }
+        },
         plot_bgcolor: 'rgba(0,0,0,0)',
         paper_bgcolor: 'rgba(0,0,0,0)',
         font: { color: '#e2e8f0' },
@@ -180,12 +219,12 @@ function renderDashboard(snapshot) {
     const latestCost = latestDate ? Number(summary[latestDate].cost_basis || 0) : 0;
     const gainLoss = latestVal - latestCost;
     const returnPct = latestCost > 0 ? (gainLoss / latestCost) * 100 : 0;
-    const glColour = gainLoss >= 0 ? '#10b981' : '#ef4444';
+    const glColour = Math.abs(returnPct) < 0.05 ? '#94a3b8' : (gainLoss >= 0 ? '#10b981' : '#ef4444');
 
     document.getElementById('stat-total-value').textContent = fmtUSD(latestVal);
     document.getElementById('stat-cost-basis').textContent = fmtUSD(latestCost);
     const retEl = document.getElementById('stat-return-pct');
-    retEl.textContent = (returnPct >= 0 ? '+' : '') + returnPct.toFixed(1) + '%';
+    retEl.textContent = formatPercent(returnPct, true);
     retEl.style.color = glColour;
 
     const tbody = document.getElementById('holdings-body');
@@ -206,15 +245,15 @@ function renderDashboard(snapshot) {
             let gainPctHtml = '—';
             if (item.avg_buy_price != null && item.avg_buy_price > 0) {
                 const pct = ((item.latest_price - item.avg_buy_price) / item.avg_buy_price) * 100;
-                const glColor = pct >= 0 ? '#10b981' : '#ef4444';
-                gainPctHtml = `<span style="color:${glColor}">${pct >= 0 ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>`;
+                const glColor = Math.abs(pct) < 0.05 ? '#94a3b8' : (pct >= 0 ? '#10b981' : '#ef4444');
+                gainPctHtml = `<span style="color:${glColor}">${formatPercent(pct, true)}</span>`;
             }
 
             // Directly rendered precomputed 1-week change (zero network requests)
             let weekChangeHtml = '—';
             if (item.change_7d_pct != null) {
-                const wColor = item.change_7d_pct >= 0 ? '#10b981' : '#ef4444';
-                weekChangeHtml = `<span style="color:${wColor}">${item.change_7d_pct >= 0 ? '+' : ''}${item.change_7d_pct.toFixed(1)}%</span>`;
+                const wColor = Math.abs(item.change_7d_pct) < 0.05 ? '#94a3b8' : (item.change_7d_pct >= 0 ? '#10b981' : '#ef4444');
+                weekChangeHtml = `<span style="color:${wColor}">${formatPercent(item.change_7d_pct, true)}</span>`;
             }
 
             return `<tr data-product-id="${item.product_id}" data-category-id="${item.categoryId}" data-group-id="${item.group_id}" data-latest-price="${item.latest_price}">

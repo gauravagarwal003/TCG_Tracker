@@ -40,8 +40,10 @@
                 {% else %}
                 {% set gain_loss = total_value - total_cost_basis %}
                 {% set return_pct = (gain_loss / total_cost_basis * 100) if total_cost_basis > 0 else 0 %}
+                {% set abs_ret = return_pct|abs %}
+                {% set ret_sign = '+' if return_pct > 0 else ('-' if return_pct < 0 else '') %}
                 <div class="stat-value" style="color:{{ '#10b981' if return_pct >= 0 else '#ef4444' }}">
-                    {{ '+' if return_pct >= 0 else '' }}{{ '%.1f'|format(return_pct) }}%
+                    {{ ret_sign }}{{ '%.1f'|format(abs_ret) if abs_ret < 10 else '{:,.0f}'.format(abs_ret) }}%
                 </div>
                 {% endif %}
             </div>
@@ -116,8 +118,9 @@
                                 <td class="text-end">
                                 {% if item.avg_buy_price is not none and item.avg_buy_price > 0 %}
                                     {% set unit_pct = (item.latest_price - item.avg_buy_price) / item.avg_buy_price * 100 %}
-                                    {% set sign = "+" if unit_pct >= 0 else "-" %}
-                                    <span style="color:{% if unit_pct >= 0 %}#10b981{% else %}#ef4444{% endif %}">{{ sign }}{{ "%.1f"|format(unit_pct|abs) }}%</span>
+                                    {% set abs_u = unit_pct|abs %}
+                                    {% set u_sign = "+" if unit_pct > 0 else ("-" if unit_pct < 0 else "") %}
+                                    <span style="color:{% if unit_pct >= 0 %}#10b981{% else %}#ef4444{% endif %}">{{ u_sign }}{{ "%.1f"|format(abs_u) if abs_u < 10 else "{:,.0f}".format(abs_u) }}%</span>
                                 {% else %}—{% endif %}
                                 </td>
                                 <td class="text-end">—</td>
@@ -148,12 +151,26 @@ function getWeekAgoDate() {
     return weekAgo.toISOString().split('T')[0]; // YYYY-MM-DD
 }
 
+function formatPercent(value, includeSign = false) {
+    if (value == null || isNaN(value)) return '—';
+    let num = Number(value);
+    if (Math.abs(num) < 0.05) num = 0;
+    const abs = Math.abs(num);
+    const sign = num > 0 ? (includeSign ? '+' : '') : (num < 0 ? '-' : (includeSign ? '+' : ''));
+
+    if (Math.round(abs * 10) / 10 < 10) {
+        return `${sign}${abs.toFixed(1)}%`;
+    } else {
+        return `${sign}${Math.round(abs).toLocaleString('en-US')}%`;
+    }
+}
+
 function formatWeeklyChange(weekAgoPrice, currentPrice) {
     if (weekAgoPrice == null) return '—';
     const change = currentPrice - weekAgoPrice;
     const changePct = (change / weekAgoPrice) * 100;
-    const color = changePct >= 0 ? '#10b981' : '#ef4444';
-    return `<span style="color:${color}">${changePct >= 0 ? '+' : ''}${changePct.toFixed(1)}%</span>`;
+    const color = Math.abs(changePct) < 0.05 ? '#94a3b8' : (changePct >= 0 ? '#10b981' : '#ef4444');
+    return `<span style="color:${color}">${formatPercent(changePct, true)}</span>`;
 }
 
 async function loadWeeklyChanges() {
@@ -213,13 +230,13 @@ Promise.all([
     const latestCost = latestDate ? summary[latestDate].cost_basis  : 0;
     const gainLoss   = latestVal - latestCost;
     const returnPct  = latestCost > 0 ? (gainLoss / latestCost) * 100 : 0;
-    const glColour   = gainLoss >= 0 ? '#10b981' : '#ef4444';
+    const glColour   = Math.abs(returnPct) < 0.05 ? '#94a3b8' : (gainLoss >= 0 ? '#10b981' : '#ef4444');
 
     document.getElementById('stat-total-value').textContent = fmtUSD(latestVal);
     document.getElementById('stat-cost-basis').textContent  = fmtUSD(latestCost);
 
     const retEl = document.getElementById('stat-return-pct');
-    retEl.textContent = (returnPct >= 0 ? '+' : '') + returnPct.toFixed(1) + '%';
+    retEl.textContent = formatPercent(returnPct, true);
     retEl.style.color = glColour;
 
     // --- Holdings table ---
@@ -243,8 +260,8 @@ Promise.all([
             let gainPctHtml = '—';
             if (item.avg_buy_price != null && item.avg_buy_price > 0) {
                 const pct = (item.latest_price - item.avg_buy_price) / item.avg_buy_price * 100;
-                const glColor = pct >= 0 ? '#10b981' : '#ef4444';
-                gainPctHtml = `<span style="color:${glColor}">${pct >= 0 ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>`;
+                const glColor = Math.abs(pct) < 0.05 ? '#94a3b8' : (pct >= 0 ? '#10b981' : '#ef4444');
+                gainPctHtml = `<span style="color:${glColor}">${formatPercent(pct, true)}</span>`;
             }
             return `<tr data-product-id="${item.product_id}" data-category-id="${item.categoryId}" data-group-id="${item.group_id}" data-latest-price="${item.latest_price}">
                 <td>${thumb}</td>

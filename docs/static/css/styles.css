@@ -493,20 +493,6 @@ a:hover {
     color: var(--primary-hover);
     text-decoration: underline;
 }
-.plotly .hovertext,
-.plotly .hoverlabel,
-.plotly .hoverlayer text,
-.plotly .hoverlayer tspan {
-    fill: #e6eef8 !important;
-}
-.plotly .hovertext path,
-.plotly .hovertext rect,
-.plotly .hoverlabel rect {
-    fill: #0f1114 !important;
-    stroke: #222 !important;
-}
-.plotly .cursor-point { stroke: #8ab4ff !important; }
-
 /* Thumbnails and placeholders */
 html[data-bs-theme="dark"] .product-thumb,
 html[data-bs-theme="dark"] .product-thumb-placeholder {
@@ -521,42 +507,50 @@ html[data-bs-theme="dark"] .bg-light {
     color: var(--text-primary) !important;
 }
 
-/* Strong Plotly hover label overrides to ensure contrast */
-.js-plotly-plot .hovertext,
-.js-plotly-plot .hoverlabel,
-.js-plotly-plot .hoverlayer .hovertext,
-.js-plotly-plot .hoverlayer .hoverlabel,
-.plotly .hovertext,
-.plotly .hoverlabel {
-    fill: #e6eef8 !important;
-    color: #e6eef8 !important;
-    stroke: #222 !important;
-}
-
-.js-plotly-plot .hovertext rect,
-.js-plotly-plot .hoverlabel rect,
-.plotly .hovertext rect,
-.plotly .hoverlabel rect,
-.js-plotly-plot .hovertext path,
-.plotly .hovertext path {
-    fill: #0f1114 !important;
-    stroke: #222 !important;
-}
-
+/* Plotly Hover Label Overrides - Crisp, sharp, stroke-free text */
 .js-plotly-plot .hoverlayer text,
 .js-plotly-plot .hoverlayer tspan,
-.js-plotly-plot .hoverlabel > text tspan,
-.js-plotly-plot .hoverlabel > tspan {
-    fill: #e6eef8 !important;
+.plotly .hoverlayer text,
+.plotly .hoverlayer tspan,
+.js-plotly-plot .hovertext text,
+.js-plotly-plot .hovertext tspan,
+.plotly .hovertext text,
+.plotly .hovertext tspan {
+    fill: #f8fafc !important;
+    stroke: none !important;
+    color: #f8fafc !important;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: geometricPrecision !important;
+}
+
+.js-plotly-plot .hovertext,
+.js-plotly-plot .hoverlabel,
+.plotly .hovertext,
+.plotly .hoverlabel {
+    stroke: none !important;
+}
+
+.js-plotly-plot .hovertext path,
+.js-plotly-plot .hovertext rect,
+.plotly .hovertext path,
+.plotly .hovertext rect,
+.plotly .hoverlabel rect {
+    fill: #1e293b !important;
+    stroke: #475569 !important;
+    stroke-width: 1px !important;
 }
 
 /* If Plotly uses HTML hover containers */
 .plotly .hoverlayer .infolayer,
 .plotly .hoverlayer .hoverinfo,
 .plotly .hoverlabel {
-    background-color: #0f1114 !important;
-    color: #e6eef8 !important;
-    border: 1px solid #222 !important;
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
 }
 
 /* Cursor point color */

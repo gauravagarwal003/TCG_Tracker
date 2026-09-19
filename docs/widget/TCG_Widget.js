@@ -30,6 +30,20 @@ function fmtUSD(val) {
     return "$" + Number(val || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+function formatPercent(value, includeSign = false) {
+    if (value == null || isNaN(value)) return "—";
+    let num = Number(value);
+    if (Math.abs(num) < 0.05) num = 0;
+    const abs = Math.abs(num);
+    const sign = num > 0 ? (includeSign ? "+" : "") : (num < 0 ? "-" : (includeSign ? "+" : ""));
+
+    if (Math.round(abs * 10) / 10 < 10) {
+        return `${sign}${abs.toFixed(1)}%`;
+    } else {
+        return `${sign}${Math.round(abs).toLocaleString("en-US")}%`;
+    }
+}
+
 function drawSparkline(points, width, height, strokeColor = "#10b981") {
     const dc = new DrawContext();
     dc.size = new Size(width, height);
@@ -88,8 +102,8 @@ async function createWidget(data) {
 
     headerStack.addSpacer();
 
-    const returnBadge = headerStack.addText((data.return_pct >= 0 ? "+" : "") + data.return_pct.toFixed(1) + "%");
-    returnBadge.textColor = data.return_pct >= 0 ? new Color("#10b981") : new Color("#ef4444");
+    const returnBadge = headerStack.addText(formatPercent(data.return_pct, true));
+    returnBadge.textColor = Math.abs(data.return_pct) < 0.05 ? new Color("#94a3b8") : (data.return_pct >= 0 ? new Color("#10b981") : new Color("#ef4444"));
     returnBadge.font = Font.boldSystemFont(11);
 
     widget.addSpacer(4);
@@ -101,8 +115,9 @@ async function createWidget(data) {
 
     // 24h change
     const daySign = data.day_value_change >= 0 ? "+" : "";
-    const dayColor = data.day_value_change >= 0 ? new Color("#10b981") : new Color("#ef4444");
-    const dayText = widget.addText(`${daySign}${fmtUSD(data.day_value_change)} (${daySign}${data.day_gain_loss_pct.toFixed(1)}%) 24h`);
+    const dayColor = Math.abs(data.day_gain_loss_pct) < 0.05 ? new Color("#94a3b8") : (data.day_value_change >= 0 ? new Color("#10b981") : new Color("#ef4444"));
+    const dayPctStr = formatPercent(data.day_gain_loss_pct, true);
+    const dayText = widget.addText(`${daySign}${fmtUSD(data.day_value_change)} (${dayPctStr}) 24h`);
     dayText.textColor = dayColor;
     dayText.font = Font.mediumSystemFont(11);
 
@@ -136,7 +151,7 @@ async function createWidget(data) {
 
         gainerStack.addSpacer();
 
-        const gainerPct = gainerStack.addText("+" + Number(data.top_gainer.change_pct).toFixed(1) + "%");
+        const gainerPct = gainerStack.addText(formatPercent(data.top_gainer.change_pct, true));
         gainerPct.textColor = new Color("#10b981");
         gainerPct.font = Font.boldSystemFont(11);
     }
