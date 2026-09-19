@@ -363,3 +363,87 @@ def get_owner_transactions(db=None, owner_uid: Optional[str] = None) -> List[Dic
         )
     )
     return transactions
+
+
+def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions: Optional[List[Dict]] = None) -> List[Dict]:
+    """
+    Ensure any transactions in local transactions.json are synced into Firestore,
+    and any in Firestore are reflected locally.
+    Returns the complete unified list of transactions.
+    """
+    if local_transactions is None:
+        from engine import load_transactions
+        local_transactions = load_transactions()
+
+    firestore_txns = get_owner_transactions(db, owner_uid)
+    existing_ids = {t.get("id") for t in firestore_txns if t.get("id")}
+
+    def sig(t):
+        items = tuple(
+            sorted(
+                (
+                    str(i.get("categoryId", 3)),
+                    str(i.get("group_id")),
+                    str(i.get("product_id")),
+                    int(i.get("quantity", 0)),
+                )
+                for i in t.get("items", []) + t.get("items_in", []) + t.get("items_out", [])
+            )
+        )
+        return (
+            t.get("date_received"),
+            str(t.get("type", "")).upper(),
+            round(float(t.get("amount") or 0.0), 2),
+            items,
+        )
+
+    existing_sigs = {sig(t) for t in firestore_txns}
+
+    missing_in_firestore = []
+    for lt in local_transactions or []:
+        if lt.get("id") and lt["id"] in existing_ids:
+            continue
+        if sig(lt) in existing_sigs:
+            continue
+        missing_in_firestore.append(lt)
+
+    if missing_in_firestore:
+        print(f"  Uploading {len(missing_in_firestore)} transactions to Firestore for uid={owner_uid}...")
+        now = date.today().isoformat()
+        txns_ref = db.collection("users").document(owner_uid).collection("transactions")
+        batch = db.batch()
+        count = 0
+        for txn in missing_in_firestore:
+            tid = str(txn.get("id") or "").strip()
+            if not tid:
+                doc_ref = txns_ref.document()
+                tid = doc_ref.id
+                txn["id"] = tid
+            else:
+                doc_ref = txns_ref.document(tid)
+
+            payload = {
+                **txn,
+                "id": tid,
+                "created_at": txn.get("created_at") or now,
+                "updated_at": txn.get("updated_at") or now,
+            }
+            batch.set(doc_ref, payload)
+            firestore_txns.append(payload)
+            count += 1
+            if count >= 400:
+                batch.commit()
+                batch = db.batch()
+                count = 0
+        if count > 0:
+            batch.commit()
+
+    firestore_txns.sort(
+        key=lambda txn: (
+            str(txn.get("date_received") or ""),
+            str(txn.get("date_purchased") or ""),
+            str(txn.get("id") or ""),
+        )
+    )
+    return firestore_txns
+

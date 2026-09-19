@@ -204,6 +204,7 @@ def firebase_union_daily_run():
             get_owner_transactions,
             get_union_product_date_ranges,
             get_union_product_keys,
+            sync_local_transactions_to_firestore,
         )
     except Exception as e:
         raise RuntimeError(
@@ -232,16 +233,16 @@ def firebase_union_daily_run():
             f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
         )
 
-    # Rebuild public assets from the same Firestore transaction source that
-    # powers the shared price fetch, otherwise the widget can lag behind the
-    # Firebase-backed app after local JSON stops being the source of truth.
+    # Rebuild public assets from the unified Firestore and local transaction source
     print("\n--- Step 3: Rebuilding local derived assets ---")
     owner_uid = discover_owner_uid(db)
-    transactions = get_owner_transactions(db, owner_uid=owner_uid)
-    print(f"  Loaded {len(transactions)} owner transactions from Firestore for uid={owner_uid}")
+    local_txns = load_transactions()
+    transactions = sync_local_transactions_to_firestore(db, owner_uid=owner_uid, local_transactions=local_txns)
+    print(f"  Unified {len(transactions)} owner transactions for uid={owner_uid}")
     summary = derive_daily_summary(transactions)
     save_daily_summary(summary)
     generate_static_site(transactions, summary)
+
 
     print("\n✅ Firebase union daily run complete.")
 
