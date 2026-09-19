@@ -9,46 +9,170 @@ function escapeHtml(str) {
 
 const fmtUSD = (v) => '$' + Number(v || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-function getWeekAgoDate() {
-    const today = new Date();
-    const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
-    return weekAgo.toISOString().split('T')[0];
+let currentSnapshot = null;
+let activeTimeframe = 'ALL';
+let activeAllocationMode = 'franchise';
+
+function getFranchiseName(catId) {
+    const id = String(catId);
+    if (id === '3') return 'Pokémon (English)';
+    if (id === '85') return 'Pokémon (Japanese)';
+    if (id === '68') return 'One Piece';
+    if (id === '80') return 'Dragon Ball Super';
+    return 'Other TCGs';
 }
 
-function formatWeeklyChange(weekAgoPrice, currentPrice) {
-    if (weekAgoPrice == null) return '—';
-    const change = currentPrice - weekAgoPrice;
-    const changePct = (change / weekAgoPrice) * 100;
-    const color = changePct >= 0 ? '#10b981' : '#ef4444';
-    return `<span style="color:${color}">${changePct >= 0 ? '+' : ''}${changePct.toFixed(1)}%</span>`;
+function getProductType(name) {
+    const n = (name || '').toLowerCase();
+    if (n.includes('booster box') || n.includes('booster display') || n.includes('high class booster')) return 'Booster Boxes';
+    if (n.includes('elite trainer box') || n.includes('etb')) return 'Elite Trainer Boxes';
+    if (n.includes('booster bundle')) return 'Booster Bundles';
+    if (n.includes('tin')) return 'Tins';
+    if (n.includes('collection') || n.includes('poster') || n.includes('surprise box') || n.includes('pouch')) return 'Collection Sets';
+    if (n.includes('blister') || n.includes('sleeved') || n.includes('booster pack')) return 'Packs & Blisters';
+    if (n.includes('deck')) return 'Starter Decks';
+    return 'Other Products';
 }
 
-async function loadWeeklyChanges() {
-    const rows = document.querySelectorAll('tbody tr[data-product-id]');
-    const weekAgoDate = getWeekAgoDate();
+function renderAllocationChart(holdings, mode = 'franchise') {
+    if (!window.Plotly || !holdings || holdings.length === 0) return;
 
-    rows.forEach(async (row) => {
-        const categoryId = row.getAttribute('data-category-id');
-        const groupId = row.getAttribute('data-group-id');
-        const productId = row.getAttribute('data-product-id');
-        const currentPrice = parseFloat(row.getAttribute('data-latest-price'));
+    const groupTotals = {};
+    for (const item of holdings) {
+        const key = mode === 'franchise' ? getFranchiseName(item.categoryId) : getProductType(item.name);
+        groupTotals[key] = (groupTotals[key] || 0) + Number(item.total_value || 0);
+    }
 
-        try {
-            const response = await fetch(`prices/${categoryId}/${groupId}/${productId}.json?cb=${Date.now()}`);
-            if (!response.ok) return;
-            const priceData = await response.json();
-            const weekAgoPrice = priceData[weekAgoDate];
-            const cell = row.querySelector('.week-change-cell');
-            if (cell) {
-                cell.innerHTML = formatWeeklyChange(weekAgoPrice, currentPrice);
-            }
-        } catch (error) {
-            console.error(`Error loading prices for product ${productId}:`, error);
-        }
-    });
+    const sortedEntries = Object.entries(groupTotals).sort((a, b) => b[1] - a[1]);
+    const labels = sortedEntries.map(e => e[0]);
+    const values = sortedEntries.map(e => Math.round(e[1] * 100) / 100);
+
+    const franchiseColors = {
+        'Pokémon (English)': '#3b82f6',
+        'Pokémon (Japanese)': '#8b5cf6',
+        'One Piece': '#f59e0b',
+        'Dragon Ball Super': '#ef4444',
+        'Other TCGs': '#10b981'
+    };
+
+    const typeColors = {
+        'Booster Boxes': '#3b82f6',
+        'Elite Trainer Boxes': '#8b5cf6',
+        'Booster Bundles': '#10b981',
+        'Collection Sets': '#ec4899',
+        'Tins': '#f59e0b',
+        'Packs & Blisters': '#06b6d4',
+        'Starter Decks': '#64748b',
+        'Other Products': '#a855f7'
+    };
+
+    const colorMap = mode === 'franchise' ? franchiseColors : typeColors;
+    const defaultPalette = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#06b6d4', '#64748b', '#a855f7'];
+    const colors = labels.map((l, i) => colorMap[l] || defaultPalette[i % defaultPalette.length]);
+
+    Plotly.react('allocationChart', [{
+        labels: labels,
+        values: values,
+        type: 'pie',
+        hole: 0.55,
+        textinfo: 'percent',
+        textposition: 'inside',
+        hoverinfo: 'label+value+percent',
+        hovertemplate: '<b>%{label}</b><br>Value: $%{value:,.2f}<br>Share: %{percent}<extra></extra>',
+        marker: { colors: colors, line: { color: '#0f172a', width: 2 } },
+        textfont: { color: '#ffffff', size: 12, family: 'Inter, sans-serif' }
+    }], {
+        margin: { t: 10, r: 10, b: 30, l: 10 },
+        showlegend: true,
+        legend: {
+            orientation: 'h',
+            x: 0.5,
+            xanchor: 'center',
+            y: -0.15,
+            font: { color: '#94a3b8', size: 12 }
+        },
+        hoverlabel: { bgcolor: '#0f1114', bordercolor: '#334155', font: { color: '#e6eef8', size: 12 } },
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+    }, { responsive: true, displayModeBar: false });
+}
+
+function updatePortfolioChart(summary, timeframe = 'ALL') {
+    if (!window.Plotly || !summary) return;
+
+    const summaryDates = Object.keys(summary).sort();
+    if (summaryDates.length === 0) return;
+
+    const latestDate = summaryDates[summaryDates.length - 1];
+    let startDate = summaryDates[0];
+
+    const targetDate = new Date(latestDate);
+    if (timeframe === '1M') targetDate.setUTCDate(targetDate.getUTCDate() - 30);
+    else if (timeframe === '3M') targetDate.setUTCDate(targetDate.getUTCDate() - 90);
+    else if (timeframe === '6M') targetDate.setUTCDate(targetDate.getUTCDate() - 180);
+    else if (timeframe === '1Y') targetDate.setUTCDate(targetDate.getUTCDate() - 365);
+    else if (timeframe === 'YTD') {
+        startDate = `${latestDate.slice(0, 4)}-01-01`;
+    }
+
+    if (timeframe !== 'ALL' && timeframe !== 'YTD') {
+        startDate = targetDate.toISOString().slice(0, 10);
+    }
+
+    const filteredDates = summaryDates.filter(d => d >= startDate);
+    const chartDates = filteredDates.length > 0 ? filteredDates : summaryDates;
+
+    const values = chartDates.map(d => summary[d].total_value);
+    const costBasis = chartDates.map(d => summary[d].cost_basis);
+
+    // Period performance
+    const perfEl = document.getElementById('timeframe-performance');
+    if (perfEl && values.length > 1) {
+        const startVal = values[0];
+        const endVal = values[values.length - 1];
+        const diff = endVal - startVal;
+        const diffPct = startVal > 0 ? (diff / startVal) * 100 : 0;
+        const sign = diff >= 0 ? '+' : '';
+        const color = diff >= 0 ? '#10b981' : '#ef4444';
+        perfEl.innerHTML = `<span style="color:${color}">${timeframe}: ${sign}${fmtUSD(diff)} (${sign}${diffPct.toFixed(1)}%)</span>`;
+    } else if (perfEl) {
+        perfEl.textContent = '';
+    }
+
+    Plotly.react('portfolioChart', [
+        {
+            x: chartDates,
+            y: values,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Total Value',
+            line: { color: '#10b981', width: 2 },
+            fill: 'tozeroy',
+            fillcolor: 'rgba(16, 185, 129, 0.12)',
+        },
+        {
+            x: chartDates,
+            y: costBasis,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Cost Basis',
+            line: { color: '#ef4444', width: 2, dash: 'dot' },
+        },
+    ], {
+        margin: { t: 20, r: 20, b: 40, l: 60 },
+        xaxis: { title: '', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+        yaxis: { title: '', tickprefix: '$', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
+        legend: { x: 0.02, y: 0.98, font: { color: '#e2e8f0' } },
+        hovermode: 'x unified',
+        hoverlabel: { bgcolor: '#0f1114', bordercolor: '#222222', font: { color: '#e6eef8', size: 12 } },
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: { color: '#e2e8f0' },
+    }, { responsive: true });
 }
 
 function renderDashboard(snapshot) {
+    currentSnapshot = snapshot;
     const { summary, holdings } = snapshot;
     const summaryDates = Object.keys(summary || {}).sort();
     const latestDate = summaryDates[summaryDates.length - 1] || null;
@@ -78,12 +202,21 @@ function renderDashboard(snapshot) {
                 ? `<a href="${escapeHtml(item.url)}" target="_blank" class="text-decoration-none">${escapeHtml(item.name)}</a>`
                 : escapeHtml(item.name);
             const avgBuy = item.avg_buy_price != null ? `$${Number(item.avg_buy_price).toFixed(2)}` : '—';
+
             let gainPctHtml = '—';
             if (item.avg_buy_price != null && item.avg_buy_price > 0) {
                 const pct = ((item.latest_price - item.avg_buy_price) / item.avg_buy_price) * 100;
                 const glColor = pct >= 0 ? '#10b981' : '#ef4444';
                 gainPctHtml = `<span style="color:${glColor}">${pct >= 0 ? '+' : '-'}${Math.abs(pct).toFixed(1)}%</span>`;
             }
+
+            // Directly rendered precomputed 1-week change (zero network requests)
+            let weekChangeHtml = '—';
+            if (item.change_7d_pct != null) {
+                const wColor = item.change_7d_pct >= 0 ? '#10b981' : '#ef4444';
+                weekChangeHtml = `<span style="color:${wColor}">${item.change_7d_pct >= 0 ? '+' : ''}${item.change_7d_pct.toFixed(1)}%</span>`;
+            }
+
             return `<tr data-product-id="${item.product_id}" data-category-id="${item.categoryId}" data-group-id="${item.group_id}" data-latest-price="${item.latest_price}">
                 <td>${thumb}</td>
                 <td class="fw-medium">${name}</td>
@@ -91,49 +224,51 @@ function renderDashboard(snapshot) {
                 <td class="text-end">${avgBuy}</td>
                 <td class="text-end">${fmtUSD(item.latest_price)}</td>
                 <td class="text-end">${gainPctHtml}</td>
-                <td class="text-end week-change-cell">—</td>
+                <td class="text-end week-change-cell">${weekChangeHtml}</td>
                 <td class="text-end fw-bold">${fmtUSD(item.total_value)}</td>
             </tr>`;
         }).join('');
         countBadge.textContent = `${holdings.length} items`;
-        loadWeeklyChanges();
     }
 
-    const dates = summaryDates;
-    const values = dates.map((d) => summary[d].total_value);
-    const costBasis = dates.map((d) => summary[d].cost_basis);
+    updatePortfolioChart(summary, activeTimeframe);
+    renderAllocationChart(holdings, activeAllocationMode);
+}
 
-    if (window.Plotly) {
-        Plotly.newPlot('portfolioChart', [
-            {
-                x: dates,
-                y: values,
-                type: 'scatter',
-                mode: 'lines',
-                name: 'Total Value',
-                line: { color: '#10b981', width: 2 },
-                fill: 'tozeroy',
-                fillcolor: 'rgba(16, 185, 129, 0.12)',
-            },
-            {
-                x: dates,
-                y: costBasis,
-                type: 'scatter',
-                mode: 'lines',
-                name: 'Cost Basis',
-                line: { color: '#ef4444', width: 2, dash: 'dot' },
-            },
-        ], {
-            margin: { t: 30, r: 20, b: 40, l: 60 },
-            xaxis: { title: '', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
-            yaxis: { title: '', tickprefix: '$', color: '#94a3b8', gridcolor: '#334155', linecolor: '#334155' },
-            legend: { x: 0.02, y: 0.98, font: { color: '#e2e8f0' } },
-            hovermode: 'x unified',
-            hoverlabel: { bgcolor: '#0f1114', bordercolor: '#222222', font: { color: '#e6eef8', size: 12 } },
-            plot_bgcolor: 'rgba(0,0,0,0)',
-            paper_bgcolor: 'rgba(0,0,0,0)',
-            font: { color: '#e2e8f0' },
-        }, { responsive: true });
+function setupEventListeners() {
+    // Timeframe selector buttons
+    const tfButtons = document.querySelectorAll('#timeframeButtons button');
+    tfButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tfButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeTimeframe = btn.dataset.tf;
+            if (currentSnapshot && currentSnapshot.summary) {
+                updatePortfolioChart(currentSnapshot.summary, activeTimeframe);
+            }
+        });
+    });
+
+    // Allocation toggle buttons
+    const allocFranchiseBtn = document.getElementById('allocByFranchise');
+    const allocTypeBtn = document.getElementById('allocByType');
+    if (allocFranchiseBtn && allocTypeBtn) {
+        allocFranchiseBtn.addEventListener('click', () => {
+            allocFranchiseBtn.classList.add('active');
+            allocTypeBtn.classList.remove('active');
+            activeAllocationMode = 'franchise';
+            if (currentSnapshot && currentSnapshot.holdings) {
+                renderAllocationChart(currentSnapshot.holdings, 'franchise');
+            }
+        });
+        allocTypeBtn.addEventListener('click', () => {
+            allocTypeBtn.classList.add('active');
+            allocFranchiseBtn.classList.remove('active');
+            activeAllocationMode = 'type';
+            if (currentSnapshot && currentSnapshot.holdings) {
+                renderAllocationChart(currentSnapshot.holdings, 'type');
+            }
+        });
     }
 }
 
@@ -163,6 +298,22 @@ function setupNavbarAuth() {
     }
 }
 
+async function loadStaticDashboard() {
+    try {
+        const [sumResp, holdResp] = await Promise.all([
+            fetch('data/daily_summary.json?cb=' + Date.now()),
+            fetch('data/holdings.json?cb=' + Date.now())
+        ]);
+        if (sumResp.ok && holdResp.ok) {
+            const summary = await sumResp.json();
+            const holdings = await holdResp.json();
+            renderDashboard({ summary, holdings });
+        }
+    } catch (e) {
+        console.error('Failed to load static dashboard data:', e);
+    }
+}
+
 async function loadUserDashboard(user) {
     const statusEl = document.getElementById('holdings-count');
     if (statusEl) statusEl.textContent = 'Loading...';
@@ -175,12 +326,29 @@ async function loadUserDashboard(user) {
 
 function bootstrapDashboard() {
     setupNavbarAuth();
-    if (!window.TCGAuth) return;
+    setupEventListeners();
+
+    if (!window.TCGAuth) {
+        loadStaticDashboard();
+        return;
+    }
+
+    let authResolved = false;
     window.TCGAuth.onAuthStateChange(async (user) => {
+        authResolved = true;
         if (user) {
             await loadUserDashboard(user);
+        } else {
+            await loadStaticDashboard();
         }
     });
+
+    // Fallback if auth takes long or runs offline
+    setTimeout(() => {
+        if (!authResolved && !currentSnapshot) {
+            loadStaticDashboard();
+        }
+    }, 1500);
 }
 
 bootstrapDashboard();

@@ -53,6 +53,17 @@ def build_widget_summary(summary, holdings):
     day_cost_basis_change = cost_basis - previous_cost_basis if previous_date else 0
     day_gain_loss = lifetime_gain_loss - previous_lifetime_gain_loss if previous_date else 0
 
+    # Sparkline trends
+    sparkline_7d = [round(float(summary[d].get("total_value", 0)), 2) for d in summary_dates[-7:]]
+    sparkline_30d = [round(float(summary[d].get("total_value", 0)), 2) for d in summary_dates[-30:]]
+
+    # Top gainers
+    day_gainers = [h for h in holdings if h.get("change_1d_pct") is not None and h.get("change_1d_pct") > 0]
+    top_gainer = max(day_gainers, key=lambda x: x.get("change_1d_pct", 0)) if day_gainers else None
+
+    week_gainers = [h for h in holdings if h.get("change_7d_pct") is not None and h.get("change_7d_pct") > 0]
+    top_weekly_gainer = max(week_gainers, key=lambda x: x.get("change_7d_pct", 0)) if week_gainers else None
+
     return {
         "latest_date": latest_date,
         "previous_date": previous_date,
@@ -65,6 +76,20 @@ def build_widget_summary(summary, holdings):
         "day_gain_loss": round(day_gain_loss, 2),
         "day_gain_loss_pct": round((day_gain_loss / previous_total_value) * 100, 2) if previous_total_value else 0,
         "holdings_count": len(holdings),
+        "sparkline_7d": sparkline_7d,
+        "sparkline_30d": sparkline_30d,
+        "top_gainer": {
+            "name": top_gainer["name"],
+            "change_pct": top_gainer.get("change_1d_pct", 0),
+            "latest_price": top_gainer.get("latest_price", 0),
+            "imageUrl": top_gainer.get("imageUrl", ""),
+        } if top_gainer else None,
+        "top_weekly_gainer": {
+            "name": top_weekly_gainer["name"],
+            "change_pct": top_weekly_gainer.get("change_7d_pct", 0),
+            "latest_price": top_weekly_gainer.get("latest_price", 0),
+            "imageUrl": top_weekly_gainer.get("imageUrl", ""),
+        } if top_weekly_gainer else None,
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
     }
 

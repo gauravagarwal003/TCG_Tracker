@@ -109,7 +109,8 @@ function renderTransactionsTable(transactions) {
         }[tx.type] || 'bg-secondary';
         let typeBadge = `<span class="badge ${typeClass}">${escapeHtml(tx.type)}</span>`;
         // Compose qty
-        let qty = tx.type === 'TRADE' ? '-' : escapeHtml((tx.items && tx.items[0] && tx.items[0].quantity) || '');
+        const totalUnits = (tx.items || []).reduce((s, it) => s + (parseInt(it.quantity) || 0), 0);
+        let qty = tx.type === 'TRADE' ? '-' : (totalUnits || escapeHtml((tx.items && tx.items[0] && tx.items[0].quantity) || ''));
         // Compose amount
         let amount = (['BUY','SELL','TRADE IN','TRADE OUT'].includes(tx.type) && tx.amount) ? `$${Number(tx.amount).toFixed(2)}` : '';
         // Compose notes

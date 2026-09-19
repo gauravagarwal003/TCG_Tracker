@@ -329,10 +329,17 @@ export async function computeDashboardSnapshot(transactions) {
             if (type === 'BUY') {
                 const items = txn.items || [];
                 const totalQty = items.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+                const totalSubtotal = items.reduce((sum, item) => sum + (Number(item.unit_price || 0) * Number(item.quantity || 0)), 0);
                 for (const item of items) {
                     if (asKey(item.categoryId, item.group_id, item.product_id) !== key) continue;
                     const itemQty = Number(item.quantity || 0);
-                    const prorated = totalQty > 0 ? (Number(txn.amount || 0) * (itemQty / totalQty)) : 0;
+                    const itemUnitPrice = Number(item.unit_price || 0);
+                    let prorated = 0;
+                    if (totalSubtotal > 0 && itemUnitPrice > 0) {
+                        prorated = Number(txn.amount || 0) * ((itemUnitPrice * itemQty) / totalSubtotal);
+                    } else if (totalQty > 0) {
+                        prorated = Number(txn.amount || 0) * (itemQty / totalQty);
+                    }
                     buyUnits += itemQty;
                     buyCost += prorated;
                 }
@@ -362,6 +369,18 @@ export async function computeDashboardSnapshot(transactions) {
         const totalCost = buyCost + tradeCost;
         const avgBuyPrice = totalUnits > 0 ? Math.round((totalCost / totalUnits) * 100) / 100 : null;
 
+        const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+        const dayAgo = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+        const price1dAgo = getLatestPriceOnOrBefore(priceMap, dayAgo);
+        const price7dAgo = getLatestPriceOnOrBefore(priceMap, weekAgo);
+
+        const change1dPct = price1dAgo > 0 ? Math.round(((latestPrice - price1dAgo) / price1dAgo) * 10000) / 100 : 0;
+        const change7dPct = price7dAgo > 0 ? Math.round(((latestPrice - price7dAgo) / price7dAgo) * 10000) / 100 : 0;
+        const totalVal = Math.round(qty * latestPrice * 100) / 100;
+        const totalCostBasis = avgBuyPrice != null ? Math.round(qty * avgBuyPrice * 100) / 100 : null;
+        const gainLoss = totalCostBasis != null ? Math.round((totalVal - totalCostBasis) * 100) / 100 : null;
+        const gainLossPct = (avgBuyPrice != null && avgBuyPrice > 0) ? Math.round(((latestPrice - avgBuyPrice) / avgBuyPrice) * 10000) / 100 : null;
+
         holdings.push({
             categoryId,
             group_id: groupId,
@@ -371,9 +390,13 @@ export async function computeDashboardSnapshot(transactions) {
             url: mapping?.url || metadata?.url || '',
             quantity: qty,
             latest_price: latestPrice,
-            total_value: Math.round(qty * latestPrice * 100) / 100,
+            total_value: totalVal,
             avg_buy_price: avgBuyPrice,
             via_trade: viaTrade,
+            gain_loss: gainLoss,
+            gain_loss_pct: gainLossPct,
+            change_1d_pct: change1dPct,
+            change_7d_pct: change7dPct,
         });
     }
 

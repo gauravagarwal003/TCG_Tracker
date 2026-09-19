@@ -10,7 +10,11 @@
     "latest_price": 447.83,
     "total_value": 447.83,
     "avg_buy_price": 557.64,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": -109.81,
+    "gain_loss_pct": -19.69,
+    "change_1d_pct": 0.83,
+    "change_7d_pct": -0.01
   },
   {
     "categoryId": "3",
@@ -23,7 +27,11 @@
     "latest_price": 398.17,
     "total_value": 398.17,
     "avg_buy_price": 178.21,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 219.96,
+    "gain_loss_pct": 123.43,
+    "change_1d_pct": 0.12,
+    "change_7d_pct": -0.08
   },
   {
     "categoryId": "3",
@@ -36,7 +44,11 @@
     "latest_price": 371.45,
     "total_value": 742.9,
     "avg_buy_price": 66.14,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 610.62,
+    "gain_loss_pct": 461.61,
+    "change_1d_pct": -2.09,
+    "change_7d_pct": -3.03
   },
   {
     "categoryId": "68",
@@ -49,7 +61,11 @@
     "latest_price": 329.11,
     "total_value": 658.22,
     "avg_buy_price": 136.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 386.2,
+    "gain_loss_pct": 141.97,
+    "change_1d_pct": 1.02,
+    "change_7d_pct": 1.22
   },
   {
     "categoryId": "3",
@@ -62,7 +78,28 @@
     "latest_price": 327.55,
     "total_value": 1310.2,
     "avg_buy_price": 55.71,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 1087.36,
+    "gain_loss_pct": 487.96,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24722",
+    "product_id": "704144",
+    "name": "30th Celebration Pokemon Center Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704144_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/704144/pokemon-me-30th-celebration-30th-celebration-pokemon-center-elite-trainer-box",
+    "quantity": 2,
+    "latest_price": 313.21,
+    "total_value": 626.42,
+    "avg_buy_price": 66.14,
+    "via_trade": false,
+    "gain_loss": 494.14,
+    "gain_loss_pct": 373.56,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -75,7 +112,11 @@
     "latest_price": 286.76,
     "total_value": 573.52,
     "avg_buy_price": 66.14,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 441.24,
+    "gain_loss_pct": 333.57,
+    "change_1d_pct": -0.77,
+    "change_7d_pct": -0.63
   },
   {
     "categoryId": "3",
@@ -88,7 +129,11 @@
     "latest_price": 276.46,
     "total_value": 276.46,
     "avg_buy_price": 65.84,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 210.62,
+    "gain_loss_pct": 319.9,
+    "change_1d_pct": 0.25,
+    "change_7d_pct": 0.23
   },
   {
     "categoryId": "68",
@@ -101,7 +146,11 @@
     "latest_price": 256.45,
     "total_value": 256.45,
     "avg_buy_price": 150.44,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 106.01,
+    "gain_loss_pct": 70.47,
+    "change_1d_pct": 0.51,
+    "change_7d_pct": 1.48
   },
   {
     "categoryId": "68",
@@ -114,7 +163,11 @@
     "latest_price": 251.57,
     "total_value": 754.71,
     "avg_buy_price": 155.02,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 289.65,
+    "gain_loss_pct": 62.28,
+    "change_1d_pct": -0.13,
+    "change_7d_pct": -0.07
   },
   {
     "categoryId": "68",
@@ -127,7 +180,11 @@
     "latest_price": 247.05,
     "total_value": 247.05,
     "avg_buy_price": 183.85,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 63.2,
+    "gain_loss_pct": 34.38,
+    "change_1d_pct": -0.2,
+    "change_7d_pct": -0.74
   },
   {
     "categoryId": "3",
@@ -140,7 +197,11 @@
     "latest_price": 241.15,
     "total_value": 482.3,
     "avg_buy_price": 68.92,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 344.46,
+    "gain_loss_pct": 249.9,
+    "change_1d_pct": 0.32,
+    "change_7d_pct": 0.35
   },
   {
     "categoryId": "3",
@@ -153,7 +214,11 @@
     "latest_price": 236.99,
     "total_value": 236.99,
     "avg_buy_price": 65.84,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 171.15,
+    "gain_loss_pct": 259.95,
+    "change_1d_pct": 0.11,
+    "change_7d_pct": 0.06
   },
   {
     "categoryId": "3",
@@ -166,7 +231,11 @@
     "latest_price": 232.11,
     "total_value": 696.33,
     "avg_buy_price": 122.8,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 327.93,
+    "gain_loss_pct": 89.01,
+    "change_1d_pct": -0.2,
+    "change_7d_pct": -0.37
   },
   {
     "categoryId": "3",
@@ -179,7 +248,11 @@
     "latest_price": 217.04,
     "total_value": 217.04,
     "avg_buy_price": 27.38,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 189.66,
+    "gain_loss_pct": 692.7,
+    "change_1d_pct": -0.34,
+    "change_7d_pct": -0.5
   },
   {
     "categoryId": "3",
@@ -192,7 +265,11 @@
     "latest_price": 195.25,
     "total_value": 195.25,
     "avg_buy_price": 65.69,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 129.56,
+    "gain_loss_pct": 197.23,
+    "change_1d_pct": 0.14,
+    "change_7d_pct": 0.11
   },
   {
     "categoryId": "3",
@@ -205,7 +282,11 @@
     "latest_price": 195.18,
     "total_value": 390.36,
     "avg_buy_price": 18.84,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 352.68,
+    "gain_loss_pct": 935.99,
+    "change_1d_pct": 0.22,
+    "change_7d_pct": 0.32
   },
   {
     "categoryId": "3",
@@ -218,7 +299,11 @@
     "latest_price": 192.16,
     "total_value": 192.16,
     "avg_buy_price": 178.21,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 13.95,
+    "gain_loss_pct": 7.83,
+    "change_1d_pct": -2.68,
+    "change_7d_pct": -1.89
   },
   {
     "categoryId": "89",
@@ -231,7 +316,11 @@
     "latest_price": 186.26,
     "total_value": 186.26,
     "avg_buy_price": 125.25,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 61.01,
+    "gain_loss_pct": 48.71,
+    "change_1d_pct": -4.86,
+    "change_7d_pct": -2.87
   },
   {
     "categoryId": "3",
@@ -244,7 +333,11 @@
     "latest_price": 176.85,
     "total_value": 176.85,
     "avg_buy_price": 178.21,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": -1.36,
+    "gain_loss_pct": -0.76,
+    "change_1d_pct": -1.13,
+    "change_7d_pct": 0.8
   },
   {
     "categoryId": "3",
@@ -257,7 +350,11 @@
     "latest_price": 171.2,
     "total_value": 342.4,
     "avg_buy_price": 26.58,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 289.24,
+    "gain_loss_pct": 544.09,
+    "change_1d_pct": 1.74,
+    "change_7d_pct": 3.66
   },
   {
     "categoryId": "3",
@@ -270,7 +367,11 @@
     "latest_price": 170.99,
     "total_value": 170.99,
     "avg_buy_price": 66.14,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 104.85,
+    "gain_loss_pct": 158.53,
+    "change_1d_pct": -0.16,
+    "change_7d_pct": -0.04
   },
   {
     "categoryId": "3",
@@ -283,7 +384,11 @@
     "latest_price": 166.62,
     "total_value": 166.62,
     "avg_buy_price": 65.69,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 100.93,
+    "gain_loss_pct": 153.65,
+    "change_1d_pct": 0.48,
+    "change_7d_pct": 0.95
   },
   {
     "categoryId": "3",
@@ -296,7 +401,11 @@
     "latest_price": 161.34,
     "total_value": 968.04,
     "avg_buy_price": 29.5,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 791.04,
+    "gain_loss_pct": 446.92,
+    "change_1d_pct": -7.35,
+    "change_7d_pct": -9.25
   },
   {
     "categoryId": "3",
@@ -309,7 +418,11 @@
     "latest_price": 158.8,
     "total_value": 158.8,
     "avg_buy_price": 14.65,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 144.15,
+    "gain_loss_pct": 983.96,
+    "change_1d_pct": -1.19,
+    "change_7d_pct": -1.88
   },
   {
     "categoryId": "3",
@@ -322,7 +435,11 @@
     "latest_price": 139.53,
     "total_value": 558.12,
     "avg_buy_price": 47.45,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 368.32,
+    "gain_loss_pct": 194.06,
+    "change_1d_pct": -1.42,
+    "change_7d_pct": -3.41
   },
   {
     "categoryId": "85",
@@ -335,7 +452,11 @@
     "latest_price": 134.37,
     "total_value": 134.37,
     "avg_buy_price": 18.98,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 115.39,
+    "gain_loss_pct": 607.96,
+    "change_1d_pct": -1.9,
+    "change_7d_pct": -2.77
   },
   {
     "categoryId": "3",
@@ -348,7 +469,11 @@
     "latest_price": 126.29,
     "total_value": 252.58,
     "avg_buy_price": 35.21,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 182.16,
+    "gain_loss_pct": 258.68,
+    "change_1d_pct": 1.25,
+    "change_7d_pct": 2.48
   },
   {
     "categoryId": "3",
@@ -361,7 +486,11 @@
     "latest_price": 125.06,
     "total_value": 250.12,
     "avg_buy_price": 66.14,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 117.84,
+    "gain_loss_pct": 89.08,
+    "change_1d_pct": 0.57,
+    "change_7d_pct": 1.94
   },
   {
     "categoryId": "3",
@@ -374,7 +503,11 @@
     "latest_price": 121.21,
     "total_value": 121.21,
     "avg_buy_price": 23.03,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 98.18,
+    "gain_loss_pct": 426.31,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.36
   },
   {
     "categoryId": "3",
@@ -383,11 +516,15 @@
     "name": "Chaos Rising Pokemon Center Elite Trainer Box",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg",
     "url": "https://www.tcgplayer.com/product/684452/pokemon-me04-chaos-rising-chaos-rising-pokemon-center-elite-trainer-box",
-    "quantity": 1,
+    "quantity": 2,
     "latest_price": 120.36,
-    "total_value": 120.36,
+    "total_value": 240.72,
     "avg_buy_price": 66.14,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 108.44,
+    "gain_loss_pct": 81.98,
+    "change_1d_pct": -4.72,
+    "change_7d_pct": -5.21
   },
   {
     "categoryId": "3",
@@ -399,8 +536,12 @@
     "quantity": 1,
     "latest_price": 114.06,
     "total_value": 114.06,
-    "avg_buy_price": 35.63,
-    "via_trade": false
+    "avg_buy_price": 60.63,
+    "via_trade": false,
+    "gain_loss": 53.43,
+    "gain_loss_pct": 88.12,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.16
   },
   {
     "categoryId": "3",
@@ -413,7 +554,11 @@
     "latest_price": 100.87,
     "total_value": 201.74,
     "avg_buy_price": 29.7,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 142.34,
+    "gain_loss_pct": 239.63,
+    "change_1d_pct": 1.13,
+    "change_7d_pct": 0.56
   },
   {
     "categoryId": "68",
@@ -426,7 +571,11 @@
     "latest_price": 94.71,
     "total_value": 94.71,
     "avg_buy_price": 10.96,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 83.75,
+    "gain_loss_pct": 764.14,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -439,7 +588,11 @@
     "latest_price": 91.88,
     "total_value": 275.64,
     "avg_buy_price": 31.85,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 180.09,
+    "gain_loss_pct": 188.48,
+    "change_1d_pct": 3.4,
+    "change_7d_pct": 3.88
   },
   {
     "categoryId": "3",
@@ -452,7 +605,11 @@
     "latest_price": 89.41,
     "total_value": 1162.33,
     "avg_buy_price": 32.27,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 742.82,
+    "gain_loss_pct": 177.07,
+    "change_1d_pct": -2.78,
+    "change_7d_pct": -0.92
   },
   {
     "categoryId": "3",
@@ -465,7 +622,11 @@
     "latest_price": 87.68,
     "total_value": 87.68,
     "avg_buy_price": 24.65,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 63.03,
+    "gain_loss_pct": 255.7,
+    "change_1d_pct": 4.28,
+    "change_7d_pct": 6.09
   },
   {
     "categoryId": "3",
@@ -478,7 +639,11 @@
     "latest_price": 86.06,
     "total_value": 86.06,
     "avg_buy_price": 5.48,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 80.58,
+    "gain_loss_pct": 1470.44,
+    "change_1d_pct": -0.08,
+    "change_7d_pct": -0.08
   },
   {
     "categoryId": "3",
@@ -491,7 +656,11 @@
     "latest_price": 83.2,
     "total_value": 249.6,
     "avg_buy_price": 25.05,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 174.45,
+    "gain_loss_pct": 232.14,
+    "change_1d_pct": -0.38,
+    "change_7d_pct": 0.24
   },
   {
     "categoryId": "3",
@@ -504,7 +673,45 @@
     "latest_price": 77.09,
     "total_value": 77.09,
     "avg_buy_price": 24.08,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 53.01,
+    "gain_loss_pct": 220.14,
+    "change_1d_pct": 1.77,
+    "change_7d_pct": 2.15
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24688",
+    "product_id": "692947",
+    "name": "Pitch Black Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/692947/pokemon-me05-pitch-black-pitch-black-elite-trainer-box",
+    "quantity": 1,
+    "latest_price": 72.37,
+    "total_value": 72.37,
+    "avg_buy_price": 66.14,
+    "via_trade": false,
+    "gain_loss": 6.23,
+    "gain_loss_pct": 9.42,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24655",
+    "product_id": "684450",
+    "name": "Chaos Rising Elite Trainer Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/684450/pokemon-me04-chaos-rising-chaos-rising-elite-trainer-box",
+    "quantity": 1,
+    "latest_price": 69.0,
+    "total_value": 69.0,
+    "avg_buy_price": 66.14,
+    "via_trade": false,
+    "gain_loss": 2.86,
+    "gain_loss_pct": 4.32,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "68",
@@ -517,7 +724,11 @@
     "latest_price": 67.25,
     "total_value": 201.75,
     "avg_buy_price": 18.9,
-    "via_trade": true
+    "via_trade": true,
+    "gain_loss": 145.05,
+    "gain_loss_pct": 255.82,
+    "change_1d_pct": -0.41,
+    "change_7d_pct": -0.41
   },
   {
     "categoryId": "3",
@@ -530,7 +741,11 @@
     "latest_price": 67.23,
     "total_value": 67.23,
     "avg_buy_price": 24.37,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 42.86,
+    "gain_loss_pct": 175.87,
+    "change_1d_pct": 2.34,
+    "change_7d_pct": 3.29
   },
   {
     "categoryId": "3",
@@ -543,7 +758,11 @@
     "latest_price": 66.6,
     "total_value": 133.2,
     "avg_buy_price": 22.05,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 89.1,
+    "gain_loss_pct": 202.04,
+    "change_1d_pct": -1.48,
+    "change_7d_pct": -2.0
   },
   {
     "categoryId": "3",
@@ -556,7 +775,11 @@
     "latest_price": 66.02,
     "total_value": 396.12,
     "avg_buy_price": 30.45,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 213.42,
+    "gain_loss_pct": 116.81,
+    "change_1d_pct": 0.06,
+    "change_7d_pct": -3.3
   },
   {
     "categoryId": "3",
@@ -565,11 +788,15 @@
     "name": "Mega Evolution Booster Bundle",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644362_200w.jpg",
     "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle",
-    "quantity": 2,
+    "quantity": 3,
     "latest_price": 63.89,
-    "total_value": 127.78,
-    "avg_buy_price": 25.79,
-    "via_trade": false
+    "total_value": 191.67,
+    "avg_buy_price": 28.17,
+    "via_trade": false,
+    "gain_loss": 107.16,
+    "gain_loss_pct": 126.8,
+    "change_1d_pct": -0.03,
+    "change_7d_pct": 0.14
   },
   {
     "categoryId": "3",
@@ -582,7 +809,11 @@
     "latest_price": 61.55,
     "total_value": 123.1,
     "avg_buy_price": 24.2,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 74.7,
+    "gain_loss_pct": 154.34,
+    "change_1d_pct": -2.58,
+    "change_7d_pct": -4.38
   },
   {
     "categoryId": "68",
@@ -595,7 +826,11 @@
     "latest_price": 48.17,
     "total_value": 48.17,
     "avg_buy_price": 26.94,
-    "via_trade": true
+    "via_trade": true,
+    "gain_loss": 21.23,
+    "gain_loss_pct": 78.8,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -608,7 +843,11 @@
     "latest_price": 45.04,
     "total_value": 45.04,
     "avg_buy_price": 17.63,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 27.41,
+    "gain_loss_pct": 155.47,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.54
   },
   {
     "categoryId": "3",
@@ -621,7 +860,11 @@
     "latest_price": 44.6,
     "total_value": 44.6,
     "avg_buy_price": 13.62,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 30.98,
+    "gain_loss_pct": 227.46,
+    "change_1d_pct": 0.75,
+    "change_7d_pct": 0.75
   },
   {
     "categoryId": "3",
@@ -634,7 +877,11 @@
     "latest_price": 42.73,
     "total_value": 42.73,
     "avg_buy_price": 13.62,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 29.11,
+    "gain_loss_pct": 213.73,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "68",
@@ -647,7 +894,11 @@
     "latest_price": 41.26,
     "total_value": 41.26,
     "avg_buy_price": 13.2,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 28.06,
+    "gain_loss_pct": 212.58,
+    "change_1d_pct": -1.34,
+    "change_7d_pct": -1.34
   },
   {
     "categoryId": "3",
@@ -660,7 +911,11 @@
     "latest_price": 40.78,
     "total_value": 81.56,
     "avg_buy_price": 0.0,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 81.56,
+    "gain_loss_pct": null,
+    "change_1d_pct": 1.65,
+    "change_7d_pct": -0.37
   },
   {
     "categoryId": "80",
@@ -673,7 +928,28 @@
     "latest_price": 39.89,
     "total_value": 39.89,
     "avg_buy_price": 26.45,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 13.44,
+    "gain_loss_pct": 50.81,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24722",
+    "product_id": "704145",
+    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/704145/pokemon-me-30th-celebration-30th-celebration-tech-sticker-collection-alolan-exeggutor",
+    "quantity": 1,
+    "latest_price": 38.94,
+    "total_value": 38.94,
+    "avg_buy_price": 16.53,
+    "via_trade": false,
+    "gain_loss": 22.41,
+    "gain_loss_pct": 135.57,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "68",
@@ -686,7 +962,11 @@
     "latest_price": 38.06,
     "total_value": 76.12,
     "avg_buy_price": 19.93,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 36.26,
+    "gain_loss_pct": 90.97,
+    "change_1d_pct": -0.76,
+    "change_7d_pct": -0.86
   },
   {
     "categoryId": "3",
@@ -699,7 +979,28 @@
     "latest_price": 37.99,
     "total_value": 37.99,
     "avg_buy_price": 19.83,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 18.16,
+    "gain_loss_pct": 91.58,
+    "change_1d_pct": -0.65,
+    "change_7d_pct": -0.65
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24722",
+    "product_id": "704146",
+    "name": "30th Celebration Tech Sticker Collection [Lucario]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/704146/pokemon-me-30th-celebration-30th-celebration-tech-sticker-collection-lucario",
+    "quantity": 1,
+    "latest_price": 37.98,
+    "total_value": 37.98,
+    "avg_buy_price": 16.53,
+    "via_trade": false,
+    "gain_loss": 21.45,
+    "gain_loss_pct": 129.76,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -712,7 +1013,11 @@
     "latest_price": 35.97,
     "total_value": 35.97,
     "avg_buy_price": 11.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 24.96,
+    "gain_loss_pct": 226.7,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -725,7 +1030,11 @@
     "latest_price": 35.64,
     "total_value": 35.64,
     "avg_buy_price": 11.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 24.63,
+    "gain_loss_pct": 223.71,
+    "change_1d_pct": 0.79,
+    "change_7d_pct": 0.79
   },
   {
     "categoryId": "3",
@@ -738,7 +1047,11 @@
     "latest_price": 35.09,
     "total_value": 35.09,
     "avg_buy_price": 11.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 24.08,
+    "gain_loss_pct": 218.71,
+    "change_1d_pct": -0.17,
+    "change_7d_pct": -0.23
   },
   {
     "categoryId": "3",
@@ -751,7 +1064,11 @@
     "latest_price": 32.48,
     "total_value": 32.48,
     "avg_buy_price": 11.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 21.47,
+    "gain_loss_pct": 195.0,
+    "change_1d_pct": 0.4,
+    "change_7d_pct": 0.4
   },
   {
     "categoryId": "3",
@@ -764,7 +1081,28 @@
     "latest_price": 31.24,
     "total_value": 62.48,
     "avg_buy_price": 0.0,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 62.48,
+    "gain_loss_pct": null,
+    "change_1d_pct": 0.06,
+    "change_7d_pct": 0.03
+  },
+  {
+    "categoryId": "3",
+    "group_id": "24722",
+    "product_id": "704152",
+    "name": "30th Celebration Knock Out Collection",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/704152/pokemon-me-30th-celebration-30th-celebration-knock-out-collection",
+    "quantity": 1,
+    "latest_price": 30.0,
+    "total_value": 30.0,
+    "avg_buy_price": 11.01,
+    "via_trade": false,
+    "gain_loss": 18.99,
+    "gain_loss_pct": 172.48,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "80",
@@ -777,7 +1115,11 @@
     "latest_price": 28.52,
     "total_value": 28.52,
     "avg_buy_price": 26.45,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 2.07,
+    "gain_loss_pct": 7.83,
+    "change_1d_pct": -0.38,
+    "change_7d_pct": 1.6
   },
   {
     "categoryId": "3",
@@ -790,7 +1132,28 @@
     "latest_price": 27.37,
     "total_value": 54.74,
     "avg_buy_price": 11.01,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 32.72,
+    "gain_loss_pct": 148.59,
+    "change_1d_pct": 1.52,
+    "change_7d_pct": 1.52
+  },
+  {
+    "categoryId": "3",
+    "group_id": "2374",
+    "product_id": "706250",
+    "name": "2-Pack Blister [Zarude] (3-Tab)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/706250_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/706250/pokemon-miscellaneous-cards-and-products-2-pack-blister-zarude-3-tab",
+    "quantity": 1,
+    "latest_price": 20.63,
+    "total_value": 20.63,
+    "avg_buy_price": 11.01,
+    "via_trade": false,
+    "gain_loss": 9.62,
+    "gain_loss_pct": 87.38,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "68",
@@ -803,7 +1166,11 @@
     "latest_price": 19.31,
     "total_value": 19.31,
     "avg_buy_price": 5.5,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 13.81,
+    "gain_loss_pct": 251.09,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 1.21
   },
   {
     "categoryId": "3",
@@ -816,7 +1183,11 @@
     "latest_price": 18.67,
     "total_value": 18.67,
     "avg_buy_price": 6.61,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 12.06,
+    "gain_loss_pct": 182.45,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.16
   },
   {
     "categoryId": "3",
@@ -829,7 +1200,11 @@
     "latest_price": 17.37,
     "total_value": 17.37,
     "avg_buy_price": 6.61,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 10.76,
+    "gain_loss_pct": 162.78,
+    "change_1d_pct": 2.72,
+    "change_7d_pct": 3.15
   },
   {
     "categoryId": "3",
@@ -842,7 +1217,11 @@
     "latest_price": 15.23,
     "total_value": 30.46,
     "avg_buy_price": 10.19,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 10.08,
+    "gain_loss_pct": 49.46,
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -851,11 +1230,15 @@
     "name": "Knock Out Collection [Suicune]",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg",
     "url": "https://www.tcgplayer.com/product/670783",
-    "quantity": 2,
+    "quantity": 8,
     "latest_price": 15.18,
-    "total_value": 30.36,
-    "avg_buy_price": 10.83,
-    "via_trade": false
+    "total_value": 121.44,
+    "avg_buy_price": 6.54,
+    "via_trade": false,
+    "gain_loss": 69.12,
+    "gain_loss_pct": 132.11,
+    "change_1d_pct": 0.53,
+    "change_7d_pct": 0.53
   },
   {
     "categoryId": "3",
@@ -868,7 +1251,11 @@
     "latest_price": 14.47,
     "total_value": 130.23,
     "avg_buy_price": 4.64,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 88.47,
+    "gain_loss_pct": 211.85,
+    "change_1d_pct": 1.12,
+    "change_7d_pct": 0.84
   },
   {
     "categoryId": "68",
@@ -881,7 +1268,11 @@
     "latest_price": 13.07,
     "total_value": 52.28,
     "avg_buy_price": 5.5,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 30.28,
+    "gain_loss_pct": 137.64,
+    "change_1d_pct": 2.27,
+    "change_7d_pct": 2.59
   },
   {
     "categoryId": "3",
@@ -894,7 +1285,11 @@
     "latest_price": 11.06,
     "total_value": 176.96,
     "avg_buy_price": 4.26,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 108.8,
+    "gain_loss_pct": 159.62,
+    "change_1d_pct": -0.45,
+    "change_7d_pct": -0.45
   },
   {
     "categoryId": "3",
@@ -907,7 +1302,11 @@
     "latest_price": 8.38,
     "total_value": 8.38,
     "avg_buy_price": 4.95,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 3.43,
+    "gain_loss_pct": 69.29,
+    "change_1d_pct": -1.76,
+    "change_7d_pct": -0.83
   },
   {
     "categoryId": "3",
@@ -920,20 +1319,11 @@
     "latest_price": 8.33,
     "total_value": 49.98,
     "avg_buy_price": 5.88,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "23651",
-    "product_id": "565604",
-    "name": "Surging Sparks Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
-    "quantity": 6,
-    "latest_price": 8.29,
-    "total_value": 49.74,
-    "avg_buy_price": 4.93,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 14.7,
+    "gain_loss_pct": 41.67,
+    "change_1d_pct": -0.95,
+    "change_7d_pct": -0.95
   },
   {
     "categoryId": "3",
@@ -946,7 +1336,11 @@
     "latest_price": 7.64,
     "total_value": 22.92,
     "avg_buy_price": 4.95,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 8.07,
+    "gain_loss_pct": 54.34,
+    "change_1d_pct": 2.0,
+    "change_7d_pct": 2.83
   },
   {
     "categoryId": "3",
@@ -959,6 +1353,10 @@
     "latest_price": 7.03,
     "total_value": 28.12,
     "avg_buy_price": 5.12,
-    "via_trade": false
+    "via_trade": false,
+    "gain_loss": 7.64,
+    "gain_loss_pct": 37.3,
+    "change_1d_pct": 0.72,
+    "change_7d_pct": 3.08
   }
 ]

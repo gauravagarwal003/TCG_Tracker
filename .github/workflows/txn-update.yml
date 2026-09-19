@@ -52,6 +52,18 @@ jobs:
     - name: Pull latest changes
       run: git pull --rebase origin main || true
 
+    - name: Pre-flight data integrity check
+      run: |
+        python - <<'PY'
+        from engine import load_transactions, validate_inventory
+        tx = load_transactions()
+        is_valid, msg = validate_inventory(tx)
+        if not is_valid:
+            print(f"ERROR: Pre-flight data validation failed: {msg}")
+            exit(1)
+        print(f"Pre-flight verified: {len(tx)} transactions valid with 0 inventory errors.")
+        PY
+
     - name: Fetch missing prices then rebuild docs
       run: |
         python - <<'PY'

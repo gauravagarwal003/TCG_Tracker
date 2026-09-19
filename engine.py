@@ -565,11 +565,19 @@ def get_current_holdings(transactions=None):
         items = txn.get("items", [])
         total_qty_in_txn = sum(item.get("quantity", 0) for item in items)
         txn_amount = txn.get("amount", 0.0) or 0.0
+        total_subtotal = sum((float(item.get("unit_price") or 0.0)) * item.get("quantity", 0) for item in items)
         for item in items:
             key = _product_key(item)
             item_qty = item.get("quantity", 0)
-            # Prorate cost by this item's share of units in the transaction
-            item_cost = txn_amount * (item_qty / total_qty_in_txn) if total_qty_in_txn > 0 else 0.0
+            if item_qty <= 0:
+                continue
+            item_unit_price = float(item.get("unit_price") or 0.0)
+            if total_subtotal > 0 and item_unit_price > 0:
+                item_cost = txn_amount * ((item_unit_price * item_qty) / total_subtotal)
+            elif total_qty_in_txn > 0:
+                item_cost = txn_amount * (item_qty / total_qty_in_txn)
+            else:
+                item_cost = 0.0
             buy_costs[key][0] += item_qty
             buy_costs[key][1] += item_cost
 
@@ -608,7 +616,10 @@ def get_current_holdings(transactions=None):
                     trade_costs[key][1] += item_qty * trade_price
 
     inventory = compute_inventory_timeline(transactions)
-    td = today_pst().strftime("%Y-%m-%d")
+    td_date = today_pst()
+    td = td_date.strftime("%Y-%m-%d")
+    one_day_ago = (td_date - timedelta(days=1)).strftime("%Y-%m-%d")
+    seven_days_ago = (td_date - timedelta(days=7)).strftime("%Y-%m-%d")
 
     holdings = []
     for key, inv in inventory.items():
@@ -620,10 +631,20 @@ def get_current_holdings(transactions=None):
 
             # Get latest available price
             latest_price = 0.0
+            price_1d_ago = None
+            price_7d_ago = None
+
             for d_str in sorted(prices.keys(), reverse=True):
-                if d_str <= td and prices[d_str] and prices[d_str] > 0:
-                    latest_price = prices[d_str]
-                    break
+                p = prices[d_str]
+                if p and p > 0:
+                    if d_str <= td and latest_price == 0.0:
+                        latest_price = p
+                    if d_str <= one_day_ago and price_1d_ago is None:
+                        price_1d_ago = p
+                    if d_str <= seven_days_ago and price_7d_ago is None:
+                        price_7d_ago = p
+                    if latest_price > 0 and price_1d_ago is not None and price_7d_ago is not None:
+                        break
 
             # Average buy price: weighted average across BUY cost and trade-date market price
             bc = buy_costs.get(key, [0, 0.0])
@@ -632,6 +653,14 @@ def get_current_holdings(transactions=None):
             total_cost  = bc[1] + tc[1]
             avg_buy_price = round(total_cost / total_units, 2) if total_units > 0 else None
             via_trade = key in via_trade_keys
+
+            total_val = round(qty * latest_price, 2)
+            total_cost_basis = round(qty * avg_buy_price, 2) if avg_buy_price is not None else None
+            gain_loss = round(total_val - total_cost_basis, 2) if total_cost_basis is not None else None
+            gain_loss_pct = round(((latest_price - avg_buy_price) / avg_buy_price) * 100, 2) if avg_buy_price and avg_buy_price > 0 else None
+
+            change_1d_pct = round(((latest_price - price_1d_ago) / price_1d_ago) * 100, 2) if price_1d_ago and price_1d_ago > 0 else 0.0
+            change_7d_pct = round(((latest_price - price_7d_ago) / price_7d_ago) * 100, 2) if price_7d_ago and price_7d_ago > 0 else 0.0
 
             holdings.append({
                 "categoryId": cat,
@@ -642,9 +671,13 @@ def get_current_holdings(transactions=None):
                 "url": mapping.get("url", "") if mapping else "",
                 "quantity": qty,
                 "latest_price": latest_price,
-                "total_value": round(qty * latest_price, 2),
+                "total_value": total_val,
                 "avg_buy_price": avg_buy_price,
                 "via_trade": via_trade,
+                "gain_loss": gain_loss,
+                "gain_loss_pct": gain_loss_pct,
+                "change_1d_pct": change_1d_pct,
+                "change_7d_pct": change_7d_pct,
             })
 
     holdings.sort(key=lambda h: h["latest_price"], reverse=True)
