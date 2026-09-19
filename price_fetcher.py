@@ -29,6 +29,65 @@ class PriceArchiveFetchError(RuntimeError):
     """Raised when a daily tcgcsv archive cannot be downloaded or extracted."""
 
 
+_ARCHIVE_AVAILABLE = None
+_LIVE_GROUP_CACHE = {}
+
+
+def fetch_live_group_prices(cat_id, group_id, session=None):
+    """
+    Fetch current market prices for a group from tcgcsv live endpoint:
+      https://tcgcsv.com/tcgplayer/{cat_id}/{group_id}/prices
+    Returns {product_id_str: marketPrice_float}. Cached in memory per process run.
+    """
+    cache_key = (str(cat_id), str(group_id))
+    if cache_key in _LIVE_GROUP_CACHE:
+        return _LIVE_GROUP_CACHE[cache_key]
+
+    url = f"https://tcgcsv.com/tcgplayer/{cat_id}/{group_id}/prices"
+    http = session or requests.Session()
+    price_map = {}
+    try:
+        resp = http.get(url, timeout=20, headers=REQUEST_HEADERS)
+        if resp.status_code == 200:
+            data = resp.json()
+            if isinstance(data, dict) and "results" in data:
+                for res in data["results"]:
+                    pid = str(res.get("productId"))
+                    mp = res.get("marketPrice")
+                    if mp is not None:
+                        try:
+                            price_map[pid] = float(mp)
+                        except (ValueError, TypeError):
+                            pass
+        else:
+            print(f" [HTTP {resp.status_code} from {url}]", end="")
+    except Exception as e:
+        print(f" [Error fetching {url}: {e}]", end="")
+
+    _LIVE_GROUP_CACHE[cache_key] = price_map
+    return price_map
+
+
+def fetch_live_prices_for_products(products_by_category, session=None):
+    """
+    Fetch current market prices for a set of products using tcgcsv live group endpoints.
+    Args:
+        products_by_category: {cat_id: {group_id: [product_id, ...]}}
+    Returns:
+        dict: {(cat, gid, pid): price}
+    """
+    found_prices = {}
+    http = session or requests.Session()
+    for cat_id, groups in products_by_category.items():
+        for group_id, product_ids in groups.items():
+            price_map = fetch_live_group_prices(cat_id, group_id, session=http)
+            for pid in product_ids:
+                pid_str = str(pid)
+                if pid_str in price_map:
+                    found_prices[(str(cat_id), str(group_id), pid_str)] = price_map[pid_str]
+    return found_prices
+
+
 def cleanup_files(*paths):
     """Remove files and directories."""
     for p in paths:
@@ -43,8 +102,17 @@ def cleanup_files(*paths):
 
 def fetch_prices_for_date(date_str, products_by_category):
     """
-    Download the price archive for a single date and extract prices for
+    Download or fetch prices for a single date and extract prices for
     all requested products.
+    
+    If date_str >= today (PST), fetches current prices via tcgcsv live per-group endpoints:
+      https://tcgcsv.com/tcgplayer/{cat_id}/{group_id}/prices
+    
+    If date_str < today (past date), attempts to download daily price archive:
+      https://tcgcsv.com/archive/tcgplayer/prices-{date_str}.ppmd.7z
+    If the archive is unavailable (e.g. HTTP 403 / temporarily removed), it logs
+    a notice and returns an empty dict without crashing, allowing fill_price_gaps to
+    carry forward prices.
     
     Args:
         date_str: "YYYY-MM-DD"
@@ -53,6 +121,17 @@ def fetch_prices_for_date(date_str, products_by_category):
     Returns:
         dict: {(cat, gid, pid): price} for all found products
     """
+    global _ARCHIVE_AVAILABLE
+    td_str = today_pst().strftime("%Y-%m-%d")
+
+    # For today or later, use live per-group API
+    if date_str >= td_str:
+        return fetch_live_prices_for_products(products_by_category)
+
+    # For historical dates, if archive is known to be disabled, return empty
+    if _ARCHIVE_AVAILABLE is False:
+        return {}
+
     archive_url = f"https://tcgcsv.com/archive/tcgplayer/prices-{date_str}.ppmd.7z"
     archive_filename = os.path.join(BASE_DIR, f"prices-{date_str}.ppmd.7z")
     extracted_folder = os.path.join(BASE_DIR, f"temp_extract_{date_str}")
@@ -66,16 +145,13 @@ def fetch_prices_for_date(date_str, products_by_category):
             timeout=60,
             headers=REQUEST_HEADERS,
         )
-        if resp.status_code != 200:
-            body = ""
-            try:
-                body = resp.text.strip()
-            except Exception:
-                body = ""
-            detail = f"HTTP {resp.status_code} while fetching {archive_url}"
-            if body:
-                detail = f"{detail}: {body[:300]}"
-            raise PriceArchiveFetchError(detail)
+        if resp.status_code == 403:
+            _ARCHIVE_AVAILABLE = False
+            print(f" [archive HTTP 403: tcgcsv price archive temporarily removed by host]", end="")
+            return {}
+        elif resp.status_code != 200:
+            print(f" [archive HTTP {resp.status_code}]", end="")
+            return {}
         
         with open(archive_filename, "wb") as f:
             for chunk in resp.iter_content(chunk_size=8192):
@@ -89,9 +165,8 @@ def fetch_prices_for_date(date_str, products_by_category):
         if result.returncode != 0:
             cleanup_files(archive_filename, extracted_folder)
             detail = result.stderr.strip() or result.stdout.strip()
-            raise PriceArchiveFetchError(
-                f"7z failed extracting {archive_filename}: {detail[:500]}"
-            )
+            print(f" [7z extract failed: {detail[:100]}]", end="")
+            return {}
         
         base_path = Path(extracted_folder)
         
@@ -135,13 +210,9 @@ def fetch_prices_for_date(date_str, products_by_category):
         
         cleanup_files(archive_filename, extracted_folder)
     
-    except PriceArchiveFetchError:
-        cleanup_files(archive_filename, extracted_folder)
-        raise
     except Exception as e:
-        print(f"  Error fetching {date_str}: {e}")
         cleanup_files(archive_filename, extracted_folder)
-        raise PriceArchiveFetchError(f"Unexpected error fetching {date_str}: {e}") from e
+        print(f" [error: {e}]", end="")
     
     return found_prices
 
