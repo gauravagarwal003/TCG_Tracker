@@ -1,5 +1,101 @@
 [
   {
+    "product_id": "277568",
+    "name": "Infernape V Box",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/277568_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/277568/pokemon-miscellaneous-cards-and-products-infernape-v-box"
+  },
+  {
+    "product_id": "281981",
+    "name": "Hidden Potential Tin [Rotom V]",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/281981_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/281981/pokemon-miscellaneous-cards-and-products-hidden-potential-tin-rotom-v"
+  },
+  {
+    "product_id": "609597",
+    "name": "Blooming Waters Premium Collection",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/609597_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/609597/pokemon-sv-scarlet-and-violet-151-blooming-waters-premium-collection"
+  },
+  {
+    "product_id": "634329",
+    "group_id": "2374",
+    "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/634329_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/634329/pokemon-miscellaneous-cards-and-products-2-pack-blister-tornadus-thundurus-and-landorus"
+  },
+  {
+    "product_id": "654213",
+    "group_id": "2374",
+    "name": "Mega Charizard X ex Ultra Premium Collection",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654213_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/654213/pokemon-miscellaneous-cards-and-products-mega-charizard-x-ex-ultra-premium-collection"
+  },
+  {
+    "product_id": "656950",
+    "group_id": "2374",
+    "name": "Greninja EX & Kingdra EX Special Collection Box",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/656950_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/656950/pokemon-miscellaneous-cards-and-products-greninja-ex-and-kingdra-ex-special-collection-box"
+  },
+  {
+    "product_id": "662770",
+    "group_id": "2374",
+    "name": "Snorlax ex & Blissey ex Special Collection",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/662770_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/662770/pokemon-miscellaneous-cards-and-products-snorlax-ex-and-blissey-ex-special-collection"
+  },
+  {
+    "name": "Pokemon Day 2026 Collection",
+    "product_id": "668590",
+    "group_id": "2374",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668590_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/668590"
+  },
+  {
+    "product_id": "670782",
+    "name": "Knock Out Collection [Kyogre]",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670782_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/670782"
+  },
+  {
+    "name": "Knock Out Collection [Suicune]",
+    "product_id": "670783",
+    "group_id": "2374",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/670783"
+  },
+  {
+    "name": "Mega Charizard Tin (Mega Charizard Y)",
+    "product_id": "671250",
+    "group_id": "2374",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/671250"
+  },
+  {
+    "product_id": "706250",
+    "name": "2-Pack Blister [Zarude] (3-Tab)",
+    "group_id": "2374",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/706250_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/706250/pokemon-miscellaneous-cards-and-products-2-pack-blister-zarude-3-tab"
+  },
+  {
     "product_id": "256138",
     "name": "Brilliant Stars Elite Trainer Box",
     "group_id": "2948",
@@ -24,28 +120,28 @@
     "url": "https://www.tcgplayer.com/product/277335/pokemon-swsh11-lost-origin-lost-origin-elite-trainer-box"
   },
   {
-    "product_id": "277568",
-    "name": "Infernape V Box",
-    "group_id": "2374",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/277568_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/277568/pokemon-miscellaneous-cards-and-products-infernape-v-box"
-  },
-  {
-    "product_id": "281981",
-    "name": "Hidden Potential Tin [Rotom V]",
-    "group_id": "2374",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/281981_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/281981/pokemon-miscellaneous-cards-and-products-hidden-potential-tin-rotom-v"
-  },
-  {
     "product_id": "283388",
     "name": "Silver Tempest Booster Pack",
     "group_id": "3170",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/283388_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/283388/pokemon-swsh12-silver-tempest-silver-tempest-booster-pack"
+  },
+  {
+    "name": "Silver Tempest Booster Bundle",
+    "product_id": "283396",
+    "group_id": "3170",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/283396_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/283396"
+  },
+  {
+    "product_id": "527562",
+    "name": "Crown Zenith Booster Bundle",
+    "group_id": "17688",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/527562_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/527562/pokemon-crown-zenith-crown-zenith-booster-bundle"
   },
   {
     "product_id": "493974",
@@ -104,12 +200,20 @@
     "url": "https://www.tcgplayer.com/product/522701/pokemon-sv-scarlet-and-violet-151-151-mini-tin-electabuzz-and-magnemites"
   },
   {
-    "product_id": "527562",
-    "name": "Crown Zenith Booster Bundle",
-    "group_id": "17688",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/527562_200w.jpg",
+    "product_id": "609597",
+    "name": "Blooming Waters Premium Collection",
+    "group_id": "23237",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/609597_200w.jpg",
     "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/527562/pokemon-crown-zenith-crown-zenith-booster-bundle"
+    "url": "https://www.tcgplayer.com/product/609597/pokemon-sv-scarlet-and-violet-151-blooming-waters-premium-collection"
+  },
+  {
+    "product_id": "512822",
+    "name": "Paradox Rift Booster Pack",
+    "group_id": "23286",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/512822_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/512822/pokemon-sv03-paradox-rift-paradox-rift-booster-pack"
   },
   {
     "product_id": "528771",
@@ -118,6 +222,14 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/528771_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/528771/pokemon-sv-paldean-fates-paldean-fates-booster-bundle"
+  },
+  {
+    "product_id": "665113",
+    "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
+    "group_id": "23353",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/665113_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/665113/pokemon-sv-paldean-fates-paldean-fates-great-tusk-ex-and-iron-treads-ex-premium-collection"
   },
   {
     "product_id": "532841",
@@ -142,6 +254,22 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/552998_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/552998/pokemon-sv-shrouded-fable-shrouded-fable-pokemon-center-elite-trainer-box-exclusive"
+  },
+  {
+    "product_id": "557331",
+    "group_id": "23537",
+    "name": "Stellar Crown Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557331_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/557331/pokemon-sv07-stellar-crown-stellar-crown-booster-pack"
+  },
+  {
+    "product_id": "557340",
+    "group_id": "23537",
+    "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557340_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/557340/pokemon-sv07-stellar-crown-stellar-crown-pokemon-center-elite-trainer-box-exclusive"
   },
   {
     "product_id": "557345",
@@ -184,6 +312,14 @@
     "url": "https://www.tcgplayer.com/product/593355/pokemon-sv-prismatic-evolutions-prismatic-evolutions-elite-trainer-box"
   },
   {
+    "product_id": "593359",
+    "name": "Prismatic Evolutions Poster Collection",
+    "group_id": "23821",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593359_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/593359/pokemon-sv-prismatic-evolutions-prismatic-evolutions-poster-collection"
+  },
+  {
     "product_id": "593450",
     "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
     "group_id": "23821",
@@ -224,14 +360,6 @@
     "url": "https://www.tcgplayer.com/product/606881/pokemon-sv-prismatic-evolutions-prismatic-evolutions-accessory-pouch-special-collection"
   },
   {
-    "product_id": "609597",
-    "name": "Blooming Waters Premium Collection",
-    "group_id": "23237",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/609597_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/609597/pokemon-sv-scarlet-and-violet-151-blooming-waters-premium-collection"
-  },
-  {
     "product_id": "610929",
     "name": "Journey Together Pokemon Center Elite Trainer Box (Exclusive)",
     "group_id": "24073",
@@ -256,6 +384,14 @@
     "url": "https://www.tcgplayer.com/product/624683/pokemon-sv10-destined-rivals-destined-rivals-booster-pack"
   },
   {
+    "product_id": "624684",
+    "name": "Destined Rivals Sleeved Booster Pack",
+    "group_id": "24269",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/624684_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/624684/pokemon-sv10-destined-rivals-destined-rivals-sleeved-booster-pack"
+  },
+  {
     "product_id": "625670",
     "name": "Destined Rivals Booster Bundle",
     "group_id": "24269",
@@ -278,6 +414,14 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628395_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/628395/pokemon-sv10-destined-rivals-destined-rivals-premium-checklane-blister-gastrodon"
+  },
+  {
+    "product_id": "628396",
+    "group_id": "24269",
+    "name": "Destined Rivals Premium Checklane Blister [Rabsca]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628396_200w.jpg",
+    "categoryId": 3,
+    "url": "https://www.tcgplayer.com/product/628396/pokemon-sv10-destined-rivals-destined-rivals-premium-checklane-blister-rabsca"
   },
   {
     "product_id": "630431",
@@ -312,52 +456,20 @@
     "url": "https://www.tcgplayer.com/product/630696/pokemon-sv-white-flare-white-flare-booster-bundle"
   },
   {
-    "product_id": "628396",
-    "group_id": "24269",
-    "name": "Destined Rivals Premium Checklane Blister [Rabsca]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628396_200w.jpg",
+    "product_id": "644279",
+    "group_id": "24380",
+    "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644279_200w.jpg",
     "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/628396/pokemon-sv10-destined-rivals-destined-rivals-premium-checklane-blister-rabsca"
+    "url": "https://www.tcgplayer.com/product/644279/pokemon-me01-mega-evolution-mega-evolution-elite-trainer-box-mega-gardevoir"
   },
   {
-    "product_id": "654213",
-    "group_id": "2374",
-    "name": "Mega Charizard X ex Ultra Premium Collection",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654213_200w.jpg",
+    "product_id": "644352",
+    "name": "Mega Evolution Booster Pack",
+    "group_id": "24380",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg",
     "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/654213/pokemon-miscellaneous-cards-and-products-mega-charizard-x-ex-ultra-premium-collection"
-  },
-  {
-    "product_id": "656950",
-    "group_id": "2374",
-    "name": "Greninja EX & Kingdra EX Special Collection Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/656950_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/656950/pokemon-miscellaneous-cards-and-products-greninja-ex-and-kingdra-ex-special-collection-box"
-  },
-  {
-    "product_id": "662770",
-    "group_id": "2374",
-    "name": "Snorlax ex & Blissey ex Special Collection",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/662770_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/662770/pokemon-miscellaneous-cards-and-products-snorlax-ex-and-blissey-ex-special-collection"
-  },
-  {
-    "product_id": "634329",
-    "group_id": "2374",
-    "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/634329_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/634329/pokemon-miscellaneous-cards-and-products-2-pack-blister-tornadus-thundurus-and-landorus"
-  },
-  {
-    "product_id": "557331",
-    "group_id": "23537",
-    "name": "Stellar Crown Booster Pack",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557331_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/557331/pokemon-sv07-stellar-crown-stellar-crown-booster-pack"
+    "url": "https://www.tcgplayer.com/product/644352"
   },
   {
     "product_id": "644362",
@@ -368,22 +480,6 @@
     "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle"
   },
   {
-    "product_id": "644279",
-    "group_id": "24380",
-    "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644279_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/644279/pokemon-me01-mega-evolution-mega-evolution-elite-trainer-box-mega-gardevoir"
-  },
-  {
-    "product_id": "557340",
-    "group_id": "23537",
-    "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557340_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/557340/pokemon-sv07-stellar-crown-stellar-crown-pokemon-center-elite-trainer-box-exclusive"
-  },
-  {
     "product_id": "654135",
     "group_id": "24448",
     "name": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)",
@@ -392,28 +488,12 @@
     "url": "https://www.tcgplayer.com/product/654135/pokemon-me02-phantasmal-flames-phantasmal-flames-pokemon-center-elite-trainer-box-exclusive"
   },
   {
-    "product_id": "665113",
-    "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
-    "group_id": "23353",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/665113_200w.jpg",
+    "product_id": "654137",
+    "name": "Phantasmal Flames Booster Box",
+    "group_id": "24448",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
     "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/665113/pokemon-sv-paldean-fates-paldean-fates-great-tusk-ex-and-iron-treads-ex-premium-collection"
-  },
-  {
-    "product_id": "512822",
-    "name": "Paradox Rift Booster Pack",
-    "group_id": "23286",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/512822_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/512822/pokemon-sv03-paradox-rift-paradox-rift-booster-pack"
-  },
-  {
-    "product_id": "624684",
-    "name": "Destined Rivals Sleeved Booster Pack",
-    "group_id": "24269",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/624684_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/624684/pokemon-sv10-destined-rivals-destined-rivals-sleeved-booster-pack"
+    "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box"
   },
   {
     "product_id": "654145",
@@ -440,212 +520,12 @@
     "url": "https://www.tcgplayer.com/product/654160/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-bundle"
   },
   {
-    "product_id": "654137",
-    "name": "Phantasmal Flames Booster Box",
-    "group_id": "24448",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/654137_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/654137/pokemon-me02-phantasmal-flames-phantasmal-flames-booster-box"
-  },
-  {
-    "product_id": "670782",
-    "name": "Knock Out Collection [Kyogre]",
-    "group_id": "2374",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670782_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/670782"
-  },
-  {
-    "name": "Knock Out Collection [Suicune]",
-    "product_id": "670783",
-    "group_id": "2374",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/670783"
-  },
-  {
-    "name": "Shiny Treasure ex High Class Booster Box",
-    "product_id": "565232",
-    "group_id": "23601",
-    "categoryId": 85,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/565232"
-  },
-  {
-    "product_id": "644352",
-    "name": "Mega Evolution Booster Pack",
-    "group_id": "24380",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/644352"
-  },
-  {
-    "name": "Ascended Heroes Pokemon Center Elite Trainer Box (Exclusive)",
-    "product_id": "668497",
+    "product_id": "666906",
+    "name": "Mega Evolution: Ascended Heroes Collection - Erika (3-Tab)",
     "group_id": "24541",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666906_200w.jpg",
     "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/668497"
-  },
-  {
-    "product_id": "563842",
-    "name": "Double Pack Set Volume 6",
-    "group_id": "23589",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/563842_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/563842"
-  },
-  {
-    "product_id": "542503",
-    "name": "Two Legends - Sleeved Booster Pack",
-    "group_id": "23462",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542503_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/542503"
-  },
-  {
-    "product_id": "620141",
-    "name": "Special DON Set Vol 1 Luffy",
-    "group_id": "17675",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/620141_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/620141"
-  },
-  {
-    "product_id": "666576",
-    "name": "The Azure Sea's Seven Sleeved Booster Pack",
-    "group_id": "24537",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666576_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/666576"
-  },
-  {
-    "product_id": "671479",
-    "name": "Starter Deck 29: Egghead",
-    "group_id": "24575",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671479_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/671479"
-  },
-  {
-    "product_id": "586671",
-    "name": "Royal Blood Booster Box",
-    "group_id": "23766",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/586671_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/586671"
-  },
-  {
-    "product_id": "542504",
-    "name": "Two Legends - Booster Box",
-    "group_id": "23462",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542504_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/542504"
-  },
-  {
-    "product_id": "628352",
-    "name": "Carrying On His Will Booster Box",
-    "group_id": "24303",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/628352"
-  },
-  {
-    "product_id": "661934",
-    "name": "Spiritforged - Booster Display",
-    "group_id": "24519",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
-    "categoryId": 89,
-    "url": "https://www.tcgplayer.com/product/661934"
-  },
-  {
-    "product_id": "666891",
-    "name": "Extra Booster: One Piece Heroines Edition Box",
-    "group_id": "24545",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/666891"
-  },
-  {
-    "name": "Extra Booster: One Piece Heroines Edition Sleeved Booster Pack",
-    "product_id": "679503",
-    "group_id": "24545",
-    "categoryId": 68,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/679503_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/679503"
-  },
-  {
-    "name": "Pokemon Day 2026 Collection",
-    "product_id": "668590",
-    "group_id": "2374",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668590_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/668590"
-  },
-  {
-    "name": "Mega Charizard Tin (Mega Charizard Y)",
-    "product_id": "671250",
-    "group_id": "2374",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671250_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/671250"
-  },
-  {
-    "name": "Silver Tempest Booster Bundle",
-    "product_id": "283396",
-    "group_id": "3170",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/283396_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/283396"
-  },
-  {
-    "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
-    "product_id": "669273",
-    "group_id": "17675",
-    "categoryId": 68,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669273_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/669273"
-  },
-  {
-    "name": "Starter Deck EX: The Beat of Ki",
-    "product_id": "670179",
-    "group_id": "24571",
-    "categoryId": 80,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670179_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/670179"
-  },
-  {
-    "name": "Starter Deck EX: The Phase of Evolution",
-    "product_id": "670177",
-    "group_id": "24570",
-    "categoryId": 80,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670177_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/670177"
-  },
-  {
-    "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
-    "product_id": "669278",
-    "group_id": "17675",
-    "categoryId": 68,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669278_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/669278"
-  },
-  {
-    "name": "Perfect Order Pokemon Center Elite Trainer Box",
-    "product_id": "672404",
-    "group_id": "24587",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672404_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/672404"
-  },
-  {
-    "name": "Perfect Order Booster Box",
-    "product_id": "672394",
-    "group_id": "24587",
-    "categoryId": 3,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672394_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/672394"
+    "url": "https://www.tcgplayer.com/product/666906/pokemon-me-ascended-heroes-mega-evolution-ascended-heroes-collection-erika-3-tab"
   },
   {
     "name": "Mega Evolution: Ascended Heroes Tech Sticker Collection - Gastly",
@@ -656,20 +536,12 @@
     "url": "https://www.tcgplayer.com/product/666909"
   },
   {
-    "product_id": "593359",
-    "name": "Prismatic Evolutions Poster Collection",
-    "group_id": "23821",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593359_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/593359/pokemon-sv-prismatic-evolutions-prismatic-evolutions-poster-collection"
-  },
-  {
-    "product_id": "666906",
-    "name": "Mega Evolution: Ascended Heroes Collection - Erika (3-Tab)",
+    "name": "Ascended Heroes Pokemon Center Elite Trainer Box (Exclusive)",
+    "product_id": "668497",
     "group_id": "24541",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666906_200w.jpg",
     "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/666906/pokemon-me-ascended-heroes-mega-evolution-ascended-heroes-collection-erika-3-tab"
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668497_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/668497"
   },
   {
     "product_id": "668531",
@@ -704,28 +576,28 @@
     "url": "https://www.tcgplayer.com/product/668535/pokemon-me-ascended-heroes-ascended-heroes-mini-tin-clefairy-and-chikorita"
   },
   {
+    "name": "Perfect Order Booster Box",
+    "product_id": "672394",
+    "group_id": "24587",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672394_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/672394"
+  },
+  {
+    "name": "Perfect Order Pokemon Center Elite Trainer Box",
+    "product_id": "672404",
+    "group_id": "24587",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672404_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/672404"
+  },
+  {
     "product_id": "672412",
     "name": "Perfect Order Sleeved Booster Pack",
     "group_id": "24587",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg",
     "categoryId": 3,
     "url": "https://www.tcgplayer.com/product/672412/pokemon-me03-perfect-order-perfect-order-sleeved-booster-pack"
-  },
-  {
-    "product_id": "682057",
-    "name": "Adventure on Kami's Island Booster Box",
-    "group_id": "24637",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/682057_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/682057/one-piece-card-game-adventure-on-kamis-island-adventure-on-kamis-island-booster-box"
-  },
-  {
-    "product_id": "682789",
-    "name": "Double Pack Set Vol. 10",
-    "group_id": "24637",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/682789_200w.jpg",
-    "categoryId": 68,
-    "url": "https://www.tcgplayer.com/product/682789/one-piece-card-game-adventure-on-kamis-island-double-pack-set-vol-10"
   },
   {
     "product_id": "684444",
@@ -800,11 +672,147 @@
     "url": "https://www.tcgplayer.com/product/704152/pokemon-me-30th-celebration-30th-celebration-knock-out-collection"
   },
   {
-    "product_id": "706250",
-    "name": "2-Pack Blister [Zarude] (3-Tab)",
-    "group_id": "2374",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/706250_200w.jpg",
-    "categoryId": 3,
-    "url": "https://www.tcgplayer.com/product/706250/pokemon-miscellaneous-cards-and-products-2-pack-blister-zarude-3-tab"
+    "product_id": "620141",
+    "name": "Special DON Set Vol 1 Luffy",
+    "group_id": "17675",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/620141_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/620141"
+  },
+  {
+    "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
+    "product_id": "669273",
+    "group_id": "17675",
+    "categoryId": 68,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669273_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/669273"
+  },
+  {
+    "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
+    "product_id": "669278",
+    "group_id": "17675",
+    "categoryId": 68,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/669278_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/669278"
+  },
+  {
+    "product_id": "542503",
+    "name": "Two Legends - Sleeved Booster Pack",
+    "group_id": "23462",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542503_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/542503"
+  },
+  {
+    "product_id": "542504",
+    "name": "Two Legends - Booster Box",
+    "group_id": "23462",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/542504_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/542504"
+  },
+  {
+    "product_id": "563842",
+    "name": "Double Pack Set Volume 6",
+    "group_id": "23589",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/563842_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/563842"
+  },
+  {
+    "product_id": "586671",
+    "name": "Royal Blood Booster Box",
+    "group_id": "23766",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/586671_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/586671"
+  },
+  {
+    "product_id": "628352",
+    "name": "Carrying On His Will Booster Box",
+    "group_id": "24303",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/628352"
+  },
+  {
+    "product_id": "666576",
+    "name": "The Azure Sea's Seven Sleeved Booster Pack",
+    "group_id": "24537",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666576_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/666576"
+  },
+  {
+    "product_id": "666891",
+    "name": "Extra Booster: One Piece Heroines Edition Box",
+    "group_id": "24545",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/666891"
+  },
+  {
+    "name": "Extra Booster: One Piece Heroines Edition Sleeved Booster Pack",
+    "product_id": "679503",
+    "group_id": "24545",
+    "categoryId": 68,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/679503_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/679503"
+  },
+  {
+    "product_id": "671479",
+    "name": "Starter Deck 29: Egghead",
+    "group_id": "24575",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/671479_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/671479"
+  },
+  {
+    "product_id": "682057",
+    "name": "Adventure on Kami's Island Booster Box",
+    "group_id": "24637",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/682057_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/682057/one-piece-card-game-adventure-on-kamis-island-adventure-on-kamis-island-booster-box"
+  },
+  {
+    "product_id": "682789",
+    "name": "Double Pack Set Vol. 10",
+    "group_id": "24637",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/682789_200w.jpg",
+    "categoryId": 68,
+    "url": "https://www.tcgplayer.com/product/682789/one-piece-card-game-adventure-on-kamis-island-double-pack-set-vol-10"
+  },
+  {
+    "name": "Starter Deck EX: The Phase of Evolution",
+    "product_id": "670177",
+    "group_id": "24570",
+    "categoryId": 80,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670177_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/670177"
+  },
+  {
+    "name": "Starter Deck EX: The Beat of Ki",
+    "product_id": "670179",
+    "group_id": "24571",
+    "categoryId": 80,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670179_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/670179"
+  },
+  {
+    "name": "Shiny Treasure ex High Class Booster Box",
+    "product_id": "565232",
+    "group_id": "23601",
+    "categoryId": 85,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565232"
+  },
+  {
+    "product_id": "661934",
+    "name": "Spiritforged - Booster Display",
+    "group_id": "24519",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
+    "categoryId": 89,
+    "url": "https://www.tcgplayer.com/product/661934"
   }
 ]

@@ -43,8 +43,14 @@ function normalizeCategoryId(categoryId) {
 
 function buildMappingByProduct(mappings) {
     const byProduct = new Map();
+    const byIdOnly = new Map();
     for (const mapping of mappings || []) {
-        if (!mapping || mapping.group_id == null || mapping.product_id == null) continue;
+        if (!mapping || mapping.product_id == null) continue;
+        const pidStr = String(mapping.product_id);
+        if (!byIdOnly.has(pidStr)) {
+            byIdOnly.set(pidStr, mapping);
+        }
+        if (mapping.group_id == null) continue;
         const productKey = asProductKey(mapping.group_id, mapping.product_id);
         const current = byProduct.get(productKey);
         const nextCategoryId = normalizeCategoryId(mapping.categoryId);
@@ -53,12 +59,15 @@ function buildMappingByProduct(mappings) {
             byProduct.set(productKey, mapping);
         }
     }
-    return byProduct;
+    return { byProduct, byIdOnly };
 }
 
-function normalizeProductItem(item, mappingByProduct) {
-    if (!item || item.group_id == null || item.product_id == null) return item;
-    const mapping = mappingByProduct.get(asProductKey(item.group_id, item.product_id)) || null;
+function normalizeProductItem(item, mappingLookup) {
+    if (!item || item.product_id == null) return item;
+    const { byProduct, byIdOnly } = mappingLookup;
+    const pidStr = String(item.product_id);
+    const key = item.group_id != null ? asProductKey(item.group_id, item.product_id) : null;
+    const mapping = (key ? byProduct.get(key) : null) || byIdOnly.get(pidStr) || null;
     const categoryId = normalizeCategoryId(mapping?.categoryId) ?? normalizeCategoryId(item.categoryId);
     return {
         ...item,
@@ -70,14 +79,15 @@ function normalizeProductItem(item, mappingByProduct) {
 }
 
 function normalizeTransactions(transactions, mappings) {
-    const mappingByProduct = buildMappingByProduct(mappings);
+    const mappingLookup = buildMappingByProduct(mappings);
     return (transactions || []).map((txn) => ({
         ...txn,
-        items: (txn.items || []).map((item) => normalizeProductItem(item, mappingByProduct)),
-        items_in: (txn.items_in || []).map((item) => normalizeProductItem(item, mappingByProduct)),
-        items_out: (txn.items_out || []).map((item) => normalizeProductItem(item, mappingByProduct)),
+        items: (txn.items || []).map((item) => normalizeProductItem(item, mappingLookup)),
+        items_in: (txn.items_in || []).map((item) => normalizeProductItem(item, mappingLookup)),
+        items_out: (txn.items_out || []).map((item) => normalizeProductItem(item, mappingLookup)),
     }));
 }
+
 
 function parseDate(dateStr) {
     return new Date(`${dateStr}T00:00:00Z`);
@@ -249,7 +259,11 @@ export async function computeDashboardSnapshot(transactions) {
     const mappingByKey = new Map(
         mappings.map((m) => [asKey(m.categoryId || 3, m.group_id, m.product_id), m])
     );
+    const mappingByProductId = new Map(
+        mappings.map((m) => [String(m.product_id), m])
+    );
     const metadataByKey = new Map();
+
     for (const txn of txns) {
         const collect = (item) => {
             if (item?.categoryId == null || item?.group_id == null || item?.product_id == null) return;
@@ -314,8 +328,9 @@ export async function computeDashboardSnapshot(transactions) {
         const [categoryId, groupId, productId] = key.split('|');
         const priceMap = priceMaps.get(key) || {};
         const latestPrice = getLatestPriceOnOrBefore(priceMap, endDateStr);
-        const mapping = mappingByKey.get(key) || null;
+        const mapping = mappingByKey.get(key) || mappingByProductId.get(productId) || null;
         const metadata = metadataByKey.get(key) || null;
+
 
         let buyUnits = 0;
         let buyCost = 0;

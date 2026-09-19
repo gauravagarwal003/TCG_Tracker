@@ -147,10 +147,14 @@ def save_mappings(mappings):
 def get_mapping(group_id, product_id):
     """Find mapping entry for a product."""
     mappings = load_mappings()
+    fallback = None
     for m in mappings:
-        if str(m["group_id"]) == str(group_id) and str(m["product_id"]) == str(product_id):
-            return m
-    return None
+        if str(m.get("product_id")) == str(product_id):
+            if group_id is None or str(m.get("group_id")) == str(group_id):
+                return m
+            if fallback is None:
+                fallback = m
+    return fallback
 
 
 def _normalize_category_id(category_id):
@@ -176,7 +180,11 @@ def _build_mapping_by_product(mappings=None):
         current_cat = _normalize_category_id(current.get("categoryId")) if current else None
         if current is None or (current_cat is None and next_cat is not None):
             by_product[key] = mapping
+        # Also index by product_id string as fallback
+        if str(product_id) not in by_product:
+            by_product[str(product_id)] = mapping
     return by_product
+
 
 
 def _normalize_item_for_pricing(item, mapping_by_product):
@@ -187,8 +195,9 @@ def _normalize_item_for_pricing(item, mapping_by_product):
     if group_id is None or product_id is None:
         return dict(item)
 
-    mapping = mapping_by_product.get((str(group_id), str(product_id)))
+    mapping = mapping_by_product.get((str(group_id), str(product_id))) or mapping_by_product.get(str(product_id))
     category_id = _normalize_category_id(mapping.get("categoryId")) if mapping else None
+
     if category_id is None:
         category_id = _normalize_category_id(item.get("categoryId"))
 
