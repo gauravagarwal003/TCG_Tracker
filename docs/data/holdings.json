@@ -66,19 +66,6 @@
   },
   {
     "categoryId": "3",
-    "group_id": "24722",
-    "product_id": "704144",
-    "name": "30th Celebration Pokemon Center Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704144_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/704144/pokemon-me-30th-celebration-30th-celebration-pokemon-center-elite-trainer-box",
-    "quantity": 2,
-    "latest_price": 313.21,
-    "total_value": 626.42,
-    "avg_buy_price": 66.14,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
     "group_id": "24448",
     "product_id": "654135",
     "name": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)",
@@ -396,9 +383,9 @@
     "name": "Chaos Rising Pokemon Center Elite Trainer Box",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg",
     "url": "https://www.tcgplayer.com/product/684452/pokemon-me04-chaos-rising-chaos-rising-pokemon-center-elite-trainer-box",
-    "quantity": 2,
+    "quantity": 1,
     "latest_price": 120.36,
-    "total_value": 240.72,
+    "total_value": 120.36,
     "avg_buy_price": 66.14,
     "via_trade": false
   },
@@ -412,7 +399,7 @@
     "quantity": 1,
     "latest_price": 114.06,
     "total_value": 114.06,
-    "avg_buy_price": 60.63,
+    "avg_buy_price": 35.63,
     "via_trade": false
   },
   {
@@ -520,32 +507,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "3",
-    "group_id": "24688",
-    "product_id": "692947",
-    "name": "Pitch Black Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/692947/pokemon-me05-pitch-black-pitch-black-elite-trainer-box",
-    "quantity": 1,
-    "latest_price": 72.37,
-    "total_value": 72.37,
-    "avg_buy_price": 66.14,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24655",
-    "product_id": "684450",
-    "name": "Chaos Rising Elite Trainer Box",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/684450/pokemon-me04-chaos-rising-chaos-rising-elite-trainer-box",
-    "quantity": 1,
-    "latest_price": 69.0,
-    "total_value": 69.0,
-    "avg_buy_price": 66.14,
-    "via_trade": false
-  },
-  {
     "categoryId": "68",
     "group_id": "17675",
     "product_id": "669273",
@@ -604,10 +565,10 @@
     "name": "Mega Evolution Booster Bundle",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644362_200w.jpg",
     "url": "https://www.tcgplayer.com/product/644362/pokemon-me01-mega-evolution-mega-evolution-booster-bundle",
-    "quantity": 3,
+    "quantity": 2,
     "latest_price": 63.89,
-    "total_value": 191.67,
-    "avg_buy_price": 28.17,
+    "total_value": 127.78,
+    "avg_buy_price": 25.79,
     "via_trade": false
   },
   {
@@ -715,19 +676,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "3",
-    "group_id": "24722",
-    "product_id": "704145",
-    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/704145/pokemon-me-30th-celebration-30th-celebration-tech-sticker-collection-alolan-exeggutor",
-    "quantity": 1,
-    "latest_price": 38.94,
-    "total_value": 38.94,
-    "avg_buy_price": 16.53,
-    "via_trade": false
-  },
-  {
     "categoryId": "68",
     "group_id": "24575",
     "product_id": "671479",
@@ -751,19 +699,6 @@
     "latest_price": 37.99,
     "total_value": 37.99,
     "avg_buy_price": 19.83,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "24722",
-    "product_id": "704146",
-    "name": "30th Celebration Tech Sticker Collection [Lucario]",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/704146/pokemon-me-30th-celebration-30th-celebration-tech-sticker-collection-lucario",
-    "quantity": 1,
-    "latest_price": 37.98,
-    "total_value": 37.98,
-    "avg_buy_price": 16.53,
     "via_trade": false
   },
   {
@@ -832,19 +767,6 @@
     "via_trade": false
   },
   {
-    "categoryId": "3",
-    "group_id": "24722",
-    "product_id": "704152",
-    "name": "30th Celebration Knock Out Collection",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/704152/pokemon-me-30th-celebration-30th-celebration-knock-out-collection",
-    "quantity": 1,
-    "latest_price": 30.0,
-    "total_value": 30.0,
-    "avg_buy_price": 11.01,
-    "via_trade": false
-  },
-  {
     "categoryId": "80",
     "group_id": "24571",
     "product_id": "670179",
@@ -867,19 +789,6 @@
     "quantity": 2,
     "latest_price": 27.37,
     "total_value": 54.74,
-    "avg_buy_price": 11.01,
-    "via_trade": false
-  },
-  {
-    "categoryId": "3",
-    "group_id": "2374",
-    "product_id": "706250",
-    "name": "2-Pack Blister [Zarude] (3-Tab)",
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/706250_200w.jpg",
-    "url": "https://www.tcgplayer.com/product/706250/pokemon-miscellaneous-cards-and-products-2-pack-blister-zarude-3-tab",
-    "quantity": 1,
-    "latest_price": 20.63,
-    "total_value": 20.63,
     "avg_buy_price": 11.01,
     "via_trade": false
   },
@@ -942,10 +851,10 @@
     "name": "Knock Out Collection [Suicune]",
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg",
     "url": "https://www.tcgplayer.com/product/670783",
-    "quantity": 8,
+    "quantity": 2,
     "latest_price": 15.18,
-    "total_value": 121.44,
-    "avg_buy_price": 6.54,
+    "total_value": 30.36,
+    "avg_buy_price": 10.83,
     "via_trade": false
   },
   {
@@ -1011,6 +920,19 @@
     "latest_price": 8.33,
     "total_value": 49.98,
     "avg_buy_price": 5.88,
+    "via_trade": false
+  },
+  {
+    "categoryId": "3",
+    "group_id": "23651",
+    "product_id": "565604",
+    "name": "Surging Sparks Booster Pack",
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/565604/pokemon-sv08-surging-sparks-surging-sparks-booster-pack",
+    "quantity": 6,
+    "latest_price": 8.29,
+    "total_value": 49.74,
+    "avg_buy_price": 4.93,
     "via_trade": false
   },
   {
