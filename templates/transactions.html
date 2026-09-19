@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="table-section">
-    <div class="table-header d-flex justify-content-between align-items-center mb-3">
-        <h5 class="mb-0">Transactions</h5>
+    <div class="table-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="fas fa-receipt me-2 text-primary"></i>Transactions</h5>
         <div>
             <button class="btn btn-sm btn-outline-secondary me-2" id="toggleDetailsBtn">Show Store/Method</button>
             <a href="{{ 'add-transaction.html' if (is_static is defined and is_static) else url_for('add_transaction_page') }}" class="btn btn-sm btn-success">

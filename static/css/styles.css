@@ -12,7 +12,7 @@
     --border-color: #374151;
     --bg-primary: #0f172a;
     --bg-surface: #1f2937;
-    --border-radius: 8px;
+    --border-radius: 10px;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
@@ -83,34 +83,74 @@ h5 { font-size: 1.125rem; }
     box-shadow: var(--shadow-hover);
 }
 
-/* Cards - Minimal appearance for stat cards */
-.card {
+/* Card & Section Container System */
+.card, .table-section {
     background-color: var(--bg-surface);
     color: var(--text-primary);
     border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    margin-bottom: 1rem;
     overflow: hidden;
-    transition: box-shadow 0.2s ease;
+    margin-bottom: 0;
+    transition: border-color 0.2s ease;
 }
 
-.card:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-.card-header {
-    background-color: rgba(0, 0, 0, 0.2);
+.card-header, .table-section .table-header {
+    background-color: rgba(255, 255, 255, 0.02);
     color: var(--text-primary);
     border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
+    padding: 0.875rem 1.25rem;
+    margin-bottom: 0;
 }
 
-.card-header h5 {
+.card-header h5,
+.card-header .card-title,
+.table-section .table-header h5,
+.table-section .table-header .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
     margin: 0;
+    letter-spacing: -0.01em;
 }
 
 .card-body {
+    padding: 1.25rem;
+}
+
+/* Stat Cards */
+.stat-card {
+    border-radius: var(--border-radius);
+    margin-bottom: 0;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.stat-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.stat-card .card-body {
     padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .text-primary { color: var(--primary) !important; }
@@ -169,8 +209,9 @@ h5 { font-size: 1.125rem; }
 }
 
 .btn-outline-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-color);
+    color: var(--text-primary);
 }
 
 .btn-outline-primary {
@@ -183,6 +224,49 @@ h5 { font-size: 1.125rem; }
     background-color: rgba(79, 70, 229, 0.08);
 }
 
+/* Segmented Button Groups */
+.btn-group-sm > .btn {
+    padding: 0.28rem 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-group-sm > .btn.active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Asset Allocation Toggle Tabs - Absolutely NO hover effect */
+#allocationToggle .btn {
+    transition: none !important;
+}
+
+#allocationToggle .btn:hover {
+    box-shadow: none !important;
+}
+
+#allocationToggle .btn:not(.active):hover,
+#allocationToggle .btn:not(.active):focus {
+    background-color: transparent !important;
+    color: var(--text-secondary) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: none !important;
+}
+
+#allocationToggle .btn.active,
+#allocationToggle .btn.active:hover,
+#allocationToggle .btn.active:focus {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
+    border-color: var(--primary) !important;
+    box-shadow: none !important;
+}
+
 /* Tables */
 .table {
     margin-bottom: 0;
@@ -190,24 +274,13 @@ h5 { font-size: 1.125rem; }
     color: var(--text-primary);
 }
 
-/* Full-width table sections */
-.table-section {
-    background-color: var(--bg-surface);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
+.table tr:last-child td {
+    border-bottom: none;
 }
 
-.table-section .table-header {
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1.5rem;
-}
-
-.table-section .table-header h5 {
-    margin: 0;
+/* Full-width table sections content area */
+.table-section .table-content {
+    padding: 1.25rem;
 }
 
 .table th {

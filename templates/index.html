@@ -2,33 +2,14 @@
 
 {% block head %}
 <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
-<style>
-.stat-card {
-    padding: 1.5rem 1rem;
-}
-.stat-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6b7280;
-    margin-bottom: 0.75rem;
-}
-.stat-value {
-    font-size: 1.875rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-}
-</style>
 {% endblock %}
 
 {% block content %}
 <!-- Summary Stat Cards -->
 <div class="row mb-4 g-3">
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Current Value</div>
                 {% if is_static is defined and is_static %}
                 <div class="stat-value text-success" id="stat-total-value">—</div>
@@ -38,9 +19,9 @@
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Cost Basis</div>
                 {% if is_static is defined and is_static %}
                 <div class="stat-value" style="color:#ef4444" id="stat-cost-basis">—</div>
@@ -50,9 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Return %</div>
                 {% if is_static is defined and is_static %}
                 <div class="stat-value" id="stat-return-pct">—</div>
@@ -70,8 +51,11 @@
 
 <!-- Portfolio Chart -->
 <div class="row mb-4">
-    <div class="col-md-12">
+    <div class="col-12">
         <div class="card">
+            <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <h5 class="card-title mb-0"><i class="fas fa-chart-line me-2 text-success"></i>Portfolio Value History</h5>
+            </div>
             <div class="card-body">
                 <div id="portfolioChart" style="height: 400px;"></div>
             </div>
@@ -79,21 +63,21 @@
     </div>
 </div>
 
-<!--  Holdings Table -->
-<div class="row">
+<!-- Current Holdings Table -->
+<div class="row mb-4">
     <div class="col-12">
-        <div class="table-section">
-            <div class="table-header d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Current Holdings</h5>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0"><i class="fas fa-boxes-stacked me-2 text-primary"></i>Current Holdings</h5>
                 {% if is_static is defined and is_static %}
-                <span class="badge bg-success fs-6" id="holdings-count">...</span>
+                <span class="badge bg-success" id="holdings-count">...</span>
                 {% else %}
-                <span class="badge bg-success fs-6">{{ holdings|length }} items</span>
+                <span class="badge bg-success">{{ holdings|length }} items</span>
                 {% endif %}
             </div>
-            <div class="table-content">
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover mb-0">
                         <thead>
                             <tr>
                                 <th style="width: 50px;" class="no-sort"></th>
@@ -108,7 +92,7 @@
                         </thead>
                         <tbody{% if is_static is defined and is_static %} id="holdings-body"{% endif %}>
                             {% if is_static is defined and is_static %}
-                            <tr><td colspan="5" class="text-center py-4 text-muted">Loading...</td></tr>
+                            <tr><td colspan="8" class="text-center py-4 text-muted">Loading...</td></tr>
                             {% else %}
                             {% for item in holdings %}
                             <tr>

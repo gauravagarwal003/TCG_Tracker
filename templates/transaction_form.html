@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="table-section">
-    <div class="table-header mb-3">
-        <h5 class="mb-0">{{ 'Edit Transaction' if is_edit else 'Add Transaction' }}</h5>
+    <div class="table-header">
+        <h5 class="mb-0"><i class="fas fa-{{ 'edit' if is_edit else 'circle-plus' }} me-2 text-primary"></i>{{ 'Edit Transaction' if is_edit else 'Add Transaction' }}</h5>
     </div>
 
     <div class="table-content">

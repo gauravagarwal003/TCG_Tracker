@@ -15,37 +15,16 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
 <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
-<style>
-.stat-card {
-    padding: 1.5rem 1rem;
-}
-.stat-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6b7280;
-    margin-bottom: 0.75rem;
-}
-.stat-value {
-    font-size: 1.875rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1;
-}
-</style>
 
     <style>
-        
         body { visibility: visible; }
-        
     </style>
     
     <script type="module" src="firebase-config.js"></script>
     <script type="module" src="firebase-auth.js"></script>
     <script type="module" src="firestore-data.js"></script>
     
-    <link href="static/css/styles.css?v=1775184918" rel="stylesheet">
+    <link href="static/css/styles.css?v=1775185500" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -87,33 +66,27 @@
         
 <!-- Summary Stat Cards -->
 <div class="row mb-4 g-3">
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Current Value</div>
-                
                 <div class="stat-value text-success" id="stat-total-value">—</div>
-                
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Cost Basis</div>
-                
                 <div class="stat-value" style="color:#ef4444" id="stat-cost-basis">—</div>
-                
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4">
-        <div class="card h-100">
-            <div class="card-body text-center stat-card">
+    <div class="col-12 col-sm-4">
+        <div class="card h-100 stat-card">
+            <div class="card-body text-center">
                 <div class="stat-label">Return %</div>
-                
                 <div class="stat-value" id="stat-return-pct">—</div>
-                
             </div>
         </div>
     </div>
@@ -121,23 +94,23 @@
 
 <!-- Portfolio Chart -->
 <div class="row mb-4">
-    <div class="col-md-12">
+    <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-                    <div>
-                        <h5 class="card-title mb-0 d-inline"><i class="fas fa-chart-line me-2 text-success"></i>Portfolio Value History</h5>
-                        <span id="timeframe-performance" class="small ms-2 fw-medium"></span>
-                    </div>
-                    <div class="btn-group btn-group-sm" role="group" id="timeframeButtons">
-                        <button type="button" class="btn btn-outline-secondary" data-tf="1M">1M</button>
-                        <button type="button" class="btn btn-outline-secondary" data-tf="3M">3M</button>
-                        <button type="button" class="btn btn-outline-secondary" data-tf="6M">6M</button>
-                        <button type="button" class="btn btn-outline-secondary" data-tf="1Y">1Y</button>
-                        <button type="button" class="btn btn-outline-secondary" data-tf="YTD">YTD</button>
-                        <button type="button" class="btn btn-outline-secondary active" data-tf="ALL">ALL</button>
-                    </div>
+            <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <div class="d-flex align-items-center">
+                    <h5 class="card-title mb-0"><i class="fas fa-chart-line me-2 text-success"></i>Portfolio Value History</h5>
+                    <span id="timeframe-performance" class="small ms-2 fw-medium"></span>
                 </div>
+                <div class="btn-group btn-group-sm" role="group" id="timeframeButtons">
+                    <button type="button" class="btn btn-outline-secondary" data-tf="1M">1M</button>
+                    <button type="button" class="btn btn-outline-secondary" data-tf="3M">3M</button>
+                    <button type="button" class="btn btn-outline-secondary" data-tf="6M">6M</button>
+                    <button type="button" class="btn btn-outline-secondary" data-tf="1Y">1Y</button>
+                    <button type="button" class="btn btn-outline-secondary" data-tf="YTD">YTD</button>
+                    <button type="button" class="btn btn-outline-secondary active" data-tf="ALL">ALL</button>
+                </div>
+            </div>
+            <div class="card-body">
                 <div id="portfolioChart" style="height: 400px;"></div>
             </div>
         </div>
@@ -146,35 +119,33 @@
 
 <!-- Asset Allocation Donut Chart -->
 <div class="row mb-4">
-    <div class="col-md-12">
+    <div class="col-12">
         <div class="card">
-            <div class="card-body">
-                <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-                    <h5 class="card-title mb-0"><i class="fas fa-chart-pie me-2 text-info"></i>Asset Allocation</h5>
-                    <div class="btn-group btn-group-sm" role="group" id="allocationToggle">
-                        <button type="button" class="btn btn-outline-info active" id="allocByFranchise">By Franchise</button>
-                        <button type="button" class="btn btn-outline-info" id="allocByType">By Product Type</button>
-                    </div>
+            <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <h5 class="card-title mb-0"><i class="fas fa-chart-pie me-2 text-info"></i>Asset Allocation</h5>
+                <div class="btn-group btn-group-sm" role="group" id="allocationToggle">
+                    <button type="button" class="btn btn-outline-secondary active" id="allocByFranchise">By Franchise</button>
+                    <button type="button" class="btn btn-outline-secondary" id="allocByType">By Product Type</button>
                 </div>
+            </div>
+            <div class="card-body">
                 <div id="allocationChart" style="height: 350px;"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!--  Holdings Table -->
-<div class="row">
+<!-- Current Holdings Table -->
+<div class="row mb-4">
     <div class="col-12">
-        <div class="table-section">
-            <div class="table-header d-flex justify-content-between align-items-center mb-3">
-                <h5 class="mb-0">Current Holdings</h5>
-                
-                <span class="badge bg-success fs-6" id="holdings-count">...</span>
-                
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0"><i class="fas fa-boxes-stacked me-2 text-primary"></i>Current Holdings</h5>
+                <span class="badge bg-success" id="holdings-count">...</span>
             </div>
-            <div class="table-content">
+            <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover mb-0">
                         <thead>
                             <tr>
                                 <th style="width: 50px;" class="no-sort"></th>
@@ -188,9 +159,7 @@
                             </tr>
                         </thead>
                         <tbody id="holdings-body">
-                            
-                            <tr><td colspan="5" class="text-center py-4 text-muted">Loading...</td></tr>
-                            
+                            <tr><td colspan="8" class="text-center py-4 text-muted">Loading...</td></tr>
                         </tbody>
                     </table>
                 </div>
