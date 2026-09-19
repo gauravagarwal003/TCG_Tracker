@@ -153,3 +153,4 @@ if (config.runsInWidget) {
     widget.presentMedium();
 }
 Script.complete();
+

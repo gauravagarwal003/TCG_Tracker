@@ -332,7 +332,9 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
     for key in all_product_keys:
         prices = load_prices(*key)
         ranges = owned_ranges.get(key, [])
-        for range_start, range_end in ranges:
+        sorted_ranges = sorted(ranges, key=lambda x: x[0])
+        gap_key = f"{key[0]}/{key[1]}/{key[2]}"
+        for range_start, range_end in sorted_ranges:
             eff_end = min(range_end, end_date_str) if end_date_str else min(range_end, td)
             filled, gaps = fill_price_gaps(prices, range_start, eff_end)
             # Ensure the first day of ownership is present in the price file
@@ -343,16 +345,18 @@ def update_prices(start_date_str=None, end_date_str=None, product_keys=None, for
                 if future_prices:
                     next_date, next_price = min(future_prices, key=lambda x: x[0])
                     filled[first_day_str] = next_price
-                    if f"{key[0]}/{key[1]}/{key[2]}" not in all_gaps:
-                        all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] = []
-                    all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] += [first_day_str]
+                    if gap_key not in all_gaps:
+                        all_gaps[gap_key] = []
+                    all_gaps[gap_key] += [first_day_str]
             if gaps:
-                if f"{key[0]}/{key[1]}/{key[2]}" not in all_gaps:
-                    all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] = []
-                all_gaps[f"{key[0]}/{key[1]}/{key[2]}"] += gaps
-            save_prices(*key, filled)
-            if gaps:
-                print(f"  {key[1]}/{key[2]}: {len(gaps)} gaps filled (carry-forward)")
+                if gap_key not in all_gaps:
+                    all_gaps[gap_key] = []
+                all_gaps[gap_key] += gaps
+            prices = filled
+        save_prices(*key, prices)
+        if gap_key in all_gaps:
+            print(f"  {key[1]}/{key[2]}: {len(all_gaps[gap_key])} gaps filled (carry-forward)")
+
     
     # Save a fresh gap report for this run. Rewriting even when empty prevents
     # stale carry-forward warnings from surviving after a successful refetch.
@@ -444,14 +448,17 @@ def update_prices_for_product_date_ranges(product_ranges, start_date_str=None, e
     all_gaps = {}
     for key, ranges in normalized_ranges.items():
         prices = load_prices(*key)
-        for range_start, range_end in ranges:
+        sorted_ranges = sorted(ranges, key=lambda x: x[0])
+        gap_key = f"{key[0]}/{key[1]}/{key[2]}"
+        for range_start, range_end in sorted_ranges:
             eff_end = min(range_end, end_date_str) if end_date_str else min(range_end, td)
             filled, gaps = fill_price_gaps(prices, range_start, eff_end)
             if gaps:
-                gap_key = f"{key[0]}/{key[1]}/{key[2]}"
                 all_gaps.setdefault(gap_key, [])
                 all_gaps[gap_key] += gaps
-            save_prices(*key, filled)
+            prices = filled
+        save_prices(*key, prices)
+
 
     with open(PRICE_GAPS_FILE, "w") as f:
         json.dump(all_gaps, f, indent=2)

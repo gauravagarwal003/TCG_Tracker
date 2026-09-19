@@ -770,4 +770,8 @@ def get_owned_date_ranges(transactions=None):
                 if not any(start <= d_str <= end for start, end in existing):
                     ranges.setdefault(key, []).append((d_str, d_str))
 
+    for key in ranges:
+        ranges[key].sort(key=lambda r: r[0])
+
     return ranges
+
