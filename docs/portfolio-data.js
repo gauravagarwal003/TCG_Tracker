@@ -173,9 +173,9 @@ function computeInventoryTimeline(transactions) {
             deltas.get(key).push([txnDate, delta]);
         };
 
-        if (txnType === 'BUY') {
+        if (txnType === 'BUY' || txnType === 'TRADE IN') {
             for (const item of (txn.items || [])) addDelta(item, Number(item.quantity || 0));
-        } else if (txnType === 'SELL' || txnType === 'OPEN') {
+        } else if (txnType === 'SELL' || txnType === 'OPEN' || txnType === 'TRADE OUT') {
             for (const item of (txn.items || [])) addDelta(item, -Number(item.quantity || 0));
         } else if (txnType === 'TRADE') {
             for (const item of (txn.items_out || [])) addDelta(item, -Number(item.quantity || 0));
@@ -220,6 +220,8 @@ function computeCostBasisDeltas(transactions) {
         if (!dateStr) continue;
         if (type === 'BUY') add(dateStr, Number(txn.amount || 0));
         else if (type === 'SELL') add(dateStr, -Number(txn.amount || 0));
+        else if (type === 'TRADE IN' && Number(txn.amount || 0) > 0) add(dateStr, Number(txn.amount || 0));
+        else if (type === 'TRADE OUT' && Number(txn.amount || 0) > 0) add(dateStr, -Number(txn.amount || 0));
         else if (type === 'TRADE') {
             add(dateStr, -Number(txn.cost_basis_out || 0));
             add(dateStr, Number(txn.cost_basis_in || 0));
@@ -334,15 +336,23 @@ export async function computeDashboardSnapshot(transactions) {
                     buyUnits += itemQty;
                     buyCost += prorated;
                 }
-            } else if (type === 'TRADE' && dateStr) {
-                for (const item of (txn.items_in || [])) {
+            } else if ((type === 'TRADE' || type === 'TRADE IN') && dateStr) {
+                const tradeItems = type === 'TRADE' ? (txn.items_in || []) : (txn.items || []);
+                const txnAmount = Number(txn.amount || 0);
+                const totalQty = tradeItems.reduce((sum, it) => sum + Number(it.quantity || 0), 0);
+                for (const item of tradeItems) {
                     if (asKey(item.categoryId, item.group_id, item.product_id) !== key) continue;
                     const itemQty = Number(item.quantity || 0);
-                    const priceAtTrade = getLatestPriceOnOrBefore(priceMap, dateStr);
-                    if (priceAtTrade > 0) {
-                        viaTrade = true;
+                    viaTrade = true;
+                    if (txnAmount > 0 && totalQty > 0) {
                         tradeUnits += itemQty;
-                        tradeCost += itemQty * priceAtTrade;
+                        tradeCost += txnAmount * (itemQty / totalQty);
+                    } else {
+                        const priceAtTrade = getLatestPriceOnOrBefore(priceMap, dateStr);
+                        if (priceAtTrade > 0) {
+                            tradeUnits += itemQty;
+                            tradeCost += itemQty * priceAtTrade;
+                        }
                     }
                 }
             }

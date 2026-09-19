@@ -37,9 +37,10 @@ def _validate_date(date_str):
 
 
 def _ensure_mapping(items):
-    """Ensure all items in a transaction have mappings. Auto-create if needed."""
+    """Ensure all items in a transaction have mappings. Auto-create and discover metadata if needed."""
     mappings = load_mappings()
     mapping_keys = {(str(m["group_id"]), str(m["product_id"])) for m in mappings}
+    new_mappings_added = False
     
     for item in items:
         # Require explicit categoryId on items
@@ -47,18 +48,43 @@ def _ensure_mapping(items):
             raise ValueError(f"Transaction item missing 'categoryId': {item}")
         key = (str(item["group_id"]), str(item["product_id"]))
         if key not in mapping_keys:
+            pid_str = str(item["product_id"])
+            gid_str = str(item["group_id"])
+            cid = int(item["categoryId"])
+            name = item.get("name")
+            image_url = f"https://tcgplayer-cdn.tcgplayer.com/product/{pid_str}_200w.jpg"
+            product_url = f"https://www.tcgplayer.com/product/{pid_str}"
+
+            # Auto-discover from tcgcsv.com if name or image isn't already custom
+            try:
+                import urllib.request, json
+                api_url = f"https://tcgcsv.com/tcgplayer/{cid}/{gid_str}/products"
+                req = urllib.request.Request(api_url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    data = json.load(resp)
+                    for prod in data.get("results", []):
+                        if str(prod.get("productId")) == pid_str:
+                            name = prod.get("name") or name
+                            image_url = prod.get("imageUrl") or image_url
+                            product_url = prod.get("url") or product_url
+                            break
+            except Exception:
+                pass
+
             new_mapping = {
-                "product_id": str(item["product_id"]),
-                "name": item.get("name", f"Product {item['product_id']}"),
-                "group_id": str(item["group_id"]),
-                "imageUrl": f"https://tcgplayer-cdn.tcgplayer.com/product/{item['product_id']}_200w.jpg",
-                "categoryId": int(item["categoryId"]),
-                "url": f"https://www.tcgplayer.com/product/{item['product_id']}"
+                "product_id": pid_str,
+                "name": name or f"Product {pid_str}",
+                "group_id": gid_str,
+                "imageUrl": image_url,
+                "categoryId": cid,
+                "url": product_url
             }
             mappings.append(new_mapping)
             mapping_keys.add(key)
+            new_mappings_added = True
     
-    save_mappings(mappings)
+    if new_mappings_added:
+        save_mappings(mappings)
 
 
 def _normalize_items_from_mappings(items):

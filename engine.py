@@ -255,12 +255,12 @@ def compute_inventory_timeline(transactions):
         txn_date = txn["date_received"]
         txn_type = txn["type"].upper()
         
-        if txn_type in ("BUY",):
+        if txn_type in ("BUY", "TRADE IN"):
             for item in txn["items"]:
                 key = _product_key(item)
                 deltas[key].append((txn_date, item["quantity"]))
                 
-        elif txn_type in ("SELL", "OPEN"):
+        elif txn_type in ("SELL", "OPEN", "TRADE OUT"):
             for item in txn["items"]:
                 key = _product_key(item)
                 deltas[key].append((txn_date, -item["quantity"]))
@@ -452,6 +452,16 @@ def derive_daily_summary(transactions=None):
             # No cost basis change
             pass
             
+        elif txn_type == "TRADE IN":
+            amount = txn.get("amount", 0)
+            if amount:
+                cost_basis_deltas[txn_date] += amount
+
+        elif txn_type == "TRADE OUT":
+            amount = txn.get("amount", 0)
+            if amount:
+                cost_basis_deltas[txn_date] -= amount
+
         elif txn_type == "TRADE":
             # Cost basis: decrease by cost_basis_out, increase by cost_basis_in
             cost_basis_deltas[txn_date] -= txn.get("cost_basis_out", 0)
@@ -563,30 +573,39 @@ def get_current_holdings(transactions=None):
             buy_costs[key][0] += item_qty
             buy_costs[key][1] += item_cost
 
-    # --- Pre-compute trade-in cost basis using market price at trade date ---
+    # --- Pre-compute trade-in cost basis using explicit amount or market price at trade date ---
     # trade_costs: key -> [units_with_known_price, total_cost_at_trade_date]
     trade_costs = defaultdict(lambda: [0, 0.0])
     via_trade_keys = set()
     for txn in transactions:
-        if txn["type"].upper() != "TRADE":
+        txn_type = txn["type"].upper()
+        if txn_type not in ("TRADE", "TRADE IN"):
             continue
         trade_date = txn.get("date_received") or txn.get("date_purchased") or ""
-        for item in txn.get("items_in", []):
+        trade_items = txn.get("items_in", []) if txn_type == "TRADE" else txn.get("items", [])
+        txn_amount = float(txn.get("amount", 0.0) or 0.0)
+        total_qty_in_txn = sum(item.get("quantity", 0) for item in trade_items)
+        for item in trade_items:
             key = _product_key(item)
             item_qty = item.get("quantity", 0)
             via_trade_keys.add(key)
-            if item_qty <= 0 or not trade_date:
+            if item_qty <= 0:
                 continue
-            cat, gid, pid = key
-            prices = load_prices(cat, gid, pid)
-            trade_price = 0.0
-            for d_str in sorted(prices.keys(), reverse=True):
-                if d_str <= trade_date and prices[d_str] and prices[d_str] > 0:
-                    trade_price = prices[d_str]
-                    break
-            if trade_price > 0:
+            item_cost = txn_amount * (item_qty / total_qty_in_txn) if total_qty_in_txn > 0 and txn_amount > 0 else 0.0
+            if item_cost > 0:
                 trade_costs[key][0] += item_qty
-                trade_costs[key][1] += item_qty * trade_price
+                trade_costs[key][1] += item_cost
+            elif trade_date:
+                cat, gid, pid = key
+                prices = load_prices(cat, gid, pid)
+                trade_price = 0.0
+                for d_str in sorted(prices.keys(), reverse=True):
+                    if d_str <= trade_date and prices[d_str] and prices[d_str] > 0:
+                        trade_price = prices[d_str]
+                        break
+                if trade_price > 0:
+                    trade_costs[key][0] += item_qty
+                    trade_costs[key][1] += item_qty * trade_price
 
     inventory = compute_inventory_timeline(transactions)
     td = today_pst().strftime("%Y-%m-%d")
@@ -697,10 +716,15 @@ def get_owned_date_ranges(transactions=None):
     # date to compute cost-basis on the open/sell.  Scan BUY transactions and
     # add a single-day range for any buy-date where the end-of-day qty is 0
     # and no existing range already covers that date.
-    buy_dates = defaultdict(set)  # key -> set of date strings from BUY txns
+    buy_dates = defaultdict(set)  # key -> set of date strings from BUY / TRADE IN txns
     for txn in transactions:
-        if txn["type"].upper() == "BUY":
+        ttype = txn["type"].upper()
+        if ttype in ("BUY", "TRADE IN"):
             for item in txn.get("items", []):
+                key = _product_key(item)
+                buy_dates[key].add(txn["date_received"])
+        elif ttype == "TRADE":
+            for item in txn.get("items_in", []):
                 key = _product_key(item)
                 buy_dates[key].add(txn["date_received"])
 

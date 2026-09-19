@@ -17,6 +17,8 @@
                         <option value="BUY"   {{ 'selected' if transaction and transaction.type == 'BUY' }}>BUY</option>
                         <option value="SELL"  {{ 'selected' if transaction and transaction.type == 'SELL' }}>SELL</option>
                         <option value="OPEN"  {{ 'selected' if transaction and transaction.type == 'OPEN' }}>OPEN</option>
+                        <option value="TRADE IN"  {{ 'selected' if transaction and transaction.type == 'TRADE IN' }}>TRADE IN</option>
+                        <option value="TRADE OUT" {{ 'selected' if transaction and transaction.type == 'TRADE OUT' }}>TRADE OUT</option>
                         <option value="TRADE" {{ 'selected' if transaction and transaction.type == 'TRADE' }}>TRADE</option>
                     </select>
                 </div>
@@ -347,6 +349,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const isSell = t === 'SELL';
         const isOpen = t === 'OPEN';
         const isTrade = t === 'TRADE';
+        const isTradeIn = t === 'TRADE IN';
+        const isTradeOut = t === 'TRADE OUT';
 
         if (t === 'TRADE') {
             stdFields.style.display  = 'none';
@@ -364,9 +368,9 @@ document.addEventListener('DOMContentLoaded', function() {
             newProdDiv.style.display = 'none';
             activeTradeRow = null;
         }
-        amountGroup.style.display = (isBuy || isSell) ? '' : 'none';
-        purchaseDateCol.style.display = isBuy ? '' : 'none';
-        placeMethodRow.style.display = (isBuy || isSell) ? '' : 'none';
+        amountGroup.style.display = (isBuy || isSell || isTradeIn) ? '' : 'none';
+        purchaseDateCol.style.display = (isBuy || isTradeIn) ? '' : 'none';
+        placeMethodRow.style.display = (isBuy || isSell || isTradeIn || isTradeOut) ? '' : 'none';
 
         if (isBuy) {
             quantityLabel.textContent = 'Quantity *';
@@ -379,6 +383,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (isOpen) {
             quantityLabel.textContent = 'Quantity Opened *';
             dateReceivedLabel.textContent = 'Date Opened *';
+        } else if (isTradeIn) {
+            quantityLabel.textContent = 'Quantity Traded In *';
+            amountLabel.textContent = 'Cost / Value Per Unit ($)';
+            dateReceivedLabel.textContent = 'Trade Date *';
+        } else if (isTradeOut) {
+            quantityLabel.textContent = 'Quantity Traded Out *';
+            dateReceivedLabel.textContent = 'Trade Date *';
         } else if (isTrade) {
             dateReceivedLabel.textContent = 'Trade Date *';
         } else {
@@ -776,10 +787,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Convert per-unit price to total amount before submitting
-        if (type !== 'TRADE' && type !== 'OPEN') {
+        if (type !== 'TRADE' && type !== 'OPEN' && type !== 'TRADE OUT') {
             const amtInput = document.getElementById('amount');
             const qty = parseInt(document.getElementById('quantity').value) || 1;
             amtInput.value = ((parseFloat(amtInput.value) || 0) * qty).toFixed(2);
+        } else if (type === 'TRADE OUT' || type === 'OPEN') {
+            const amtInput = document.getElementById('amount');
+            if (amtInput) amtInput.value = '0';
         }
 
         if (!IS_STATIC) return;

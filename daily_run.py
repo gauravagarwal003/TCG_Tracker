@@ -89,10 +89,10 @@ def generate_static_site(transactions, summary):
     with open(widget_summary_file, "w") as f:
         json.dump(widget_summary, f, indent=2)
 
-    # Transactions placeholder
+    # Sync transactions for frontend and widgets
     txn_file = os.path.join(BASE_DIR, "docs", "data", "transactions.json")
     with open(txn_file, "w") as f:
-        json.dump([], f)
+        json.dump(transactions, f, indent=2)
 
     # Copy mappings to docs for frontend (metadata / names / images)
     mappings = load_mappings() if load_mappings else {}
