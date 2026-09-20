@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     # Skip commits that the bot itself made to avoid infinite loops
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
 
     steps:
     - name: Checkout repository
@@ -64,9 +66,14 @@ jobs:
         print(f"Pre-flight verified: {len(tx)} transactions valid with 0 inventory errors.")
         PY
 
-    - name: Fetch missing prices then rebuild docs
+    - name: Fetch missing prices then rebuild docs (with Firestore sync)
       run: |
-        python - <<'PY'
+        if [ -n "$FIREBASE_SERVICE_ACCOUNT_JSON" ]; then
+          echo "Firebase credentials detected: running --firebase-union to sync Firestore and rebuild docs"
+          python daily_run.py --firebase-union
+        else
+          echo "No Firebase credentials: rebuilding docs only (Firestore not synced)"
+          python - <<'PY'
         from engine import load_transactions, derive_daily_summary, save_daily_summary
         from price_fetcher import update_prices
         import daily_run
@@ -83,6 +90,7 @@ jobs:
             print('Generating static site assets...')
             daily_run.generate_static_site(tx, s)
         PY
+        fi
 
     - name: Commit and push rebuilt docs
       run: |
