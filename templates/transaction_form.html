@@ -17,8 +17,6 @@
                         <option value="BUY"   {{ 'selected' if transaction and transaction.type == 'BUY' }}>BUY</option>
                         <option value="SELL"  {{ 'selected' if transaction and transaction.type == 'SELL' }}>SELL</option>
                         <option value="OPEN"  {{ 'selected' if transaction and transaction.type == 'OPEN' }}>OPEN</option>
-                        <option value="TRADE IN"  {{ 'selected' if transaction and transaction.type == 'TRADE IN' }}>TRADE IN</option>
-                        <option value="TRADE OUT" {{ 'selected' if transaction and transaction.type == 'TRADE OUT' }}>TRADE OUT</option>
                         <option value="TRADE" {{ 'selected' if transaction and transaction.type == 'TRADE' }}>TRADE</option>
                     </select>
                 </div>
@@ -27,7 +25,7 @@
             <hr class="my-4">
 
             <!-- ══════════════════════════════════════════════
-                 NON-TRADE FIELDS (BUY / SELL / OPEN / TRADE IN / TRADE OUT)
+                 NON-TRADE FIELDS (BUY / SELL / OPEN)
                  Supports Multi-Item Receipts / Orders
                  ══════════════════════════════════════════════ -->
             <div id="standardFields" style="display: {{ 'block' if (not transaction) or (transaction and transaction.type != 'TRADE') else 'none' }};">
@@ -459,8 +457,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const isSell = t === 'SELL';
         const isOpen = t === 'OPEN';
         const isTrade = t === 'TRADE';
-        const isTradeIn = t === 'TRADE IN';
-        const isTradeOut = t === 'TRADE OUT';
 
         if (t === 'TRADE') {
             stdFields.style.display   = 'none';
@@ -486,10 +482,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        const showAmount = (isBuy || isSell || isTradeIn);
+        const showAmount = (isBuy || isSell);
         amountGroup.style.display = showAmount ? '' : 'none';
-        purchaseDateCol.style.display = (isBuy || isTradeIn) ? '' : 'none';
-        placeMethodRow.style.display = (isBuy || isSell || isTradeIn || isTradeOut) ? '' : 'none';
+        purchaseDateCol.style.display = isBuy ? '' : 'none';
+        placeMethodRow.style.display = (isBuy || isSell) ? '' : 'none';
 
         // Toggle unit price inputs visibility in standard items
         document.querySelectorAll('.std-unit-price-col, .std-line-total-col').forEach(el => {
@@ -504,11 +500,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dateReceivedLabel.textContent = 'Date Sold *';
         } else if (isOpen) {
             dateReceivedLabel.textContent = 'Date Opened *';
-        } else if (isTradeIn) {
-            amountLabel.textContent = 'Total Valuation / Cost Basis ($)';
-            dateReceivedLabel.textContent = 'Trade Date *';
-        } else if (isTradeOut) {
-            dateReceivedLabel.textContent = 'Trade Date *';
         } else if (isTrade) {
             dateReceivedLabel.textContent = 'Trade Date *';
         } else {
@@ -1157,7 +1148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             itemsField.value = JSON.stringify(items);
         }
 
-        if (type === 'TRADE OUT' || type === 'OPEN') {
+        if (type === 'OPEN') {
             if (amountInput) amountInput.value = '0';
         }
 

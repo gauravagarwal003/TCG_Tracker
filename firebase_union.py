@@ -376,6 +376,22 @@ def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions:
         local_transactions = load_transactions()
 
     firestore_txns = get_owner_transactions(db, owner_uid)
+
+    # Purge deprecated TRADE IN and TRADE OUT transactions from Firestore if present
+    deprecated_trade_ids = {"m0161", "m0162", "m0163"}
+    purged_txns = []
+    for t in firestore_txns:
+        tid = str(t.get("id") or "").strip()
+        ttype = str(t.get("type") or "").upper()
+        if tid in deprecated_trade_ids or ttype in ("TRADE IN", "TRADE OUT"):
+            try:
+                db.collection("users").document(owner_uid).collection("transactions").document(tid).delete()
+                print(f"  Purged legacy {ttype} transaction {tid} from Firestore.")
+            except Exception as ex:
+                print(f"  Failed to delete legacy transaction {tid} from Firestore: {ex}")
+        else:
+            purged_txns.append(t)
+    firestore_txns = purged_txns
     existing_ids = {t.get("id") for t in firestore_txns if t.get("id")}
 
     def sig(t):

@@ -104,15 +104,13 @@ function renderTransactionsTable(transactions) {
             'SELL': 'bg-success',
             'OPEN': 'bg-warning text-dark',
             'TRADE': 'bg-info',
-            'TRADE IN': 'bg-info',
-            'TRADE OUT': 'bg-secondary',
         }[tx.type] || 'bg-secondary';
         let typeBadge = `<span class="badge ${typeClass}">${escapeHtml(tx.type)}</span>`;
         // Compose qty
         const totalUnits = (tx.items || []).reduce((s, it) => s + (parseInt(it.quantity) || 0), 0);
         let qty = tx.type === 'TRADE' ? '-' : (totalUnits || escapeHtml((tx.items && tx.items[0] && tx.items[0].quantity) || ''));
         // Compose amount
-        let amount = (['BUY','SELL','TRADE IN','TRADE OUT'].includes(tx.type) && tx.amount) ? `$${Number(tx.amount).toFixed(2)}` : '';
+        let amount = (['BUY','SELL'].includes(tx.type) && tx.amount) ? `$${Number(tx.amount).toFixed(2)}` : '';
         // Compose notes
         let notes = tx.notes ? `<span class="text-muted" title="${safeAttr(tx.notes)}" style="cursor: help; display: inline-block; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(tx.notes)}</span>` : '';
         // Compose actions (edit/delete) for Firestore-backed mode.

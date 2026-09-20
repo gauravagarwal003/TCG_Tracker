@@ -889,7 +889,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pokémon Illustration Contest Promo Cards with order.",
+    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
     "id": "m0047"
   },
   {
@@ -908,7 +908,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pokémon Illustration Contest Promo Cards with order.",
+    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
     "id": "m0048"
   },
   {
@@ -2067,7 +2067,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order.",
+    "notes": "Got 25% off from a Target Circle reward on toys that didn\u2019t apply to trading cards, but customer service rep applied it after the order.",
     "id": "m0109"
   },
   {
@@ -2983,6 +2983,42 @@
     "id": "m0157"
   },
   {
+    "id": "00005860",
+    "date_purchased": "2026-03-13",
+    "date_received": "2026-03-13",
+    "type": "TRADE",
+    "method": "In-person",
+    "place": "",
+    "notes": "While in line for a Barnes & Noble restock, the guy in front of me said he would get the One Piece tins, but wasn't interested in it and would probably sell to a friend for retail. I saw him outside and offered to sell and I traded the Pokemon tin I got it for OP tins straight up.",
+    "items_out": [
+      {
+        "product_id": "671250",
+        "group_id": "2374",
+        "categoryId": 3,
+        "name": "Mega Charizard Tin (Mega Charizard Y)",
+        "quantity": 1
+      }
+    ],
+    "items_in": [
+      {
+        "product_id": "669273",
+        "group_id": "17675",
+        "categoryId": 68,
+        "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
+        "quantity": 1
+      },
+      {
+        "product_id": "669278",
+        "group_id": "17675",
+        "categoryId": 68,
+        "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
+        "quantity": 1
+      }
+    ],
+    "cost_basis_out": 0,
+    "cost_basis_in": 0
+  },
+  {
     "date_purchased": "2026-03-13",
     "date_received": "2026-03-13",
     "type": "BUY",
@@ -3038,63 +3074,6 @@
     "place": "Barnes & Noble",
     "notes": "",
     "id": "m0160"
-  },
-  {
-    "date_purchased": "2026-03-13",
-    "date_received": "2026-03-13",
-    "type": "TRADE IN",
-    "items": [
-      {
-        "group_id": "17675",
-        "product_id": "669273",
-        "categoryId": 68,
-        "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
-        "quantity": 1
-      }
-    ],
-    "amount": 0.0,
-    "method": "",
-    "place": "",
-    "notes": "Traded out 1x Mega Charizard Tin (Mega Charizard Y) for 1x One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-,  1x One Piece Tin Pack Set Vol. 2 -Sabo- in return",
-    "id": "m0161"
-  },
-  {
-    "date_purchased": "2026-03-13",
-    "date_received": "2026-03-13",
-    "type": "TRADE IN",
-    "items": [
-      {
-        "group_id": "17675",
-        "product_id": "669278",
-        "categoryId": 68,
-        "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
-        "quantity": 1
-      }
-    ],
-    "amount": 0.0,
-    "method": "",
-    "place": "",
-    "notes": "Traded out 1x Mega Charizard Tin (Mega Charizard Y) for 1x One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-,  1x One Piece Tin Pack Set Vol. 2 -Sabo- in return",
-    "id": "m0162"
-  },
-  {
-    "date_purchased": "2026-03-13",
-    "date_received": "2026-03-13",
-    "type": "TRADE OUT",
-    "items": [
-      {
-        "group_id": "2374",
-        "product_id": "671250",
-        "categoryId": 3,
-        "name": "Mega Charizard Tin (Mega Charizard Y)",
-        "quantity": 1
-      }
-    ],
-    "amount": 0.0,
-    "method": "",
-    "place": "",
-    "notes": "Traded out 1x Mega Charizard Tin (Mega Charizard Y) for 1x One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-,  1x One Piece Tin Pack Set Vol. 2 -Sabo- in return",
-    "id": "m0163"
   },
   {
     "date_purchased": "2026-03-11",
