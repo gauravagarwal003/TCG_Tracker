@@ -377,8 +377,10 @@ def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions:
 
     firestore_txns = get_owner_transactions(db, owner_uid)
 
-    # Purge deprecated TRADE IN and TRADE OUT transactions from Firestore if present
-    deprecated_trade_ids = {"m0161", "m0162", "m0163"}
+    # Purge deprecated/spurious transactions from Firestore if present.
+    # - m0161/m0162/m0163: legacy TRADE IN/TRADE OUT split records (replaced by atomic TRADE 00005860)
+    # - 8a71810d: spurious duplicate BUY 2x Luffy on 2026-03-13 (web-UI entry; canonical is m0145 on 2026-02-13)
+    deprecated_trade_ids = {"m0161", "m0162", "m0163", "8a71810d"}
     purged_txns = []
     for t in firestore_txns:
         tid = str(t.get("id") or "").strip()
