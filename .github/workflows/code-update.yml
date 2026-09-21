@@ -17,6 +17,7 @@ on:
       - 'transaction_manager.py'
       - 'price_fetcher.py'
       - 'requirements.txt'
+      - 'tests/**'
 
 permissions:
   contents: write
@@ -55,6 +56,9 @@ jobs:
 
     - name: Pull latest changes
       run: git pull --rebase origin main || true
+
+    - name: Run unit tests
+      run: python -m unittest discover tests
 
     - name: Rebuild docs from existing data (no price fetch)
       run: python daily_run.py --docs-only

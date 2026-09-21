@@ -344,6 +344,65 @@ def validate_inventory(transactions, new_txn=None, exclude_txn_id=None):
     return True, ""
 
 
+def validate_price_coverage(transactions=None, as_of_date=None):
+    """
+    Validate that all owned products and transaction events have positive prices
+    up through as_of_date (format 'YYYY-MM-DD', defaults to today_pst()).
+
+    Args:
+        transactions: Optional list of transactions. Defaults to load_transactions().
+        as_of_date: Optional upper bound string 'YYYY-MM-DD' or date/datetime.
+                    Defaults to today_pst().
+
+    Returns:
+        (is_valid, missing_owned, missing_tx)
+    where:
+        is_valid: bool
+        missing_owned: list of ((cat, gid, pid), date_str)
+        missing_tx: list of (txn_id, date_str, cat, gid, pid)
+    """
+    if transactions is None:
+        transactions = load_transactions()
+
+    if as_of_date is None:
+        as_of_date_str = today_pst().strftime("%Y-%m-%d")
+    elif isinstance(as_of_date, (datetime, date)):
+        as_of_date_str = as_of_date.strftime("%Y-%m-%d")
+    else:
+        as_of_date_str = str(as_of_date)
+
+    norm_tx = normalize_transactions_for_pricing(transactions)
+    owned = get_owned_date_ranges(norm_tx)
+
+    missing_owned = []
+    for key, ranges in owned.items():
+        cat, gid, pid = key
+        prices = load_prices(cat, gid, pid)
+        for r_start, r_end in ranges:
+            eff_end = min(r_end, as_of_date_str)
+            cur = parse_date(r_start)
+            end = parse_date(eff_end)
+            while cur <= end:
+                d_str = cur.strftime("%Y-%m-%d")
+                if d_str not in prices or prices[d_str] is None or prices[d_str] <= 0:
+                    missing_owned.append((key, d_str))
+                cur += timedelta(days=1)
+
+    missing_tx = []
+    for txn in norm_tx:
+        d = txn["date_received"]
+        if d <= as_of_date_str:
+            for item in txn.get("items", []) + txn.get("items_in", []) + txn.get("items_out", []):
+                cat, gid, pid = _product_key(item)
+                prices = load_prices(cat, gid, pid)
+                p = prices.get(d)
+                if p is None or p <= 0:
+                    missing_tx.append((txn["id"], d, cat, gid, pid))
+
+    is_valid = len(missing_owned) == 0 and len(missing_tx) == 0
+    return is_valid, missing_owned, missing_tx
+
+
 # ---------------------------------------------------------------------------
 # Price gap filling
 # ---------------------------------------------------------------------------

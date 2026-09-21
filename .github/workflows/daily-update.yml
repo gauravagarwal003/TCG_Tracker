@@ -50,10 +50,7 @@ jobs:
     - name: Pre-flight data integrity check
       run: |
         python - <<'PY'
-        from engine import (
-            load_transactions, validate_inventory, normalize_transactions_for_pricing,
-            get_owned_date_ranges, load_prices, parse_date, today_pst, _product_key
-        )
+        from engine import load_transactions, validate_inventory, validate_price_coverage, today_pst
         from datetime import timedelta
 
         tx = load_transactions()
@@ -62,45 +59,20 @@ jobs:
             print(f"ERROR: Inventory validation failed: {msg}")
             exit(1)
 
-        norm_tx = normalize_transactions_for_pricing(tx)
-        owned = get_owned_date_ranges(norm_tx)
-        td = today_pst().strftime("%Y-%m-%d")
-
-        missing_owned = []
-        for key, ranges in owned.items():
-            cat, gid, pid = key
-            prices = load_prices(cat, gid, pid)
-            for r_start, r_end in ranges:
-                eff_end = min(r_end, td)
-                cur = parse_date(r_start)
-                end = parse_date(eff_end)
-                while cur <= end:
-                    d_str = cur.strftime("%Y-%m-%d")
-                    if d_str not in prices or prices[d_str] is None or prices[d_str] <= 0:
-                        missing_owned.append((key, d_str))
-                    cur += timedelta(days=1)
+        # Pre-flight runs before today's price fetch: verify complete coverage up through yesterday
+        yesterday = (today_pst() - timedelta(days=1)).strftime("%Y-%m-%d")
+        valid, missing_owned, missing_tx = validate_price_coverage(tx, as_of_date=yesterday)
 
         if missing_owned:
-            print(f"ERROR: {len(missing_owned)} missing daily prices in owned ranges: {missing_owned[:5]}")
+            print(f"ERROR: {len(missing_owned)} missing daily prices in owned ranges through {yesterday}: {missing_owned[:5]}")
             exit(1)
-
-        missing_tx = []
-        for txn in norm_tx:
-            d = txn["date_received"]
-            for item in txn.get("items", []) + txn.get("items_in", []) + txn.get("items_out", []):
-                cat, gid, pid = _product_key(item)
-                prices = load_prices(cat, gid, pid)
-                p = prices.get(d)
-                if p is None or p <= 0:
-                    missing_tx.append((txn["id"], d, cat, gid, pid))
 
         if missing_tx:
-            print(f"ERROR: {len(missing_tx)} missing transaction prices: {missing_tx[:5]}")
+            print(f"ERROR: {len(missing_tx)} missing transaction prices through {yesterday}: {missing_tx[:5]}")
             exit(1)
 
-        print(f"Pre-flight verified: {len(tx)} transactions, 0 inventory errors, 100% price coverage.")
+        print(f"Pre-flight verified: {len(tx)} transactions, 0 inventory errors, 100% price coverage through {yesterday}.")
         PY
-
 
     - name: Run daily update
       run: |
@@ -111,6 +83,26 @@ jobs:
           echo "No Firebase credentials: running legacy local mode"
           python daily_run.py
         fi
+
+    - name: Post-update data integrity check
+      run: |
+        python - <<'PY'
+        from engine import load_transactions, validate_price_coverage, today_pst
+
+        tx = load_transactions()
+        td = today_pst().strftime("%Y-%m-%d")
+        valid, missing_owned, missing_tx = validate_price_coverage(tx, as_of_date=td)
+
+        if missing_owned:
+            print(f"ERROR: {len(missing_owned)} missing daily prices in owned ranges after update: {missing_owned[:5]}")
+            exit(1)
+
+        if missing_tx:
+            print(f"ERROR: {len(missing_tx)} missing transaction prices after update: {missing_tx[:5]}")
+            exit(1)
+
+        print(f"Post-update verified: {len(tx)} transactions, 100% price coverage through {td}.")
+        PY
 
     - name: Commit and push
       run: |
