@@ -211,19 +211,41 @@ def firebase_union_daily_run():
             "Firebase union mode requires firebase_union.py and firebase-admin dependency"
         ) from e
 
-    print("\n--- Step 1: Loading union product keys from Firestore ---")
     db = init_firestore_from_env()
+    owner_uid = discover_owner_uid(db)
+
+    # Step 1: Sync local transactions to Firestore first so any edits/remappings are reflected
+    print("\n--- Step 1: Syncing local transactions with Firestore ---")
+    local_txns = load_transactions()
+    transactions = sync_local_transactions_to_firestore(db, owner_uid=owner_uid, local_transactions=local_txns)
+    print(f"  Unified {len(transactions)} owner transactions for uid={owner_uid}")
+
+    # Step 2: Build union product date ranges from Firestore and local transactions
+    print("\n--- Step 2: Loading union product keys ---")
     product_ranges = get_union_product_date_ranges(db, end_date_str=td)
+
+    # Merge local owned ranges to guarantee all local inventory is covered
+    from engine import normalize_transactions_for_pricing, get_owned_date_ranges
+    local_ranges = get_owned_date_ranges(normalize_transactions_for_pricing(transactions or local_txns))
+    for key, ranges in local_ranges.items():
+        if key not in product_ranges:
+            product_ranges[key] = set()
+        elif isinstance(product_ranges[key], list):
+            product_ranges[key] = set(product_ranges[key])
+        for r in ranges:
+            product_ranges[key].add(tuple(r))
+
     union_keys = set(product_ranges.keys())
     if not union_keys:
         union_keys = get_union_product_keys(db)
     print(f"  Loaded {len(union_keys)} unique product keys")
 
     if not union_keys:
-        print("No active products found in Firestore. Exiting without fetch.")
+        print("No active products found. Exiting without fetch.")
         return
 
-    print("\n--- Step 2: Fetching prices for union product ranges ---")
+    # Step 3: Fetch prices for union product ranges
+    print("\n--- Step 3: Fetching prices for union product ranges ---")
     if product_ranges:
         gaps = update_prices_for_product_date_ranges(product_ranges, end_date_str=td)
         print(f"  Range fetch complete: products={len(product_ranges)}, gaps={len(gaps)}")
@@ -233,16 +255,11 @@ def firebase_union_daily_run():
             f"  Requested={stats['requested']}, found={stats['found']}, carried={stats['carried']}, missing={len(stats['missing'])}"
         )
 
-    # Rebuild public assets from the unified Firestore and local transaction source
-    print("\n--- Step 3: Rebuilding local derived assets ---")
-    owner_uid = discover_owner_uid(db)
-    local_txns = load_transactions()
-    transactions = sync_local_transactions_to_firestore(db, owner_uid=owner_uid, local_transactions=local_txns)
-    print(f"  Unified {len(transactions)} owner transactions for uid={owner_uid}")
+    # Step 4: Rebuild public assets
+    print("\n--- Step 4: Rebuilding local derived assets ---")
     summary = derive_daily_summary(transactions)
     save_daily_summary(summary)
     generate_static_site(transactions, summary)
-
 
     print("\n✅ Firebase union daily run complete.")
 

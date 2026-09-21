@@ -415,23 +415,27 @@ def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions:
             items,
         )
 
+    existing_by_id = {t.get("id"): t for t in firestore_txns if t.get("id")}
     existing_sigs = {sig(t) for t in firestore_txns}
 
-    missing_in_firestore = []
+    to_sync_to_firestore = []
     for lt in local_transactions or []:
-        if lt.get("id") and lt["id"] in existing_ids:
+        lid = lt.get("id")
+        if lid and lid in existing_by_id:
+            if sig(lt) != sig(existing_by_id[lid]):
+                to_sync_to_firestore.append(lt)
             continue
         if sig(lt) in existing_sigs:
             continue
-        missing_in_firestore.append(lt)
+        to_sync_to_firestore.append(lt)
 
-    if missing_in_firestore:
-        print(f"  Uploading {len(missing_in_firestore)} transactions to Firestore for uid={owner_uid}...")
+    if to_sync_to_firestore:
+        print(f"  Uploading/updating {len(to_sync_to_firestore)} transactions to Firestore for uid={owner_uid}...")
         now = date.today().isoformat()
         txns_ref = db.collection("users").document(owner_uid).collection("transactions")
         batch = db.batch()
         count = 0
-        for txn in missing_in_firestore:
+        for txn in to_sync_to_firestore:
             tid = str(txn.get("id") or "").strip()
             if not tid:
                 doc_ref = txns_ref.document()
@@ -447,7 +451,13 @@ def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions:
                 "updated_at": txn.get("updated_at") or now,
             }
             batch.set(doc_ref, payload)
-            firestore_txns.append(payload)
+            if tid in existing_by_id:
+                for idx, t in enumerate(firestore_txns):
+                    if t.get("id") == tid:
+                        firestore_txns[idx] = payload
+                        break
+            else:
+                firestore_txns.append(payload)
             count += 1
             if count >= 400:
                 batch.commit()
