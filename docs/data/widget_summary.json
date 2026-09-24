@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-23",
-  "previous_date": "2026-09-22",
-  "total_value": 18021.44,
+  "latest_date": "2026-09-24",
+  "previous_date": "2026-09-23",
+  "total_value": 17968.83,
   "cost_basis": 7315.13,
-  "gain_loss": 10706.31,
-  "return_pct": 146.36,
-  "day_value_change": -37.68,
+  "gain_loss": 10653.7,
+  "return_pct": 145.64,
+  "day_value_change": -52.61,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -37.68,
-  "day_gain_loss_pct": -0.21,
+  "day_gain_loss": -52.61,
+  "day_gain_loss_pct": -0.29,
   "holdings_count": 81,
   "sparkline_7d": [
-    18296.46,
     18296.46,
     18154.68,
     18186.29,
     18120.36,
     18059.12,
-    18021.44
+    18021.44,
+    17968.83
   ],
   "sparkline_30d": [
-    17576.5,
     17588.03,
     17636.07,
     17708.77,
@@ -49,19 +48,20 @@
     18186.29,
     18120.36,
     18059.12,
-    18021.44
+    18021.44,
+    17968.83
   ],
   "top_gainer": {
-    "name": "Chaos Rising Elite Trainer Box",
-    "change_pct": 5.78,
-    "latest_price": 69.88,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg"
+    "name": "30th Celebration Tech Sticker Collection [Lucario]",
+    "change_pct": 3.19,
+    "latest_price": 40.7,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 12.47,
-    "latest_price": 33.74,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Surging Sparks Booster Pack",
+    "change_pct": 7.22,
+    "latest_price": 8.47,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
   },
-  "updated_at": "2026-09-23T23:24:42Z"
+  "updated_at": "2026-09-24T23:44:15Z"
 }
