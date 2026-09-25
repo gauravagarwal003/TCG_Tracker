@@ -1,14 +1,3 @@
-# Firestore Security Rules
-
-Use this as the canonical production ruleset for this personal tracker.
-
-Firebase Console path:
-
-1. Firestore Database -> Rules
-2. Replace existing rules
-3. Publish
-
-```text
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -78,22 +67,3 @@ service cloud.firestore {
     }
   }
 }
-```
-
-## Rule Summary
-
-1. Only `gagarwal003@gmail.com` can read or write data.
-2. The owner can only access their own `users/{uid}/...` subcollections.
-3. `product_mappings` is readable and writable only by the owner with strict shape/docId validation.
-4. Everything else is denied by default.
-
-## Validation Checklist
-
-Use Rules Simulator:
-
-1. Read `users/{yourUid}/transactions/x` as `gagarwal003@gmail.com` -> allow
-2. Read any user data as another Google account -> deny
-3. Read `users/{otherUid}/transactions/x` as `gagarwal003@gmail.com` -> deny
-4. Write valid `product_mappings/{gid}_{pid}` as `gagarwal003@gmail.com` -> allow
-5. Write valid `product_mappings/{gid}_{pid}` as another Google account -> deny
-6. Read or write `active_products/{docId}` from the browser -> deny

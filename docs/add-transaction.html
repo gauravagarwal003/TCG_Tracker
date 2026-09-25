@@ -22,7 +22,7 @@
     
     <script type="module" src="firebase-config.js"></script>
     <script type="module" src="firebase-auth.js"></script>
-    <script type="module" src="firestore-data.js?v=1775188000"></script>
+    <script type="module" src="firestore-data.js?v=1775191000"></script>
     
     <link href="static/css/styles.css?v=1775188000" rel="stylesheet">
 </head>
@@ -1067,7 +1067,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const { addTransaction, updateTransaction } = await import('./firestore-data.js');
+            const firestore = window.TCGFirestore || await import('./firestore-data.js?v=1775191000');
+            const { addTransaction, updateTransaction } = firestore;
             if (EDIT_MODE) {
                 await updateTransaction(user.uid, EDIT_ID, txnData);
             } else {

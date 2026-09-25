@@ -34,10 +34,14 @@ export function initDB(firebaseDB) {
 
 async function ensureUserDoc(uid) {
     if (!db || !uid) return;
-    const userRef = doc(db, "users", uid);
-    await setDoc(userRef, {
-        updated_at: new Date().toISOString(),
-    }, { merge: true });
+    try {
+        const userRef = doc(db, "users", uid);
+        await setDoc(userRef, {
+            updated_at: new Date().toISOString(),
+        }, { merge: true });
+    } catch (err) {
+        console.warn("User root document update skipped or restricted by rules:", err);
+    }
 }
 
 function deduplicatePhrase(name) {
