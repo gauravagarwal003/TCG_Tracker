@@ -40,6 +40,29 @@ async function ensureUserDoc(uid) {
     }, { merge: true });
 }
 
+function deduplicatePhrase(name) {
+    if (!name) return '';
+    let words = String(name).split(/\s+/).filter(Boolean);
+    let i = 0;
+    while (i < words.length) {
+        let matchedK = 0;
+        for (let k = Math.floor((words.length - i) / 2); k >= 1; k--) {
+            let seq1 = words.slice(i, i + k).map(w => w.toLowerCase()).join(' ');
+            let seq2 = words.slice(i + k, i + 2 * k).map(w => w.toLowerCase()).join(' ');
+            if (seq1 === seq2) {
+                matchedK = k;
+                break;
+            }
+        }
+        if (matchedK > 0) {
+            words.splice(i, matchedK);
+        } else {
+            i++;
+        }
+    }
+    return words.join(' ');
+}
+
 /**
  * Get current user's transactions
  */
@@ -49,10 +72,17 @@ export async function getUserTransactions(uid) {
         const txnsRef = collection(db, `users/${uid}/transactions`);
         const q = query(txnsRef);
         const snapshot = await getDocs(q);
-        return snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        })).sort((a, b) => String(b.date_received || '').localeCompare(String(a.date_received || '')));
+        const cleanItem = (item) => item ? { ...item, name: deduplicatePhrase(item.name) } : item;
+        return snapshot.docs.map((doc) => {
+            const data = doc.data() || {};
+            return {
+                id: doc.id,
+                ...data,
+                items: Array.isArray(data.items) ? data.items.map(cleanItem) : data.items,
+                items_out: Array.isArray(data.items_out) ? data.items_out.map(cleanItem) : data.items_out,
+                items_in: Array.isArray(data.items_in) ? data.items_in.map(cleanItem) : data.items_in,
+            };
+        }).sort((a, b) => String(b.date_received || '').localeCompare(String(a.date_received || '')));
     } catch (error) {
         console.error("Error loading transactions:", error);
         return [];
@@ -249,10 +279,14 @@ export async function getProductMapping(groupId, productId) {
 
 export async function saveProductMapping(mapping) {
     if (!db) return mapping;
-    const mappingRef = doc(db, "product_mappings", `${mapping.group_id}_${mapping.product_id}`);
+    const cleanMapping = {
+        ...mapping,
+        name: deduplicatePhrase(mapping.name)
+    };
+    const mappingRef = doc(db, "product_mappings", `${cleanMapping.group_id}_${cleanMapping.product_id}`);
     try {
         await setDoc(mappingRef, {
-            ...mapping,
+            ...cleanMapping,
             updated_at: new Date().toISOString(),
             created_at: new Date().toISOString(),
         }, { merge: true });
@@ -260,7 +294,7 @@ export async function saveProductMapping(mapping) {
         // Keep transaction flow working even if shared mapping writes are restricted.
         console.warn("Skipping shared mapping write:", error);
     }
-    return mapping;
+    return cleanMapping;
 }
 
 /**
@@ -289,7 +323,12 @@ export async function getAllProductMappings() {
     const byKey = new Map();
     for (const mapping of [...staticMappings, ...firestoreMappings]) {
         const key = `${String(mapping.group_id)}_${String(mapping.product_id)}`;
-        if (!byKey.has(key)) byKey.set(key, mapping);
+        if (!byKey.has(key)) {
+            byKey.set(key, {
+                ...mapping,
+                name: deduplicatePhrase(mapping.name)
+            });
+        }
     }
     return Array.from(byKey.values());
 }

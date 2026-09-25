@@ -36,6 +36,28 @@ def _validate_date(date_str):
     return date_str
 
 
+def deduplicate_phrase(name: str) -> str:
+    """Remove consecutive duplicate phrases or words (e.g. 'Set Set Booster Bundle' -> 'Set Booster Bundle')."""
+    if not name:
+        return ""
+    words = name.split()
+    i = 0
+    while i < len(words):
+        matched_k = 0
+        for k in range(len(words) // 2, 0, -1):
+            if i + 2 * k <= len(words):
+                seq1 = [w.lower() for w in words[i:i+k]]
+                seq2 = [w.lower() for w in words[i+k:i+2*k]]
+                if seq1 == seq2:
+                    matched_k = k
+                    break
+        if matched_k > 0:
+            del words[i:i+matched_k]
+        else:
+            i += 1
+    return " ".join(words)
+
+
 def _ensure_mapping(items):
     """Ensure all items in a transaction have mappings. Auto-create and discover metadata if needed."""
     mappings = load_mappings()
@@ -51,7 +73,7 @@ def _ensure_mapping(items):
             pid_str = str(item["product_id"])
             gid_str = str(item["group_id"])
             cid = int(item["categoryId"])
-            name = item.get("name")
+            name = deduplicate_phrase(item.get("name") or "")
             image_url = f"https://tcgplayer-cdn.tcgplayer.com/product/{pid_str}_200w.jpg"
             product_url = f"https://www.tcgplayer.com/product/{pid_str}"
 
@@ -71,6 +93,7 @@ def _ensure_mapping(items):
             except Exception:
                 pass
 
+            name = deduplicate_phrase(name)
             new_mapping = {
                 "product_id": pid_str,
                 "name": name or f"Product {pid_str}",
@@ -107,9 +130,11 @@ def _normalize_items_from_mappings(items):
                 and mapping.get("categoryId") not in (None, "")
             ):
                 normalized["categoryId"] = mapping["categoryId"]
-            normalized["name"] = normalized.get("name") or mapping.get("name", "")
+            normalized["name"] = deduplicate_phrase(mapping.get("name", "") or normalized.get("name", ""))
             normalized["imageUrl"] = normalized.get("imageUrl") or mapping.get("imageUrl", "")
             normalized["url"] = normalized.get("url") or mapping.get("url", "")
+        elif normalized.get("name"):
+            normalized["name"] = deduplicate_phrase(normalized["name"])
         normalized_items.append(normalized)
 
     return normalized_items

@@ -22,9 +22,9 @@
     
     <script type="module" src="firebase-config.js"></script>
     <script type="module" src="firebase-auth.js"></script>
-    <script type="module" src="firestore-data.js"></script>
+    <script type="module" src="firestore-data.js?v=1775188000"></script>
     
-    <link href="static/css/styles.css?v=1775187000" rel="stylesheet">
+    <link href="static/css/styles.css?v=1775188000" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -301,6 +301,29 @@ document.addEventListener('DOMContentLoaded', function() {
         return saved;
     }
 
+    function deduplicateWordsOrPhrases(name) {
+        if (!name) return '';
+        let words = String(name).split(/\s+/).filter(Boolean);
+        let i = 0;
+        while (i < words.length) {
+            let matchedK = 0;
+            for (let k = Math.floor((words.length - i) / 2); k >= 1; k--) {
+                let seq1 = words.slice(i, i + k).map(w => w.toLowerCase()).join(' ');
+                let seq2 = words.slice(i + k, i + 2 * k).map(w => w.toLowerCase()).join(' ');
+                if (seq1 === seq2) {
+                    matchedK = k;
+                    break;
+                }
+            }
+            if (matchedK > 0) {
+                words.splice(i, matchedK);
+            } else {
+                i++;
+            }
+        }
+        return words.join(' ');
+    }
+
     async function searchProducts(query) {
         if (!IS_STATIC) {
             return fetch(`/api/search_products?q=${encodeURIComponent(query)}`).then(r => r.json());
@@ -328,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .filter(m => (m.name || '').toLowerCase().includes(q))
             .slice(0, 20)
             .map(m => ({
-                name: m.name,
+                name: deduplicateWordsOrPhrases(m.name),
                 product_id: m.product_id,
                 group_id: m.group_id,
                 categoryId: m.categoryId || null,
@@ -469,12 +492,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return `
         <div class="standard-item-row card bg-dark border-secondary p-3 mb-2">
             <div class="row g-2 align-items-center">
-                <div class="col-md-5">
+                <div class="col-md-5 position-relative">
                     <label class="form-label small text-muted mb-1">Product *</label>
-                    <div class="position-relative">
-                        <input type="text" class="form-control form-control-sm std-search" placeholder="Search product name..." autocomplete="off" value="${name}">
-                        <div class="std-search-results list-group search-results" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:1070; max-height:240px; overflow-y:auto; width:100%;"></div>
-                    </div>
+                    <input type="text" class="form-control form-control-sm std-search" placeholder="Search product name..." autocomplete="off" value="${name}">
+                    <div class="std-search-results list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:240px; overflow-y:auto; width:100%;"></div>
                     <input type="hidden" class="std-product-id" value="${pid}">
                     <input type="hidden" class="std-group-id" value="${gid}">
                     <input type="hidden" class="std-category-id" value="${cid}">
@@ -646,32 +667,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.addEventListener('focusin', e => {
-        if (!e.target.classList.contains('std-search') && !e.target.classList.contains('trade-search')) return;
-        const input = e.target;
-        const q = input.value.trim();
-        if (q.length >= 2) {
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-        }
-    });
-
     /* ── TCGPlayer Catalog Auto-Fill Helper ── */
     function cleanNameFromSlug(slug) {
         if (!slug) return '';
-        let s = slug.replace(/^(pokemon|one-piece|magic|mtg|lorcana|yugioh)-/i, '');
-        s = s.replace(/^[a-z0-9]+-/i, '');
+        let s = slug.replace(/^(pokemon|one-piece-card-game|one-piece|magic-the-gathering|magic|mtg|disney-lorcana|lorcana|yugioh|yu-gi-oh)-/i, '');
+        s = s.replace(/^(miscellaneous-cards-and-products)-/i, '');
+        s = s.replace(/^(me\d*|sv\d*|swsh\d*|sm\d*|xy\d*|bw\d*|dp\d*|op\d*|eb\d*|st\d*)-/i, '');
+
         let words = s.split('-').filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1));
-        let deduplicated = [];
-        for (let i = 0; i < words.length; i++) {
-            if (i === 0 || words[i].toLowerCase() !== words[i - 1].toLowerCase()) {
-                deduplicated.push(words[i]);
+        let i = 0;
+        while (i < words.length) {
+            let matchedK = 0;
+            for (let k = Math.floor((words.length - i) / 2); k >= 1; k--) {
+                let seq1 = words.slice(i, i + k).map(w => w.toLowerCase()).join(' ');
+                let seq2 = words.slice(i + k, i + 2 * k).map(w => w.toLowerCase()).join(' ');
+                if (seq1 === seq2) {
+                    matchedK = k;
+                    break;
+                }
+            }
+            if (matchedK > 0) {
+                words.splice(i, matchedK);
+            } else {
+                i++;
             }
         }
-        return deduplicated.join(' ')
+
+        return words.join(' ')
             .replace(/\bEtb\b/g, 'Elite Trainer Box')
             .replace(/\bUpc\b/g, 'Ultra Premium Collection')
             .replace(/\bEx\b/g, 'ex')
-            .replace(/\bBb\b/g, 'Booster Box');
+            .replace(/\bBb\b/g, 'Booster Box')
+            .replace(/\bPc\b/g, 'Pokemon Center');
     }
 
     document.getElementById('autoFillBtn')?.addEventListener('click', () => {
@@ -711,26 +738,30 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('new_category_id').value = String(catId);
 
         if (slug) {
-            const cleaned = cleanNameFromSlug(slug);
+            let cleaned = cleanNameFromSlug(slug);
             if (cleaned) {
-                document.getElementById('new_product_name').value = cleaned;
                 const lowerSlug = slug.toLowerCase();
-                const lowerName = cleaned.toLowerCase();
                 let matchedGid = '';
                 let matchedSetName = '';
 
                 for (const [gid, sName] of knownGroupsMap.entries()) {
                     const sLower = sName.toLowerCase();
-                    if (sLower.length >= 3 && (lowerSlug.includes(sLower.replace(/\s+/g, '-')) || lowerName.includes(sLower))) {
+                    if (sLower.length >= 3 && (lowerSlug.includes(sLower.replace(/\s+/g, '-')) || cleaned.toLowerCase().includes(sLower))) {
                         matchedGid = gid;
                         matchedSetName = sName;
                         break;
                     }
                 }
-                if (matchedGid) {
+                if (matchedSetName) {
+                    const doubleSet = (matchedSetName + ' ' + matchedSetName).toLowerCase();
+                    if (cleaned.toLowerCase().startsWith(doubleSet)) {
+                        cleaned = matchedSetName + cleaned.slice(doubleSet.length);
+                    }
                     document.getElementById('new_group_id').value = matchedGid;
                     document.getElementById('new_group_input').value = `${matchedSetName} (${matchedGid})`;
                 }
+                cleaned = deduplicateWordsOrPhrases(cleaned);
+                document.getElementById('new_product_name').value = cleaned;
             }
         }
     });
@@ -758,7 +789,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* ── Confirm New Product ── */
     document.getElementById('confirmNewProduct').addEventListener('click', async function() {
-        const name = document.getElementById('new_product_name').value.trim();
+        let name = document.getElementById('new_product_name').value.trim();
+        name = deduplicateWordsOrPhrases(name);
         const pid = document.getElementById('new_product_id').value.trim();
         let gid = document.getElementById('new_group_id').value.trim();
         if (!gid) {
@@ -841,11 +873,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function tradeItemRowHTML(direction) {
         return `
         <div class="trade-item-row row g-2 mb-2 align-items-end">
-            <div class="col-md-5">
-                <div class="position-relative">
-                    <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
-                    <div class="trade-search-results list-group search-results" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:1070; max-height:200px; overflow-y:auto; width:100%;"></div>
-                </div>
+            <div class="col-md-5 position-relative">
+                <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
+                <div class="trade-search-results list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto; width:100%;"></div>
             </div>
             <div class="col-md-2">
                 <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="1">
@@ -1191,44 +1221,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-/* Prevent card or table-section boundaries from clipping dropdowns */
-.table-section,
-.table-content,
-.standard-item-row,
-.trade-item-row {
-    overflow: visible !important;
-}
-
-.standard-item-row,
-.trade-item-row {
-    position: relative;
-    z-index: 1;
-}
-
-.standard-item-row:focus-within,
-.trade-item-row:focus-within {
-    z-index: 1060 !important;
-}
-
-.search-results {
-    background-color: #1e293b !important;
-    border: 1px solid #475569 !important;
-    border-radius: 6px !important;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    z-index: 1070 !important;
-    margin-top: 2px !important;
-}
-
-.search-results .list-group-item {
-    background-color: #1e293b !important;
-    color: #f8fafc !important;
-    border-color: #334155 !important;
-}
-
 .search-results .search-result-item {
     padding: 0.5rem 0.75rem;
 }
@@ -1253,20 +1245,23 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 2px;
 }
 
+.search-results .list-group-item-action:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
 html[data-bs-theme="dark"] .search-results .search-thumb {
-    background: rgba(0, 0, 0, 0.3);
-    border-color: #334155;
+    background: transparent;
+    border-color: #1a1a1a;
 }
 
-.search-results .list-group-item-action:hover,
-.search-results .list-group-item-action:focus {
-    background-color: #334155 !important;
-    color: #ffffff !important;
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover {
+    background-color: #111827;
+    color: #e6eef8;
 }
 
-html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted,
-html[data-bs-theme="dark"] .search-results .list-group-item-action:focus .text-muted {
-    color: #cbd5e1 !important;
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted {
+    color: #cbd5f5 !important;
 }
 </style>
 

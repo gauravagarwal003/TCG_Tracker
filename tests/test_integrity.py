@@ -99,6 +99,29 @@ class TestDataIntegrity(unittest.TestCase):
         self.assertFalse(is_valid)
         self.assertTrue(any(item[0] == "synthetic-unpriced-past-txn" for item in missing_tx))
 
+    def test_deduplicate_phrase(self):
+        from transaction_manager import deduplicate_phrase
+        self.assertEqual(
+            deduplicate_phrase("Ascended Heroes Ascended Heroes Booster Bundle"),
+            "Ascended Heroes Booster Bundle"
+        )
+        self.assertEqual(
+            deduplicate_phrase("Phantasmal Flames Phantasmal Flames Booster Box"),
+            "Phantasmal Flames Booster Box"
+        )
+        self.assertEqual(
+            deduplicate_phrase("Surging Sparks Surging Sparks Elite Trainer Box"),
+            "Surging Sparks Elite Trainer Box"
+        )
+        self.assertEqual(
+            deduplicate_phrase("151 151 Booster Bundle"),
+            "151 Booster Bundle"
+        )
+        self.assertEqual(
+            deduplicate_phrase("Ascended Heroes Booster Bundle"),
+            "Ascended Heroes Booster Bundle"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
