@@ -24,7 +24,7 @@
     <script type="module" src="firebase-auth.js"></script>
     <script type="module" src="firestore-data.js"></script>
     
-    <link href="static/css/styles.css?v=1775186000" rel="stylesheet">
+    <link href="static/css/styles.css?v=1775187000" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -469,10 +469,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return `
         <div class="standard-item-row card bg-dark border-secondary p-3 mb-2">
             <div class="row g-2 align-items-center">
-                <div class="col-md-5 position-relative">
+                <div class="col-md-5">
                     <label class="form-label small text-muted mb-1">Product *</label>
-                    <input type="text" class="form-control form-control-sm std-search" placeholder="Search product name..." autocomplete="off" value="${name}">
-                    <div class="std-search-results list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:240px; overflow-y:auto; width:100%;"></div>
+                    <div class="position-relative">
+                        <input type="text" class="form-control form-control-sm std-search" placeholder="Search product name..." autocomplete="off" value="${name}">
+                        <div class="std-search-results list-group search-results" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:1070; max-height:240px; overflow-y:auto; width:100%;"></div>
+                    </div>
                     <input type="hidden" class="std-product-id" value="${pid}">
                     <input type="hidden" class="std-group-id" value="${gid}">
                     <input type="hidden" class="std-category-id" value="${cid}">
@@ -642,6 +644,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 d.style.display = 'none';
             }
         });
+    });
+
+    document.addEventListener('focusin', e => {
+        if (!e.target.classList.contains('std-search') && !e.target.classList.contains('trade-search')) return;
+        const input = e.target;
+        const q = input.value.trim();
+        if (q.length >= 2) {
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
     });
 
     /* ── TCGPlayer Catalog Auto-Fill Helper ── */
@@ -830,9 +841,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function tradeItemRowHTML(direction) {
         return `
         <div class="trade-item-row row g-2 mb-2 align-items-end">
-            <div class="col-md-5 position-relative">
-                <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
-                <div class="trade-search-results list-group mt-1 search-results" style="display:none; position:absolute; z-index:1050; max-height:200px; overflow-y:auto; width:100%;"></div>
+            <div class="col-md-5">
+                <div class="position-relative">
+                    <input type="text" class="form-control form-control-sm trade-search" placeholder="Search product..." data-direction="${direction}">
+                    <div class="trade-search-results list-group search-results" style="display:none; position:absolute; top:100%; left:0; right:0; z-index:1070; max-height:200px; overflow-y:auto; width:100%;"></div>
+                </div>
             </div>
             <div class="col-md-2">
                 <input type="number" class="form-control form-control-sm trade-qty" placeholder="Qty" min="1" step="1" value="1">
@@ -1178,6 +1191,44 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
+/* Prevent card or table-section boundaries from clipping dropdowns */
+.table-section,
+.table-content,
+.standard-item-row,
+.trade-item-row {
+    overflow: visible !important;
+}
+
+.standard-item-row,
+.trade-item-row {
+    position: relative;
+    z-index: 1;
+}
+
+.standard-item-row:focus-within,
+.trade-item-row:focus-within {
+    z-index: 1060 !important;
+}
+
+.search-results {
+    background-color: #1e293b !important;
+    border: 1px solid #475569 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1070 !important;
+    margin-top: 2px !important;
+}
+
+.search-results .list-group-item {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+}
+
 .search-results .search-result-item {
     padding: 0.5rem 0.75rem;
 }
@@ -1202,23 +1253,20 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 2px;
 }
 
-.search-results .list-group-item-action:hover {
-    background-color: #e2e8f0;
-    color: #0f172a;
-}
-
 html[data-bs-theme="dark"] .search-results .search-thumb {
-    background: transparent;
-    border-color: #1a1a1a;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: #334155;
 }
 
-html[data-bs-theme="dark"] .search-results .list-group-item-action:hover {
-    background-color: #111827;
-    color: #e6eef8;
+.search-results .list-group-item-action:hover,
+.search-results .list-group-item-action:focus {
+    background-color: #334155 !important;
+    color: #ffffff !important;
 }
 
-html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted {
-    color: #cbd5f5 !important;
+html[data-bs-theme="dark"] .search-results .list-group-item-action:hover .text-muted,
+html[data-bs-theme="dark"] .search-results .list-group-item-action:focus .text-muted {
+    color: #cbd5e1 !important;
 }
 </style>
 
