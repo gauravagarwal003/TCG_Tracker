@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-24",
-  "previous_date": "2026-09-23",
+  "latest_date": "2026-09-25",
+  "previous_date": "2026-09-24",
   "total_value": 17403.29,
   "cost_basis": 7093.63,
   "gain_loss": 10309.66,
   "return_pct": 145.34,
-  "day_value_change": -51.94,
+  "day_value_change": 0.0,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -51.94,
-  "day_gain_loss_pct": -0.3,
+  "day_gain_loss": 0.0,
+  "day_gain_loss_pct": 0.0,
   "holdings_count": 80,
   "sparkline_7d": [
-    17712.24,
     17578.5,
     17612.69,
     17550.72,
     17491.04,
     17455.23,
+    17403.29,
     17403.29
   ],
   "sparkline_30d": [
-    17007.12,
     17054.49,
     17124.59,
     17061.59,
@@ -49,19 +48,15 @@
     17550.72,
     17491.04,
     17455.23,
+    17403.29,
     17403.29
   ],
-  "top_gainer": {
-    "name": "30th Celebration Tech Sticker Collection [Lucario]",
-    "change_pct": 3.19,
-    "latest_price": 40.7,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
-  },
+  "top_gainer": null,
   "top_weekly_gainer": {
     "name": "30th Celebration Tech Sticker Collection [Lucario]",
     "change_pct": 7.16,
     "latest_price": 40.7,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
   },
-  "updated_at": "2026-09-25T05:53:20Z"
+  "updated_at": "2026-09-25T16:45:17Z"
 }
