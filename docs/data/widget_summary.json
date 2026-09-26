@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-25",
-  "previous_date": "2026-09-24",
-  "total_value": 17968.83,
+  "latest_date": "2026-09-26",
+  "previous_date": "2026-09-25",
+  "total_value": 17932.01,
   "cost_basis": 7315.13,
-  "gain_loss": 10653.7,
-  "return_pct": 145.64,
-  "day_value_change": 0.0,
+  "gain_loss": 10616.88,
+  "return_pct": 145.14,
+  "day_value_change": -36.82,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 0.0,
-  "day_gain_loss_pct": 0.0,
+  "day_gain_loss": -36.82,
+  "day_gain_loss_pct": -0.2,
   "holdings_count": 81,
   "sparkline_7d": [
-    18154.68,
     18186.29,
     18120.36,
     18059.12,
     18021.44,
     17968.83,
-    17968.83
+    17968.83,
+    17932.01
   ],
   "sparkline_30d": [
-    17636.07,
     17708.77,
     17644.13,
     17623.67,
@@ -49,14 +48,20 @@
     18059.12,
     18021.44,
     17968.83,
-    17968.83
+    17968.83,
+    17932.01
   ],
-  "top_gainer": null,
-  "top_weekly_gainer": {
-    "name": "Surging Sparks Booster Pack",
-    "change_pct": 7.22,
-    "latest_price": 8.47,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
+  "top_gainer": {
+    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+    "change_pct": 5.6,
+    "latest_price": 42.23,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
   },
-  "updated_at": "2026-09-25T23:45:58Z"
+  "top_weekly_gainer": {
+    "name": "30th Celebration Tech Sticker Collection [Lucario]",
+    "change_pct": 10.27,
+    "latest_price": 41.88,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
+  },
+  "updated_at": "2026-09-26T23:21:30Z"
 }
