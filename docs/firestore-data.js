@@ -30,12 +30,43 @@ const LEGACY_SEED_URLS = [
 
 export function initDB(firebaseDB) {
     db = firebaseDB;
+    if (typeof window !== "undefined") {
+        window.__TCG_FIRESTORE_DB__ = firebaseDB;
+    }
+}
+
+export function getDb() {
+    if (db) return db;
+    if (typeof window !== "undefined") {
+        if (window.TCGFirebase?.db) {
+            db = window.TCGFirebase.db;
+            return db;
+        }
+        if (window.__TCG_FIRESTORE_DB__) {
+            db = window.__TCG_FIRESTORE_DB__;
+            return db;
+        }
+    }
+    return null;
+}
+
+function getEffectiveUid(uid) {
+    if (uid) return uid;
+    if (typeof window !== "undefined") {
+        return window.TCGAuth?.getCurrentUser?.()?.uid
+            || window.TCGFirebase?.auth?.currentUser?.uid
+            || sessionStorage.getItem("tcg_user_id")
+            || null;
+    }
+    return null;
 }
 
 async function ensureUserDoc(uid) {
-    if (!db || !uid) return;
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb || !effectiveUid) return;
     try {
-        const userRef = doc(db, "users", uid);
+        const userRef = doc(activeDb, "users", effectiveUid);
         await setDoc(userRef, {
             updated_at: new Date().toISOString(),
         }, { merge: true });
@@ -71,9 +102,11 @@ function deduplicatePhrase(name) {
  * Get current user's transactions
  */
 export async function getUserTransactions(uid) {
-    if (!db || !uid) return [];
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb || !effectiveUid) return [];
     try {
-        const txnsRef = collection(db, `users/${uid}/transactions`);
+        const txnsRef = collection(activeDb, `users/${effectiveUid}/transactions`);
         const q = query(txnsRef);
         const snapshot = await getDocs(q);
         const cleanItem = (item) => item ? { ...item, name: deduplicatePhrase(item.name) } : item;
@@ -94,9 +127,11 @@ export async function getUserTransactions(uid) {
 }
 
 export async function getTransactionById(uid, txnId) {
-    if (!db || !uid || !txnId) return null;
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb || !effectiveUid || !txnId) return null;
     try {
-        const txnRef = doc(db, `users/${uid}/transactions`, txnId);
+        const txnRef = doc(activeDb, `users/${effectiveUid}/transactions`, txnId);
         const snapshot = await getDoc(txnRef);
         if (!snapshot.exists()) return null;
         return {
@@ -110,20 +145,23 @@ export async function getTransactionById(uid, txnId) {
 }
 
 export async function hasUserTransactions(uid) {
-    if (!db || !uid) return false;
-    const txnsRef = collection(db, `users/${uid}/transactions`);
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb || !effectiveUid) return false;
+    const txnsRef = collection(activeDb, `users/${effectiveUid}/transactions`);
     const snapshot = await getDocs(query(txnsRef));
     return !snapshot.empty;
 }
 
 export async function ensureLegacyDataSeeded(user) {
-    if (!db || !user || user.email !== LEGACY_OWNER_EMAIL) {
+    const activeDb = getDb();
+    if (!activeDb || !user || user.email !== LEGACY_OWNER_EMAIL) {
         return false;
     }
 
     // Seeding is a best-effort helper. It should never block dashboard loading.
     try {
-        const seededRef = doc(db, `users/${user.uid}/meta`, "seeded");
+        const seededRef = doc(activeDb, `users/${user.uid}/meta`, "seeded");
         const seededSnapshot = await getDoc(seededRef);
         if (seededSnapshot.exists() && seededSnapshot.data()?.legacy_seeded) {
             return false;
@@ -162,10 +200,10 @@ export async function ensureLegacyDataSeeded(user) {
             return false;
         }
 
-        const batch = writeBatch(db);
+        const batch = writeBatch(activeDb);
         for (const txn of legacyTransactions) {
             if (!txn?.id) continue;
-            const txnRef = doc(db, `users/${user.uid}/transactions`, txn.id);
+            const txnRef = doc(activeDb, `users/${user.uid}/transactions`, txn.id);
             batch.set(txnRef, {
                 ...txn,
                 migrated_from: "legacy_public_json",
@@ -187,9 +225,12 @@ export async function ensureLegacyDataSeeded(user) {
 }
 
 export async function saveUserTransaction(uid, txnData) {
-    if (!db || !uid) throw new Error("User not authenticated");
-    await ensureUserDoc(uid);
-    const txnRef = doc(collection(db, `users/${uid}/transactions`));
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb) throw new Error("Firestore database not initialized");
+    if (!effectiveUid) throw new Error("User not authenticated");
+    await ensureUserDoc(effectiveUid);
+    const txnRef = doc(collection(activeDb, `users/${effectiveUid}/transactions`));
     await setDoc(txnRef, {
         ...txnData,
         id: txnRef.id,
@@ -203,10 +244,13 @@ export async function saveUserTransaction(uid, txnData) {
  * Add a new transaction
  */
 export async function addTransaction(uid, txn) {
-    if (!db || !uid) throw new Error("User not authenticated");
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb) throw new Error("Firestore database not initialized");
+    if (!effectiveUid) throw new Error("User not authenticated");
     try {
-        await ensureUserDoc(uid);
-        const txnRef = doc(collection(db, `users/${uid}/transactions`));
+        await ensureUserDoc(effectiveUid);
+        const txnRef = doc(collection(activeDb, `users/${effectiveUid}/transactions`));
         await setDoc(txnRef, {
             ...txn,
             id: txnRef.id,
@@ -224,9 +268,12 @@ export async function addTransaction(uid, txn) {
  * Update an existing transaction
  */
 export async function updateTransaction(uid, txnId, updates) {
-    if (!db || !uid) throw new Error("User not authenticated");
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb) throw new Error("Firestore database not initialized");
+    if (!effectiveUid) throw new Error("User not authenticated");
     try {
-        const txnRef = doc(db, `users/${uid}/transactions`, txnId);
+        const txnRef = doc(activeDb, `users/${effectiveUid}/transactions`, txnId);
         await updateDoc(txnRef, {
             ...updates,
             updated_at: new Date().toISOString(),
@@ -243,9 +290,12 @@ export async function updateTransaction(uid, txnId, updates) {
  * Delete a transaction
  */
 export async function deleteTransaction(uid, txnId) {
-    if (!db || !uid) throw new Error("User not authenticated");
+    const activeDb = getDb();
+    const effectiveUid = getEffectiveUid(uid);
+    if (!activeDb) throw new Error("Firestore database not initialized");
+    if (!effectiveUid) throw new Error("User not authenticated");
     try {
-        const txnRef = doc(db, `users/${uid}/transactions`, txnId);
+        const txnRef = doc(activeDb, `users/${effectiveUid}/transactions`, txnId);
         await deleteDoc(txnRef);
 
         return true;
@@ -268,8 +318,9 @@ export async function getProductMapping(groupId, productId) {
         );
         if (staticMatch) return staticMatch;
 
-        if (db) {
-            const mappingRef = doc(db, "product_mappings", `${groupId}_${productId}`);
+        const activeDb = getDb();
+        if (activeDb) {
+            const mappingRef = doc(activeDb, "product_mappings", `${groupId}_${productId}`);
             const mappingSnap = await getDoc(mappingRef);
             if (mappingSnap.exists()) return mappingSnap.data();
         }
@@ -282,12 +333,13 @@ export async function getProductMapping(groupId, productId) {
 }
 
 export async function saveProductMapping(mapping) {
-    if (!db) return mapping;
+    const activeDb = getDb();
+    if (!activeDb) return mapping;
     const cleanMapping = {
         ...mapping,
         name: deduplicatePhrase(mapping.name)
     };
-    const mappingRef = doc(db, "product_mappings", `${cleanMapping.group_id}_${cleanMapping.product_id}`);
+    const mappingRef = doc(activeDb, "product_mappings", `${cleanMapping.group_id}_${cleanMapping.product_id}`);
     try {
         await setDoc(mappingRef, {
             ...cleanMapping,
@@ -314,9 +366,10 @@ export async function getAllProductMappings() {
     }
 
     let firestoreMappings = [];
-    if (db) {
+    const activeDb = getDb();
+    if (activeDb) {
         try {
-            const snapshot = await getDocs(query(collection(db, "product_mappings")));
+            const snapshot = await getDocs(query(collection(activeDb, "product_mappings")));
             firestoreMappings = snapshot.docs.map((docSnap) => ({ id: docSnap.id, ...docSnap.data() }));
         } catch (error) {
             // Reads may be restricted in stricter production rulesets.
@@ -338,6 +391,8 @@ export async function getAllProductMappings() {
 }
 
 window.TCGFirestore = {
+    initDB,
+    getDb,
     ensureLegacyDataSeeded,
     getUserTransactions,
     getTransactionById,

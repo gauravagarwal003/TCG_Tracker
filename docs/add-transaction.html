@@ -22,7 +22,7 @@
     
     <script type="module" src="firebase-config.js"></script>
     <script type="module" src="firebase-auth.js"></script>
-    <script type="module" src="firestore-data.js?v=1775191000"></script>
+    <script type="module" src="firestore-data.js"></script>
     
     <link href="static/css/styles.css?v=1775188000" rel="stylesheet">
 </head>
@@ -1060,19 +1060,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function saveTransactionStatic(txnData) {
-        const user = window.TCGAuth?.getCurrentUser?.();
-        if (!user) {
+        const user = window.TCGAuth?.getCurrentUser?.() || window.TCGFirebase?.auth?.currentUser;
+        const uid = user?.uid || sessionStorage.getItem("tcg_user_id");
+        if (!uid) {
             alert('You must be logged in to save transactions.');
             return false;
         }
 
         try {
-            const firestore = window.TCGFirestore || await import('./firestore-data.js?v=1775191000');
+            const firestore = window.TCGFirestore || await import('./firestore-data.js');
             const { addTransaction, updateTransaction } = firestore;
             if (EDIT_MODE) {
-                await updateTransaction(user.uid, EDIT_ID, txnData);
+                await updateTransaction(uid, EDIT_ID, txnData);
             } else {
-                await addTransaction(user.uid, txnData);
+                await addTransaction(uid, txnData);
             }
             return true;
         } catch (error) {
