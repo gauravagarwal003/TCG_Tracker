@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-26",
-  "previous_date": "2026-09-25",
-  "total_value": 17932.01,
+  "latest_date": "2026-09-27",
+  "previous_date": "2026-09-26",
+  "total_value": 17955.67,
   "cost_basis": 7315.13,
-  "gain_loss": 10616.88,
-  "return_pct": 145.14,
-  "day_value_change": -36.82,
+  "gain_loss": 10640.54,
+  "return_pct": 145.46,
+  "day_value_change": 23.66,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -36.82,
-  "day_gain_loss_pct": -0.2,
+  "day_gain_loss": 23.66,
+  "day_gain_loss_pct": 0.13,
   "holdings_count": 81,
   "sparkline_7d": [
-    18186.29,
     18120.36,
     18059.12,
     18021.44,
     17968.83,
     17968.83,
-    17932.01
+    17932.01,
+    17955.67
   ],
   "sparkline_30d": [
-    17708.77,
     17644.13,
     17623.67,
     17657.05,
@@ -49,19 +48,20 @@
     18021.44,
     17968.83,
     17968.83,
-    17932.01
+    17932.01,
+    17955.67
   ],
   "top_gainer": {
-    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
-    "change_pct": 5.6,
-    "latest_price": 42.23,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
-  },
-  "top_weekly_gainer": {
     "name": "30th Celebration Tech Sticker Collection [Lucario]",
-    "change_pct": 10.27,
-    "latest_price": 41.88,
+    "change_pct": 3.68,
+    "latest_price": 43.42,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
   },
-  "updated_at": "2026-09-26T23:21:30Z"
+  "top_weekly_gainer": {
+    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+    "change_pct": 8.79,
+    "latest_price": 43.43,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
+  },
+  "updated_at": "2026-09-27T23:35:20Z"
 }
