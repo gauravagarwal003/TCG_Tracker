@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-27",
-  "previous_date": "2026-09-26",
-  "total_value": 17955.67,
+  "latest_date": "2026-09-28",
+  "previous_date": "2026-09-27",
+  "total_value": 18017.23,
   "cost_basis": 7315.13,
-  "gain_loss": 10640.54,
-  "return_pct": 145.46,
-  "day_value_change": 23.66,
+  "gain_loss": 10702.1,
+  "return_pct": 146.3,
+  "day_value_change": 61.56,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 23.66,
-  "day_gain_loss_pct": 0.13,
+  "day_gain_loss": 61.56,
+  "day_gain_loss_pct": 0.34,
   "holdings_count": 81,
   "sparkline_7d": [
-    18120.36,
     18059.12,
     18021.44,
     17968.83,
     17968.83,
     17932.01,
-    17955.67
+    17955.67,
+    18017.23
   ],
   "sparkline_30d": [
-    17644.13,
     17623.67,
     17657.05,
     17688.95,
@@ -49,19 +48,20 @@
     17968.83,
     17968.83,
     17932.01,
-    17955.67
+    17955.67,
+    18017.23
   ],
   "top_gainer": {
-    "name": "30th Celebration Tech Sticker Collection [Lucario]",
-    "change_pct": 3.68,
-    "latest_price": 43.42,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
+    "name": "30th Celebration Knock Out Collection",
+    "change_pct": 7.19,
+    "latest_price": 32.95,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
-    "change_pct": 8.79,
-    "latest_price": 43.43,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
+    "name": "Spiritforged - Booster Display",
+    "change_pct": 5.97,
+    "latest_price": 201.49,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg"
   },
-  "updated_at": "2026-09-27T23:35:20Z"
+  "updated_at": "2026-09-29T00:47:51Z"
 }
