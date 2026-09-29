@@ -49,7 +49,8 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow read, write: if isOwner(userId);
+      // Keep parent doc locked unless you explicitly use it.
+      allow read, write: if false;
 
       match /transactions/{txnId} {
         allow read, write: if isOwner(userId);

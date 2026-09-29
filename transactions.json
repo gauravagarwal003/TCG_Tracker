@@ -2964,25 +2964,6 @@
     "id": "m0156"
   },
   {
-    "date_purchased": "2026-03-10",
-    "date_received": "2026-03-13",
-    "type": "BUY",
-    "items": [
-      {
-        "group_id": "3170",
-        "product_id": "283396",
-        "categoryId": 3,
-        "name": "Silver Tempest Booster Bundle",
-        "quantity": 1
-      }
-    ],
-    "amount": 60.63,
-    "method": "Online",
-    "place": "Walmart",
-    "notes": "Used $25 promo on total order.",
-    "id": "m0157"
-  },
-  {
     "id": "00005860",
     "date_purchased": "2026-03-13",
     "date_received": "2026-03-13",
@@ -3017,6 +2998,25 @@
     ],
     "cost_basis_out": 0,
     "cost_basis_in": 0
+  },
+  {
+    "date_purchased": "2026-03-10",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "items": [
+      {
+        "group_id": "3170",
+        "product_id": "283396",
+        "categoryId": 3,
+        "name": "Silver Tempest Booster Bundle",
+        "quantity": 1
+      }
+    ],
+    "amount": 60.63,
+    "method": "Online",
+    "place": "Walmart",
+    "notes": "Used $25 promo on total order.",
+    "id": "m0157"
   },
   {
     "date_purchased": "2026-03-13",
@@ -3644,5 +3644,45 @@
     "place": "Target",
     "notes": "",
     "id": "m0193"
+  },
+  {
+    "date_purchased": "2026-09-24",
+    "date_received": "2026-09-24",
+    "type": "BUY",
+    "items": [
+      {
+        "group_id": "24688",
+        "product_id": "692942",
+        "categoryId": 3,
+        "name": "Pitch Black Booster Bundle",
+        "quantity": 1,
+        "unit_price": 29.7
+      }
+    ],
+    "amount": 29.7,
+    "method": "In-person",
+    "place": "Pokemon Center Vending Machine",
+    "notes": "Found at Safeway in Dublin, CA on Amador",
+    "id": "37b564bf"
+  },
+  {
+    "date_purchased": "2026-09-24",
+    "date_received": "2026-09-24",
+    "type": "BUY",
+    "items": [
+      {
+        "group_id": "24541",
+        "product_id": "668541",
+        "categoryId": 3,
+        "name": "Ascended Heroes Booster Bundle",
+        "quantity": 1,
+        "unit_price": 29.7
+      }
+    ],
+    "amount": 29.7,
+    "method": "In-person",
+    "place": "Pokemon Center Vending Machine",
+    "notes": "Found at Safeway in Dublin, CA on Amador",
+    "id": "GiqEpoTYF90D6AZNakEy"
   }
 ]

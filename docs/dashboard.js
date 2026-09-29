@@ -1,5 +1,5 @@
 import { ensureLegacyDataSeeded, getUserTransactions } from './firestore-data.js';
-import { computeDashboardSnapshot } from './portfolio-data.js';
+import { computeDashboardSnapshot } from './portfolio-data.js?v=1775188100';
 
 function escapeHtml(str) {
     return String(str)

@@ -822,5 +822,13 @@
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg",
     "categoryId": 89,
     "url": "https://www.tcgplayer.com/product/661934"
+  },
+  {
+    "product_id": "692942",
+    "name": "Pitch Black Booster Bundle",
+    "group_id": "24688",
+    "categoryId": 3,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg",
+    "url": "https://www.tcgplayer.com/product/692942/pokemon-me05-pitch-black-pitch-black-booster-bundle"
   }
 ]

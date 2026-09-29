@@ -286,6 +286,41 @@ export async function computeDashboardSnapshot(transactions) {
     const inventory = computeInventoryTimeline(txns);
     const costBasisDeltas = computeCostBasisDeltas(txns);
 
+    // Compute unit purchase cost basis per key as an immediate fallback for newly added items
+    const unitCostByKey = new Map();
+    const totalQtyByKey = new Map();
+    const totalCostByKey = new Map();
+    for (const txn of txns) {
+        const type = String(txn.type || '').toUpperCase();
+        if (type === 'BUY') {
+            const items = txn.items || [];
+            const totalQty = items.reduce((sum, it) => sum + Number(it.quantity || 0), 0);
+            const totalSubtotal = items.reduce((sum, it) => sum + (Number(it.unit_price || 0) * Number(it.quantity || 0)), 0);
+            for (const item of items) {
+                if (!item?.categoryId || !item?.group_id || !item?.product_id) continue;
+                const k = asKey(item.categoryId, item.group_id, item.product_id);
+                const itemQty = Number(item.quantity || 0);
+                const itemUnitPrice = Number(item.unit_price || 0);
+                let prorated = 0;
+                if (totalSubtotal > 0 && itemUnitPrice > 0) {
+                    prorated = Number(txn.amount || 0) * ((itemUnitPrice * itemQty) / totalSubtotal);
+                } else if (totalQty > 0) {
+                    prorated = Number(txn.amount || 0) * (itemQty / totalQty);
+                } else if (itemUnitPrice > 0) {
+                    prorated = itemUnitPrice * itemQty;
+                }
+                totalQtyByKey.set(k, (totalQtyByKey.get(k) || 0) + itemQty);
+                totalCostByKey.set(k, (totalCostByKey.get(k) || 0) + prorated);
+            }
+        }
+    }
+    for (const [k, qty] of totalQtyByKey.entries()) {
+        const cost = totalCostByKey.get(k) || 0;
+        if (qty > 0 && cost > 0) {
+            unitCostByKey.set(k, Math.round((cost / qty) * 100) / 100);
+        }
+    }
+
     const sortedTxDates = txns.map((t) => t.date_received).filter(Boolean).sort();
     const startDate = parseDate(sortedTxDates[0]);
     const todayDateStr = formatDate(new Date());
@@ -312,6 +347,10 @@ export async function computeDashboardSnapshot(transactions) {
                 totalValue += qty * Number(exact);
             } else if (lastKnownPrice.has(key)) {
                 totalValue += qty * Number(lastKnownPrice.get(key));
+            } else if (unitCostByKey.has(key)) {
+                const fallbackPrice = unitCostByKey.get(key);
+                lastKnownPrice.set(key, fallbackPrice);
+                totalValue += qty * fallbackPrice;
             }
         }
 
@@ -384,17 +423,23 @@ export async function computeDashboardSnapshot(transactions) {
         const totalCost = buyCost + tradeCost;
         const avgBuyPrice = totalUnits > 0 ? Math.round((totalCost / totalUnits) * 100) / 100 : null;
 
+        const effectivePrice = (latestPrice && latestPrice > 0)
+            ? latestPrice
+            : ((avgBuyPrice != null && avgBuyPrice > 0)
+                ? avgBuyPrice
+                : (unitCostByKey.get(key) || 0));
+
         const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
         const dayAgo = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
         const price1dAgo = getLatestPriceOnOrBefore(priceMap, dayAgo);
         const price7dAgo = getLatestPriceOnOrBefore(priceMap, weekAgo);
 
-        const change1dPct = price1dAgo > 0 ? Math.round(((latestPrice - price1dAgo) / price1dAgo) * 10000) / 100 : 0;
-        const change7dPct = price7dAgo > 0 ? Math.round(((latestPrice - price7dAgo) / price7dAgo) * 10000) / 100 : 0;
-        const totalVal = Math.round(qty * latestPrice * 100) / 100;
+        const change1dPct = price1dAgo > 0 ? Math.round(((effectivePrice - price1dAgo) / price1dAgo) * 10000) / 100 : 0;
+        const change7dPct = price7dAgo > 0 ? Math.round(((effectivePrice - price7dAgo) / price7dAgo) * 10000) / 100 : 0;
+        const totalVal = Math.round(qty * effectivePrice * 100) / 100;
         const totalCostBasis = avgBuyPrice != null ? Math.round(qty * avgBuyPrice * 100) / 100 : null;
         const gainLoss = totalCostBasis != null ? Math.round((totalVal - totalCostBasis) * 100) / 100 : null;
-        const gainLossPct = (avgBuyPrice != null && avgBuyPrice > 0) ? Math.round(((latestPrice - avgBuyPrice) / avgBuyPrice) * 10000) / 100 : null;
+        const gainLossPct = (avgBuyPrice != null && avgBuyPrice > 0) ? Math.round(((effectivePrice - avgBuyPrice) / avgBuyPrice) * 10000) / 100 : null;
 
         holdings.push({
             categoryId,
@@ -404,7 +449,7 @@ export async function computeDashboardSnapshot(transactions) {
             imageUrl: mapping?.imageUrl || metadata?.imageUrl || '',
             url: mapping?.url || metadata?.url || '',
             quantity: qty,
-            latest_price: latestPrice,
+            latest_price: effectivePrice,
             total_value: totalVal,
             avg_buy_price: avgBuyPrice,
             via_trade: viaTrade,
