@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-09-28",
-  "previous_date": "2026-09-27",
-  "total_value": 18140.31,
+  "latest_date": "2026-09-29",
+  "previous_date": "2026-09-28",
+  "total_value": 18141.88,
   "cost_basis": 7374.53,
-  "gain_loss": 10765.78,
-  "return_pct": 145.99,
-  "day_value_change": 48.5,
+  "gain_loss": 10767.35,
+  "return_pct": 146.01,
+  "day_value_change": 1.57,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 48.5,
-  "day_gain_loss_pct": 0.27,
+  "day_gain_loss": 1.57,
+  "day_gain_loss_pct": 0.01,
   "holdings_count": 83,
   "sparkline_7d": [
-    18059.12,
     18021.44,
     18091.91,
     18091.91,
     18091.93,
     18091.81,
-    18140.31
+    18140.31,
+    18141.88
   ],
   "sparkline_30d": [
-    17623.67,
     17657.05,
     17688.95,
     17668.67,
@@ -49,19 +48,20 @@
     18091.91,
     18091.93,
     18091.81,
-    18140.31
+    18140.31,
+    18141.88
   ],
   "top_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 14.01,
-    "latest_price": 32.95,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Pitch Black Elite Trainer Box",
+    "change_pct": 7.15,
+    "latest_price": 76.87,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Spiritforged - Booster Display",
-    "change_pct": 5.97,
-    "latest_price": 201.49,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/661934_200w.jpg"
+    "name": "Chaos Rising Pokemon Center Elite Trainer Box",
+    "change_pct": 7.51,
+    "latest_price": 124.16,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
   },
-  "updated_at": "2026-09-29T05:31:37Z"
+  "updated_at": "2026-09-30T00:02:23Z"
 }
