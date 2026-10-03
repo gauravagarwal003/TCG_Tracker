@@ -475,3 +475,93 @@ def sync_local_transactions_to_firestore(db, owner_uid: str, local_transactions:
     )
     return firestore_txns
 
+
+def sync_firestore_mappings_to_local(db) -> List[Dict]:
+    """
+    Sync product mappings between Firestore and local mappings.json.
+    - Reads all product mappings from Firestore 'product_mappings' collection
+    - Merges with local mappings.json
+    - Writes the unified mappings to mappings.json and docs/data/mappings.json
+    - Uploads any local-only mappings to Firestore
+    """
+    from engine import load_mappings, save_mappings, BASE_DIR
+
+    local_mappings = load_mappings()
+    mapping_by_key = {}
+    for m in local_mappings:
+        if not m or m.get("product_id") is None:
+            continue
+        gid = str(m.get("group_id", ""))
+        pid = str(m.get("product_id"))
+        mapping_by_key[(gid, pid)] = dict(m)
+
+    firestore_docs = {}
+    try:
+        docs = db.collection("product_mappings").stream()
+        for doc in docs:
+            data = doc.to_dict() or {}
+            gid = str(data.get("group_id", ""))
+            pid = str(data.get("product_id", ""))
+            if pid:
+                firestore_docs[(gid, pid)] = data
+    except Exception as ex:
+        print(f"  Warning: failed to read Firestore product_mappings: {ex}")
+
+    # Merge Firestore mappings into local
+    updated = False
+    for (gid, pid), data in firestore_docs.items():
+        if (gid, pid) not in mapping_by_key:
+            mapping_by_key[(gid, pid)] = {
+                "product_id": pid,
+                "group_id": gid,
+                "categoryId": int(data.get("categoryId", 3)) if str(data.get("categoryId", "3")).isdigit() else data.get("categoryId", 3),
+                "name": data.get("name", f"Unknown ({gid}/{pid})"),
+                "imageUrl": data.get("imageUrl", ""),
+                "url": data.get("url", ""),
+            }
+            updated = True
+        else:
+            # Update missing attributes if any
+            existing = mapping_by_key[(gid, pid)]
+            for field in ("name", "imageUrl", "url", "categoryId"):
+                if not existing.get(field) and data.get(field):
+                    existing[field] = data[field]
+                    updated = True
+
+    # If any local mappings are missing in Firestore, sync them up
+    missing_in_firestore = [m for k, m in mapping_by_key.items() if k not in firestore_docs and k[0] and k[1]]
+    if missing_in_firestore:
+        print(f"  Syncing {len(missing_in_firestore)} local mappings up to Firestore 'product_mappings'...")
+        batch = db.batch()
+        count = 0
+        for m in missing_in_firestore:
+            doc_ref = db.collection("product_mappings").document(f"{m['group_id']}_{m['product_id']}")
+            batch.set(doc_ref, {
+                "group_id": str(m.get("group_id", "")),
+                "product_id": str(m.get("product_id", "")),
+                "categoryId": int(m.get("categoryId", 3)) if str(m.get("categoryId", "3")).isdigit() else m.get("categoryId", 3),
+                "name": m.get("name", ""),
+                "imageUrl": m.get("imageUrl", ""),
+                "url": m.get("url", ""),
+            })
+            count += 1
+            if count >= 400:
+                batch.commit()
+                batch = db.batch()
+                count = 0
+        if count > 0:
+            batch.commit()
+
+    unified_mappings = sorted(mapping_by_key.values(), key=lambda m: (str(m.get("group_id", "")), str(m.get("product_id", ""))))
+    if updated or len(unified_mappings) != len(local_mappings):
+        save_mappings(unified_mappings)
+        docs_mapping_file = os.path.join(BASE_DIR, "docs", "data", "mappings.json")
+        try:
+            with open(docs_mapping_file, "w", encoding="utf-8") as f:
+                json.dump(unified_mappings, f, indent=2, ensure_ascii=False)
+        except Exception:
+            pass
+        print(f"  Saved {len(unified_mappings)} unified mappings locally.")
+
+    return unified_mappings
+
