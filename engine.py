@@ -109,10 +109,13 @@ def _price_file_path(category_id, group_id, product_id):
 def load_prices(category_id, group_id, product_id):
     """Load price dict {date_str: float} for a product."""
     path = _price_file_path(category_id, group_id, product_id)
-    if not os.path.exists(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
         return {}
-    with open(path, "r", encoding="utf-8") as f:
-        return _fix_mojibake_in_obj(json.load(f))
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return _fix_mojibake_in_obj(json.load(f))
+    except (json.JSONDecodeError, ValueError):
+        return {}
 
 
 def save_prices(category_id, group_id, product_id, price_dict):
