@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-02",
-  "previous_date": "2026-10-01",
+  "latest_date": "2026-10-03",
+  "previous_date": "2026-10-02",
   "total_value": 17493.32,
   "cost_basis": 7182.73,
   "gain_loss": 10310.59,
   "return_pct": 143.55,
-  "day_value_change": -36.21,
-  "day_cost_basis_change": 29.7,
-  "day_gain_loss": -65.91,
-  "day_gain_loss_pct": -0.38,
+  "day_value_change": 0.0,
+  "day_cost_basis_change": 0.0,
+  "day_gain_loss": 0.0,
+  "day_gain_loss_pct": 0.0,
   "holdings_count": 83,
   "sparkline_7d": [
-    17526.37,
     17526.37,
     17577.13,
     17579.4,
     17606.51,
     17529.53,
+    17493.32,
     17493.32
   ],
   "sparkline_30d": [
-    17063.55,
     17001.16,
     16963.51,
     16994.23,
@@ -49,19 +48,15 @@
     17579.4,
     17606.51,
     17529.53,
+    17493.32,
     17493.32
   ],
-  "top_gainer": {
-    "name": "Chaos Rising Pokemon Center Elite Trainer Box",
-    "change_pct": 1.2,
-    "latest_price": 127.72,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
-  },
+  "top_gainer": null,
   "top_weekly_gainer": {
     "name": "Chaos Rising Pokemon Center Elite Trainer Box",
     "change_pct": 7.8,
     "latest_price": 127.72,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
   },
-  "updated_at": "2026-10-03T06:55:09Z"
+  "updated_at": "2026-10-03T23:43:10Z"
 }
