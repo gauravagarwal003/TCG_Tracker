@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-01",
-  "previous_date": "2026-09-30",
-  "total_value": 18089.47,
+  "latest_date": "2026-10-02",
+  "previous_date": "2026-10-01",
+  "total_value": 17987.09,
   "cost_basis": 7374.53,
-  "gain_loss": 10714.94,
-  "return_pct": 145.3,
-  "day_value_change": -77.38,
+  "gain_loss": 10612.56,
+  "return_pct": 143.91,
+  "day_value_change": -102.38,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -77.38,
-  "day_gain_loss_pct": -0.43,
+  "day_gain_loss": -102.38,
+  "day_gain_loss_pct": -0.57,
   "holdings_count": 83,
   "sparkline_7d": [
-    18091.91,
     18091.93,
     18091.81,
     18140.31,
     18141.88,
     18166.85,
-    18089.47
+    18089.47,
+    17987.09
   ],
   "sparkline_30d": [
-    17668.67,
     17652.19,
     17589.24,
     17553.08,
@@ -49,19 +48,20 @@
     18140.31,
     18141.88,
     18166.85,
-    18089.47
+    18089.47,
+    17987.09
   ],
   "top_gainer": {
-    "name": "Pitch Black Booster Bundle",
-    "change_pct": 1.73,
-    "latest_price": 41.82,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
+    "name": "Surging Sparks Booster Pack",
+    "change_pct": 3.05,
+    "latest_price": 8.78,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 8.17,
-    "latest_price": 31.26,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Chaos Rising Pokemon Center Elite Trainer Box",
+    "change_pct": 7.8,
+    "latest_price": 127.72,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
   },
-  "updated_at": "2026-10-02T00:29:10Z"
+  "updated_at": "2026-10-03T00:06:40Z"
 }
