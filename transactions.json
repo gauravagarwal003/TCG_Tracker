@@ -889,7 +889,7 @@
     "amount": 21.88,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
+    "notes": "Recieved 2024 Pokémon Illustration Contest Promo Cards with order.",
     "id": "m0047"
   },
   {
@@ -908,7 +908,7 @@
     "amount": 4.92,
     "method": "Online",
     "place": "Pokemon Center",
-    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
+    "notes": "Recieved 2024 Pokémon Illustration Contest Promo Cards with order.",
     "id": "m0048"
   },
   {
@@ -2067,7 +2067,7 @@
     "amount": 103.84,
     "method": "Online",
     "place": "Target",
-    "notes": "Got 25% off from a Target Circle reward on toys that didn\u2019t apply to trading cards, but customer service rep applied it after the order.",
+    "notes": "Got 25% off from a Target Circle reward on toys that didn’t apply to trading cards, but customer service rep applied it after the order.",
     "id": "m0109"
   },
   {
@@ -3684,5 +3684,25 @@
     "place": "Pokemon Center Vending Machine",
     "notes": "Found at Safeway in Dublin, CA on Amador",
     "id": "GiqEpoTYF90D6AZNakEy"
+  },
+  {
+    "date_purchased": "2026-10-02",
+    "date_received": "2026-10-02",
+    "type": "BUY",
+    "items": [
+      {
+        "group_id": "24722",
+        "product_id": "704171",
+        "categoryId": 3,
+        "name": "30th Celebration Booster Bundle",
+        "quantity": 1,
+        "unit_price": 29.7
+      }
+    ],
+    "amount": 29.7,
+    "method": "In-person",
+    "place": "Pokemon Center Vending Machine",
+    "notes": "",
+    "id": "c0307171"
   }
 ]

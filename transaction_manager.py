@@ -12,7 +12,7 @@ from datetime import datetime
 
 from engine import (
     load_transactions, save_transactions, validate_inventory,
-    save_daily_summary, derive_daily_summary, today_pst,
+    validate_price_coverage, save_daily_summary, derive_daily_summary, today_pst,
     get_mapping, load_mappings, save_mappings,
     _product_key, parse_date
 )
@@ -224,6 +224,18 @@ def add_transaction(txn_data, fetch_prices=True, rebuild_summary=True):
     # Fetch prices
     if fetch_prices:
         _fetch_prices_for_transaction(txn_data)
+        td = today_pst().strftime("%Y-%m-%d")
+        valid_cov, missing_owned, missing_tx = validate_price_coverage(transactions, as_of_date=td)
+        if not valid_cov:
+            # Rollback: fail safe is disallowed, all required price retrievals must succeed
+            transactions.pop()
+            save_transactions(transactions)
+            err_details = []
+            if missing_owned:
+                err_details.append(f"missing owned prices: {missing_owned[:3]}")
+            if missing_tx:
+                err_details.append(f"missing tx prices: {missing_tx[:3]}")
+            return False, f"Price retrieval failed without fail-safe fallback: {', '.join(err_details)}", None
     
     # Re-derive summary
     if rebuild_summary:
@@ -323,6 +335,17 @@ def edit_transaction(txn_id, new_data):
     
     # Fetch prices for new data
     _fetch_prices_for_transaction(new_data)
+    td = today_pst().strftime("%Y-%m-%d")
+    valid_cov, missing_owned, missing_tx = validate_price_coverage(transactions, as_of_date=td)
+    if not valid_cov:
+        transactions[old_index] = old_txn
+        save_transactions(transactions)
+        err_details = []
+        if missing_owned:
+            err_details.append(f"missing owned prices: {missing_owned[:3]}")
+        if missing_tx:
+            err_details.append(f"missing tx prices: {missing_tx[:3]}")
+        return False, f"Price retrieval failed without fail-safe fallback: {', '.join(err_details)}", None
     
     # Re-derive summary
     summary = derive_daily_summary(transactions)

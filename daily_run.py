@@ -14,7 +14,7 @@ import shutil
 from datetime import datetime, timezone
 
 from engine import (
-    load_transactions, today_pst, derive_daily_summary,
+    load_transactions, save_transactions, today_pst, derive_daily_summary,
     save_daily_summary, get_current_holdings, load_daily_summary,
     BASE_DIR, load_mappings
 )
@@ -205,6 +205,7 @@ def firebase_union_daily_run():
             get_union_product_date_ranges,
             get_union_product_keys,
             sync_local_transactions_to_firestore,
+            sync_firestore_mappings_to_local,
         )
     except Exception as e:
         raise RuntimeError(
@@ -214,11 +215,16 @@ def firebase_union_daily_run():
     db = init_firestore_from_env()
     owner_uid = discover_owner_uid(db)
 
-    # Step 1: Sync local transactions to Firestore first so any edits/remappings are reflected
-    print("\n--- Step 1: Syncing local transactions with Firestore ---")
+    # Step 1a: Sync product mappings with Firestore
+    print("\n--- Step 1a: Syncing product mappings with Firestore ---")
+    sync_firestore_mappings_to_local(db)
+
+    # Step 1b: Sync local transactions to Firestore and persist locally
+    print("\n--- Step 1b: Syncing local transactions with Firestore ---")
     local_txns = load_transactions()
     transactions = sync_local_transactions_to_firestore(db, owner_uid=owner_uid, local_transactions=local_txns)
-    print(f"  Unified {len(transactions)} owner transactions for uid={owner_uid}")
+    save_transactions(transactions)
+    print(f"  Unified {len(transactions)} owner transactions for uid={owner_uid} and saved locally")
 
     # Step 2: Build union product date ranges from Firestore and local transactions
     print("\n--- Step 2: Loading union product keys ---")

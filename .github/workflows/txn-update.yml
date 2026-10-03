@@ -5,6 +5,7 @@ name: Rebuild on Data Change
 # The [skip ci] suffix on bot commits prevents an infinite rebuild loop.
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -96,7 +97,7 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add docs/ daily_summary.json prices/
+        git add docs/ daily_summary.json prices/ transactions.json mappings.json
         git diff --staged --quiet || git commit -m "Rebuild docs after data change [skip ci]"
         git push origin main || {
           echo "Push failed, retrying with rebase..."

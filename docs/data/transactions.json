@@ -3684,5 +3684,25 @@
     "place": "Pokemon Center Vending Machine",
     "notes": "Found at Safeway in Dublin, CA on Amador",
     "id": "GiqEpoTYF90D6AZNakEy"
+  },
+  {
+    "date_purchased": "2026-10-02",
+    "date_received": "2026-10-02",
+    "type": "BUY",
+    "items": [
+      {
+        "group_id": "24722",
+        "product_id": "704171",
+        "categoryId": 3,
+        "name": "30th Celebration Booster Bundle",
+        "quantity": 1,
+        "unit_price": 29.7
+      }
+    ],
+    "amount": 29.7,
+    "method": "In-person",
+    "place": "Pokemon Center Vending Machine",
+    "notes": "",
+    "id": "c0307171"
   }
 ]

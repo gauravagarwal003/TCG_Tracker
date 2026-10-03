@@ -1,5 +1,5 @@
 import { ensureLegacyDataSeeded, getUserTransactions } from './firestore-data.js';
-import { computeDashboardSnapshot } from './portfolio-data.js?v=1775188100';
+import { computeDashboardSnapshot } from './portfolio-data.js?v=1775190000';
 
 function escapeHtml(str) {
     return String(str)
@@ -337,6 +337,38 @@ function setupNavbarAuth() {
     }
 }
 
+function showDashboardError(message) {
+    const container = document.querySelector('.container-fluid.mt-3');
+    if (!container) return;
+    let alertEl = document.getElementById('dashboard-error-alert');
+    if (!alertEl) {
+        alertEl = document.createElement('div');
+        alertEl.id = 'dashboard-error-alert';
+        alertEl.className = 'alert alert-danger alert-dismissible fade show my-3';
+        alertEl.setAttribute('role', 'alert');
+        container.prepend(alertEl);
+    }
+    alertEl.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="fas fa-exclamation-triangle fa-2x me-3"></i>
+            <div>
+                <h5 class="alert-heading mb-1">Pricing Data Error</h5>
+                <p class="mb-0">${escapeHtml(message)}</p>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+    const countEl = document.getElementById('holdings-count');
+    if (countEl) {
+        countEl.textContent = 'Error';
+        countEl.className = 'badge bg-danger';
+    }
+    const tbody = document.getElementById('holdings-body');
+    if (tbody) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-danger"><i class="fas fa-circle-exclamation me-2"></i>Failed to load holdings: ${escapeHtml(message)}</td></tr>`;
+    }
+}
+
 async function loadStaticDashboard() {
     try {
         const [sumResp, holdResp] = await Promise.all([
@@ -350,6 +382,7 @@ async function loadStaticDashboard() {
         }
     } catch (e) {
         console.error('Failed to load static dashboard data:', e);
+        showDashboardError(e.message || String(e));
     }
 }
 
@@ -357,10 +390,15 @@ async function loadUserDashboard(user) {
     const statusEl = document.getElementById('holdings-count');
     if (statusEl) statusEl.textContent = 'Loading...';
 
-    await ensureLegacyDataSeeded(user);
-    const transactions = await getUserTransactions(user.uid);
-    const snapshot = await computeDashboardSnapshot(transactions);
-    renderDashboard(snapshot);
+    try {
+        await ensureLegacyDataSeeded(user);
+        const transactions = await getUserTransactions(user.uid);
+        const snapshot = await computeDashboardSnapshot(transactions);
+        renderDashboard(snapshot);
+    } catch (err) {
+        console.error('Failed to compute user dashboard snapshot:', err);
+        showDashboardError(err.message || String(err));
+    }
 }
 
 function bootstrapDashboard() {
