@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-03",
-  "previous_date": "2026-10-02",
-  "total_value": 18275.65,
+  "latest_date": "2026-10-04",
+  "previous_date": "2026-10-03",
+  "total_value": 18254.02,
   "cost_basis": 7493.33,
-  "gain_loss": 10782.32,
-  "return_pct": 143.89,
-  "day_value_change": 18.2,
+  "gain_loss": 10760.69,
+  "return_pct": 143.6,
+  "day_value_change": -21.63,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 18.2,
-  "day_gain_loss_pct": 0.1,
+  "day_gain_loss": -21.63,
+  "day_gain_loss_pct": -0.12,
   "holdings_count": 84,
   "sparkline_7d": [
-    18091.81,
     18140.31,
     18141.88,
     18166.85,
     18089.47,
     18257.45,
-    18275.65
+    18275.65,
+    18254.02
   ],
   "sparkline_30d": [
-    17589.24,
     17553.08,
     17586.15,
     17612.73,
@@ -49,19 +48,20 @@
     18166.85,
     18089.47,
     18257.45,
-    18275.65
+    18275.65,
+    18254.02
   ],
   "top_gainer": {
-    "name": "30th Celebration Booster Bundle",
-    "change_pct": 5.73,
-    "latest_price": 71.46,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
+    "name": "Chaos Rising Elite Trainer Box",
+    "change_pct": 3.2,
+    "latest_price": 69.63,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Chaos Rising Pokemon Center Elite Trainer Box",
-    "change_pct": 8.34,
-    "latest_price": 128.36,
+    "change_pct": 9.01,
+    "latest_price": 129.16,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
   },
-  "updated_at": "2026-10-03T23:44:43Z"
+  "updated_at": "2026-10-04T23:47:33Z"
 }
