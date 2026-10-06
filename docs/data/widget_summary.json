@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-04",
-  "previous_date": "2026-10-03",
-  "total_value": 18254.02,
+  "latest_date": "2026-10-05",
+  "previous_date": "2026-10-04",
+  "total_value": 18257.29,
   "cost_basis": 7493.33,
-  "gain_loss": 10760.69,
-  "return_pct": 143.6,
-  "day_value_change": -21.63,
+  "gain_loss": 10763.96,
+  "return_pct": 143.65,
+  "day_value_change": 3.27,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -21.63,
-  "day_gain_loss_pct": -0.12,
+  "day_gain_loss": 3.27,
+  "day_gain_loss_pct": 0.02,
   "holdings_count": 84,
   "sparkline_7d": [
-    18140.31,
     18141.88,
     18166.85,
     18089.47,
     18257.45,
     18275.65,
-    18254.02
+    18254.02,
+    18257.29
   ],
   "sparkline_30d": [
-    17553.08,
     17586.15,
     17612.73,
     17562.53,
@@ -49,19 +48,20 @@
     18089.47,
     18257.45,
     18275.65,
-    18254.02
+    18254.02,
+    18257.29
   ],
   "top_gainer": {
-    "name": "Chaos Rising Elite Trainer Box",
-    "change_pct": 3.2,
-    "latest_price": 69.63,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg"
+    "name": "Prismatic Evolutions Elite Trainer Box",
+    "change_pct": 2.66,
+    "latest_price": 137.54,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Chaos Rising Pokemon Center Elite Trainer Box",
-    "change_pct": 9.01,
-    "latest_price": 129.16,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684452_200w.jpg"
+    "name": "Pitch Black Elite Trainer Box",
+    "change_pct": 6.11,
+    "latest_price": 76.12,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
-  "updated_at": "2026-10-04T23:47:33Z"
+  "updated_at": "2026-10-06T01:38:40Z"
 }
