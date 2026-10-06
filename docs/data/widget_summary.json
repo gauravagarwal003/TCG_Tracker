@@ -1,23 +1,23 @@
 {
   "latest_date": "2026-10-05",
   "previous_date": "2026-10-04",
-  "total_value": 18257.29,
-  "cost_basis": 7493.33,
-  "gain_loss": 10763.96,
+  "total_value": 18185.26,
+  "cost_basis": 7463.63,
+  "gain_loss": 10721.63,
   "return_pct": 143.65,
-  "day_value_change": 3.27,
+  "day_value_change": 1.87,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 3.27,
-  "day_gain_loss_pct": 0.02,
+  "day_gain_loss": 1.87,
+  "day_gain_loss_pct": 0.01,
   "holdings_count": 84,
   "sparkline_7d": [
     18141.88,
     18166.85,
     18089.47,
-    18257.45,
-    18275.65,
-    18254.02,
-    18257.29
+    18189.86,
+    18204.19,
+    18183.39,
+    18185.26
   ],
   "sparkline_30d": [
     17586.15,
@@ -46,10 +46,10 @@
     18141.88,
     18166.85,
     18089.47,
-    18257.45,
-    18275.65,
-    18254.02,
-    18257.29
+    18189.86,
+    18204.19,
+    18183.39,
+    18185.26
   ],
   "top_gainer": {
     "name": "Prismatic Evolutions Elite Trainer Box",
@@ -63,5 +63,5 @@
     "latest_price": 76.12,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
-  "updated_at": "2026-10-06T01:38:40Z"
+  "updated_at": "2026-10-06T06:53:46Z"
 }

@@ -4492,27 +4492,5 @@
       }
     ],
     "amount": 89.1
-  },
-  {
-    "date_received": "2026-10-02",
-    "method": "In-person",
-    "updated_at": "2026-10-03",
-    "id": "c0307171",
-    "place": "Pokemon Center Vending Machine",
-    "date_purchased": "2026-10-02",
-    "amount": 29.7,
-    "notes": "",
-    "created_at": "2026-10-03",
-    "items": [
-      {
-        "group_id": "24722",
-        "categoryId": 3,
-        "product_id": "704171",
-        "name": "30th Celebration Booster Bundle",
-        "unit_price": 29.7,
-        "quantity": 1
-      }
-    ],
-    "type": "BUY"
   }
 ]
