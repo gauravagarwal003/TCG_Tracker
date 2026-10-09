@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-07",
-  "previous_date": "2026-10-06",
-  "total_value": 18118.03,
+  "latest_date": "2026-10-08",
+  "previous_date": "2026-10-07",
+  "total_value": 18074.71,
   "cost_basis": 7463.63,
-  "gain_loss": 10654.4,
-  "return_pct": 142.75,
-  "day_value_change": -84.71,
+  "gain_loss": 10611.08,
+  "return_pct": 142.17,
+  "day_value_change": -43.32,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -84.71,
-  "day_gain_loss_pct": -0.47,
+  "day_gain_loss": -43.32,
+  "day_gain_loss_pct": -0.24,
   "holdings_count": 84,
   "sparkline_7d": [
-    18089.47,
     18189.86,
     18204.19,
     18183.39,
     18185.26,
     18202.74,
-    18118.03
+    18118.03,
+    18074.71
   ],
   "sparkline_30d": [
-    17562.53,
     17522.79,
     17536.16,
     17553.11,
@@ -49,19 +48,20 @@
     18183.39,
     18185.26,
     18202.74,
-    18118.03
+    18118.03,
+    18074.71
   ],
   "top_gainer": {
-    "name": "Mega Evolution Booster Pack",
-    "change_pct": 2.56,
-    "latest_price": 8.41,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg"
+    "name": "30th Celebration Tech Sticker Collection [Lucario]",
+    "change_pct": 5.1,
+    "latest_price": 34.63,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Surging Sparks Booster Pack",
-    "change_pct": 5.32,
-    "latest_price": 8.91,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
+    "name": "Mega Evolution Booster Pack",
+    "change_pct": 6.76,
+    "latest_price": 8.69,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg"
   },
-  "updated_at": "2026-10-08T00:41:04Z"
+  "updated_at": "2026-10-09T00:57:04Z"
 }
