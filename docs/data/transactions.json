@@ -4,4493 +4,4493 @@
     "method": "Online",
     "amount": 85.74,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-11-19",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0001",
+    "notes": "$50 each originally. Due to a pricing error on these in a physical Target in Lodi, CA. Saw a post on reddit about them and called Target customer support to get the price matched.",
     "items": [
       {
-        "quantity": 3,
-        "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
         "group_id": "23651",
-        "product_id": "565630"
+        "product_id": "565630",
+        "quantity": 3,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "$50 each originally. Due to a pricing error on these in a physical Target in Lodi, CA. Saw a post on reddit about them and called Target customer support to get the price matched.",
-    "date_received": "2024-11-19",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0001",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-17",
     "method": "Online",
     "amount": 27.38,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-11-20",
+    "type": "BUY",
+    "place": "Scheel's",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0002",
+    "notes": "I saw the deal on GameStop but there was no shipping and no stores near me were available for pickup. Price matched with Scheels. Originally charged $8 for shipping but it was later refunded.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Paldea Evolved Elite Trainer Box",
         "group_id": "23120",
-        "product_id": "493974"
+        "product_id": "493974",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "I saw the deal on GameStop but there was no shipping and no stores near me were available for pickup. Price matched with Scheels. Originally charged $8 for shipping but it was later refunded.",
-    "date_received": "2024-11-20",
-    "place": "Scheel's",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0002",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-28",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-11-28",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0003",
+    "notes": "Pulled Pikachu ex #247, Latias ex #220, Hydreigon ex #119, Slaking ex #147, and Bruxish #200.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
         "group_id": "23651",
-        "product_id": "565630"
+        "product_id": "565630",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled Pikachu ex #247, Latias ex #220, Hydreigon ex #119, Slaking ex #147, and Bruxish #200.",
-    "date_received": "2024-11-28",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0003",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-19",
     "method": "Online",
     "amount": 11.01,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-11-29",
+    "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0004",
+    "notes": "In store pickup.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "151 Mini Tin [Electabuzz & Magnemites]",
         "group_id": "23237",
-        "product_id": "522701"
+        "product_id": "522701",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "In store pickup.",
-    "date_received": "2024-11-29",
-    "place": "Best Buy",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0004",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-25",
     "method": "Online",
     "amount": 14.65,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-02",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0005",
+    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Brilliant Stars Elite Trainer Box",
         "group_id": "2948",
-        "product_id": "256138"
+        "product_id": "256138",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.",
-    "date_received": "2024-12-02",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0005",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-25",
     "method": "Online",
     "amount": 41.88,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-03",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0006",
+    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
         "group_id": "3118",
-        "product_id": "277335"
+        "product_id": "277335",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25",
-    "date_received": "2024-12-03",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0006",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-24",
     "method": "Online",
     "amount": 20.52,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-10",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0007",
+    "notes": "Price Matched 30% off",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Crown Zenith Booster Bundle",
         "group_id": "17688",
-        "product_id": "527562"
+        "product_id": "527562",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Price Matched 30% off",
-    "date_received": "2024-12-10",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0007",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-11-25",
     "method": "Online",
     "amount": 14.65,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-11",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0008",
+    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
         "group_id": "3118",
-        "product_id": "277335"
+        "product_id": "277335",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Deal went live on 11/24 but ran out of stock immediately every time it was restocked. I was able to order on 11/25 and contacted customer service multiple times to get another discount on this.",
-    "date_received": "2024-12-11",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0008",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-11",
     "method": "In-person",
     "amount": 4.92,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-11",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0009",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
         "group_id": "23473",
-        "product_id": "543843"
+        "product_id": "543843",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2024-12-11",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0009",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-11",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-11",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0010",
+    "notes": "Pulled nothing",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Twilight Masquerade Booster Pack",
         "group_id": "23473",
-        "product_id": "543843"
+        "product_id": "543843",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled nothing",
-    "date_received": "2024-12-11",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0010",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-12",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-12",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0011",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "151 Mini Tin [Electabuzz & Magnemites]",
         "group_id": "23237",
-        "product_id": "522701"
+        "product_id": "522701",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "",
-    "date_received": "2024-12-12",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0011",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-14",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-14",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0012",
+    "notes": "Pulled a Giratina V #186 and Galarian Perrserker V #129.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Lost Origin Elite Trainer Box",
         "group_id": "3118",
-        "product_id": "277335"
+        "product_id": "277335",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled a Giratina V #186 and Galarian Perrserker V #129.",
-    "date_received": "2024-12-14",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0012",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-16",
     "method": "In-person",
     "amount": 55,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-16",
+    "type": "SELL",
+    "place": "King Kong Comics",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0013",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Surging Sparks Elite Trainer Box",
         "group_id": "23651",
-        "product_id": "565630"
+        "product_id": "565630",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "SELL",
-    "notes": "",
-    "date_received": "2024-12-16",
-    "place": "King Kong Comics",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0013",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-17",
     "method": "In-person",
     "amount": 46.06,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-17",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0014",
+    "notes": "Decided to stop by before going to get a haircut, they were restocking and I got 2 boxes.",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 3,
         "name": "151: Zapdos ex Collection",
         "group_id": "23237",
-        "product_id": "502007"
+        "product_id": "502007",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Decided to stop by before going to get a haircut, they were restocking and I got 2 boxes.",
-    "date_received": "2024-12-17",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0014",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2024-12-24",
     "method": "In-person",
     "amount": 29.03,
     "migrated_from": "local_transactions_json",
+    "date_received": "2024-12-24",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0015",
+    "notes": "Was on vacation in San Diego and we were buying groceries.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Paldean Fates Booster Bundle",
         "group_id": "23353",
-        "product_id": "528771"
+        "product_id": "528771",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Was on vacation in San Diego and we were buying groceries.",
-    "date_received": "2024-12-24",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0015",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-01-01",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-01-01",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "m0016",
+    "notes": "Pulled Arbok ex 024/165.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "151: Zapdos ex Collection",
         "group_id": "23237",
-        "product_id": "502007"
+        "product_id": "502007",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled Arbok ex 024/165.",
-    "date_received": "2025-01-01",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "m0016",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-01-03",
     "method": "In-person",
     "amount": 10.96,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-01-03",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "2fb2c68d",
+    "notes": "Don't remember exact date",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Double Pack Set Volume 6",
         "group_id": "23589",
-        "product_id": "563842"
+        "product_id": "563842",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Don't remember exact date",
-    "date_received": "2025-01-03",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "2fb2c68d",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-01-03",
     "method": "In-person",
     "amount": 5.5,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-01-03",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "6f72b5ac",
+    "notes": "Don't remember exact date",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Two Legends - Sleeved Booster Pack",
         "group_id": "23462",
-        "product_id": "542503"
+        "product_id": "542503",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Don't remember exact date",
-    "date_received": "2025-01-03",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "6f72b5ac",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-01-03",
     "method": "",
     "amount": 1,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-01-03",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "a7f1e46e",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Two Legends - Sleeved Booster Pack",
         "group_id": "23462",
-        "product_id": "542503"
+        "product_id": "542503",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled nothing.",
-    "date_received": "2025-01-03",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "a7f1e46e",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-01-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 10.96,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "563842",
-        "group_id": "23589",
-        "name": "Double Pack Set Volume 6"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2025-01-03",
+    "type": "BUY",
     "place": "Target",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0017",
-    "notes": "Don't remember exact date"
+    "notes": "Don't remember exact date",
+    "items": [
+      {
+        "name": "Double Pack Set Volume 6",
+        "group_id": "23589",
+        "product_id": "563842",
+        "quantity": 1,
+        "categoryId": 68
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-01-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 5.5,
+    "date_received": "2025-01-03",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0018",
+    "notes": "Don't remember exact date",
     "items": [
       {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "542503",
+        "name": "Two Legends - Sleeved Booster Pack",
         "group_id": "23462",
-        "name": "Two Legends - Sleeved Booster Pack"
+        "product_id": "542503",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-01-03",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0018",
-    "notes": "Don't remember exact date"
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-01-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "542503",
-        "group_id": "23462",
-        "name": "Two Legends - Sleeved Booster Pack"
-      }
-    ],
-    "method": "",
     "date_received": "2025-01-03",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0019",
-    "notes": "Pulled nothing."
-  },
-  {
-    "date_purchased": "2025-01-10",
-    "created_at": "2026-09-21",
-    "amount": 4.84,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "493976",
-        "group_id": "23120",
-        "name": "Paldea Evolved Booster Pack"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-01-10",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0020",
-    "notes": "Was at Elisabet's previous roommates place (Nessa) in Whittier due to LA fires. We went to Downtown Disney and stopped here on the way back."
-  },
-  {
-    "date_purchased": "2025-01-10",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0019",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
+        "name": "Two Legends - Sleeved Booster Pack",
+        "group_id": "23462",
+        "product_id": "542503",
         "quantity": 1,
-        "product_id": "493976",
-        "group_id": "23120",
-        "name": "Paldea Evolved Booster Pack"
+        "categoryId": 68
       }
     ],
-    "method": "",
-    "date_received": "2025-01-10",
-    "place": "",
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-01-10",
     "updated_at": "2026-09-21",
+    "amount": 4.84,
+    "date_received": "2025-01-10",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0020",
+    "notes": "Was at Elisabet's previous roommates place (Nessa) in Whittier due to LA fires. We went to Downtown Disney and stopped here on the way back.",
+    "items": [
+      {
+        "name": "Paldea Evolved Booster Pack",
+        "group_id": "23120",
+        "product_id": "493976",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2025-01-10",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-01-10",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
     "id": "m0021",
-    "notes": "Pulled nothing."
+    "notes": "Pulled nothing.",
+    "items": [
+      {
+        "name": "Paldea Evolved Booster Pack",
+        "group_id": "23120",
+        "product_id": "493976",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-01-07",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 27.21,
+    "date_received": "2025-01-11",
     "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-09-21",
+    "id": "m0022",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "496914",
+        "name": "Paldea Evolved Booster Bundle",
         "group_id": "23120",
-        "name": "Paldea Evolved Booster Bundle"
+        "product_id": "496914",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-11",
-    "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
-    "id": "m0022",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-01-13",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0023",
+    "notes": "Pulled Meowscarada ex #15.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "496914",
+        "name": "Paldea Evolved Booster Bundle",
         "group_id": "23120",
-        "name": "Paldea Evolved Booster Bundle"
+        "product_id": "496914",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-01-13",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0023",
-    "notes": "Pulled Meowscarada ex #15."
+    "method": ""
   },
   {
     "date_purchased": "2025-01-16",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-01-16",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0024",
+    "notes": "Pulled Radiant Charizard #20, Rotom V #45, Poochyena #GG33, Duskull #GG28.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "527562",
+        "name": "Crown Zenith Booster Bundle",
         "group_id": "17688",
-        "name": "Crown Zenith Booster Bundle"
+        "product_id": "527562",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-01-16",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0024",
-    "notes": "Pulled Radiant Charizard #20, Rotom V #45, Poochyena #GG33, Duskull #GG28."
+    "method": ""
   },
   {
     "date_purchased": "2024-11-19",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 20.7,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593355",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-01-17",
+    "type": "BUY",
     "place": "Target",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0025",
-    "notes": "Only got one when max was three since I had been spending too much. Later I called Target Customer Service to see if I could apply a 25% one toy or book coupon to my purchase, even though it says it cannot for trading cards, since I saw it on reddit. For some reason, it did work and I was refunded $25 (maybe they did $25 instead of 25%????)."
+    "notes": "Only got one when max was three since I had been spending too much. Later I called Target Customer Service to see if I could apply a 25% one toy or book coupon to my purchase, even though it says it cannot for trading cards, since I saw it on reddit. For some reason, it did work and I was refunded $25 (maybe they did $25 instead of 25%????).",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Elite Trainer Box",
+        "group_id": "23821",
+        "product_id": "593355",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-02",
-    "created_at": "2026-09-21",
-    "amount": 15.7,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593451",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]"
-      }
-    ],
-    "method": "Online",
-    "date_received": "2025-01-17",
-    "place": "Target",
     "updated_at": "2026-09-21",
+    "amount": 15.7,
+    "date_received": "2025-01-17",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
     "id": "m0026",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
+        "group_id": "23821",
+        "product_id": "593451",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-02",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 15.7,
+    "date_received": "2025-01-17",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0027",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593450",
+        "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]"
+        "product_id": "593450",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-17",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0027",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 23.03,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502007",
-        "group_id": "23237",
-        "name": "151: Zapdos ex Collection"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-01-18",
+    "type": "BUY",
     "place": "Target",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0028",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-01-19",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593451",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]"
-      }
-    ],
-    "method": "",
-    "date_received": "2025-01-19",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0029",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-01-19",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593450",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]"
-      }
-    ],
-    "method": "",
-    "date_received": "2025-01-19",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0030",
-    "notes": "Pulled Raifort #199."
-  },
-  {
-    "date_purchased": "2025-01-19",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502007",
+        "name": "151: Zapdos ex Collection",
         "group_id": "23237",
-        "name": "151: Zapdos ex Collection"
+        "product_id": "502007",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-01-19",
-    "place": "",
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-01-19",
     "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-01-19",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0029",
+    "notes": "",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
+        "group_id": "23821",
+        "product_id": "593451",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-01-19",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-01-19",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0030",
+    "notes": "Pulled Raifort #199.",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
+        "group_id": "23821",
+        "product_id": "593450",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-01-19",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-01-19",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
     "id": "m0031",
-    "notes": "Pulled nothing."
+    "notes": "Pulled nothing.",
+    "items": [
+      {
+        "name": "151: Zapdos ex Collection",
+        "group_id": "23237",
+        "product_id": "502007",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-01-20",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 99.2,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "609597",
-        "group_id": "23237",
-        "name": "Blooming Waters Premium Collection"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2025-01-20",
+    "type": "BUY",
     "place": "Costco",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0032",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Blooming Waters Premium Collection",
+        "group_id": "23237",
+        "product_id": "609597",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-01-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 1.55,
+    "date_received": "2025-01-21",
     "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-09-21",
+    "id": "m0033",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "283388",
+        "name": "Silver Tempest Booster Pack",
         "group_id": "3170",
-        "name": "Silver Tempest Booster Pack"
+        "product_id": "283388",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-21",
-    "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
-    "id": "m0033",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 19.86,
+    "date_received": "2025-01-21",
     "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-09-21",
+    "id": "m0034",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "557345",
+        "name": "Stellar Crown Booster Bundle",
         "group_id": "23537",
-        "name": "Stellar Crown Booster Bundle"
+        "product_id": "557345",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-21",
-    "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
-    "id": "m0034",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-16",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 18.71,
+    "date_received": "2025-01-27",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0035",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "527562",
+        "name": "Crown Zenith Booster Bundle",
         "group_id": "17688",
-        "name": "Crown Zenith Booster Bundle"
+        "product_id": "527562",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-27",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0035",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-24",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 65.69,
+    "date_received": "2025-01-28",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0036",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "552998",
+        "name": "Shrouded Fable Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "23529",
-        "name": "Shrouded Fable Pokemon Center Elite Trainer Box (Exclusive)"
+        "product_id": "552998",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-01-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0036",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-30",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-01-30",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0037",
+    "notes": "Pulled Poochyena #GG33, Duskull #GG28, Hisuian Samurott V #GG51, and Zeraora VMAX #54.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "527562",
+        "name": "Crown Zenith Booster Bundle",
         "group_id": "17688",
-        "name": "Crown Zenith Booster Bundle"
+        "product_id": "527562",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-01-30",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0037",
-    "notes": "Pulled Poochyena #GG33, Duskull #GG28, Hisuian Samurott V #GG51, and Zeraora VMAX #54."
+    "method": ""
   },
   {
     "date_purchased": "2025-01-23",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 61.3,
+    "date_received": "2025-02-01",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0038",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "502000",
+        "name": "151 Booster Bundle",
         "group_id": "23237",
-        "name": "151 Booster Bundle"
+        "product_id": "502000",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-01",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0038",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-01-27",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 91.95,
+    "date_received": "2025-02-01",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0039",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 3,
-        "product_id": "502000",
+        "name": "151 Booster Bundle",
         "group_id": "23237",
-        "name": "151 Booster Bundle"
+        "product_id": "502000",
+        "quantity": 3,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-01",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0039",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-02",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-02-02",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0040",
+    "notes": "Pulled Mew ex #151, Ninetales ex #38.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502000",
+        "name": "151 Booster Bundle",
         "group_id": "23237",
-        "name": "151 Booster Bundle"
+        "product_id": "502000",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-02-02",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0040",
-    "notes": "Pulled Mew ex #151, Ninetales ex #38."
+    "method": ""
   },
   {
     "date_purchased": "2025-02-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "283388",
-        "group_id": "3170",
-        "name": "Silver Tempest Booster Pack"
-      }
-    ],
-    "method": "",
     "date_received": "2025-02-03",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0041",
-    "notes": "Pulled nothing."
-  },
-  {
-    "date_purchased": "2025-02-06",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0041",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
+        "name": "Silver Tempest Booster Pack",
+        "group_id": "3170",
+        "product_id": "283388",
         "quantity": 1,
-        "product_id": "557345",
-        "group_id": "23537",
-        "name": "Stellar Crown Booster Bundle"
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-02-06",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0042",
-    "notes": "Pulled Lucario ex #82, Ledian #144, and Medicham ex #161."
+    "method": ""
   },
   {
     "date_purchased": "2025-02-06",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-02-06",
+    "type": "OPEN",
+    "place": "",
     "created_at": "2026-09-21",
-    "amount": 22.65,
-    "type": "BUY",
+    "id": "m0042",
+    "notes": "Pulled Lucario ex #82, Ledian #144, and Medicham ex #161.",
     "items": [
       {
-        "categoryId": 3,
+        "name": "Stellar Crown Booster Bundle",
+        "group_id": "23537",
+        "product_id": "557345",
         "quantity": 1,
-        "product_id": "593466",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Surprise Box"
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-20",
-    "place": "Target",
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-02-06",
     "updated_at": "2026-09-21",
+    "amount": 22.65,
+    "date_received": "2025-02-20",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
     "id": "m0043",
-    "notes": "Got 10% off through Customer Service."
+    "notes": "Got 10% off through Customer Service.",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Surprise Box",
+        "group_id": "23821",
+        "product_id": "593466",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-15",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 26.32,
+    "date_received": "2025-02-20",
     "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-09-21",
+    "id": "m0044",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "557345",
+        "name": "Stellar Crown Booster Bundle",
         "group_id": "23537",
-        "name": "Stellar Crown Booster Bundle"
+        "product_id": "557345",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-20",
-    "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
-    "id": "m0044",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-18",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 23.91,
+    "date_received": "2025-02-27",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0045",
+    "notes": "Used $5 Target Circle Reward.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502000",
+        "name": "151 Booster Bundle",
         "group_id": "23237",
-        "name": "151 Booster Bundle"
+        "product_id": "502000",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-27",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0045",
-    "notes": "Used $5 Target Circle Reward."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-27",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "557345",
-        "group_id": "23537",
-        "name": "Stellar Crown Booster Bundle"
-      }
-    ],
-    "method": "",
     "date_received": "2025-02-27",
+    "type": "OPEN",
     "place": "",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0046",
-    "notes": "Pulled Grand Tree #136, Lapras ex #032, and Orthworm ex #110."
+    "notes": "Pulled Grand Tree #136, Lapras ex #032, and Orthworm ex #110.",
+    "items": [
+      {
+        "name": "Stellar Crown Booster Bundle",
+        "group_id": "23537",
+        "product_id": "557345",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-02-21",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 21.88,
+    "date_received": "2025-02-28",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0047",
+    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "265529",
+        "name": "Astral Radiance Build & Battle Box",
         "group_id": "3040",
-        "name": "Astral Radiance Build & Battle Box"
+        "product_id": "265529",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0047",
-    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-21",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 4.92,
+    "date_received": "2025-02-28",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0048",
+    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "532841",
+        "name": "Temporal Forces Booster Pack",
         "group_id": "23381",
-        "name": "Temporal Forces Booster Pack"
+        "product_id": "532841",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0048",
-    "notes": "Recieved 2024 Pok\u00e9mon Illustration Contest Promo Cards with order."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-24",
     "method": "Online",
     "amount": 18.98,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-02-28",
+    "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "62f7b10e",
+    "notes": "Used $50 reward for inviting a new member to TikTok (Mom)",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 85,
         "name": "Shiny Treasure ex High Class Booster Box",
         "group_id": "23601",
-        "product_id": "565232"
+        "product_id": "565232",
+        "quantity": 1,
+        "categoryId": 85
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Used $50 reward for inviting a new member to TikTok (Mom)",
-    "date_received": "2025-02-28",
-    "place": "TikTok Shop",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "62f7b10e",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-02-24",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 18.98,
+    "date_received": "2025-02-28",
     "type": "BUY",
+    "place": "TikTok Shop",
+    "created_at": "2026-09-21",
+    "id": "m0049",
+    "notes": "Used $50 reward for inviting a new member to TikTok (Mom)",
     "items": [
       {
-        "categoryId": 85,
-        "quantity": 1,
-        "product_id": "565232",
+        "name": "Shiny Treasure ex High Class Booster Box",
         "group_id": "23601",
-        "name": "Shiny Treasure ex High Class Booster Box"
+        "product_id": "565232",
+        "quantity": 1,
+        "categoryId": 85
       }
     ],
-    "method": "Online",
-    "date_received": "2025-02-28",
-    "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
-    "id": "m0049",
-    "notes": "Used $50 reward for inviting a new member to TikTok (Mom)"
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-28",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-02-28",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0050",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "532841",
+        "name": "Temporal Forces Booster Pack",
         "group_id": "23381",
-        "name": "Temporal Forces Booster Pack"
+        "product_id": "532841",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-02-28",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0050",
-    "notes": "Pulled nothing."
+    "method": ""
   },
   {
     "date_purchased": "2025-02-23",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 2.66,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "543843",
-        "group_id": "23473",
-        "name": "Twilight Masquerade Booster Pack"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-03-03",
+    "type": "BUY",
     "place": "TikTok Shop",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0051",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-03-03",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "543843",
+        "name": "Twilight Masquerade Booster Pack",
         "group_id": "23473",
-        "name": "Twilight Masquerade Booster Pack"
+        "product_id": "543843",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-03-03",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0052",
-    "notes": "Pulled nothing."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-03",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-03-03",
+    "type": "OPEN",
+    "place": "",
     "created_at": "2026-09-21",
-    "amount": 110.24,
-    "type": "BUY",
+    "id": "m0052",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "609597",
-        "group_id": "23237",
-        "name": "Blooming Waters Premium Collection"
+        "name": "Twilight Masquerade Booster Pack",
+        "group_id": "23473",
+        "product_id": "543843",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-05",
-    "place": "Costco",
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-03-03",
     "updated_at": "2026-09-21",
+    "amount": 110.24,
+    "date_received": "2025-03-05",
+    "type": "BUY",
+    "place": "Costco",
+    "created_at": "2026-09-21",
     "id": "m0053",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Blooming Waters Premium Collection",
+        "group_id": "23237",
+        "product_id": "609597",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-07",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-03-07",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0054",
+    "notes": "Pulled Machamp V #072 and a Hisuian Decidueye #173",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "265529",
+        "name": "Astral Radiance Build & Battle Box",
         "group_id": "3040",
-        "name": "Astral Radiance Build & Battle Box"
+        "product_id": "265529",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-03-07",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0054",
-    "notes": "Pulled Machamp V #072 and a Hisuian Decidueye #173"
+    "method": ""
   },
   {
     "date_purchased": "2025-02-10",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 29.32,
+    "date_received": "2025-03-10",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0055",
+    "notes": "Got 5% off through Customer Service.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "600518",
+        "name": "Prismatic Evolutions Booster Bundle",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Booster Bundle"
+        "product_id": "600518",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-10",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0055",
-    "notes": "Got 5% off through Customer Service."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 18.71,
+    "date_received": "2025-03-14",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0056",
+    "notes": "Got $10 off from Customer Support for $10 off $60 deal (multiple orders).",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "565629",
+        "name": "Surging Sparks Booster Bundle",
         "group_id": "23651",
-        "name": "Surging Sparks Booster Bundle"
+        "product_id": "565629",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-14",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0056",
-    "notes": "Got $10 off from Customer Support for $10 off $60 deal (multiple orders)."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-04",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 20.94,
+    "date_received": "2025-03-19",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0057",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "277568",
+        "name": "Infernape V Box",
         "group_id": "2374",
-        "name": "Infernape V Box"
+        "product_id": "277568",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-19",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0057",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-02-12",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 65.69,
+    "date_received": "2025-03-28",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0058",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "610929",
+        "name": "Journey Together Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "24073",
-        "name": "Journey Together Pokemon Center Elite Trainer Box (Exclusive)"
+        "product_id": "610929",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0058",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-21",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 29.32,
+    "date_received": "2025-03-28",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0059",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502000",
+        "name": "151 Booster Bundle",
         "group_id": "23237",
-        "name": "151 Booster Bundle"
+        "product_id": "502000",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-03-28",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0059",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-03-28",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-03-28",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0060",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "277568",
+        "name": "Infernape V Box",
         "group_id": "2374",
-        "name": "Infernape V Box"
+        "product_id": "277568",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-03-28",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0060",
-    "notes": "Pulled nothing."
+    "method": ""
   },
   {
     "date_purchased": "2025-04-02",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 5.48,
+    "date_received": "2025-04-05",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0061",
+    "notes": "Used $10 Target Circle Reward previously gotten from Customer Service by asking to apply $10 off $70 on multiple smaller orders",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "502001",
+        "name": "151 Poster Collection",
         "group_id": "23237",
-        "name": "151 Poster Collection"
+        "product_id": "502001",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-04-05",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0061",
-    "notes": "Used $10 Target Circle Reward previously gotten from Customer Service by asking to apply $10 off $70 on multiple smaller orders"
+    "method": "Online"
   },
   {
     "date_purchased": "2025-04-07",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 24.13,
+    "date_received": "2025-04-12",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0062",
+    "notes": "Got $6 after asking Customer Service for Target Circle card 5% off",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "528771",
+        "name": "Paldean Fates Booster Bundle",
         "group_id": "23353",
-        "name": "Paldean Fates Booster Bundle"
+        "product_id": "528771",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-04-12",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0062",
-    "notes": "Got $6 after asking Customer Service for Target Circle card 5% off"
+    "method": "Online"
   },
   {
     "date_purchased": "2025-04-10",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 27.42,
+    "date_received": "2025-04-17",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0063",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "281981",
+        "name": "Hidden Potential Tin [Rotom V]",
         "group_id": "2374",
-        "name": "Hidden Potential Tin [Rotom V]"
+        "product_id": "281981",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-04-17",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0063",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-04-22",
     "method": "",
     "amount": 1,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-04-22",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "57228c46",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Special DON Set Vol 1 Luffy",
         "group_id": "17675",
-        "product_id": "620141"
+        "product_id": "620141",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled nothing.",
-    "date_received": "2025-04-22",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "57228c46",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-04-22",
     "method": "In-person",
     "amount": 11.04,
     "migrated_from": "local_transactions_json",
+    "date_received": "2025-04-22",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "d9b10d66",
+    "notes": "Don't remember exact date",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Special DON Set Vol 1 Luffy",
         "group_id": "17675",
-        "product_id": "620141"
+        "product_id": "620141",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Don't remember exact date",
-    "date_received": "2025-04-22",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "d9b10d66",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2025-04-22",
-    "created_at": "2026-09-21",
-    "amount": 11.04,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "620141",
-        "group_id": "17675",
-        "name": "Special DON Set Vol 1 Luffy"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-04-22",
-    "place": "Target",
     "updated_at": "2026-09-21",
+    "amount": 11.04,
+    "date_received": "2025-04-22",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
     "id": "m0064",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-04-22",
-    "created_at": "2026-09-21",
-    "amount": 11.04,
-    "type": "BUY",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "610934",
-        "group_id": "24073",
-        "name": "Journey Together Sleeved Booster Pack"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-04-22",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0065",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-04-22",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "620141",
+        "name": "Special DON Set Vol 1 Luffy",
         "group_id": "17675",
-        "name": "Special DON Set Vol 1 Luffy"
+        "product_id": "620141",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "",
-    "date_received": "2025-04-22",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0066",
-    "notes": "Pulled nothing."
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-04-22",
+    "updated_at": "2026-09-21",
+    "amount": 11.04,
+    "date_received": "2025-04-22",
+    "type": "BUY",
+    "place": "Target",
     "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
+    "id": "m0065",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "610934",
+        "name": "Journey Together Sleeved Booster Pack",
         "group_id": "24073",
-        "name": "Journey Together Sleeved Booster Pack"
+        "product_id": "610934",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-04-22",
-    "place": "",
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2025-04-22",
     "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-04-22",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0066",
+    "notes": "Pulled nothing.",
+    "items": [
+      {
+        "name": "Special DON Set Vol 1 Luffy",
+        "group_id": "17675",
+        "product_id": "620141",
+        "quantity": 1,
+        "categoryId": 68
+      }
+    ],
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-04-22",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-04-22",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
     "id": "m0067",
-    "notes": "Pulled Hop's Zacian ex 111/159."
+    "notes": "Pulled Hop's Zacian ex 111/159.",
+    "items": [
+      {
+        "name": "Journey Together Sleeved Booster Pack",
+        "group_id": "24073",
+        "product_id": "610934",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-02-27",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 24.08,
+    "date_received": "2025-04-25",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0068",
+    "notes": "Got $10 off though Customer Service for some reason I don't remember.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "606881",
+        "name": "Prismatic Evolutions Accessory Pouch Special Collection",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Accessory Pouch Special Collection"
+        "product_id": "606881",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-04-25",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0068",
-    "notes": "Got $10 off though Customer Service for some reason I don't remember."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-05-01",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 50.46,
+    "date_received": "2025-05-08",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0069",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "593466",
+        "name": "Prismatic Evolutions Surprise Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Surprise Box"
+        "product_id": "593466",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-05-08",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0069",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-05-08",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-05-08",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0070",
+    "notes": "Pulled Amarys 132/131 and Sylveon Promo.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593466",
+        "name": "Prismatic Evolutions Surprise Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Surprise Box"
+        "product_id": "593466",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-05-08",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0070",
-    "notes": "Pulled Amarys 132/131 and Sylveon Promo."
+    "method": ""
   },
   {
     "date_purchased": "2025-05-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 241.4,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 4,
-        "product_id": "593355",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-05-09",
+    "type": "BUY",
     "place": "Target",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0071",
-    "notes": "Got the price matched to MSRP from an original price of $139 after talking to Customer Service."
-  },
-  {
-    "date_purchased": "2025-05-08",
-    "created_at": "2026-09-21",
-    "amount": 59.14,
-    "type": "BUY",
+    "notes": "Got the price matched to MSRP from an original price of $139 after talking to Customer Service.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "600518",
+        "name": "Prismatic Evolutions Elite Trainer Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Booster Bundle"
-      }
-    ],
-    "method": "Online",
-    "date_received": "2025-05-14",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0072",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-05-08",
-    "created_at": "2026-09-21",
-    "amount": 60.35,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
         "product_id": "593355",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-05-15",
-    "place": "Target",
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-05-08",
     "updated_at": "2026-09-21",
+    "amount": 59.14,
+    "date_received": "2025-05-14",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0072",
+    "notes": "",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Booster Bundle",
+        "group_id": "23821",
+        "product_id": "600518",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-05-08",
+    "updated_at": "2026-09-21",
+    "amount": 60.35,
+    "date_received": "2025-05-15",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
     "id": "m0073",
-    "notes": "Got a $10 gift card from Customer Service (not included in price)"
+    "notes": "Got a $10 gift card from Customer Service (not included in price)",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Elite Trainer Box",
+        "group_id": "23821",
+        "product_id": "593355",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-05-15",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-05-15",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0074",
+    "notes": "Pulled Houndour Master Ball and Espeon Promo",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593466",
+        "name": "Prismatic Evolutions Surprise Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Surprise Box"
+        "product_id": "593466",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-05-15",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0074",
-    "notes": "Pulled Houndour Master Ball and Espeon Promo"
+    "method": ""
   },
   {
     "date_purchased": "2025-05-16",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 60.35,
+    "date_received": "2025-05-23",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0075",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "593355",
+        "name": "Prismatic Evolutions Elite Trainer Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
+        "product_id": "593355",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-05-23",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0075",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-05-28",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 476.0,
+    "date_received": "2025-05-28",
     "type": "SELL",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0076",
+    "notes": "Found on Facebook Marketplace. Met in front of UCLA Police Station.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 5,
-        "product_id": "593355",
+        "name": "Prismatic Evolutions Elite Trainer Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
+        "product_id": "593355",
+        "quantity": 5,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-05-28",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0076",
-    "notes": "Found on Facebook Marketplace. Met in front of UCLA Police Station."
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-05-31",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-05-31",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0077",
+    "notes": "Not sure of the exact date. Opened with Mason. Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "281981",
+        "name": "Hidden Potential Tin [Rotom V]",
         "group_id": "2374",
-        "name": "Hidden Potential Tin [Rotom V]"
+        "product_id": "281981",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-05-31",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0077",
-    "notes": "Not sure of the exact date. Opened with Mason. Pulled nothing."
+    "method": ""
   },
   {
     "date_purchased": "2025-06-01",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-06-01",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0078",
+    "notes": "Not sure of the exact date. This was the one that came unsealed. Pulled Poliwhirl #176 and Pikachu #173",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "609597",
+        "name": "Blooming Waters Premium Collection",
         "group_id": "23237",
-        "name": "Blooming Waters Premium Collection"
+        "product_id": "609597",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-06-01",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0078",
-    "notes": "Not sure of the exact date. This was the one that came unsealed. Pulled Poliwhirl #176 and Pikachu #173"
+    "method": ""
   },
   {
     "date_purchased": "2025-05-30",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 69.13,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "609597",
-        "group_id": "23237",
-        "name": "Blooming Waters Premium Collection"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-06-05",
+    "type": "BUY",
     "place": "Target",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0079",
-    "notes": "Got $7 off from Customer Service. Box came unsealed and I tried to do a credit card chargeback, but they rejected my claim."
+    "notes": "Got $7 off from Customer Service. Box came unsealed and I tried to do a credit card chargeback, but they rejected my claim.",
+    "items": [
+      {
+        "name": "Blooming Waters Premium Collection",
+        "group_id": "23237",
+        "product_id": "609597",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 90.2,
+    "date_received": "2025-06-05",
     "type": "BUY",
+    "place": "Costco",
+    "created_at": "2026-09-21",
+    "id": "m0080",
+    "notes": "Bought as part of Costco 2-pack bundle with ETB and BB",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "600518",
+        "name": "Prismatic Evolutions Booster Bundle",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Booster Bundle"
+        "product_id": "600518",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-06-05",
-    "place": "Costco",
-    "updated_at": "2026-09-21",
-    "id": "m0080",
-    "notes": "Bought as part of Costco 2-pack bundle with ETB and BB"
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-03",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 44.28,
+    "date_received": "2025-06-05",
     "type": "BUY",
+    "place": "Costco",
+    "created_at": "2026-09-21",
+    "id": "m0081",
+    "notes": "Bought as part of Costco 2-pack bundle with ETB and BB",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "593355",
+        "name": "Prismatic Evolutions Elite Trainer Box",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Elite Trainer Box"
+        "product_id": "593355",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-06-05",
-    "place": "Costco",
-    "updated_at": "2026-09-21",
-    "id": "m0081",
-    "notes": "Bought as part of Costco 2-pack bundle with ETB and BB"
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-04",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 28.8,
+    "date_received": "2025-06-15",
     "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
+    "id": "m0082",
+    "notes": "Used $10 off promo code but had to pay shipping.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "625670",
+        "name": "Destined Rivals Booster Bundle",
         "group_id": "24269",
-        "name": "Destined Rivals Booster Bundle"
+        "product_id": "625670",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-06-15",
-    "place": "Walmart",
-    "updated_at": "2026-09-21",
-    "id": "m0082",
-    "notes": "Used $10 off promo code but had to pay shipping."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-04-30",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 23.31,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "625684",
-        "group_id": "24269",
-        "name": "Destined Rivals 3 Pack Blister [Zebstrika]"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-06-25",
+    "type": "BUY",
     "place": "Walmart",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0083",
-    "notes": "I had to pay shipping, but I got a $10 off $15 code"
+    "notes": "I had to pay shipping, but I got a $10 off $15 code",
+    "items": [
+      {
+        "name": "Destined Rivals 3 Pack Blister [Zebstrika]",
+        "group_id": "24269",
+        "product_id": "625684",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-30",
-    "created_at": "2026-09-21",
-    "amount": 6.61,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "628396",
-        "group_id": "24269",
-        "name": "Destined Rivals Premium Checklane Blister [Rabsca]"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-06-30",
-    "place": "Target",
     "updated_at": "2026-09-21",
+    "amount": 6.61,
+    "date_received": "2025-06-30",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
     "id": "m0084",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Destined Rivals Premium Checklane Blister [Rabsca]",
+        "group_id": "24269",
+        "product_id": "628396",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-06-30",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 6.61,
+    "date_received": "2025-06-30",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0085",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "628395",
+        "name": "Destined Rivals Premium Checklane Blister [Gastrodon]",
         "group_id": "24269",
-        "name": "Destined Rivals Premium Checklane Blister [Gastrodon]"
+        "product_id": "628395",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-06-30",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0085",
-    "notes": ""
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-06-25",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 87.75,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 3,
-        "product_id": "625670",
-        "group_id": "24269",
-        "name": "Destined Rivals Booster Bundle"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-07-02",
+    "type": "BUY",
     "place": "Walmart",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0086",
-    "notes": "Used $10 off promo code."
+    "notes": "Used $10 off promo code.",
+    "items": [
+      {
+        "name": "Destined Rivals Booster Bundle",
+        "group_id": "24269",
+        "product_id": "625670",
+        "quantity": 3,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-08-05",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 4.77,
+    "date_received": "2025-08-15",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0087",
+    "notes": "Bought by Elisabet on Cape Cod",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "670783",
+        "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-08-15",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0087",
-    "notes": "Bought by Elisabet on Cape Cod"
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-08-05",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 9.54,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "624683",
-        "group_id": "24269",
-        "name": "Destined Rivals Booster Pack"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2025-08-15",
+    "type": "BUY",
     "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0088",
-    "notes": "Bought by Elisabet on Cape Cod"
-  },
-  {
-    "date_purchased": "2025-08-15",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
+    "notes": "Bought by Elisabet on Cape Cod",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "624683",
+        "name": "Destined Rivals Booster Pack",
         "group_id": "24269",
-        "name": "Destined Rivals Booster Pack"
+        "product_id": "624683",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-08-15",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0089",
-    "notes": "Opened with Kristina and Elisabet. Pulled nothing."
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-08-15",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "670783",
-        "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
-      }
-    ],
-    "method": "",
     "date_received": "2025-08-15",
+    "type": "OPEN",
     "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0089",
+    "notes": "Opened with Kristina and Elisabet. Pulled nothing.",
+    "items": [
+      {
+        "name": "Destined Rivals Booster Pack",
+        "group_id": "24269",
+        "product_id": "624683",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-08-15",
     "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-08-15",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
     "id": "m0090",
-    "notes": "Opened with Kristina and Elisabet. Pulled nothing."
+    "notes": "Opened with Kristina and Elisabet. Pulled nothing.",
+    "items": [
+      {
+        "name": "Knock Out Collection [Suicune]",
+        "group_id": "2374",
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-05-07",
-    "created_at": "2026-09-21",
-    "amount": 65.84,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "630687",
-        "group_id": "24325",
-        "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)"
-      }
-    ],
-    "method": "Online",
-    "date_received": "2025-08-22",
-    "place": "Pokemon Center",
     "updated_at": "2026-09-21",
+    "amount": 65.84,
+    "date_received": "2025-08-22",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
     "id": "m0091",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Black Bolt Pokemon Center Elite Trainer Box (Exclusive)",
+        "group_id": "24325",
+        "product_id": "630687",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-05-07",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 65.84,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "630688",
-        "group_id": "24326",
-        "name": "White Flare Pokemon Center Elite Trainer Box (Exclusive)"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-08-22",
+    "type": "BUY",
     "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0092",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-06-17",
-    "created_at": "2026-09-21",
-    "amount": 29.71,
-    "type": "BUY",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "630696",
+        "name": "White Flare Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "24326",
-        "name": "White Flare Booster Bundle"
+        "product_id": "630688",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-08-22",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0093",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-17",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 29.71,
+    "date_received": "2025-08-22",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0093",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
+        "name": "White Flare Booster Bundle",
+        "group_id": "24326",
+        "product_id": "630696",
         "quantity": 1,
-        "product_id": "630431",
-        "group_id": "24325",
-        "name": "Black Bolt Booster Bundle"
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-08-22",
-    "place": "Pokemon Center",
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-06-17",
     "updated_at": "2026-09-21",
+    "amount": 29.71,
+    "date_received": "2025-08-22",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
     "id": "m0094",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Black Bolt Booster Bundle",
+        "group_id": "24325",
+        "product_id": "630431",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-06-06",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 65.84,
+    "date_received": "2025-08-25",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0095",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "630696",
+        "name": "White Flare Booster Bundle",
         "group_id": "24326",
-        "name": "White Flare Booster Bundle"
+        "product_id": "630696",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-08-25",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0095",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-09-09",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 9.54,
+    "date_received": "2025-09-09",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0096",
+    "notes": "Bought by Elisabet on Cape Cod",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "557331",
+        "name": "Stellar Crown Booster Pack",
         "group_id": "23537",
-        "name": "Stellar Crown Booster Pack"
+        "product_id": "557331",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-09-09",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0096",
-    "notes": "Bought by Elisabet on Cape Cod"
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-08-27",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 59.26,
+    "date_received": "2025-09-10",
     "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
+    "id": "m0097",
+    "notes": "Used $10 off promo code.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "600518",
+        "name": "Prismatic Evolutions Booster Bundle",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Booster Bundle"
+        "product_id": "600518",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-09-10",
-    "place": "Walmart",
-    "updated_at": "2026-09-21",
-    "id": "m0097",
-    "notes": "Used $10 off promo code."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-09-26",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 18.65,
+    "date_received": "2025-09-26",
     "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-09-21",
+    "id": "m0098",
+    "notes": "I had a $10 Best Buy certificate. Saw Rishi and Chris in line and got in with them for the opening. Recieved Xerneas Mega Evolution promo as well.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "644362",
+        "name": "Mega Evolution Booster Bundle",
         "group_id": "24380",
-        "name": "Mega Evolution Booster Bundle"
+        "product_id": "644362",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-09-26",
-    "place": "Best Buy",
-    "updated_at": "2026-09-21",
-    "id": "m0098",
-    "notes": "I had a $10 Best Buy certificate. Saw Rishi and Chris in line and got in with them for the opening. Recieved Xerneas Mega Evolution promo as well."
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-08-20",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 65.86,
+    "date_received": "2025-10-02",
     "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
+    "id": "m0099",
+    "notes": "The original purchase was 2 for $65.86, but one came with the shrink wrap ripped so I contacted Walmart support and they said to file a credit card chargeback, which worked.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "644362",
+        "name": "Mega Evolution Booster Bundle",
         "group_id": "24380",
-        "name": "Mega Evolution Booster Bundle"
+        "product_id": "644362",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-10-02",
-    "place": "Walmart",
-    "updated_at": "2026-09-21",
-    "id": "m0099",
-    "notes": "The original purchase was 2 for $65.86, but one came with the shrink wrap ripped so I contacted Walmart support and they said to file a credit card chargeback, which worked."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-10-10",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-10-10",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0100",
+    "notes": "Opened with Logan and his roommate when I visited Elisabet for her birthday. Pulled a Team Rocket's Meowth #203.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "625684",
+        "name": "Destined Rivals 3 Pack Blister [Zebstrika]",
         "group_id": "24269",
-        "name": "Destined Rivals 3 Pack Blister [Zebstrika]"
+        "product_id": "625684",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-10-10",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0100",
-    "notes": "Opened with Logan and his roommate when I visited Elisabet for her birthday. Pulled a Team Rocket's Meowth #203."
+    "method": ""
   },
   {
     "date_purchased": "2025-10-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "557331",
-        "group_id": "23537",
-        "name": "Stellar Crown Booster Pack"
-      }
-    ],
-    "method": "",
     "date_received": "2025-10-13",
+    "type": "OPEN",
     "place": "",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0101",
-    "notes": "Not sure of the exact date. Pulled nothing."
+    "notes": "Not sure of the exact date. Pulled nothing.",
+    "items": [
+      {
+        "name": "Stellar Crown Booster Pack",
+        "group_id": "23537",
+        "product_id": "557331",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
   },
   {
     "date_purchased": "2025-10-29",
-    "created_at": "2026-09-21",
-    "amount": 55.11,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "565630",
-        "group_id": "23651",
-        "name": "Surging Sparks Elite Trainer Box"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-10-29",
-    "place": "Pokemon Center Vending Machine",
     "updated_at": "2026-09-21",
+    "amount": 55.11,
+    "date_received": "2025-10-29",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
     "id": "m0102",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Surging Sparks Elite Trainer Box",
+        "group_id": "23651",
+        "product_id": "565630",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-10-29",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 55.11,
+    "date_received": "2025-10-29",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0103",
+    "notes": "Came with the shrink wrap slightly torn off, and they refused to refund. While making this transactions list, I decided to open it.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "644279",
+        "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
         "group_id": "24380",
-        "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]"
+        "product_id": "644279",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-10-29",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0103",
-    "notes": "Came with the shrink wrap slightly torn off, and they refused to refund. While making this transactions list, I decided to open it."
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-11-05",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 22.02,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "634329",
-        "group_id": "2374",
-        "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]"
-      }
-    ],
-    "method": "Online",
     "date_received": "2025-11-12",
+    "type": "BUY",
     "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0104",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-11-13",
-    "created_at": "2026-09-21",
-    "amount": 44.1,
-    "type": "BUY",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
+        "name": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
+        "group_id": "2374",
+        "product_id": "634329",
         "quantity": 2,
-        "product_id": "656950",
-        "group_id": "2374",
-        "name": "Greninja EX & Kingdra EX Special Collection Box"
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-11-14",
-    "place": "Walmart",
-    "updated_at": "2026-09-21",
-    "id": "m0105",
-    "notes": "Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1)."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-11-13",
-    "created_at": "2026-09-21",
-    "amount": 75.15,
+    "updated_at": "2026-09-21",
+    "amount": 44.1,
+    "date_received": "2025-11-14",
     "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
+    "id": "m0105",
+    "notes": "Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 3,
-        "product_id": "662770",
+        "name": "Greninja EX & Kingdra EX Special Collection Box",
         "group_id": "2374",
-        "name": "Snorlax ex & Blissey ex Special Collection"
+        "product_id": "656950",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-11-14",
-    "place": "Walmart",
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-11-13",
     "updated_at": "2026-09-21",
+    "amount": 75.15,
+    "date_received": "2025-11-14",
+    "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
     "id": "m0106",
-    "notes": "Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1)."
+    "notes": "Used a $10 promo after placing order through Customer Service. Part of Walmart+ early black friday deals (got 1 month for $1).",
+    "items": [
+      {
+        "name": "Snorlax ex & Blissey ex Special Collection",
+        "group_id": "2374",
+        "product_id": "662770",
+        "quantity": 3,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-09-15",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 132.28,
+    "date_received": "2025-11-16",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0107",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "654135",
+        "name": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "24448",
-        "name": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)"
+        "product_id": "654135",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-11-16",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0107",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-11-18",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 4.95,
+    "date_received": "2025-11-18",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0108",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "670783",
+        "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2025-11-18",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0108",
-    "notes": ""
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-11-13",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 103.84,
+    "date_received": "2025-11-19",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0109",
+    "notes": "Got 25% off from a Target Circle reward on toys that didn\u2019t apply to trading cards, but customer service rep applied it after the order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654213",
+        "name": "Mega Charizard X ex Ultra Premium Collection",
         "group_id": "2374",
-        "name": "Mega Charizard X ex Ultra Premium Collection"
+        "product_id": "654213",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-11-19",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0109",
-    "notes": "Got 25% off from a Target Circle reward on toys that didn\u2019t apply to trading cards, but customer service rep applied it after the order."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-11-21",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
+    "date_received": "2025-11-21",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0110",
+    "notes": "Pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "670783",
+        "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-11-21",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0110",
-    "notes": "Pulled nothing."
+    "method": ""
   },
   {
     "date_purchased": "2025-11-19",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 66.14,
+    "date_received": "2025-11-28",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0111",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "557340",
+        "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "23537",
-        "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)"
+        "product_id": "557340",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-11-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0111",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2025-11-29",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "644279",
-        "group_id": "24380",
-        "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]"
-      }
-    ],
-    "method": "",
     "date_received": "2025-11-29",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0112",
-    "notes": "This was the one that had a rip in it's shrink wrap. Pulled Clawitzer #141, Mega Mawile ex #162, Mega Mawile ex #94, and Mega Absol ex #86"
-  },
-  {
-    "date_purchased": "2025-11-30",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0112",
+    "notes": "This was the one that had a rip in it's shrink wrap. Pulled Clawitzer #141, Mega Mawile ex #162, Mega Mawile ex #94, and Mega Absol ex #86",
     "items": [
       {
-        "categoryId": 3,
+        "name": "Mega Evolution Elite Trainer Box [Mega Gardevoir]",
+        "group_id": "24380",
+        "product_id": "644279",
         "quantity": 1,
-        "product_id": "557331",
-        "group_id": "23537",
-        "name": "Stellar Crown Booster Pack"
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2025-11-30",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0113",
-    "notes": "Pulled Sparkling Crystal #142."
+    "method": ""
   },
   {
     "date_purchased": "2025-11-30",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2025-11-30",
+    "type": "OPEN",
+    "place": "",
     "created_at": "2026-09-21",
-    "amount": 137.84,
-    "type": "BUY",
+    "id": "m0113",
+    "notes": "Pulled Sparkling Crystal #142.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "665113",
-        "group_id": "23353",
-        "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection"
+        "name": "Stellar Crown Booster Pack",
+        "group_id": "23537",
+        "product_id": "557331",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-12-07",
-    "place": "Walmart",
+    "method": ""
+  },
+  {
+    "date_purchased": "2025-11-30",
     "updated_at": "2026-09-21",
+    "amount": 137.84,
+    "date_received": "2025-12-07",
+    "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
     "id": "m0114",
-    "notes": "Got $10 off with promo code."
+    "notes": "Got $10 off with promo code.",
+    "items": [
+      {
+        "name": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
+        "group_id": "23353",
+        "product_id": "665113",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-12-01",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 35.28,
+    "date_received": "2025-12-16",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-21",
+    "id": "m0115",
+    "notes": "Paid $5.55 to delay package through FedEx since I had pokemon delivered to the house the day before and since I was in LA, parents got it and were mad. Delaying allowed me to recieve the package myself.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 6,
-        "product_id": "512822",
+        "name": "Paradox Rift Booster Pack",
         "group_id": "23286",
-        "name": "Paradox Rift Booster Pack"
+        "product_id": "512822",
+        "quantity": 6,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-12-16",
-    "place": "Pokemon Center",
-    "updated_at": "2026-09-21",
-    "id": "m0115",
-    "notes": "Paid $5.55 to delay package through FedEx since I had pokemon delivered to the house the day before and since I was in LA, parents got it and were mad. Delaying allowed me to recieve the package myself."
+    "method": "Online"
   },
   {
     "date_purchased": "2025-12-16",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 4.95,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "670783",
-        "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2025-12-16",
+    "type": "BUY",
     "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0116",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-12-17",
-    "created_at": "2026-09-21",
-    "amount": 8.8,
-    "type": "BUY",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
-        "product_id": "624684",
-        "group_id": "24269",
-        "name": "Destined Rivals Sleeved Booster Pack"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2025-12-17",
-    "place": "Best Buy",
-    "updated_at": "2026-09-21",
-    "id": "m0117",
-    "notes": "Used $10 certificate."
-  },
-  {
-    "date_purchased": "2025-12-02",
-    "created_at": "2026-09-21",
-    "amount": 66.16,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "625670",
-        "group_id": "24269",
-        "name": "Destined Rivals Booster Bundle"
-      }
-    ],
-    "method": "Online",
-    "date_received": "2025-12-22",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0118",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2025-12-02",
-    "created_at": "2026-09-21",
-    "amount": 132.26,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654213",
+        "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "name": "Mega Charizard X ex Ultra Premium Collection"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-12-22",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0119",
-    "notes": ""
+    "method": "In-person"
   },
   {
     "date_purchased": "2025-12-17",
-    "created_at": "2026-09-21",
-    "amount": 33.03,
+    "updated_at": "2026-09-21",
+    "amount": 8.8,
+    "date_received": "2025-12-17",
     "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-09-21",
+    "id": "m0117",
+    "notes": "Used $10 certificate.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "600518",
-        "group_id": "23821",
-        "name": "Prismatic Evolutions Booster Bundle"
+        "name": "Destined Rivals Sleeved Booster Pack",
+        "group_id": "24269",
+        "product_id": "624684",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2025-12-23",
-    "place": "Walmart",
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2025-12-02",
     "updated_at": "2026-09-21",
+    "amount": 66.16,
+    "date_received": "2025-12-22",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0118",
+    "notes": "",
+    "items": [
+      {
+        "name": "Destined Rivals Booster Bundle",
+        "group_id": "24269",
+        "product_id": "625670",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-12-02",
+    "updated_at": "2026-09-21",
+    "amount": 132.26,
+    "date_received": "2025-12-22",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0119",
+    "notes": "",
+    "items": [
+      {
+        "name": "Mega Charizard X ex Ultra Premium Collection",
+        "group_id": "2374",
+        "product_id": "654213",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
+  },
+  {
+    "date_purchased": "2025-12-17",
+    "updated_at": "2026-09-21",
+    "amount": 33.03,
+    "date_received": "2025-12-23",
+    "type": "BUY",
+    "place": "Walmart",
+    "created_at": "2026-09-21",
     "id": "m0120",
-    "notes": "Bought through 3rd party which was charging market price, but I had $25 promo so it was close to retail."
+    "notes": "Bought through 3rd party which was charging market price, but I had $25 promo so it was close to retail.",
+    "items": [
+      {
+        "name": "Prismatic Evolutions Booster Bundle",
+        "group_id": "23821",
+        "product_id": "600518",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2025-12-07",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 132.29,
+    "date_received": "2026-01-02",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-21",
+    "id": "m0121",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654213",
+        "name": "Mega Charizard X ex Ultra Premium Collection",
         "group_id": "2374",
-        "name": "Mega Charizard X ex Ultra Premium Collection"
+        "product_id": "654213",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-01-02",
-    "place": "Target",
-    "updated_at": "2026-09-21",
-    "id": "m0121",
-    "notes": ""
+    "method": "Online"
   },
   {
     "date_purchased": "2026-01-02",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 14.85,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 3,
-        "product_id": "670783",
-        "group_id": "2374",
-        "name": "Knock Out Collection [Suicune]"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2026-01-02",
+    "type": "BUY",
     "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0122",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Knock Out Collection [Suicune]",
+        "group_id": "2374",
+        "product_id": "670783",
+        "quantity": 3,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-05",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 16.44,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 4,
-        "product_id": "654145",
-        "group_id": "24448",
-        "name": "Phantasmal Flames Sleeved Booster Pack"
-      }
-    ],
-    "method": "In-person",
     "date_received": "2026-01-05",
+    "type": "BUY",
     "place": "Best Buy",
-    "updated_at": "2026-09-21",
+    "created_at": "2026-09-21",
     "id": "m0123",
-    "notes": "Used $10 certificate on total order."
-  },
-  {
-    "date_purchased": "2026-01-05",
-    "created_at": "2026-09-21",
-    "amount": 12.79,
-    "type": "BUY",
+    "notes": "Used $10 certificate on total order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654154",
+        "name": "Phantasmal Flames Sleeved Booster Pack",
         "group_id": "24448",
-        "name": "Phantasmal Flames 3 Pack Blister [Sneasel]"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2026-01-05",
-    "place": "Best Buy",
-    "updated_at": "2026-09-21",
-    "id": "m0124",
-    "notes": "Used $10 certificate on total order."
-  },
-  {
-    "date_purchased": "2026-01-05",
-    "created_at": "2026-09-21",
-    "amount": 24.65,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654160",
-        "group_id": "24448",
-        "name": "Phantasmal Flames Booster Bundle"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2026-01-05",
-    "place": "Best Buy",
-    "updated_at": "2026-09-21",
-    "id": "m0125",
-    "notes": "Used $10 certificate on total order."
-  },
-  {
-    "date_purchased": "2026-01-05",
-    "created_at": "2026-09-21",
-    "amount": 0.0,
-    "type": "OPEN",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654154",
-        "group_id": "24448",
-        "name": "Phantasmal Flames 3 Pack Blister [Sneasel]"
-      }
-    ],
-    "method": "",
-    "date_received": "2026-01-05",
-    "place": "",
-    "updated_at": "2026-09-21",
-    "id": "m0126",
-    "notes": "Pulled Zacian #100."
-  },
-  {
-    "date_purchased": "2026-01-09",
-    "created_at": "2026-09-21",
-    "amount": 178.21,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "654137",
-        "group_id": "24448",
-        "name": "Phantasmal Flames Booster Box"
-      }
-    ],
-    "method": "In-person",
-    "date_received": "2026-01-09",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0127",
-    "notes": ""
-  },
-  {
-    "date_purchased": "2026-01-09",
-    "created_at": "2026-09-21",
-    "amount": 19.8,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
+        "product_id": "654145",
         "quantity": 4,
-        "product_id": "624684",
-        "group_id": "24269",
-        "name": "Destined Rivals Sleeved Booster Pack"
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-01-09",
-    "place": "Best Buy",
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2026-01-05",
     "updated_at": "2026-09-21",
+    "amount": 12.79,
+    "date_received": "2026-01-05",
+    "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-09-21",
+    "id": "m0124",
+    "notes": "Used $10 certificate on total order.",
+    "items": [
+      {
+        "name": "Phantasmal Flames 3 Pack Blister [Sneasel]",
+        "group_id": "24448",
+        "product_id": "654154",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2026-01-05",
+    "updated_at": "2026-09-21",
+    "amount": 24.65,
+    "date_received": "2026-01-05",
+    "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-09-21",
+    "id": "m0125",
+    "notes": "Used $10 certificate on total order.",
+    "items": [
+      {
+        "name": "Phantasmal Flames Booster Bundle",
+        "group_id": "24448",
+        "product_id": "654160",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2026-01-05",
+    "updated_at": "2026-09-21",
+    "amount": 0.0,
+    "date_received": "2026-01-05",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-09-21",
+    "id": "m0126",
+    "notes": "Pulled Zacian #100.",
+    "items": [
+      {
+        "name": "Phantasmal Flames 3 Pack Blister [Sneasel]",
+        "group_id": "24448",
+        "product_id": "654154",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": ""
+  },
+  {
+    "date_purchased": "2026-01-09",
+    "updated_at": "2026-09-21",
+    "amount": 178.21,
+    "date_received": "2026-01-09",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0127",
+    "notes": "",
+    "items": [
+      {
+        "name": "Phantasmal Flames Booster Box",
+        "group_id": "24448",
+        "product_id": "654137",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
+  },
+  {
+    "date_purchased": "2026-01-09",
+    "updated_at": "2026-09-21",
+    "amount": 19.8,
+    "date_received": "2026-01-09",
+    "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-09-21",
     "id": "m0128",
-    "notes": ""
+    "notes": "",
+    "items": [
+      {
+        "name": "Destined Rivals Sleeved Booster Pack",
+        "group_id": "24269",
+        "product_id": "624684",
+        "quantity": 4,
+        "categoryId": 3
+      }
+    ],
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-11",
-    "created_at": "2026-09-21",
+    "updated_at": "2026-09-21",
     "amount": 29.7,
+    "date_received": "2026-01-11",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-21",
+    "id": "m0129",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "565629",
+        "name": "Surging Sparks Booster Bundle",
         "group_id": "23651",
-        "name": "Surging Sparks Booster Bundle"
+        "product_id": "565629",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-01-11",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-09-21",
-    "id": "m0129",
-    "notes": ""
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-15",
-    "place": "Best Buy",
+    "updated_at": "2026-09-21",
     "amount": 19.8,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Best Buy",
+    "date_received": "2026-01-15",
+    "id": "m0130",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
         "name": "Destined Rivals Sleeved Booster Pack",
         "group_id": "24269",
-        "product_id": "624684"
+        "product_id": "624684",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "notes": "",
-    "date_received": "2026-01-15",
-    "created_at": "2026-09-21",
-    "method": "In-person",
-    "id": "m0130",
-    "updated_at": "2026-09-21"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-15",
-    "place": "Pokemon Center Vending Machine",
+    "updated_at": "2026-09-21",
     "amount": 29.7,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "date_received": "2026-01-15",
+    "id": "m0131",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
         "name": "Black Bolt Booster Bundle",
         "group_id": "24325",
-        "product_id": "630431"
+        "product_id": "630431",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "notes": "",
-    "date_received": "2026-01-15",
-    "created_at": "2026-09-21",
-    "method": "In-person",
-    "id": "m0131",
-    "updated_at": "2026-09-21"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-19",
-    "place": "Best Buy",
+    "updated_at": "2026-09-21",
     "amount": 19.8,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Best Buy",
+    "date_received": "2026-01-19",
+    "id": "m0132",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
         "name": "Destined Rivals Sleeved Booster Pack",
         "group_id": "24269",
-        "product_id": "624684"
+        "product_id": "624684",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "notes": "",
-    "date_received": "2026-01-19",
-    "created_at": "2026-09-21",
-    "method": "In-person",
-    "id": "m0132",
-    "updated_at": "2026-09-21"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-20",
     "method": "In-person",
     "amount": 39.86,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-01-20",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "9d99ff74",
+    "notes": "",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 68,
         "name": "Starter Deck 29: Egghead",
         "group_id": "24575",
-        "product_id": "671479"
+        "product_id": "671479",
+        "quantity": 2,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-01-20",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "9d99ff74",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-20",
     "method": "In-person",
     "amount": 22,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-01-20",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "a7772251",
+    "notes": "",
     "items": [
       {
-        "quantity": 4,
-        "categoryId": 68,
         "name": "The Azure Sea's Seven Sleeved Booster Pack",
         "group_id": "24537",
-        "product_id": "666576"
+        "product_id": "666576",
+        "quantity": 4,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-01-20",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "a7772251",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-23",
-    "place": "Best Buy",
+    "updated_at": "2026-09-21",
     "amount": 19.8,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Best Buy",
+    "date_received": "2026-01-23",
+    "id": "m0135",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
         "name": "Phantasmal Flames Sleeved Booster Pack",
         "group_id": "24448",
-        "product_id": "654145"
+        "product_id": "654145",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "notes": "",
-    "date_received": "2026-01-23",
-    "created_at": "2026-09-21",
-    "method": "In-person",
-    "id": "m0135",
-    "updated_at": "2026-09-21"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-01-22",
     "method": "Online",
     "amount": 153.17,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-01-27",
+    "type": "BUY",
+    "place": "DreamDaze Comics Fun & Games",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "1db5dbde",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Royal Blood Booster Box",
         "group_id": "23766",
-        "product_id": "586671"
+        "product_id": "586671",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-01-27",
-    "place": "DreamDaze Comics Fun & Games",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "1db5dbde",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-22",
     "method": "Online",
     "amount": 183.85,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-01-27",
+    "type": "BUY",
+    "place": "DreamDaze Comics Fun & Games",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "d3fd7ab8",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Two Legends - Booster Box",
         "group_id": "23462",
-        "product_id": "542504"
+        "product_id": "542504",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-01-27",
-    "place": "DreamDaze Comics Fun & Games",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "d3fd7ab8",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-21",
-    "place": "Walmart",
+    "updated_at": "2026-09-21",
     "amount": 11.55,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Walmart",
+    "date_received": "2026-01-28",
+    "id": "m0138",
+    "notes": "Used $25 promo on total order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
         "name": "Prismatic Evolutions Tech Sticker Collection [Glaceon]",
         "group_id": "23821",
-        "product_id": "593451"
+        "product_id": "593451",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "notes": "Used $25 promo on total order.",
-    "date_received": "2026-01-28",
-    "created_at": "2026-09-21",
-    "method": "Online",
-    "id": "m0138",
-    "updated_at": "2026-09-21"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-01-21",
-    "place": "Walmart",
+    "updated_at": "2026-09-21",
     "amount": 11.55,
+    "created_at": "2026-09-21",
     "type": "BUY",
+    "place": "Walmart",
+    "date_received": "2026-01-28",
+    "id": "m0139",
+    "notes": "Used $25 promo on total order.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
         "name": "Prismatic Evolutions Tech Sticker Collection [Sylveon]",
         "group_id": "23821",
-        "product_id": "593450"
+        "product_id": "593450",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "notes": "Used $25 promo on total order.",
-    "date_received": "2026-01-28",
-    "created_at": "2026-09-21",
-    "method": "Online",
-    "id": "m0139",
-    "updated_at": "2026-09-21"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-01-22",
     "method": "Online",
     "amount": 311.9,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-01-29",
+    "type": "BUY",
+    "place": "DreamDaze Comics Fun & Games",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "b7043355",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 68,
         "name": "Royal Blood Booster Box",
         "group_id": "23766",
-        "product_id": "586671"
+        "product_id": "586671",
+        "quantity": 2,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-01-29",
-    "place": "DreamDaze Comics Fun & Games",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "b7043355",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-03",
     "method": "Online",
     "amount": 557.64,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-09",
+    "type": "BUY",
+    "place": "Big Bang",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "ed76b51a",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Carrying On His Will Booster Box",
         "group_id": "24303",
-        "product_id": "628352"
+        "product_id": "628352",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-02-09",
-    "place": "Big Bang",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "ed76b51a",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-09",
     "method": "In-person",
     "amount": 12.12,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-09",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "becc3b9d",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Kyogre]",
         "group_id": "2374",
-        "product_id": "670782"
+        "product_id": "670782",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-09",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "becc3b9d",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-09",
     "method": "In-person",
     "amount": 12.12,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-09",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "f3fc0f40",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-09",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "f3fc0f40",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-13",
-    "place": "Barnes & Noble",
+    "updated_at": "2026-09-19",
     "amount": 5.5,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Barnes & Noble",
+    "date_received": "2026-02-13",
+    "id": "m0144",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Extra Booster: One Piece Heroines Edition Sleeved Booster Pack",
         "group_id": "24545",
-        "product_id": "679503"
+        "product_id": "679503",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-13",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0144",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-13",
-    "place": "Barnes & Noble",
+    "updated_at": "2026-09-19",
     "amount": 24.24,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Barnes & Noble",
+    "date_received": "2026-02-13",
+    "id": "m0145",
+    "notes": "",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 68,
         "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
         "group_id": "17675",
-        "product_id": "669273"
+        "product_id": "669273",
+        "quantity": 2,
+        "categoryId": 68
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-13",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0145",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-13",
-    "place": "Barnes & Noble",
+    "updated_at": "2026-09-19",
     "amount": 26.45,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Barnes & Noble",
+    "date_received": "2026-02-13",
+    "id": "m0146",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 80,
         "name": "Starter Deck EX: The Beat of Ki",
         "group_id": "24571",
-        "product_id": "670179"
+        "product_id": "670179",
+        "quantity": 1,
+        "categoryId": 80
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-13",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0146",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-13",
-    "place": "Barnes & Noble",
+    "updated_at": "2026-09-19",
     "amount": 26.45,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Barnes & Noble",
+    "date_received": "2026-02-13",
+    "id": "m0147",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 80,
         "name": "Starter Deck EX: The Phase of Evolution",
         "group_id": "24570",
-        "product_id": "670177"
+        "product_id": "670177",
+        "quantity": 1,
+        "categoryId": 80
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-13",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0147",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-17",
-    "place": "Pokemon Center Vending Machine",
+    "updated_at": "2026-09-19",
     "amount": 4.95,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "date_received": "2026-02-17",
+    "id": "m0148",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-17",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0148",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-17",
-    "place": "Pokemon Center Vending Machine",
+    "updated_at": "2026-09-19",
     "amount": 4.95,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "date_received": "2026-02-17",
+    "id": "m0149",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Mega Evolution Booster Pack",
         "group_id": "24380",
-        "product_id": "644352"
+        "product_id": "644352",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-17",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0149",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-02-18",
     "method": "In-person",
     "amount": 4.95,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-18",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "1cea973d",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
         "group_id": "23651",
-        "product_id": "565604"
+        "product_id": "565604",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-18",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "1cea973d",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-18",
     "method": "In-person",
     "amount": 4.95,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-18",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "71a083fa",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Mega Evolution Booster Pack",
         "group_id": "24380",
-        "product_id": "644352"
+        "product_id": "644352",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-18",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "71a083fa",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-21",
     "method": "Online",
     "amount": 132.28,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-20",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "4368f381",
+    "notes": "",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 3,
         "name": "Ascended Heroes Pokemon Center Elite Trainer Box (Exclusive)",
         "group_id": "24541",
-        "product_id": "668497"
+        "product_id": "668497",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-20",
-    "place": "Pokemon Center",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "4368f381",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-13",
     "method": "Online",
     "amount": 125.25,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-23",
+    "type": "BUY",
+    "place": "Oiltown Comics",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "675c2d11",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 89,
         "name": "Spiritforged - Booster Display",
         "group_id": "24519",
-        "product_id": "661934"
+        "product_id": "661934",
+        "quantity": 1,
+        "categoryId": 89
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-02-23",
-    "place": "Oiltown Comics",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "675c2d11",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-10",
     "method": "Online",
     "amount": 272.02,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-26",
+    "type": "BUY",
+    "place": "Crooked Dog Comics",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "944d7ede",
+    "notes": "Found on ComicHub",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 68,
         "name": "Extra Booster: One Piece Heroines Edition Box",
         "group_id": "24545",
-        "product_id": "666891"
+        "product_id": "666891",
+        "quantity": 2,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Found on ComicHub",
-    "date_received": "2026-02-26",
-    "place": "Crooked Dog Comics",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "944d7ede",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-27",
     "method": "In-person",
     "amount": 4.95,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-02-27",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "577b0886",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Surging Sparks Booster Pack",
         "group_id": "23651",
-        "product_id": "565604"
+        "product_id": "565604",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-02-27",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "577b0886",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-02-27",
-    "place": "Pokemon Center Vending Machine",
+    "updated_at": "2026-09-19",
     "amount": 4.95,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "date_received": "2026-02-27",
+    "id": "m0153",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-02-27",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0153",
-    "updated_at": "2026-09-19"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-03-04",
     "method": "",
     "amount": 0,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-04",
+    "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "2059c70f",
+    "notes": "Pulled Spheal #199.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "OPEN",
-    "notes": "Pulled Spheal #199.",
-    "date_received": "2026-03-04",
-    "place": "",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "2059c70f",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-04",
     "method": "In-person",
     "amount": 12.12,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-04",
+    "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "34036043",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-04",
-    "place": "Target",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "34036043",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-06",
     "method": "In-person",
     "amount": 29.7,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-06",
+    "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "e9c62edb",
+    "notes": "Machine ID Q00928 (7499 Dublin Blvd, Dublin, CA)",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
         "group_id": "23821",
-        "product_id": "600518"
+        "product_id": "600518",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Machine ID Q00928 (7499 Dublin Blvd, Dublin, CA)",
-    "date_received": "2026-03-06",
-    "place": "Pokemon Center Vending Machine",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "e9c62edb",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-10",
-    "notes": "Used $25 promo on total order and got $25 back from Capital One Shopping after talking with them to see why this order didn't trigger their promo. They did it manually.",
+    "updated_at": "2026-05-03T16:17:47.582Z",
     "amount": 35.63,
     "migrated_from": "local_transactions_json",
-    "migrated_at": "2026-04-05T22:57:26.789744+00:00",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
     "type": "BUY",
+    "place": "Walmart",
+    "date_received": "2026-03-13",
+    "id": "2db802b4",
+    "notes": "Used $25 promo on total order and got $25 back from Capital One Shopping after talking with them to see why this order didn't trigger their promo. They did it manually.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Silver Tempest Booster Bundle",
         "group_id": "3170",
-        "product_id": "283396"
+        "product_id": "283396",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-03-13",
-    "place": "Walmart",
-    "created_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "2db802b4",
-    "updated_at": "2026-05-03T16:17:47.582Z"
+    "migrated_at": "2026-04-05T22:57:26.789744+00:00",
+    "method": "Online"
   },
   {
     "date_purchased": "2026-03-10",
-    "place": "Walmart",
+    "updated_at": "2026-09-19",
     "amount": 60.63,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Walmart",
+    "date_received": "2026-03-13",
+    "id": "m0157",
+    "notes": "Used $25 promo on total order.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Silver Tempest Booster Bundle",
         "group_id": "3170",
-        "product_id": "283396"
+        "product_id": "283396",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-03-13",
-    "created_at": "2026-09-19",
-    "notes": "Used $25 promo on total order.",
-    "id": "m0157",
-    "updated_at": "2026-09-19"
+    "method": "Online"
   },
   {
+    "migrated_from": "local_transactions_json",
     "cost_basis_out": 0,
+    "migrated_at": "2026-04-05T22:57:26.789744+00:00",
+    "updated_at": "2026-04-05T22:57:26.789744+00:00",
+    "date_purchased": "2026-03-13",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "type": "TRADE",
+    "place": "",
+    "items_out": [
+      {
+        "name": "Mega Charizard Tin (Mega Charizard Y)",
+        "group_id": "2374",
+        "product_id": "671250",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "id": "00005860",
+    "notes": "While in line for a Barnes & Noble restock, the guy in front of me said he would get the One Piece tins, but wasn't interested in it and would probably sell to a friend for retail. I saw him outside and offered to sell and I traded the Pokemon tin I got it for OP tins straight up.",
+    "date_received": "2026-03-13",
     "items_in": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "One Piece Tin Pack Set Vol. 2 -Monkey.D.Luffy-",
         "group_id": "17675",
-        "product_id": "669273"
+        "product_id": "669273",
+        "quantity": 1,
+        "categoryId": 68
       },
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "One Piece Tin Pack Set Vol. 2 -Sabo-",
         "group_id": "17675",
-        "product_id": "669278"
+        "product_id": "669278",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "cost_basis_in": 0,
-    "migrated_from": "local_transactions_json",
-    "notes": "While in line for a Barnes & Noble restock, the guy in front of me said he would get the One Piece tins, but wasn't interested in it and would probably sell to a friend for retail. I saw him outside and offered to sell and I traded the Pokemon tin I got it for OP tins straight up.",
-    "place": "",
-    "created_at": "2026-04-05T22:57:26.789744+00:00",
-    "date_purchased": "2026-03-13",
-    "items_out": [
-      {
-        "quantity": 1,
-        "categoryId": 3,
-        "name": "Mega Charizard Tin (Mega Charizard Y)",
-        "group_id": "2374",
-        "product_id": "671250"
-      }
-    ],
-    "type": "TRADE",
-    "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "date_received": "2026-03-13",
-    "method": "In-person",
-    "id": "00005860"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 5.5,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "410b8fac",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Phantasmal Flames Sleeved Booster Pack",
         "group_id": "24448",
-        "product_id": "654145"
+        "product_id": "654145",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "410b8fac",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 26.45,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "4ae6e07e",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 80,
         "name": "Starter Deck EX: The Beat of Ki",
         "group_id": "24571",
-        "product_id": "670179"
+        "product_id": "670179",
+        "quantity": 1,
+        "categoryId": 80
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "4ae6e07e",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 26.45,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "5db392f9",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 80,
         "name": "Starter Deck EX: The Phase of Evolution",
         "group_id": "24570",
-        "product_id": "670177"
+        "product_id": "670177",
+        "quantity": 1,
+        "categoryId": 80
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "5db392f9",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 19.83,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "70fafb3d",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Pokemon Day 2026 Collection",
         "group_id": "2374",
-        "product_id": "668590"
+        "product_id": "668590",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "70fafb3d",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 5.5,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "8540f313",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 68,
         "name": "Extra Booster: One Piece Heroines Edition Sleeved Booster Pack",
         "group_id": "24545",
-        "product_id": "679503"
+        "product_id": "679503",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "8540f313",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-13",
     "method": "In-person",
     "amount": 27.55,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-13",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "dfed59a0",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Mega Charizard Tin (Mega Charizard Y)",
         "group_id": "2374",
-        "product_id": "671250"
+        "product_id": "671250",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-13",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "dfed59a0",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-11",
     "method": "Online",
     "amount": 118.8,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-18",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "32a924fd",
+    "notes": "",
     "items": [
       {
-        "quantity": 4,
-        "categoryId": 3,
         "name": "Prismatic Evolutions Booster Bundle",
         "group_id": "23821",
-        "product_id": "600518"
+        "product_id": "600518",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-18",
-    "place": "Pokemon Center",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "32a924fd",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-08",
     "method": "Online",
     "amount": 178.21,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-28",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "1e8d5ad4",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Perfect Order Booster Box",
         "group_id": "24587",
-        "product_id": "672394"
+        "product_id": "672394",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "1e8d5ad4",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-01-08",
     "method": "Online",
     "amount": 132.28,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-28",
+    "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "31a4b58f",
+    "notes": "One has a rip in the seal",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 3,
         "name": "Perfect Order Pokemon Center Elite Trainer Box",
         "group_id": "24587",
-        "product_id": "672404"
+        "product_id": "672404",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "One has a rip in the seal",
-    "date_received": "2026-03-28",
-    "place": "Pokemon Center",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "31a4b58f",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-03-30",
     "method": "In-person",
     "amount": 17.63,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-03-30",
+    "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "0aef5de3",
+    "notes": "",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Mega Evolution: Ascended Heroes Tech Sticker Collection - Gastly",
         "group_id": "24541",
-        "product_id": "666909"
+        "product_id": "666909",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "",
-    "date_received": "2026-03-30",
-    "place": "Best Buy",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "0aef5de3",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-04-02",
     "method": "In-person",
     "amount": 8.26,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-04-02",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "6bb05887",
+    "notes": "Used $5 reward on total order.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Kyogre]",
         "group_id": "2374",
-        "product_id": "670782"
+        "product_id": "670782",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Used $5 reward on total order.",
-    "date_received": "2026-04-02",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "6bb05887",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "2026-04-02",
     "method": "In-person",
     "amount": 8.26,
     "migrated_from": "local_transactions_json",
+    "date_received": "2026-04-02",
+    "type": "BUY",
+    "place": "Barnes & Noble",
+    "created_at": "2026-04-05T22:57:26.789744+00:00",
+    "id": "7a277458",
+    "notes": "Used $5 reward on total order.",
     "items": [
       {
-        "quantity": 1,
-        "categoryId": 3,
         "name": "Knock Out Collection [Suicune]",
         "group_id": "2374",
-        "product_id": "670783"
+        "product_id": "670783",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
     "migrated_at": "2026-04-05T22:57:26.789744+00:00",
-    "type": "BUY",
-    "notes": "Used $5 reward on total order.",
-    "date_received": "2026-04-02",
-    "place": "Barnes & Noble",
-    "updated_at": "2026-04-05T22:57:26.789744+00:00",
-    "id": "7a277458",
-    "created_at": "2026-04-05T22:57:26.789744+00:00"
+    "updated_at": "2026-04-05T22:57:26.789744+00:00"
   },
   {
     "date_purchased": "",
     "updated_at": "2026-04-10T21:24:50.784Z",
     "amount": 0,
+    "date_received": "2026-04-04",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-04-10T21:24:50.784Z",
+    "id": "C67jmCaS2lqQNvaU8bww",
+    "notes": "Pulled Jewelry Bonney (EB04-001) (Alternate Art) and Kaku (Alternate Art)",
     "items": [
       {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "682057",
+        "name": "Adventure on Kami's Island Booster Box",
         "group_id": "24637",
-        "name": "Adventure on Kami's Island Booster Box"
+        "product_id": "682057",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "",
-    "date_received": "2026-04-04",
-    "place": "",
-    "notes": "Pulled Jewelry Bonney (EB04-001) (Alternate Art) and Kaku (Alternate Art)",
-    "id": "C67jmCaS2lqQNvaU8bww",
-    "created_at": "2026-04-10T21:24:50.784Z"
+    "method": ""
   },
   {
     "date_purchased": "2026-04-04",
     "updated_at": "2026-04-10T03:25:07.992Z",
     "amount": 13.2,
+    "date_received": "2026-04-04",
     "type": "BUY",
+    "place": "One Piece Card Game Official Shop",
+    "created_at": "2026-04-10T03:24:41.015Z",
+    "id": "568YHuu4W8RuY4Hv1mRm",
+    "notes": "",
     "items": [
       {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "682789",
+        "name": "Double Pack Set Vol. 10",
         "group_id": "24637",
-        "name": "Double Pack Set Vol. 10"
+        "product_id": "682789",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-04-04",
-    "place": "One Piece Card Game Official Shop",
-    "notes": "",
-    "id": "568YHuu4W8RuY4Hv1mRm",
-    "created_at": "2026-04-10T03:24:41.015Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-04-04",
     "updated_at": "2026-04-10T21:22:35.001Z",
     "amount": 130.9,
+    "date_received": "2026-04-04",
     "type": "BUY",
+    "place": "One Piece Card Game Official Shop",
+    "created_at": "2026-04-10T21:22:35.001Z",
+    "id": "niq3qbXGHPsN2fhiCM2S",
+    "notes": "",
     "items": [
       {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "682057",
+        "name": "Adventure on Kami's Island Booster Box",
         "group_id": "24637",
-        "name": "Adventure on Kami's Island Booster Box"
+        "product_id": "682057",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-04-04",
-    "place": "One Piece Card Game Official Shop",
-    "notes": "",
-    "id": "niq3qbXGHPsN2fhiCM2S",
-    "created_at": "2026-04-10T21:22:35.001Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-04-04",
     "updated_at": "2026-04-10T03:20:50.381Z",
     "amount": 169.98,
+    "date_received": "2026-04-08",
     "type": "BUY",
+    "place": "Crooked Dog Comics",
+    "created_at": "2026-04-10T03:20:50.381Z",
+    "id": "d0SpvhFMutGaDg8ngxVf",
+    "notes": "",
     "items": [
       {
-        "categoryId": 68,
-        "quantity": 1,
-        "product_id": "682057",
+        "name": "Adventure on Kami's Island Booster Box",
         "group_id": "24637",
-        "name": "Adventure on Kami's Island Booster Box"
+        "product_id": "682057",
+        "quantity": 1,
+        "categoryId": 68
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-08",
-    "place": "Crooked Dog Comics",
-    "notes": "",
-    "id": "d0SpvhFMutGaDg8ngxVf",
-    "created_at": "2026-04-10T03:20:50.381Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-08",
     "updated_at": "2026-04-14T01:07:54.241Z",
     "amount": 11.01,
+    "date_received": "2026-04-11",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-14T01:07:00.956Z",
+    "id": "G7mDmdSFsnACa4Qzflum",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "668534",
+        "name": "Ascended Heroes Mini Tin [Togepi & Totodile]",
         "group_id": "24541",
-        "name": "Ascended Heroes Mini Tin [Togepi & Totodile]"
+        "product_id": "668534",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-11",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "G7mDmdSFsnACa4Qzflum",
-    "created_at": "2026-04-14T01:07:00.956Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-08",
     "updated_at": "2026-04-14T01:07:34.172Z",
     "amount": 11.01,
+    "date_received": "2026-04-11",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-14T01:07:34.172Z",
+    "id": "K06yQRzV7LP6G9c0qwl6",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "668535",
+        "name": "Ascended Heroes Mini Tin [Clefairy & Chikorita]",
         "group_id": "24541",
-        "name": "Ascended Heroes Mini Tin [Clefairy & Chikorita]"
+        "product_id": "668535",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-11",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "K06yQRzV7LP6G9c0qwl6",
-    "created_at": "2026-04-14T01:07:34.172Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-08",
     "updated_at": "2026-04-14T01:06:21.989Z",
     "amount": 11.01,
+    "date_received": "2026-04-11",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-14T01:06:21.989Z",
+    "id": "VTuJL3S7JGKomoCULA7D",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "668532",
+        "name": "Ascended Heroes Mini Tin [Riolu & Darumaka]",
         "group_id": "24541",
-        "name": "Ascended Heroes Mini Tin [Riolu & Darumaka]"
+        "product_id": "668532",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-11",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "VTuJL3S7JGKomoCULA7D",
-    "created_at": "2026-04-14T01:06:21.989Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-08",
     "updated_at": "2026-04-14T01:08:08.075Z",
     "amount": 11.01,
+    "date_received": "2026-04-11",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-04-14T01:05:41.123Z",
+    "id": "tjwSBfpa6YXiH7Zt7Nq7",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "668531",
+        "name": "Ascended Heroes Mini Tin [Pikachu & Tepig]",
         "group_id": "24541",
-        "name": "Ascended Heroes Mini Tin [Pikachu & Tepig]"
+        "product_id": "668531",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-11",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "tjwSBfpa6YXiH7Zt7Nq7",
-    "created_at": "2026-04-14T01:05:41.123Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-03",
     "updated_at": "2026-04-29T07:15:13.094Z",
     "amount": 0,
+    "date_received": "2026-04-14",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-29T07:15:13.094Z",
+    "id": "822FUm6IauEixLkCYLtG",
+    "notes": "The shipping tracker showed it as delayed even though it was delivered so I was able to get it refunded.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "666906",
+        "name": "Mega Evolution: Ascended Heroes Collection - Erika",
         "group_id": "24541",
-        "name": "Mega Evolution: Ascended Heroes Collection - Erika"
+        "product_id": "666906",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-14",
-    "place": "Target",
-    "notes": "The shipping tracker showed it as delayed even though it was delivered so I was able to get it refunded.",
-    "id": "822FUm6IauEixLkCYLtG",
-    "created_at": "2026-04-29T07:15:13.094Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-03",
     "updated_at": "2026-04-29T07:13:53.211Z",
     "amount": 0,
+    "date_received": "2026-04-17",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-04-29T07:13:30.395Z",
+    "id": "sflbqc7pBC8D4pqNGU3B",
+    "notes": "The shipping tracker showed it as delayed even though it was delivered so I was able to get it refunded.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "593359",
+        "name": "Prismatic Evolutions Poster Collection",
         "group_id": "23821",
-        "name": "Prismatic Evolutions Poster Collection"
+        "product_id": "593359",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-04-17",
-    "place": "Target",
-    "notes": "The shipping tracker showed it as delayed even though it was delivered so I was able to get it refunded.",
-    "id": "sflbqc7pBC8D4pqNGU3B",
-    "created_at": "2026-04-29T07:13:30.395Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-05-15",
     "updated_at": "2026-05-26T04:54:03.926Z",
     "amount": 19.8,
+    "date_received": "2026-05-15",
     "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-05-26T04:54:03.926Z",
+    "id": "dJVNb3QEDqTwHgUthmAB",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
-        "product_id": "672412",
+        "name": "Perfect Order Sleeved Booster Pack",
         "group_id": "24587",
-        "name": "Perfect Order Sleeved Booster Pack"
+        "product_id": "672412",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-05-15",
-    "place": "Best Buy",
-    "notes": "",
-    "id": "dJVNb3QEDqTwHgUthmAB",
-    "created_at": "2026-05-26T04:54:03.926Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "",
     "updated_at": "2026-05-26T04:54:36.284Z",
     "amount": 0,
+    "date_received": "2026-05-16",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-05-26T04:54:36.284Z",
+    "id": "RhJdGdhMQ6brsEQCospR",
+    "notes": "Elisabet opened it and pulled nothing.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "672412",
+        "name": "Perfect Order Sleeved Booster Pack",
         "group_id": "24587",
-        "name": "Perfect Order Sleeved Booster Pack"
+        "product_id": "672412",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2026-05-16",
-    "place": "",
-    "notes": "Elisabet opened it and pulled nothing.",
-    "id": "RhJdGdhMQ6brsEQCospR",
-    "created_at": "2026-05-26T04:54:36.284Z"
+    "method": ""
   },
   {
     "date_purchased": "2026-04-13",
     "updated_at": "2026-05-22T21:40:29.735Z",
     "amount": 66.14,
+    "date_received": "2026-05-22",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-05-22T21:40:29.735Z",
+    "id": "2a3e42rKQLAXPsNT1ddE",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "684452",
+        "name": "Chaos Rising Pokemon Center Elite Trainer Box",
         "group_id": "24655",
-        "name": "Chaos Rising Pokemon Center Elite Trainer Box"
+        "product_id": "684452",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-05-22",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "2a3e42rKQLAXPsNT1ddE",
-    "created_at": "2026-05-22T21:40:29.735Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-13",
     "updated_at": "2026-05-22T21:39:29.886Z",
     "amount": 178.21,
+    "date_received": "2026-05-22",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-05-22T21:39:29.886Z",
+    "id": "cut9LLKBBXVHS7EMe0UA",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "684444",
+        "name": "Chaos Rising Booster Box",
         "group_id": "24655",
-        "name": "Chaos Rising Booster Box"
+        "product_id": "684444",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-05-22",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "cut9LLKBBXVHS7EMe0UA",
-    "created_at": "2026-05-22T21:39:29.886Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-04-13",
-    "place": "Pokemon Center",
+    "updated_at": "2026-09-19",
     "amount": 132.28,
+    "created_at": "2026-09-19",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "date_received": "2026-05-22",
+    "id": "m0182",
+    "notes": "",
     "items": [
       {
-        "quantity": 2,
-        "categoryId": 3,
         "name": "Chaos Rising Pokemon Center Elite Trainer Box",
         "group_id": "24655",
-        "product_id": "684452"
+        "product_id": "684452",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-05-22",
-    "created_at": "2026-09-19",
-    "notes": "",
-    "id": "m0182",
-    "updated_at": "2026-09-19"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-05-22",
     "updated_at": "2026-05-26T04:52:17.917Z",
     "amount": 19.8,
+    "date_received": "2026-05-22",
     "type": "BUY",
+    "place": "Best Buy",
+    "created_at": "2026-05-26T04:52:17.917Z",
+    "id": "vwRcsrpXv141x9fDcZ48",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 4,
-        "product_id": "684448",
+        "name": "Chaos Rising Sleeved Booster Pack",
         "group_id": "24655",
-        "name": "Chaos Rising Sleeved Booster Pack"
+        "product_id": "684448",
+        "quantity": 4,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-05-22",
-    "place": "Best Buy",
-    "notes": "",
-    "id": "vwRcsrpXv141x9fDcZ48",
-    "created_at": "2026-05-26T04:52:17.917Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "",
     "updated_at": "2026-07-14T21:52:34.175Z",
     "amount": 0,
+    "date_received": "2026-07-14",
     "type": "OPEN",
+    "place": "",
+    "created_at": "2026-07-14T21:52:34.175Z",
+    "id": "vmcDRHZ69JhSBYHsWQnu",
+    "notes": "Opened with Albert and Luke after Albert and I went to Target in Foster City in search of OP-13 packs, but didn't find them.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "684448",
+        "name": "Chaos Rising Sleeved Booster Pack",
         "group_id": "24655",
-        "name": "Chaos Rising Sleeved Booster Pack"
+        "product_id": "684448",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "",
-    "date_received": "2026-07-14",
-    "place": "",
-    "notes": "Opened with Albert and Luke after Albert and I went to Target in Foster City in search of OP-13 packs, but didn't find them.",
-    "id": "vmcDRHZ69JhSBYHsWQnu",
-    "created_at": "2026-07-14T21:52:34.175Z"
+    "method": ""
   },
   {
     "date_purchased": "2026-07-14",
     "updated_at": "2026-07-14T21:51:30.259Z",
     "amount": 10.94,
+    "date_received": "2026-07-14",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-07-14T21:51:30.259Z",
+    "id": "hvmVikCHdleelGyk2smO",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "684448",
+        "name": "Chaos Rising Sleeved Booster Pack",
         "group_id": "24655",
-        "name": "Chaos Rising Sleeved Booster Pack"
+        "product_id": "684448",
+        "quantity": 2,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-07-14",
-    "place": "Target",
-    "notes": "",
-    "id": "hvmVikCHdleelGyk2smO",
-    "created_at": "2026-07-14T21:51:30.259Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-08-28",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 11.01,
+    "date_received": "2026-08-28",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-19T22:08:41.531082Z",
+    "id": "m0187",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "706250",
+        "name": "2-Pack Blister [Zarude] (3-Tab)",
         "group_id": "2374",
-        "name": "2-Pack Blister [Zarude] (3-Tab)"
+        "product_id": "706250",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-08-28",
-    "place": "Target",
-    "notes": "",
-    "id": "m0187",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-08-28",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 66.14,
+    "date_received": "2026-08-28",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-19T22:08:41.531082Z",
+    "id": "m0188",
+    "notes": "Small tear in the seal.",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "692947",
+        "name": "Pitch Black Elite Trainer Box",
         "group_id": "24688",
-        "name": "Pitch Black Elite Trainer Box"
+        "product_id": "692947",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-08-28",
-    "place": "Target",
-    "notes": "Small tear in the seal.",
-    "id": "m0188",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-07-15",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 132.28,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 2,
-        "product_id": "704144",
-        "group_id": "24722",
-        "name": "30th Celebration Pokemon Center Elite Trainer Box"
-      }
-    ],
-    "method": "Online",
     "date_received": "2026-09-16",
+    "type": "BUY",
     "place": "Pokemon Center",
-    "notes": "",
+    "created_at": "2026-09-19T22:08:41.531082Z",
     "id": "m0189",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "notes": "",
+    "items": [
+      {
+        "name": "30th Celebration Pokemon Center Elite Trainer Box",
+        "group_id": "24722",
+        "product_id": "704144",
+        "quantity": 2,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2026-07-15",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 16.53,
-    "type": "BUY",
-    "items": [
-      {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "704145",
-        "group_id": "24722",
-        "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]"
-      }
-    ],
-    "method": "Online",
     "date_received": "2026-09-16",
+    "type": "BUY",
     "place": "Pokemon Center",
-    "notes": "",
+    "created_at": "2026-09-19T22:08:41.531082Z",
     "id": "m0190",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "notes": "",
+    "items": [
+      {
+        "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+        "group_id": "24722",
+        "product_id": "704145",
+        "quantity": 1,
+        "categoryId": 3
+      }
+    ],
+    "method": "Online"
   },
   {
     "date_purchased": "2026-07-15",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 16.53,
+    "date_received": "2026-09-16",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-19T22:08:41.531082Z",
+    "id": "m0191",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "704146",
+        "name": "30th Celebration Tech Sticker Collection [Lucario]",
         "group_id": "24722",
-        "name": "30th Celebration Tech Sticker Collection [Lucario]"
+        "product_id": "704146",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-09-16",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "m0191",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-07-15",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 11.01,
+    "date_received": "2026-09-16",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-09-19T22:08:41.531082Z",
+    "id": "m0192",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "704152",
+        "name": "30th Celebration Knock Out Collection",
         "group_id": "24722",
-        "name": "30th Celebration Knock Out Collection"
+        "product_id": "704152",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-09-16",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "m0192",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "method": "Online"
   },
   {
     "date_purchased": "2026-09-17",
     "updated_at": "2026-09-19T22:08:41.531082Z",
     "amount": 66.14,
+    "date_received": "2026-09-17",
     "type": "BUY",
+    "place": "Target",
+    "created_at": "2026-09-19T22:08:41.531082Z",
+    "id": "m0193",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
-        "product_id": "684450",
+        "name": "Chaos Rising Elite Trainer Box",
         "group_id": "24655",
-        "name": "Chaos Rising Elite Trainer Box"
+        "product_id": "684450",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-09-17",
-    "place": "Target",
-    "notes": "",
-    "id": "m0193",
-    "created_at": "2026-09-19T22:08:41.531082Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-09-24",
     "updated_at": "2026-09-29T04:38:04.633Z",
     "amount": 29.7,
+    "date_received": "2026-09-24",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-29T03:33:08.022Z",
+    "id": "37b564bf",
+    "notes": "Found at Safeway in Dublin, CA on Amador",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
         "name": "Pitch Black Booster Bundle",
         "group_id": "24688",
         "unit_price": 29.7,
-        "product_id": "692942"
+        "product_id": "692942",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-09-24",
-    "place": "Pokemon Center Vending Machine",
-    "notes": "Found at Safeway in Dublin, CA on Amador",
-    "id": "37b564bf",
-    "created_at": "2026-09-29T03:33:08.022Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-09-24",
     "updated_at": "2026-09-29T04:38:04.633Z",
     "amount": 29.7,
+    "date_received": "2026-09-24",
     "type": "BUY",
+    "place": "Pokemon Center Vending Machine",
+    "created_at": "2026-09-29T03:33:08.022Z",
+    "id": "GiqEpoTYF90D6AZNakEy",
+    "notes": "Found at Safeway in Dublin, CA on Amador",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 1,
         "name": "Ascended Heroes Booster Bundle",
         "group_id": "24541",
         "unit_price": 29.7,
-        "product_id": "668541"
+        "product_id": "668541",
+        "quantity": 1,
+        "categoryId": 3
       }
     ],
-    "method": "In-person",
-    "date_received": "2026-09-24",
-    "place": "Pokemon Center Vending Machine",
-    "notes": "Found at Safeway in Dublin, CA on Amador",
-    "id": "GiqEpoTYF90D6AZNakEy",
-    "created_at": "2026-09-29T03:33:08.022Z"
+    "method": "In-person"
   },
   {
     "date_purchased": "2026-07-20",
     "updated_at": "2026-10-03T06:30:43.512Z",
     "amount": 89.1,
+    "date_received": "2026-10-02",
     "type": "BUY",
+    "place": "Pokemon Center",
+    "created_at": "2026-10-03T06:30:43.512Z",
+    "id": "rx9KUJNuxzuEZcyBk5gE",
+    "notes": "",
     "items": [
       {
-        "categoryId": 3,
-        "quantity": 3,
-        "product_id": "704171",
+        "name": "30th Celebration Booster Bundle",
         "group_id": "24722",
         "unit_price": 29.7,
-        "name": "30th Celebration Booster Bundle"
+        "product_id": "704171",
+        "quantity": 3,
+        "categoryId": 3
       }
     ],
-    "method": "Online",
-    "date_received": "2026-10-02",
-    "place": "Pokemon Center",
-    "notes": "",
-    "id": "rx9KUJNuxzuEZcyBk5gE",
-    "created_at": "2026-10-03T06:30:43.512Z"
+    "method": "Online"
   }
 ]

@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-09",
-  "previous_date": "2026-10-08",
-  "total_value": 18101.04,
+  "latest_date": "2026-10-10",
+  "previous_date": "2026-10-09",
+  "total_value": 18020.39,
   "cost_basis": 7463.63,
-  "gain_loss": 10637.41,
-  "return_pct": 142.52,
-  "day_value_change": 26.33,
+  "gain_loss": 10556.76,
+  "return_pct": 141.44,
+  "day_value_change": -80.65,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 26.33,
-  "day_gain_loss_pct": 0.15,
+  "day_gain_loss": -80.65,
+  "day_gain_loss_pct": -0.45,
   "holdings_count": 84,
   "sparkline_7d": [
-    18204.19,
     18183.39,
     18185.26,
     18202.74,
     18118.03,
     18074.71,
-    18101.04
+    18101.04,
+    18020.39
   ],
   "sparkline_30d": [
-    17536.16,
     17553.11,
     17509.17,
     17495.48,
@@ -49,19 +48,20 @@
     18202.74,
     18118.03,
     18074.71,
-    18101.04
+    18101.04,
+    18020.39
   ],
   "top_gainer": {
     "name": "Pitch Black Elite Trainer Box",
-    "change_pct": 6.15,
-    "latest_price": 70.29,
+    "change_pct": 7.68,
+    "latest_price": 75.69,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Mega Evolution Booster Pack",
-    "change_pct": 6.95,
-    "latest_price": 8.77,
+    "change_pct": 11.34,
+    "latest_price": 8.84,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg"
   },
-  "updated_at": "2026-10-10T00:28:15Z"
+  "updated_at": "2026-10-11T00:04:47Z"
 }
