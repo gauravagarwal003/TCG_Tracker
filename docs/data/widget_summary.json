@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-11",
-  "previous_date": "2026-10-10",
-  "total_value": 18100.42,
+  "latest_date": "2026-10-12",
+  "previous_date": "2026-10-11",
+  "total_value": 18080.06,
   "cost_basis": 7463.63,
-  "gain_loss": 10636.79,
-  "return_pct": 142.51,
-  "day_value_change": 80.03,
+  "gain_loss": 10616.43,
+  "return_pct": 142.24,
+  "day_value_change": -20.36,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 80.03,
-  "day_gain_loss_pct": 0.44,
+  "day_gain_loss": -20.36,
+  "day_gain_loss_pct": -0.11,
   "holdings_count": 84,
   "sparkline_7d": [
-    18185.26,
     18202.74,
     18118.03,
     18074.71,
     18101.04,
     18020.39,
-    18100.42
+    18100.42,
+    18080.06
   ],
   "sparkline_30d": [
-    17509.17,
     17495.48,
     17501.18,
     17494.12,
@@ -49,19 +48,20 @@
     18074.71,
     18101.04,
     18020.39,
-    18100.42
+    18100.42,
+    18080.06
   ],
   "top_gainer": {
-    "name": "Prismatic Evolutions Elite Trainer Box",
-    "change_pct": 20.05,
-    "latest_price": 125.03,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
+    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+    "change_pct": 7.58,
+    "latest_price": 33.21,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Mega Evolution Booster Pack",
-    "change_pct": 9.45,
-    "latest_price": 8.8,
+    "change_pct": 10.7,
+    "latest_price": 8.9,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg"
   },
-  "updated_at": "2026-10-12T00:10:15Z"
+  "updated_at": "2026-10-13T02:23:41Z"
 }
