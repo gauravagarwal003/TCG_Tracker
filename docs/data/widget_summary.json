@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-13",
-  "previous_date": "2026-10-12",
-  "total_value": 18070.65,
+  "latest_date": "2026-10-14",
+  "previous_date": "2026-10-13",
+  "total_value": 17935.31,
   "cost_basis": 7463.63,
-  "gain_loss": 10607.02,
-  "return_pct": 142.12,
-  "day_value_change": -9.41,
+  "gain_loss": 10471.68,
+  "return_pct": 140.3,
+  "day_value_change": -135.34,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -9.41,
-  "day_gain_loss_pct": -0.05,
+  "day_gain_loss": -135.34,
+  "day_gain_loss_pct": -0.75,
   "holdings_count": 84,
   "sparkline_7d": [
-    18118.03,
     18074.71,
     18101.04,
     18020.39,
     18100.42,
     18080.06,
-    18070.65
+    18070.65,
+    17935.31
   ],
   "sparkline_30d": [
-    17501.18,
     17494.12,
     18227.46,
     18296.46,
@@ -49,19 +48,20 @@
     18020.39,
     18100.42,
     18080.06,
-    18070.65
+    18070.65,
+    17935.31
   ],
   "top_gainer": {
-    "name": "Pitch Black Booster Bundle",
-    "change_pct": 6.32,
-    "latest_price": 39.73,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
+    "name": "30th Celebration Knock Out Collection",
+    "change_pct": 2.03,
+    "latest_price": 27.66,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Mega Evolution Booster Pack",
-    "change_pct": 9.15,
-    "latest_price": 8.95,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/644352_200w.jpg"
+    "name": "Pitch Black Elite Trainer Box",
+    "change_pct": 21.25,
+    "latest_price": 78.81,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
-  "updated_at": "2026-10-14T00:05:27Z"
+  "updated_at": "2026-10-14T23:37:33Z"
 }
