@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-16",
-  "previous_date": "2026-10-15",
-  "total_value": 17900.51,
+  "latest_date": "2026-10-17",
+  "previous_date": "2026-10-16",
+  "total_value": 17924.02,
   "cost_basis": 7463.63,
-  "gain_loss": 10436.88,
-  "return_pct": 139.84,
-  "day_value_change": 16.83,
+  "gain_loss": 10460.39,
+  "return_pct": 140.15,
+  "day_value_change": 23.51,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 16.83,
-  "day_gain_loss_pct": 0.09,
+  "day_gain_loss": 23.51,
+  "day_gain_loss_pct": 0.13,
   "holdings_count": 84,
   "sparkline_7d": [
-    18020.39,
     18100.42,
     18080.06,
     18070.65,
     17935.31,
     17883.68,
-    17900.51
+    17900.51,
+    17924.02
   ],
   "sparkline_30d": [
-    18296.46,
     18296.46,
     18154.68,
     18186.29,
@@ -49,19 +48,20 @@
     18070.65,
     17935.31,
     17883.68,
-    17900.51
+    17900.51,
+    17924.02
   ],
   "top_gainer": {
-    "name": "Prismatic Evolutions Elite Trainer Box",
-    "change_pct": 6.06,
-    "latest_price": 126.1,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
+    "name": "151 Booster Bundle",
+    "change_pct": 5.61,
+    "latest_price": 165.01,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502000_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Pitch Black Booster Bundle",
-    "change_pct": 7.64,
-    "latest_price": 37.78,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
+    "name": "Prismatic Evolutions Elite Trainer Box",
+    "change_pct": 21.34,
+    "latest_price": 126.38,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
   },
-  "updated_at": "2026-10-16T23:13:31Z"
+  "updated_at": "2026-10-17T22:50:31Z"
 }
