@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-19",
-  "previous_date": "2026-10-18",
-  "total_value": 18052.4,
+  "latest_date": "2026-10-20",
+  "previous_date": "2026-10-19",
+  "total_value": 18044.82,
   "cost_basis": 7463.63,
-  "gain_loss": 10588.77,
-  "return_pct": 141.87,
-  "day_value_change": 85.55,
+  "gain_loss": 10581.19,
+  "return_pct": 141.77,
+  "day_value_change": -7.58,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 85.55,
-  "day_gain_loss_pct": 0.48,
+  "day_gain_loss": -7.58,
+  "day_gain_loss_pct": -0.04,
   "holdings_count": 84,
   "sparkline_7d": [
-    18070.65,
     17935.31,
     17883.68,
     17900.51,
     17924.02,
     17966.85,
-    18052.4
+    18052.4,
+    18044.82
   ],
   "sparkline_30d": [
-    18186.29,
     18120.36,
     18059.12,
     18021.44,
@@ -49,19 +48,20 @@
     17900.51,
     17924.02,
     17966.85,
-    18052.4
+    18052.4,
+    18044.82
   ],
   "top_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 9.37,
-    "latest_price": 25.22,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Chaos Rising Elite Trainer Box",
+    "change_pct": 5.89,
+    "latest_price": 71.4,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Prismatic Evolutions Elite Trainer Box",
-    "change_pct": 10.4,
-    "latest_price": 132.2,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
+    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
+    "change_pct": 7.88,
+    "latest_price": 35.59,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
   },
-  "updated_at": "2026-10-20T00:04:42Z"
+  "updated_at": "2026-10-20T23:35:35Z"
 }
