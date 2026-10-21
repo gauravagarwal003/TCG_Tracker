@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-20",
-  "previous_date": "2026-10-19",
-  "total_value": 18044.82,
+  "latest_date": "2026-10-21",
+  "previous_date": "2026-10-20",
+  "total_value": 17963.6,
   "cost_basis": 7463.63,
-  "gain_loss": 10581.19,
-  "return_pct": 141.77,
-  "day_value_change": -7.58,
+  "gain_loss": 10499.97,
+  "return_pct": 140.68,
+  "day_value_change": -81.22,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -7.58,
-  "day_gain_loss_pct": -0.04,
+  "day_gain_loss": -81.22,
+  "day_gain_loss_pct": -0.45,
   "holdings_count": 84,
   "sparkline_7d": [
-    17935.31,
     17883.68,
     17900.51,
     17924.02,
     17966.85,
     18052.4,
-    18044.82
+    18044.82,
+    17963.6
   ],
   "sparkline_30d": [
-    18120.36,
     18059.12,
     18021.44,
     18091.91,
@@ -49,19 +48,20 @@
     17924.02,
     17966.85,
     18052.4,
-    18044.82
+    18044.82,
+    17963.6
   ],
   "top_gainer": {
-    "name": "Chaos Rising Elite Trainer Box",
-    "change_pct": 5.89,
-    "latest_price": 71.4,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/684450_200w.jpg"
+    "name": "Stellar Crown Pokemon Center Elite Trainer Box (Exclusive)",
+    "change_pct": 1.67,
+    "latest_price": 177.04,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/557340_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "30th Celebration Tech Sticker Collection [Alolan Exeggutor]",
-    "change_pct": 7.88,
-    "latest_price": 35.59,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704145_200w.jpg"
+    "name": "30th Celebration Tech Sticker Collection [Lucario]",
+    "change_pct": 8.7,
+    "latest_price": 36.84,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704146_200w.jpg"
   },
-  "updated_at": "2026-10-20T23:35:35Z"
+  "updated_at": "2026-10-21T23:52:49Z"
 }
