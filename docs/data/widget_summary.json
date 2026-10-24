@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-23",
-  "previous_date": "2026-10-22",
-  "total_value": 17896.74,
+  "latest_date": "2026-10-24",
+  "previous_date": "2026-10-23",
+  "total_value": 17898.8,
   "cost_basis": 7463.63,
-  "gain_loss": 10433.11,
-  "return_pct": 139.79,
-  "day_value_change": -0.25,
+  "gain_loss": 10435.17,
+  "return_pct": 139.81,
+  "day_value_change": 2.06,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -0.25,
-  "day_gain_loss_pct": -0.0,
+  "day_gain_loss": 2.06,
+  "day_gain_loss_pct": 0.01,
   "holdings_count": 84,
   "sparkline_7d": [
-    17924.02,
     17966.85,
     18052.4,
     18044.82,
     17963.6,
     17896.99,
-    17896.74
+    17896.74,
+    17898.8
   ],
   "sparkline_30d": [
-    18091.91,
     18091.91,
     18091.93,
     18091.81,
@@ -49,19 +48,20 @@
     18044.82,
     17963.6,
     17896.99,
-    17896.74
+    17896.74,
+    17898.8
   ],
   "top_gainer": {
-    "name": "Paldea Evolved Elite Trainer Box",
-    "change_pct": 7.85,
-    "latest_price": 212.05,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/493974_200w.jpg"
+    "name": "Destined Rivals Sleeved Booster Pack",
+    "change_pct": 2.0,
+    "latest_price": 10.21,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/624684_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "151 Booster Bundle",
-    "change_pct": 7.72,
-    "latest_price": 168.31,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/502000_200w.jpg"
+    "name": "Pitch Black Booster Bundle",
+    "change_pct": 8.08,
+    "latest_price": 38.01,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
   },
-  "updated_at": "2026-10-23T23:44:03Z"
+  "updated_at": "2026-10-24T22:50:53Z"
 }
