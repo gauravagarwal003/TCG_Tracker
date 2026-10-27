@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-25",
-  "previous_date": "2026-10-24",
-  "total_value": 17932.51,
+  "latest_date": "2026-10-26",
+  "previous_date": "2026-10-25",
+  "total_value": 17896.97,
   "cost_basis": 7463.63,
-  "gain_loss": 10468.88,
-  "return_pct": 140.27,
-  "day_value_change": 33.71,
+  "gain_loss": 10433.34,
+  "return_pct": 139.79,
+  "day_value_change": -35.54,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 33.71,
-  "day_gain_loss_pct": 0.19,
+  "day_gain_loss": -35.54,
+  "day_gain_loss_pct": -0.2,
   "holdings_count": 84,
   "sparkline_7d": [
-    18052.4,
     18044.82,
     17963.6,
     17896.99,
     17896.74,
     17898.8,
-    17932.51
+    17932.51,
+    17896.97
   ],
   "sparkline_30d": [
-    18091.93,
     18091.81,
     18140.31,
     18141.88,
@@ -49,19 +48,20 @@
     17896.99,
     17896.74,
     17898.8,
-    17932.51
+    17932.51,
+    17896.97
   ],
   "top_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 8.11,
-    "latest_price": 25.45,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Pitch Black Elite Trainer Box",
+    "change_pct": 2.68,
+    "latest_price": 72.1,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 10.36,
-    "latest_price": 25.45,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Surging Sparks Elite Trainer Box",
+    "change_pct": 4.99,
+    "latest_price": 121.64,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565630_200w.jpg"
   },
-  "updated_at": "2026-10-25T22:59:41Z"
+  "updated_at": "2026-10-27T00:12:27Z"
 }
