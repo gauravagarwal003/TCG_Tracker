@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-27",
-  "previous_date": "2026-10-26",
-  "total_value": 17867.88,
+  "latest_date": "2026-10-28",
+  "previous_date": "2026-10-27",
+  "total_value": 17791.49,
   "cost_basis": 7463.63,
-  "gain_loss": 10404.25,
-  "return_pct": 139.4,
-  "day_value_change": -29.09,
+  "gain_loss": 10327.86,
+  "return_pct": 138.38,
+  "day_value_change": -76.39,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -29.09,
-  "day_gain_loss_pct": -0.16,
+  "day_gain_loss": -76.39,
+  "day_gain_loss_pct": -0.43,
   "holdings_count": 84,
   "sparkline_7d": [
-    17963.6,
     17896.99,
     17896.74,
     17898.8,
     17932.51,
     17896.97,
-    17867.88
+    17867.88,
+    17791.49
   ],
   "sparkline_30d": [
-    18140.31,
     18141.88,
     18166.85,
     18089.47,
@@ -49,19 +48,20 @@
     17898.8,
     17932.51,
     17896.97,
-    17867.88
+    17867.88,
+    17791.49
   ],
   "top_gainer": {
-    "name": "Pitch Black Booster Bundle",
-    "change_pct": 9.14,
-    "latest_price": 39.06,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
+    "name": "30th Celebration Booster Bundle",
+    "change_pct": 3.55,
+    "latest_price": 70.32,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Surging Sparks Booster Pack",
-    "change_pct": 5.59,
-    "latest_price": 8.69,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
+    "name": "Paldea Evolved Elite Trainer Box",
+    "change_pct": 9.53,
+    "latest_price": 210.18,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/493974_200w.jpg"
   },
-  "updated_at": "2026-10-28T00:13:09Z"
+  "updated_at": "2026-10-29T00:34:10Z"
 }
