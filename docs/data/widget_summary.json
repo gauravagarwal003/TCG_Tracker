@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-28",
-  "previous_date": "2026-10-27",
-  "total_value": 17791.49,
+  "latest_date": "2026-10-29",
+  "previous_date": "2026-10-28",
+  "total_value": 17691.53,
   "cost_basis": 7463.63,
-  "gain_loss": 10327.86,
-  "return_pct": 138.38,
-  "day_value_change": -76.39,
+  "gain_loss": 10227.9,
+  "return_pct": 137.04,
+  "day_value_change": -99.96,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -76.39,
-  "day_gain_loss_pct": -0.43,
+  "day_gain_loss": -99.96,
+  "day_gain_loss_pct": -0.56,
   "holdings_count": 84,
   "sparkline_7d": [
-    17896.99,
     17896.74,
     17898.8,
     17932.51,
     17896.97,
     17867.88,
-    17791.49
+    17791.49,
+    17691.53
   ],
   "sparkline_30d": [
-    18141.88,
     18166.85,
     18089.47,
     18189.86,
@@ -49,19 +48,20 @@
     17932.51,
     17896.97,
     17867.88,
-    17791.49
+    17791.49,
+    17691.53
   ],
   "top_gainer": {
-    "name": "30th Celebration Booster Bundle",
-    "change_pct": 3.55,
-    "latest_price": 70.32,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
+    "name": "30th Celebration Knock Out Collection",
+    "change_pct": 4.65,
+    "latest_price": 24.52,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Paldea Evolved Elite Trainer Box",
-    "change_pct": 9.53,
-    "latest_price": 210.18,
+    "change_pct": 6.59,
+    "latest_price": 209.56,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/493974_200w.jpg"
   },
-  "updated_at": "2026-10-29T00:34:10Z"
+  "updated_at": "2026-10-30T00:33:18Z"
 }
