@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-10-31",
-  "previous_date": "2026-10-30",
-  "total_value": 17816.97,
+  "latest_date": "2026-11-01",
+  "previous_date": "2026-10-31",
+  "total_value": 17806.6,
   "cost_basis": 7547.97,
-  "gain_loss": 10269.0,
-  "return_pct": 136.05,
-  "day_value_change": 153.77,
-  "day_cost_basis_change": 84.34,
-  "day_gain_loss": 69.43,
-  "day_gain_loss_pct": 0.39,
+  "gain_loss": 10258.63,
+  "return_pct": 135.91,
+  "day_value_change": -10.37,
+  "day_cost_basis_change": 0.0,
+  "day_gain_loss": -10.37,
+  "day_gain_loss_pct": -0.06,
   "holdings_count": 85,
   "sparkline_7d": [
-    17932.51,
     17896.97,
     17867.88,
     17791.49,
     17691.53,
     17663.2,
-    17816.97
+    17816.97,
+    17806.6
   ],
   "sparkline_30d": [
-    18189.86,
     18204.19,
     18183.39,
     18185.26,
@@ -49,19 +48,20 @@
     17791.49,
     17691.53,
     17663.2,
-    17816.97
+    17816.97,
+    17806.6
   ],
   "top_gainer": {
-    "name": "Pitch Black Elite Trainer Box",
-    "change_pct": 6.79,
-    "latest_price": 73.74,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
+    "name": "30th Celebration Booster Bundle",
+    "change_pct": 5.65,
+    "latest_price": 69.53,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Surging Sparks Booster Pack",
-    "change_pct": 6.66,
-    "latest_price": 8.81,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565604_200w.jpg"
+    "name": "Pitch Black Booster Bundle",
+    "change_pct": 6.91,
+    "latest_price": 40.23,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
   },
-  "updated_at": "2026-10-31T23:55:45Z"
+  "updated_at": "2026-11-02T00:10:47Z"
 }
