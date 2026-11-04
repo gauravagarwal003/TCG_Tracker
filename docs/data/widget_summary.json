@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-02",
-  "previous_date": "2026-11-01",
-  "total_value": 17825.02,
+  "latest_date": "2026-11-03",
+  "previous_date": "2026-11-02",
+  "total_value": 17797.08,
   "cost_basis": 7547.97,
-  "gain_loss": 10277.05,
-  "return_pct": 136.16,
-  "day_value_change": 18.42,
+  "gain_loss": 10249.11,
+  "return_pct": 135.79,
+  "day_value_change": -27.94,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 18.42,
-  "day_gain_loss_pct": 0.1,
+  "day_gain_loss": -27.94,
+  "day_gain_loss_pct": -0.16,
   "holdings_count": 85,
   "sparkline_7d": [
-    17867.88,
     17791.49,
     17691.53,
     17663.2,
     17816.97,
     17806.6,
-    17825.02
+    17825.02,
+    17797.08
   ],
   "sparkline_30d": [
-    18183.39,
     18185.26,
     18202.74,
     18118.03,
@@ -49,19 +48,20 @@
     17663.2,
     17816.97,
     17806.6,
-    17825.02
+    17825.02,
+    17797.08
   ],
   "top_gainer": {
-    "name": "30th Celebration Booster Bundle",
-    "change_pct": 3.88,
-    "latest_price": 72.23,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
+    "name": "Surging Sparks Booster Bundle",
+    "change_pct": 2.18,
+    "latest_price": 67.5,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565629_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Pitch Black Booster Bundle",
-    "change_pct": 12.66,
-    "latest_price": 40.32,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
+    "name": "Surging Sparks Booster Bundle",
+    "change_pct": 5.37,
+    "latest_price": 67.5,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565629_200w.jpg"
   },
-  "updated_at": "2026-11-03T02:44:39Z"
+  "updated_at": "2026-11-04T01:00:28Z"
 }
