@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-04",
-  "previous_date": "2026-11-03",
-  "total_value": 17739.17,
+  "latest_date": "2026-11-05",
+  "previous_date": "2026-11-04",
+  "total_value": 17692.47,
   "cost_basis": 7547.97,
-  "gain_loss": 10191.2,
-  "return_pct": 135.02,
-  "day_value_change": -57.91,
+  "gain_loss": 10144.5,
+  "return_pct": 134.4,
+  "day_value_change": -46.7,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -57.91,
-  "day_gain_loss_pct": -0.33,
+  "day_gain_loss": -46.7,
+  "day_gain_loss_pct": -0.26,
   "holdings_count": 85,
   "sparkline_7d": [
-    17691.53,
     17663.2,
     17816.97,
     17806.6,
     17825.02,
     17797.08,
-    17739.17
+    17739.17,
+    17692.47
   ],
   "sparkline_30d": [
-    18202.74,
     18118.03,
     18074.71,
     18101.04,
@@ -49,19 +48,20 @@
     17806.6,
     17825.02,
     17797.08,
-    17739.17
+    17739.17,
+    17692.47
   ],
   "top_gainer": {
-    "name": "Shiny Treasure ex High Class Booster Box",
-    "change_pct": 2.69,
-    "latest_price": 124.07,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg"
+    "name": "Pitch Black Booster Bundle",
+    "change_pct": 6.45,
+    "latest_price": 39.62,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692942_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Destined Rivals Booster Bundle",
-    "change_pct": 6.21,
-    "latest_price": 60.93,
+    "change_pct": 6.93,
+    "latest_price": 61.28,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/625670_200w.jpg"
   },
-  "updated_at": "2026-11-05T01:15:05Z"
+  "updated_at": "2026-11-06T01:20:22Z"
 }
