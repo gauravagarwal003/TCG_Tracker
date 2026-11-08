@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-07",
-  "previous_date": "2026-11-06",
+  "latest_date": "2026-11-08",
+  "previous_date": "2026-11-07",
   "total_value": 17626.93,
   "cost_basis": 7547.97,
   "gain_loss": 10078.96,
   "return_pct": 133.53,
-  "day_value_change": -15.48,
+  "day_value_change": 0.0,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -15.48,
-  "day_gain_loss_pct": -0.09,
+  "day_gain_loss": 0.0,
+  "day_gain_loss_pct": 0.0,
   "holdings_count": 85,
   "sparkline_7d": [
-    17806.6,
     17825.02,
     17797.08,
     17739.17,
     17692.47,
     17642.41,
+    17626.93,
     17626.93
   ],
   "sparkline_30d": [
-    18101.04,
     18020.39,
     18100.42,
     18080.06,
@@ -49,19 +48,15 @@
     17739.17,
     17692.47,
     17642.41,
+    17626.93,
     17626.93
   ],
-  "top_gainer": {
-    "name": "Surging Sparks Booster Bundle",
-    "change_pct": 2.2,
-    "latest_price": 70.0,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565629_200w.jpg"
-  },
+  "top_gainer": null,
   "top_weekly_gainer": {
     "name": "Shiny Treasure ex High Class Booster Box",
-    "change_pct": 7.3,
+    "change_pct": 6.78,
     "latest_price": 127.02,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg"
   },
-  "updated_at": "2026-11-08T07:11:52Z"
+  "updated_at": "2026-11-08T08:01:10Z"
 }

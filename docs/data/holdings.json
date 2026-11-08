@@ -13,8 +13,8 @@
     "via_trade": false,
     "gain_loss": -149.23,
     "gain_loss_pct": -26.76,
-    "change_1d_pct": -1.88,
-    "change_7d_pct": -5.55
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -4.53
   },
   {
     "categoryId": "3",
@@ -30,8 +30,8 @@
     "via_trade": false,
     "gain_loss": 208.36,
     "gain_loss_pct": 116.92,
-    "change_1d_pct": -0.1,
-    "change_7d_pct": -0.31
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.14
   },
   {
     "categoryId": "3",
@@ -47,8 +47,8 @@
     "via_trade": false,
     "gain_loss": 515.6,
     "gain_loss_pct": 389.78,
-    "change_1d_pct": -0.21,
-    "change_7d_pct": -0.97
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.86
   },
   {
     "categoryId": "3",
@@ -64,8 +64,8 @@
     "via_trade": false,
     "gain_loss": 1064.96,
     "gain_loss_pct": 477.9,
-    "change_1d_pct": -0.11,
-    "change_7d_pct": -0.87
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.45
   },
   {
     "categoryId": "68",
@@ -81,8 +81,8 @@
     "via_trade": false,
     "gain_loss": 303.76,
     "gain_loss_pct": 111.67,
-    "change_1d_pct": -0.47,
-    "change_7d_pct": -4.43
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -4.09
   },
   {
     "categoryId": "3",
@@ -98,7 +98,7 @@
     "via_trade": false,
     "gain_loss": 412.16,
     "gain_loss_pct": 311.58,
-    "change_1d_pct": -0.31,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -1.69
   },
   {
@@ -115,8 +115,8 @@
     "via_trade": false,
     "gain_loss": 195.21,
     "gain_loss_pct": 296.49,
-    "change_1d_pct": -0.21,
-    "change_7d_pct": 0.21
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.08
   },
   {
     "categoryId": "3",
@@ -149,8 +149,8 @@
     "via_trade": false,
     "gain_loss": 380.56,
     "gain_loss_pct": 287.69,
-    "change_1d_pct": -1.3,
-    "change_7d_pct": -7.98
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -7.49
   },
   {
     "categoryId": "68",
@@ -166,8 +166,8 @@
     "via_trade": false,
     "gain_loss": 97.34,
     "gain_loss_pct": 64.7,
-    "change_1d_pct": -0.51,
-    "change_7d_pct": -1.54
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.39
   },
   {
     "categoryId": "68",
@@ -201,7 +201,7 @@
     "gain_loss": 58.75,
     "gain_loss_pct": 31.96,
     "change_1d_pct": 0.0,
-    "change_7d_pct": -0.31
+    "change_7d_pct": -0.3
   },
   {
     "categoryId": "3",
@@ -234,8 +234,8 @@
     "via_trade": false,
     "gain_loss": 272.64,
     "gain_loss_pct": 74.01,
-    "change_1d_pct": -1.65,
-    "change_7d_pct": -2.57
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -2.74
   },
   {
     "categoryId": "3",
@@ -285,8 +285,8 @@
     "via_trade": false,
     "gain_loss": 345.14,
     "gain_loss_pct": 915.98,
-    "change_1d_pct": -0.51,
-    "change_7d_pct": -1.38
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.31
   },
   {
     "categoryId": "3",
@@ -303,7 +303,7 @@
     "gain_loss": 116.29,
     "gain_loss_pct": 175.82,
     "change_1d_pct": 0.0,
-    "change_7d_pct": 0.74
+    "change_7d_pct": 0.94
   },
   {
     "categoryId": "3",
@@ -319,8 +319,8 @@
     "via_trade": false,
     "gain_loss": 3.76,
     "gain_loss_pct": 2.11,
-    "change_1d_pct": -0.37,
-    "change_7d_pct": 0.19
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.33
   },
   {
     "categoryId": "3",
@@ -336,8 +336,8 @@
     "via_trade": false,
     "gain_loss": -5.2,
     "gain_loss_pct": -2.92,
-    "change_1d_pct": 0.53,
-    "change_7d_pct": 0.6
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.01
   },
   {
     "categoryId": "3",
@@ -353,7 +353,7 @@
     "via_trade": false,
     "gain_loss": 155.48,
     "gain_loss_pct": 1061.3,
-    "change_1d_pct": 0.24,
+    "change_1d_pct": 0.0,
     "change_7d_pct": 1.33
   },
   {
@@ -370,8 +370,8 @@
     "via_trade": false,
     "gain_loss": 44.87,
     "gain_loss_pct": 35.82,
-    "change_1d_pct": -0.06,
-    "change_7d_pct": 4.88
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 4.27
   },
   {
     "categoryId": "3",
@@ -388,7 +388,7 @@
     "gain_loss": 281.98,
     "gain_loss_pct": 530.44,
     "change_1d_pct": 0.0,
-    "change_7d_pct": -0.17
+    "change_7d_pct": 0.02
   },
   {
     "categoryId": "3",
@@ -404,8 +404,8 @@
     "via_trade": false,
     "gain_loss": 820.32,
     "gain_loss_pct": 463.46,
-    "change_1d_pct": 0.02,
-    "change_7d_pct": -0.25
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.11
   },
   {
     "categoryId": "3",
@@ -421,7 +421,7 @@
     "via_trade": false,
     "gain_loss": 95.35,
     "gain_loss_pct": 145.15,
-    "change_1d_pct": -0.31,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -1.34
   },
   {
@@ -438,8 +438,8 @@
     "via_trade": false,
     "gain_loss": 216.08,
     "gain_loss_pct": 569.23,
-    "change_1d_pct": 0.56,
-    "change_7d_pct": 7.3
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 6.78
   },
   {
     "categoryId": "3",
@@ -455,8 +455,8 @@
     "via_trade": false,
     "gain_loss": 164.22,
     "gain_loss_pct": 82.76,
-    "change_1d_pct": 0.32,
-    "change_7d_pct": 0.77
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.58
   },
   {
     "categoryId": "3",
@@ -472,8 +472,8 @@
     "via_trade": false,
     "gain_loss": 105.74,
     "gain_loss_pct": 79.94,
-    "change_1d_pct": -0.27,
-    "change_7d_pct": -2.56
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -2.47
   },
   {
     "categoryId": "3",
@@ -489,8 +489,8 @@
     "via_trade": false,
     "gain_loss": 165.86,
     "gain_loss_pct": 235.53,
-    "change_1d_pct": 0.07,
-    "change_7d_pct": -1.45
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.44
   },
   {
     "categoryId": "3",
@@ -506,8 +506,8 @@
     "via_trade": false,
     "gain_loss": 269.64,
     "gain_loss_pct": 142.07,
-    "change_1d_pct": 0.92,
-    "change_7d_pct": -4.19
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -4.85
   },
   {
     "categoryId": "3",
@@ -574,8 +574,8 @@
     "via_trade": false,
     "gain_loss": 133.84,
     "gain_loss_pct": 225.32,
-    "change_1d_pct": 0.77,
-    "change_7d_pct": 2.49
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 2.69
   },
   {
     "categoryId": "3",
@@ -591,8 +591,8 @@
     "via_trade": false,
     "gain_loss": 104.12,
     "gain_loss_pct": 123.45,
-    "change_1d_pct": 0.6,
-    "change_7d_pct": 1.2
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.31
   },
   {
     "categoryId": "3",
@@ -608,8 +608,8 @@
     "via_trade": false,
     "gain_loss": 167.25,
     "gain_loss_pct": 175.04,
-    "change_1d_pct": 0.37,
-    "change_7d_pct": 0.88
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 1.59
   },
   {
     "categoryId": "3",
@@ -625,7 +625,7 @@
     "via_trade": false,
     "gain_loss": 75.92,
     "gain_loss_pct": 1385.4,
-    "change_1d_pct": -0.39,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -0.96
   },
   {
@@ -642,8 +642,8 @@
     "via_trade": false,
     "gain_loss": 168.54,
     "gain_loss_pct": 224.27,
-    "change_1d_pct": -0.16,
-    "change_7d_pct": 0.45
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.89
   },
   {
     "categoryId": "3",
@@ -659,8 +659,8 @@
     "via_trade": false,
     "gain_loss": 45.92,
     "gain_loss_pct": 154.61,
-    "change_1d_pct": 2.12,
-    "change_7d_pct": 0.71
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 3.17
   },
   {
     "categoryId": "3",
@@ -676,8 +676,8 @@
     "via_trade": false,
     "gain_loss": 50.0,
     "gain_loss_pct": 202.84,
-    "change_1d_pct": -0.16,
-    "change_7d_pct": 3.45
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 4.45
   },
   {
     "categoryId": "3",
@@ -693,7 +693,7 @@
     "via_trade": false,
     "gain_loss": 49.98,
     "gain_loss_pct": 207.56,
-    "change_1d_pct": -1.96,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -3.94
   },
   {
@@ -710,8 +710,8 @@
     "via_trade": false,
     "gain_loss": 5.43,
     "gain_loss_pct": 8.21,
-    "change_1d_pct": 2.13,
-    "change_7d_pct": -2.94
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 0.99
   },
   {
     "categoryId": "3",
@@ -727,7 +727,7 @@
     "via_trade": false,
     "gain_loss": 91.6,
     "gain_loss_pct": 189.26,
-    "change_1d_pct": 2.2,
+    "change_1d_pct": 0.0,
     "change_7d_pct": 5.96
   },
   {
@@ -744,8 +744,8 @@
     "via_trade": false,
     "gain_loss": 480.09,
     "gain_loss_pct": 114.44,
-    "change_1d_pct": 1.04,
-    "change_7d_pct": -6.41
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -4.78
   },
   {
     "categoryId": "3",
@@ -761,8 +761,8 @@
     "via_trade": false,
     "gain_loss": 2.63,
     "gain_loss_pct": 3.98,
-    "change_1d_pct": -0.32,
-    "change_7d_pct": -0.49
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -0.38
   },
   {
     "categoryId": "68",
@@ -795,8 +795,8 @@
     "via_trade": false,
     "gain_loss": 104.91,
     "gain_loss_pct": 117.74,
-    "change_1d_pct": 1.87,
-    "change_7d_pct": -1.73
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -6.99
   },
   {
     "categoryId": "3",
@@ -813,7 +813,7 @@
     "gain_loss": 107.07,
     "gain_loss_pct": 126.7,
     "change_1d_pct": 0.0,
-    "change_7d_pct": -1.53
+    "change_7d_pct": -0.55
   },
   {
     "categoryId": "3",
@@ -829,7 +829,7 @@
     "via_trade": false,
     "gain_loss": 38.59,
     "gain_loss_pct": 158.35,
-    "change_1d_pct": -0.06,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -0.82
   },
   {
@@ -846,8 +846,8 @@
     "via_trade": false,
     "gain_loss": 191.88,
     "gain_loss_pct": 105.02,
-    "change_1d_pct": -0.62,
-    "change_7d_pct": 6.81
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 3.48
   },
   {
     "categoryId": "3",
@@ -898,7 +898,7 @@
     "gain_loss": 32.95,
     "gain_loss_pct": 241.92,
     "change_1d_pct": 0.0,
-    "change_7d_pct": 0.76
+    "change_7d_pct": 0.56
   },
   {
     "categoryId": "80",
@@ -914,7 +914,7 @@
     "via_trade": false,
     "gain_loss": 34.7,
     "gain_loss_pct": 65.6,
-    "change_1d_pct": 0.74,
+    "change_1d_pct": 0.0,
     "change_7d_pct": 1.39
   },
   {
@@ -932,7 +932,7 @@
     "gain_loss": 28.68,
     "gain_loss_pct": 210.57,
     "change_1d_pct": 0.0,
-    "change_7d_pct": 0.43
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -948,8 +948,8 @@
     "via_trade": false,
     "gain_loss": 80.74,
     "gain_loss_pct": null,
-    "change_1d_pct": -0.44,
-    "change_7d_pct": -1.2
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.56
   },
   {
     "categoryId": "3",
@@ -965,8 +965,8 @@
     "via_trade": false,
     "gain_loss": 8.42,
     "gain_loss_pct": 28.35,
-    "change_1d_pct": -3.05,
-    "change_7d_pct": -2.51
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -5.24
   },
   {
     "categoryId": "68",
@@ -999,8 +999,8 @@
     "via_trade": false,
     "gain_loss": 16.43,
     "gain_loss_pct": 82.85,
-    "change_1d_pct": 0.55,
-    "change_7d_pct": 2.46
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 3.45
   },
   {
     "categoryId": "68",
@@ -1017,7 +1017,7 @@
     "gain_loss": 31.0,
     "gain_loss_pct": 77.77,
     "change_1d_pct": 0.0,
-    "change_7d_pct": -1.17
+    "change_7d_pct": -1.47
   },
   {
     "categoryId": "3",
@@ -1050,8 +1050,8 @@
     "via_trade": false,
     "gain_loss": 17.49,
     "gain_loss_pct": 105.81,
-    "change_1d_pct": -1.56,
-    "change_7d_pct": -4.87
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -4.71
   },
   {
     "categoryId": "3",
@@ -1067,8 +1067,8 @@
     "via_trade": false,
     "gain_loss": 17.36,
     "gain_loss_pct": 105.02,
-    "change_1d_pct": -0.76,
-    "change_7d_pct": -0.94
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -3.61
   },
   {
     "categoryId": "3",
@@ -1084,8 +1084,8 @@
     "via_trade": false,
     "gain_loss": 16.07,
     "gain_loss_pct": 91.15,
-    "change_1d_pct": 0.42,
-    "change_7d_pct": 0.81
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 1.44
   },
   {
     "categoryId": "3",
@@ -1102,7 +1102,7 @@
     "gain_loss": 22.46,
     "gain_loss_pct": 204.0,
     "change_1d_pct": 0.0,
-    "change_7d_pct": 0.36
+    "change_7d_pct": 0.0
   },
   {
     "categoryId": "3",
@@ -1118,7 +1118,7 @@
     "via_trade": false,
     "gain_loss": 21.65,
     "gain_loss_pct": 196.64,
-    "change_1d_pct": -2.01,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -3.17
   },
   {
@@ -1152,8 +1152,8 @@
     "via_trade": false,
     "gain_loss": 59.1,
     "gain_loss_pct": null,
-    "change_1d_pct": -1.57,
-    "change_7d_pct": -2.02
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.79
   },
   {
     "categoryId": "80",
@@ -1203,8 +1203,8 @@
     "via_trade": false,
     "gain_loss": 9.76,
     "gain_loss_pct": 88.65,
-    "change_1d_pct": -1.61,
-    "change_7d_pct": -13.96
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -13.46
   },
   {
     "categoryId": "68",
@@ -1254,7 +1254,7 @@
     "via_trade": false,
     "gain_loss": 6.44,
     "gain_loss_pct": 58.49,
-    "change_1d_pct": -1.08,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -1.08
   },
   {
@@ -1322,7 +1322,7 @@
     "via_trade": false,
     "gain_loss": 6.58,
     "gain_loss_pct": 32.29,
-    "change_1d_pct": 0.82,
+    "change_1d_pct": 0.0,
     "change_7d_pct": 1.66
   },
   {
@@ -1356,7 +1356,7 @@
     "via_trade": false,
     "gain_loss": 99.36,
     "gain_loss_pct": 145.77,
-    "change_1d_pct": 0.29,
+    "change_1d_pct": 0.0,
     "change_7d_pct": 0.67
   },
   {
@@ -1373,8 +1373,8 @@
     "via_trade": false,
     "gain_loss": 9.12,
     "gain_loss_pct": 92.12,
-    "change_1d_pct": 0.63,
-    "change_7d_pct": 2.04
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 1.93
   },
   {
     "categoryId": "3",
@@ -1390,8 +1390,8 @@
     "via_trade": false,
     "gain_loss": 17.04,
     "gain_loss_pct": 48.3,
-    "change_1d_pct": 0.23,
-    "change_7d_pct": 2.59
+    "change_1d_pct": 0.0,
+    "change_7d_pct": 1.87
   },
   {
     "categoryId": "3",
@@ -1408,7 +1408,7 @@
     "gain_loss": 7.5,
     "gain_loss_pct": 75.76,
     "change_1d_pct": 0.0,
-    "change_7d_pct": -1.25
+    "change_7d_pct": -1.14
   },
   {
     "categoryId": "3",
@@ -1424,8 +1424,8 @@
     "via_trade": false,
     "gain_loss": 6.08,
     "gain_loss_pct": 29.69,
-    "change_1d_pct": -0.15,
-    "change_7d_pct": -2.21
+    "change_1d_pct": 0.0,
+    "change_7d_pct": -1.92
   },
   {
     "categoryId": "3",
@@ -1441,7 +1441,7 @@
     "via_trade": false,
     "gain_loss": 4.17,
     "gain_loss_pct": 28.08,
-    "change_1d_pct": -0.94,
+    "change_1d_pct": 0.0,
     "change_7d_pct": -1.71
   }
 ]
