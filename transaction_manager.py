@@ -118,18 +118,27 @@ def _normalize_items_from_mappings(items):
         for m in mappings
         if "group_id" in m and "product_id" in m
     }
+    mapping_by_pid = {
+        str(m["product_id"]): m
+        for m in mappings
+        if "product_id" in m
+    }
 
     normalized_items = []
     for item in items or []:
         normalized = dict(item)
-        key = (str(normalized.get("group_id")), str(normalized.get("product_id")))
-        mapping = mapping_by_key.get(key)
+        pid = normalized.get("product_id")
+        gid = normalized.get("group_id")
+        key = (str(gid), str(pid)) if gid is not None and pid is not None else None
+        mapping = (mapping_by_key.get(key) if key else None) or (mapping_by_pid.get(str(pid)) if pid is not None else None)
         if mapping:
             if (
                 normalized.get("categoryId") in (None, "")
                 and mapping.get("categoryId") not in (None, "")
             ):
                 normalized["categoryId"] = mapping["categoryId"]
+            if mapping.get("group_id") is not None:
+                normalized["group_id"] = str(mapping["group_id"])
             normalized["name"] = deduplicate_phrase(mapping.get("name", "") or normalized.get("name", ""))
             normalized["imageUrl"] = normalized.get("imageUrl") or mapping.get("imageUrl", "")
             normalized["url"] = normalized.get("url") or mapping.get("url", "")

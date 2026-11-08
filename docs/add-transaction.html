@@ -1115,11 +1115,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const rows = document.querySelectorAll('.standard-item-row');
             for (const row of rows) {
                 const pid = row.querySelector('.std-product-id').value;
-                const gid = row.querySelector('.std-group-id').value;
+                let gid = row.querySelector('.std-group-id').value;
                 const cid = row.querySelector('.std-category-id').value || 3;
                 const name = row.querySelector('.std-name').value;
                 const qty = parseInt(row.querySelector('.std-qty').value) || 1;
                 const unitPrice = parseFloat(row.querySelector('.std-unit-price')?.value);
+
+                if (!gid && pid && staticMappingsCache) {
+                    const m = staticMappingsCache.find(x => String(x.product_id) === String(pid));
+                    if (m?.group_id) gid = String(m.group_id);
+                }
 
                 if (!pid || !gid || !name) {
                     e.preventDefault();
@@ -1213,10 +1218,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = [];
         document.getElementById(containerId).querySelectorAll('.trade-item-row').forEach(row => {
             const pid  = row.querySelector('.trade-product-id').value;
-            const gid  = row.querySelector('.trade-group-id').value;
+            let gid  = row.querySelector('.trade-group-id').value;
             const cid  = row.querySelector('.trade-category-id').value;
             const name = row.querySelector('.trade-name').value;
             const qty  = parseInt(row.querySelector('.trade-qty').value) || 1;
+
+            if (!gid && pid && staticMappingsCache) {
+                const m = staticMappingsCache.find(x => String(x.product_id) === String(pid));
+                if (m?.group_id) gid = String(m.group_id);
+            }
+
             if (pid && gid && name) {
                 items.push({
                     product_id: String(pid),

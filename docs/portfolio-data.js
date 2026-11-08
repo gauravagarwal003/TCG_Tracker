@@ -47,7 +47,8 @@ function buildMappingByProduct(mappings) {
     for (const mapping of mappings || []) {
         if (!mapping || mapping.product_id == null) continue;
         const pidStr = String(mapping.product_id);
-        if (!byIdOnly.has(pidStr)) {
+        const currentById = byIdOnly.get(pidStr);
+        if (!currentById || (mapping.group_id != null && currentById.group_id == null)) {
             byIdOnly.set(pidStr, mapping);
         }
         if (mapping.group_id == null) continue;
@@ -69,8 +70,11 @@ function normalizeProductItem(item, mappingLookup) {
     const key = item.group_id != null ? asProductKey(item.group_id, item.product_id) : null;
     const mapping = (key ? byProduct.get(key) : null) || byIdOnly.get(pidStr) || null;
     const categoryId = normalizeCategoryId(mapping?.categoryId) ?? normalizeCategoryId(item.categoryId);
+    const groupId = (mapping?.group_id != null ? String(mapping.group_id) : null) ?? (item.group_id != null ? String(item.group_id) : null);
     return {
         ...item,
+        product_id: pidStr,
+        group_id: groupId,
         categoryId,
         name: item.name || mapping?.name || '',
         imageUrl: item.imageUrl || mapping?.imageUrl || '',
@@ -131,24 +135,63 @@ export function extractProductKeys(transactions) {
     });
 }
 
-function loadPriceMap(categoryId, groupId, productId) {
+function loadPriceMap(categoryId, groupId, productId, mappings = null) {
     const key = asKey(categoryId, groupId, productId);
-    if (!PRICE_CACHE.has(key)) {
-        PRICE_CACHE.set(
-            key,
-            fetch(`prices/${categoryId}/${groupId}/${productId}.json?cb=${Date.now()}`)
-                .then((resp) => (resp.ok ? resp.json() : {}))
-                .catch(() => ({}))
-        );
+    if (PRICE_CACHE.has(key)) {
+        return PRICE_CACHE.get(key);
     }
-    return PRICE_CACHE.get(key);
+
+    const promise = (async () => {
+        const cid = String(categoryId);
+        const gid = String(groupId);
+        const pid = String(productId);
+
+        const candidateUrls = [
+            `prices/${cid}/${gid}/${pid}.json?cb=${Date.now()}`,
+            `/prices/${cid}/${gid}/${pid}.json?cb=${Date.now()}`,
+            `docs/prices/${cid}/${gid}/${pid}.json?cb=${Date.now()}`,
+            `https://raw.githubusercontent.com/gauravagarwal003/TCG_Tracker/main/prices/${cid}/${gid}/${pid}.json`,
+        ];
+
+        if (Array.isArray(mappings)) {
+            const canonical = mappings.find((m) => String(m.product_id) === pid && m.group_id != null && String(m.group_id) !== gid);
+            if (canonical) {
+                const canonGid = String(canonical.group_id);
+                const canonCid = normalizeCategoryId(canonical.categoryId) || cid;
+                candidateUrls.push(
+                    `prices/${canonCid}/${canonGid}/${pid}.json?cb=${Date.now()}`,
+                    `/prices/${canonCid}/${canonGid}/${pid}.json?cb=${Date.now()}`,
+                    `docs/prices/${canonCid}/${canonGid}/${pid}.json?cb=${Date.now()}`,
+                    `https://raw.githubusercontent.com/gauravagarwal003/TCG_Tracker/main/prices/${canonCid}/${canonGid}/${pid}.json`
+                );
+            }
+        }
+
+        for (const url of candidateUrls) {
+            try {
+                const resp = await fetch(url);
+                if (resp && resp.ok) {
+                    const data = await resp.json();
+                    if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+                        return data;
+                    }
+                }
+            } catch (err) {
+                // Try next candidate URL
+            }
+        }
+        return {};
+    })();
+
+    PRICE_CACHE.set(key, promise);
+    return promise;
 }
 
 function getLatestPriceOnOrBefore(priceMap, dateStr) {
     let bestDate = null;
     let bestPrice = 0;
     for (const [d, price] of Object.entries(priceMap || {})) {
-        if (!price || price <= 0) continue;
+        if (!price || Number(price) <= 0) continue;
         if (d <= dateStr && (!bestDate || d > bestDate)) {
             bestDate = d;
             bestPrice = Number(price) || 0;
@@ -240,9 +283,9 @@ function computeCostBasisDeltas(transactions) {
     return deltas;
 }
 
-async function loadPriceMaps(keys) {
+async function loadPriceMaps(keys, mappings = null) {
     const entries = await Promise.all(keys.map(async (key) => {
-        const priceMap = await loadPriceMap(key.categoryId, key.groupId, key.productId);
+        const priceMap = await loadPriceMap(key.categoryId, key.groupId, key.productId, mappings);
         return [key.key, priceMap || {}];
     }));
     return new Map(entries);
@@ -282,7 +325,7 @@ export async function computeDashboardSnapshot(transactions) {
     }
 
     const keys = extractProductKeys(txns);
-    const priceMaps = await loadPriceMaps(keys);
+    const priceMaps = await loadPriceMaps(keys, mappings);
     const inventory = computeInventoryTimeline(txns);
     const costBasisDeltas = computeCostBasisDeltas(txns);
 
@@ -307,7 +350,7 @@ export async function computeDashboardSnapshot(transactions) {
             if (qty <= 0) continue;
             const priceMap = priceMaps.get(key) || {};
             const exact = priceMap[dateStr];
-            if (exact && exact > 0) {
+            if (exact && Number(exact) > 0) {
                 lastKnownPrice.set(key, Number(exact));
                 totalValue += qty * Number(exact);
             } else if (lastKnownPrice.has(key)) {

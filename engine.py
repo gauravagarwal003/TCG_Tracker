@@ -195,18 +195,26 @@ def _normalize_item_for_pricing(item, mapping_by_product):
         return item
     group_id = item.get("group_id")
     product_id = item.get("product_id")
-    if group_id is None or product_id is None:
+    if product_id is None:
         return dict(item)
 
-    mapping = mapping_by_product.get((str(group_id), str(product_id))) or mapping_by_product.get(str(product_id))
-    category_id = _normalize_category_id(mapping.get("categoryId")) if mapping else None
+    mapping = None
+    if group_id is not None:
+        mapping = mapping_by_product.get((str(group_id), str(product_id)))
+    if mapping is None:
+        mapping = mapping_by_product.get(str(product_id))
 
+    category_id = _normalize_category_id(mapping.get("categoryId")) if mapping else None
     if category_id is None:
         category_id = _normalize_category_id(item.get("categoryId"))
 
     normalized = dict(item)
     if category_id is not None:
         normalized["categoryId"] = category_id
+    if mapping and mapping.get("group_id") is not None:
+        normalized["group_id"] = str(mapping["group_id"])
+    elif group_id is not None:
+        normalized["group_id"] = str(group_id)
     if mapping:
         normalized["name"] = normalized.get("name") or mapping.get("name", "")
         normalized["imageUrl"] = normalized.get("imageUrl") or mapping.get("imageUrl", "")
