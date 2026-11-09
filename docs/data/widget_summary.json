@@ -1,14 +1,14 @@
 {
   "latest_date": "2026-11-08",
   "previous_date": "2026-11-07",
-  "total_value": 17626.93,
+  "total_value": 17651.28,
   "cost_basis": 7547.97,
-  "gain_loss": 10078.96,
-  "return_pct": 133.53,
-  "day_value_change": 0.0,
+  "gain_loss": 10103.31,
+  "return_pct": 133.85,
+  "day_value_change": 24.35,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 0.0,
-  "day_gain_loss_pct": 0.0,
+  "day_gain_loss": 24.35,
+  "day_gain_loss_pct": 0.14,
   "holdings_count": 85,
   "sparkline_7d": [
     17825.02,
@@ -17,7 +17,7 @@
     17692.47,
     17642.41,
     17626.93,
-    17626.93
+    17651.28
   ],
   "sparkline_30d": [
     18020.39,
@@ -49,14 +49,19 @@
     17692.47,
     17642.41,
     17626.93,
-    17626.93
+    17651.28
   ],
-  "top_gainer": null,
+  "top_gainer": {
+    "name": "30th Celebration Knock Out Collection",
+    "change_pct": 6.07,
+    "latest_price": 22.03,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+  },
   "top_weekly_gainer": {
     "name": "Shiny Treasure ex High Class Booster Box",
-    "change_pct": 6.78,
-    "latest_price": 127.02,
+    "change_pct": 7.33,
+    "latest_price": 127.68,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg"
   },
-  "updated_at": "2026-11-08T08:01:10Z"
+  "updated_at": "2026-11-09T00:27:22Z"
 }
