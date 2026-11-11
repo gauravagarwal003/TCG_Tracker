@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-09",
-  "previous_date": "2026-11-08",
-  "total_value": 17680.97,
+  "latest_date": "2026-11-10",
+  "previous_date": "2026-11-09",
+  "total_value": 17684.32,
   "cost_basis": 7553.44,
-  "gain_loss": 10127.53,
-  "return_pct": 134.08,
-  "day_value_change": 22.17,
+  "gain_loss": 10130.88,
+  "return_pct": 134.12,
+  "day_value_change": 3.35,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 22.17,
-  "day_gain_loss_pct": 0.13,
+  "day_gain_loss": 3.35,
+  "day_gain_loss_pct": 0.02,
   "holdings_count": 86,
   "sparkline_7d": [
-    17797.08,
     17739.17,
     17692.47,
     17642.41,
     17626.93,
     17658.8,
-    17680.97
+    17680.97,
+    17684.32
   ],
   "sparkline_30d": [
-    18100.42,
     18080.06,
     18070.65,
     17935.31,
@@ -49,19 +48,20 @@
     17642.41,
     17626.93,
     17658.8,
-    17680.97
+    17680.97,
+    17684.32
   ],
   "top_gainer": {
-    "name": "Extra Booster: One Piece Heroines Edition Box",
-    "change_pct": 4.98,
-    "latest_price": 305.87,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/666891_200w.jpg"
+    "name": "Prismatic Evolutions Booster Bundle",
+    "change_pct": 4.82,
+    "latest_price": 72.62,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Shiny Treasure ex High Class Booster Box",
-    "change_pct": 7.8,
-    "latest_price": 128.86,
+    "change_pct": 7.75,
+    "latest_price": 130.18,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg"
   },
-  "updated_at": "2026-11-10T03:07:29Z"
+  "updated_at": "2026-11-11T00:59:27Z"
 }
