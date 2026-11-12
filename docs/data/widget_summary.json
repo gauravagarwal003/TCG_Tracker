@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-10",
-  "previous_date": "2026-11-09",
-  "total_value": 17684.32,
-  "cost_basis": 7553.44,
-  "gain_loss": 10130.88,
-  "return_pct": 134.12,
-  "day_value_change": 3.35,
-  "day_cost_basis_change": 0.0,
-  "day_gain_loss": 3.35,
-  "day_gain_loss_pct": 0.02,
-  "holdings_count": 86,
+  "latest_date": "2026-11-11",
+  "previous_date": "2026-11-10",
+  "total_value": 18168.03,
+  "cost_basis": 7863.93,
+  "gain_loss": 10304.1,
+  "return_pct": 131.03,
+  "day_value_change": 483.71,
+  "day_cost_basis_change": 310.49,
+  "day_gain_loss": 173.22,
+  "day_gain_loss_pct": 0.98,
+  "holdings_count": 88,
   "sparkline_7d": [
-    17739.17,
     17692.47,
     17642.41,
     17626.93,
     17658.8,
     17680.97,
-    17684.32
+    17684.32,
+    18168.03
   ],
   "sparkline_30d": [
-    18080.06,
     18070.65,
     17935.31,
     17883.68,
@@ -49,19 +48,20 @@
     17626.93,
     17658.8,
     17680.97,
-    17684.32
+    17684.32,
+    18168.03
   ],
   "top_gainer": {
-    "name": "Prismatic Evolutions Booster Bundle",
-    "change_pct": 4.82,
-    "latest_price": 72.62,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg"
+    "name": "30th Celebration Knock Out Collection",
+    "change_pct": 4.51,
+    "latest_price": 21.76,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Shiny Treasure ex High Class Booster Box",
-    "change_pct": 7.75,
-    "latest_price": 130.18,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/565232_200w.jpg"
+    "name": "Ascended Heroes Booster Bundle",
+    "change_pct": 9.1,
+    "latest_price": 79.39,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668541_200w.jpg"
   },
-  "updated_at": "2026-11-11T00:59:27Z"
+  "updated_at": "2026-11-12T02:05:22Z"
 }
