@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-12",
-  "previous_date": "2026-11-11",
-  "total_value": 18107.95,
+  "latest_date": "2026-11-13",
+  "previous_date": "2026-11-12",
+  "total_value": 18069.42,
   "cost_basis": 7863.93,
-  "gain_loss": 10244.02,
-  "return_pct": 130.27,
-  "day_value_change": -60.08,
+  "gain_loss": 10205.49,
+  "return_pct": 129.78,
+  "day_value_change": -38.53,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -60.08,
-  "day_gain_loss_pct": -0.33,
+  "day_gain_loss": -38.53,
+  "day_gain_loss_pct": -0.21,
   "holdings_count": 88,
   "sparkline_7d": [
-    17642.41,
     17626.93,
     17658.8,
     17680.97,
     17684.32,
     18168.03,
-    18107.95
+    18107.95,
+    18069.42
   ],
   "sparkline_30d": [
-    17935.31,
     17883.68,
     17900.51,
     17924.02,
@@ -49,19 +48,20 @@
     17680.97,
     17684.32,
     18168.03,
-    18107.95
+    18107.95,
+    18069.42
   ],
   "top_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 1.61,
-    "latest_price": 22.11,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "Prismatic Evolutions Elite Trainer Box",
+    "change_pct": 2.58,
+    "latest_price": 117.57,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/593355_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Prismatic Evolutions Booster Bundle",
-    "change_pct": 10.78,
-    "latest_price": 73.87,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/600518_200w.jpg"
+    "name": "White Flare Booster Bundle",
+    "change_pct": 7.66,
+    "latest_price": 93.97,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/630696_200w.jpg"
   },
-  "updated_at": "2026-11-13T01:38:24Z"
+  "updated_at": "2026-11-14T01:13:14Z"
 }
