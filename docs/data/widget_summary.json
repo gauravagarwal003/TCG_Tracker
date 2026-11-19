@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-17",
-  "previous_date": "2026-11-16",
-  "total_value": 17905.72,
+  "latest_date": "2026-11-18",
+  "previous_date": "2026-11-17",
+  "total_value": 17844.13,
   "cost_basis": 7863.93,
-  "gain_loss": 10041.79,
-  "return_pct": 127.69,
-  "day_value_change": -2.96,
+  "gain_loss": 9980.2,
+  "return_pct": 126.91,
+  "day_value_change": -61.59,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -2.96,
-  "day_gain_loss_pct": -0.02,
+  "day_gain_loss": -61.59,
+  "day_gain_loss_pct": -0.34,
   "holdings_count": 88,
   "sparkline_7d": [
-    18168.03,
     18107.95,
     18069.42,
     17970.7,
     17911.22,
     17908.68,
-    17905.72
+    17905.72,
+    17844.13
   ],
   "sparkline_30d": [
-    18052.4,
     18044.82,
     17963.6,
     17896.99,
@@ -49,19 +48,20 @@
     17970.7,
     17911.22,
     17908.68,
-    17905.72
+    17905.72,
+    17844.13
   ],
   "top_gainer": {
-    "name": "Ascended Heroes Booster Bundle",
-    "change_pct": 10.76,
-    "latest_price": 79.38,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668541_200w.jpg"
+    "name": "Knock Out Collection [Suicune]",
+    "change_pct": 5.32,
+    "latest_price": 13.46,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Carrying On His Will Booster Box",
-    "change_pct": 10.12,
-    "latest_price": 444.76,
+    "change_pct": 10.87,
+    "latest_price": 445.72,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg"
   },
-  "updated_at": "2026-11-18T02:42:22Z"
+  "updated_at": "2026-11-19T02:13:23Z"
 }
