@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-18",
-  "previous_date": "2026-11-17",
-  "total_value": 17844.13,
+  "latest_date": "2026-11-19",
+  "previous_date": "2026-11-18",
+  "total_value": 17813.42,
   "cost_basis": 7863.93,
-  "gain_loss": 9980.2,
-  "return_pct": 126.91,
-  "day_value_change": -61.59,
+  "gain_loss": 9949.49,
+  "return_pct": 126.52,
+  "day_value_change": -30.71,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -61.59,
-  "day_gain_loss_pct": -0.34,
+  "day_gain_loss": -30.71,
+  "day_gain_loss_pct": -0.17,
   "holdings_count": 88,
   "sparkline_7d": [
-    18107.95,
     18069.42,
     17970.7,
     17911.22,
     17908.68,
     17905.72,
-    17844.13
+    17844.13,
+    17813.42
   ],
   "sparkline_30d": [
-    18044.82,
     17963.6,
     17896.99,
     17896.74,
@@ -49,19 +48,20 @@
     17911.22,
     17908.68,
     17905.72,
-    17844.13
+    17844.13,
+    17813.42
   ],
   "top_gainer": {
-    "name": "Knock Out Collection [Suicune]",
-    "change_pct": 5.32,
-    "latest_price": 13.46,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/670783_200w.jpg"
+    "name": "Delta Reign Sleeved Booster Pack",
+    "change_pct": 6.92,
+    "latest_price": 7.11,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/712112_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Carrying On His Will Booster Box",
-    "change_pct": 10.87,
-    "latest_price": 445.72,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/628352_200w.jpg"
+    "name": "Perfect Order Sleeved Booster Pack",
+    "change_pct": 10.64,
+    "latest_price": 7.07,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg"
   },
-  "updated_at": "2026-11-19T02:13:23Z"
+  "updated_at": "2026-11-20T01:59:44Z"
 }
