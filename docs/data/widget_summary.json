@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-19",
-  "previous_date": "2026-11-18",
-  "total_value": 17813.42,
+  "latest_date": "2026-11-20",
+  "previous_date": "2026-11-19",
+  "total_value": 17772.12,
   "cost_basis": 7863.93,
-  "gain_loss": 9949.49,
-  "return_pct": 126.52,
-  "day_value_change": -30.71,
+  "gain_loss": 9908.19,
+  "return_pct": 126.0,
+  "day_value_change": -41.3,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -30.71,
-  "day_gain_loss_pct": -0.17,
+  "day_gain_loss": -41.3,
+  "day_gain_loss_pct": -0.23,
   "holdings_count": 88,
   "sparkline_7d": [
-    18069.42,
     17970.7,
     17911.22,
     17908.68,
     17905.72,
     17844.13,
-    17813.42
+    17813.42,
+    17772.12
   ],
   "sparkline_30d": [
-    17963.6,
     17896.99,
     17896.74,
     17898.8,
@@ -49,19 +48,20 @@
     17908.68,
     17905.72,
     17844.13,
-    17813.42
+    17813.42,
+    17772.12
   ],
   "top_gainer": {
-    "name": "Delta Reign Sleeved Booster Pack",
-    "change_pct": 6.92,
-    "latest_price": 7.11,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/712112_200w.jpg"
+    "name": "Perfect Order Sleeved Booster Pack",
+    "change_pct": 6.51,
+    "latest_price": 7.53,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Perfect Order Sleeved Booster Pack",
-    "change_pct": 10.64,
-    "latest_price": 7.07,
+    "change_pct": 17.84,
+    "latest_price": 7.53,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg"
   },
-  "updated_at": "2026-11-20T01:59:44Z"
+  "updated_at": "2026-11-21T01:56:49Z"
 }
