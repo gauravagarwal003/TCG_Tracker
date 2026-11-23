@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-21",
-  "previous_date": "2026-11-20",
-  "total_value": 17777.27,
+  "latest_date": "2026-11-22",
+  "previous_date": "2026-11-21",
+  "total_value": 17685.78,
   "cost_basis": 7863.93,
-  "gain_loss": 9913.34,
-  "return_pct": 126.06,
-  "day_value_change": 5.15,
+  "gain_loss": 9821.85,
+  "return_pct": 124.9,
+  "day_value_change": -91.49,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": 5.15,
-  "day_gain_loss_pct": 0.03,
+  "day_gain_loss": -91.49,
+  "day_gain_loss_pct": -0.51,
   "holdings_count": 88,
   "sparkline_7d": [
-    17911.22,
     17908.68,
     17905.72,
     17844.13,
     17813.42,
     17772.12,
-    17777.27
+    17777.27,
+    17685.78
   ],
   "sparkline_30d": [
-    17896.74,
     17898.8,
     17932.51,
     17896.97,
@@ -49,19 +48,20 @@
     17844.13,
     17813.42,
     17772.12,
-    17777.27
+    17777.27,
+    17685.78
   ],
   "top_gainer": {
-    "name": "30th Celebration Knock Out Collection",
-    "change_pct": 4.52,
-    "latest_price": 21.73,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
+    "name": "30th Celebration Booster Bundle",
+    "change_pct": 5.55,
+    "latest_price": 63.11,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
   },
   "top_weekly_gainer": {
     "name": "Perfect Order Sleeved Booster Pack",
-    "change_pct": 18.15,
-    "latest_price": 7.55,
+    "change_pct": 16.59,
+    "latest_price": 7.52,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg"
   },
-  "updated_at": "2026-11-22T00:54:15Z"
+  "updated_at": "2026-11-23T01:22:31Z"
 }
