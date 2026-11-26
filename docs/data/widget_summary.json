@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-24",
-  "previous_date": "2026-11-23",
-  "total_value": 17666.94,
+  "latest_date": "2026-11-25",
+  "previous_date": "2026-11-24",
+  "total_value": 17618.09,
   "cost_basis": 7863.93,
-  "gain_loss": 9803.01,
-  "return_pct": 124.66,
-  "day_value_change": -6.76,
+  "gain_loss": 9754.16,
+  "return_pct": 124.04,
+  "day_value_change": -48.85,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -6.76,
-  "day_gain_loss_pct": -0.04,
+  "day_gain_loss": -48.85,
+  "day_gain_loss_pct": -0.28,
   "holdings_count": 88,
   "sparkline_7d": [
-    17844.13,
     17813.42,
     17772.12,
     17777.27,
     17685.78,
     17673.7,
-    17666.94
+    17666.94,
+    17618.09
   ],
   "sparkline_30d": [
-    17896.97,
     17867.88,
     17791.49,
     17691.53,
@@ -49,19 +48,20 @@
     17777.27,
     17685.78,
     17673.7,
-    17666.94
+    17666.94,
+    17618.09
   ],
   "top_gainer": {
     "name": "30th Celebration Knock Out Collection",
-    "change_pct": 5.05,
-    "latest_price": 20.4,
+    "change_pct": 4.17,
+    "latest_price": 21.25,
     "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704152_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Delta Reign Sleeved Booster Pack",
-    "change_pct": 12.91,
-    "latest_price": 7.26,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/712112_200w.jpg"
+    "name": "Perfect Order Sleeved Booster Pack",
+    "change_pct": 10.28,
+    "latest_price": 7.51,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/672412_200w.jpg"
   },
-  "updated_at": "2026-11-25T03:55:37Z"
+  "updated_at": "2026-11-26T03:20:34Z"
 }
