@@ -1,26 +1,25 @@
 {
-  "latest_date": "2026-11-26",
-  "previous_date": "2026-11-25",
-  "total_value": 17556.97,
+  "latest_date": "2026-11-27",
+  "previous_date": "2026-11-26",
+  "total_value": 17571.95,
   "cost_basis": 7863.93,
-  "gain_loss": 9693.04,
-  "return_pct": 123.26,
-  "day_value_change": -61.12,
+  "gain_loss": 9708.02,
+  "return_pct": 123.45,
+  "day_value_change": 14.98,
   "day_cost_basis_change": 0.0,
-  "day_gain_loss": -61.12,
-  "day_gain_loss_pct": -0.35,
+  "day_gain_loss": 14.98,
+  "day_gain_loss_pct": 0.09,
   "holdings_count": 88,
   "sparkline_7d": [
-    17772.12,
     17777.27,
     17685.78,
     17673.7,
     17666.94,
     17618.09,
-    17556.97
+    17556.97,
+    17571.95
   ],
   "sparkline_30d": [
-    17791.49,
     17691.53,
     17663.2,
     17816.97,
@@ -49,19 +48,20 @@
     17673.7,
     17666.94,
     17618.09,
-    17556.97
+    17556.97,
+    17571.95
   ],
   "top_gainer": {
-    "name": "Pitch Black Elite Trainer Box",
-    "change_pct": 5.87,
-    "latest_price": 70.71,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
+    "name": "Ascended Heroes Booster Bundle",
+    "change_pct": 14.89,
+    "latest_price": 75.45,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/668541_200w.jpg"
   },
   "top_weekly_gainer": {
-    "name": "Pitch Black Elite Trainer Box",
-    "change_pct": 8.57,
-    "latest_price": 70.71,
-    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/692947_200w.jpg"
+    "name": "30th Celebration Booster Bundle",
+    "change_pct": 10.68,
+    "latest_price": 63.4,
+    "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/704171_200w.jpg"
   },
-  "updated_at": "2026-11-27T03:26:58Z"
+  "updated_at": "2026-11-28T03:02:51Z"
 }
